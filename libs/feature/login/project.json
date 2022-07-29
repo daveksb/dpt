@@ -1,0 +1,17 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/feature/login/src",
+  "prefix": "dpt",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/feature/login/**/*.ts",
+          "libs/feature/login/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
