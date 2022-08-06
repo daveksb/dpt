@@ -4,6 +4,7 @@
   "projects": {
     "dpt-ui": "apps/dpt-ui",
     "feature-login": "libs/feature/login",
-    "form": "libs/form"
+    "form": "libs/form",
+    "ui": "libs/ui"
   }
 }
