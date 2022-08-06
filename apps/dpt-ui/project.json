@@ -84,6 +84,14 @@
         "jestConfig": "apps/dpt-ui/jest.config.ts",
         "passWithNoTests": true
       }
+    },
+    "deploy": {
+      "executor": "@netlify-builder/deploy:deploy",
+      "options": {
+        "outputPath": "dist/apps/dpt-ui",
+        "siteId": "85617c9c-9e15-406f-928c-e2d6a7725008",
+        "noBuild": true
+      }
     }
   },
   "tags": []
