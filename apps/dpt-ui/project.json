@@ -16,7 +16,7 @@
         "assets": ["apps/dpt-ui/src/favicon.ico", "apps/dpt-ui/src/assets"],
         "styles": [
           "apps/dpt-ui/src/styles.scss",
-          "node_modules/bootstrap/dist/scss/bootstrap.scss"
+          "node_modules/bootstrap/dist/css/bootstrap.css"
         ],
         "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
       },

@@ -3,6 +3,7 @@
   "version": 2,
   "projects": {
     "dpt-ui": "apps/dpt-ui",
-    "feature-login": "libs/feature/login"
+    "feature-login": "libs/feature/login",
+    "form": "libs/form"
   }
 }
