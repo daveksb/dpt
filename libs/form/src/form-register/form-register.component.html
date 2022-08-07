@@ -122,13 +122,17 @@
       <div class="d-flex my-3">
         <button
           type="submit"
-          class="btn btn-sm btn-warning me-2"
+          class="btn btn-secondary me-2"
+          [routerLink]="['/login']"
+        >
+          ยกเลิก
+        </button>
+        <button
+          type="submit"
+          class="btn btn-sm btn-warning"
           [routerLink]="['/login']"
         >
           ยืนยันการลงทะเบียน >
-        </button>
-        <button type="submit" class="ms-2" [routerLink]="['/login']">
-          ยกเลิก
         </button>
       </div>
     </form>

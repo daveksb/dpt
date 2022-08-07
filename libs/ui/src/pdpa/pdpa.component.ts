@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { TopNavComponent } from '../top-nav/top-nav.component';
 
 @Component({
   selector: 'dpt-pdpa',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TopNavComponent],
   templateUrl: './pdpa.component.html',
   styleUrls: ['./pdpa.component.scss'],
 })

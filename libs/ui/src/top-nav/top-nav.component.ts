@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'dpt-form-forgot-password',
+  selector: 'dpt-top-nav',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './form-forgot-password.component.html',
-  styleUrls: ['./form-forgot-password.component.scss'],
+  templateUrl: './top-nav.component.html',
+  styleUrls: ['./top-nav.component.scss'],
 })
-export class FormForgotPasswordComponent implements OnInit {
+export class TopNavComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
