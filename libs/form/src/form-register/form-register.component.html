@@ -10,18 +10,42 @@
       <div class="d-flex align-items-center w-100 mb-3" style="padding: 0 12px">
         <div class="form-label text-nowrap mb-0 me-3">หน่วยงาน*</div>
         <div class="text-nowrap me-3">
-          <input type="radio" class="me-2" name="xxx" />
+          <input
+            type="radio"
+            class="me-2"
+            name="status"
+            [value]="1"
+            (change)="radioButtonChanged($event)"
+            checked
+          />
           <label class="form-label m-0">ภายนอก</label>
         </div>
         <div class="text-nowrap me-3">
-          <input type="radio" class="me-2" name="xxx" />
+          <input
+            type="radio"
+            class="me-2"
+            name="status"
+            [value]="2"
+            (change)="radioButtonChanged($event)"
+          />
           <label class="form-label m-0">ภายใน</label>
         </div>
-        <input
-          type="text"
-          class="form-control form-control-sm"
-          placeholder="กรุณากรอกชื่อหน่วยงาน"
-        />
+
+        <ng-container *ngIf="status === 1">
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            placeholder="กรุณากรอกชื่อหน่วยงาน"
+        /></ng-container>
+
+        <ng-container *ngIf="status === 2">
+          <select class="form-select form-select-sm">
+            <option disabled hidden selected>*กรุณาเลือก Category</option>
+            <option value="a">a</option>
+            <option value="b">b</option>
+            <option value="c">c</option>
+          </select></ng-container
+        >
       </div>
 
       <div class="row mb-2 w-100">

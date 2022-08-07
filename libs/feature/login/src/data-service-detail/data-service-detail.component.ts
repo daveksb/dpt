@@ -11,12 +11,12 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./data-service-detail.component.scss'],
 })
 export class DataServiceDetailComponent {
-  constructor(public dialog: MatDialog) {}
+  constructor() {}
 
-  openDialog() {
+ /*  openDialog() {
     this.dialog.open(DataServiceDialogComponent, {
       height: '400px',
       width: '600px',
     });
-  }
+  } */
 }
