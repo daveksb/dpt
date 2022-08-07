@@ -3,8 +3,12 @@
     <div class="container-fluid">
       <span class="navbar-brand mb-0">เข้าสู่ระบบ</span>
       <div>
-        <span class="fs-6">ลืมรหัสผ่าน?</span>
-        <span class="fs-6 ms-3">ลงทะเบียน</span>
+        <span class="fs-6" [routerLink]="['/forgot-password']" role="button"
+          >ลืมรหัสผ่าน ?</span
+        >
+        <span class="fs-6 ms-3" [routerLink]="['/pdpa']" role="button"
+          >ลงทะเบียน</span
+        >
       </div>
     </div>
   </nav>
@@ -17,6 +21,7 @@
           type="email"
           class="form-control form-control-sm"
           id="exampleInputEmail1"
+          placeholder="กรุณากรอกอีเมล / ชื่อผู้ใช้งาน"
         />
       </div>
       <div class="mb-4 w-100">
@@ -25,6 +30,7 @@
           type="password"
           class="form-control form-control-sm"
           id="exampleInputPassword1"
+          placeholder="กรุณากรอกรหัสผ่าน"
         />
       </div>
 
@@ -32,7 +38,6 @@
         type="submit"
         class="btn btn-sm btn-warning mb-5"
         style="width: 120px"
-        [routerLink]="['/pdpa']"
       >
         เข้าสู่ระบบ >
       </button>

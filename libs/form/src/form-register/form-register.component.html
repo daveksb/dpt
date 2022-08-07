@@ -1,4 +1,4 @@
-<div class="card mb-3" style="width: 380px">
+<div class="card mb-3" style="width: 500px">
   <nav class="navbar bg-warning">
     <div class="container-fluid">
       <span class="navbar-brand mb-0">ลงทะเบียน</span>
@@ -6,31 +6,131 @@
   </nav>
 
   <div class="card-body">
-    <form class="p-3 d-flex flex-column align-items-center">
-      <div class="mb-3 w-100">
-        <label class="form-label">อีเมล / ชื่อผู้ใช้งาน *</label>
+    <form class="d-flex flex-column align-items-center">
+      <div class="d-flex align-items-center w-100 mb-3" style="padding: 0 12px">
+        <div class="form-label text-nowrap mb-0 me-3">หน่วยงาน*</div>
+        <div class="text-nowrap me-3">
+          <input type="radio" class="me-2" name="xxx" />
+          <label class="form-label m-0">ภายนอก</label>
+        </div>
+        <div class="text-nowrap me-3">
+          <input type="radio" class="me-2" name="xxx" />
+          <label class="form-label m-0">ภายใน</label>
+        </div>
         <input
-          type="email"
+          type="text"
           class="form-control form-control-sm"
-          id="exampleInputEmail1"
-        />
-      </div>
-      <div class="mb-4 w-100">
-        <label class="form-label">รหัสผ่าน *</label>
-        <input
-          type="password"
-          class="form-control form-control-sm"
-          id="exampleInputPassword1"
+          placeholder="กรุณากรอกชื่อหน่วยงาน"
         />
       </div>
 
-      <button
-        type="submit"
-        class="btn btn-sm btn-warning mb-5"
-        [routerLink]="['/pdpa']"
-      >
-        ยืนยันการลงทะเบียน >
-      </button>
+      <div class="row mb-2 w-100">
+        <div class="col">
+          <label class="form-label">ชื่อ-นามสกุล*</label>
+          <input
+            type="email"
+            class="form-control form-control-sm"
+            id="exampleInputEmail1"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-2 w-100">
+        <div class="col">
+          <label class="form-label">ชื่อ-นามสกุล(ภาษาอังกฤษ)*</label>
+          <input
+            type="password"
+            class="form-control form-control-sm"
+            id="exampleInputPassword1"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-2 w-100">
+        <div class="col">
+          <label class="form-label">เลขบัตรประจำตัวประชาชน*</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="exampleInputPassword1"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-2 w-100">
+        <div class="col-6">
+          <label class="form-label">ตำแหน่ง*</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="exampleInputPassword1"
+          />
+        </div>
+
+        <div class="col-6">
+          <label class="form-label">เบอร์ติดต่อ*</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="exampleInputPassword1"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-2 w-100">
+        <div class="col">
+          <label class="form-label">อีเมล*</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="exampleInputPassword1"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-2 w-100">
+        <div class="col">
+          <label class="form-label">ชื่อผู้ใช้งาน*</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="exampleInputPassword1"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-2 w-100">
+        <div class="col-6">
+          <label class="form-label">รหัสผ่าน*</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="exampleInputPassword1"
+          />
+        </div>
+
+        <div class="col-6">
+          <label class="form-label">ยืนยันรหัสผ่าน*</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="exampleInputPassword1"
+          />
+        </div>
+      </div>
+
+      <div class="d-flex my-3">
+        <button
+          type="submit"
+          class="btn btn-sm btn-warning me-2"
+          [routerLink]="['/login']"
+        >
+          ยืนยันการลงทะเบียน >
+        </button>
+        <button type="submit" class="ms-2" [routerLink]="['/login']">
+          ยกเลิก
+        </button>
+      </div>
     </form>
   </div>
 </div>
