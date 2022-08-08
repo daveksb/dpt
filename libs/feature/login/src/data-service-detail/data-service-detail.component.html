@@ -1,0 +1,115 @@
+<dpt-top-nav></dpt-top-nav>
+
+<div
+  class="container px-4 py-2 w-100"
+  style="background-color: #f3eeee; height: calc(100vh - 50px)"
+>
+  <div [routerLink]="['/data-service-list']" role="button">Back</div>
+  <div class="px-5 d-flex flex-row justify-content-between">
+    <div class="d-flex flex-row">
+      <div class="border border-dark" style="width: auto; height: auto">
+        <i
+          class="bi bi-building bg-white d-flex justify-content-center"
+          style="font-size: 7rem"
+        ></i>
+        <div class="text-center">ด้านการผังเมือง</div>
+      </div>
+
+      <div class="ms-4 d-flex flex-column">
+        <div>ชื่อชุดข้อมูล : กฏกระทรวงผังเมืองรวมจังหวัด</div>
+        <div class="mt-2">Link ชุดข้อมูล : dpt/api/V1</div>
+        <div class="mt-2">รายละเอียด : ข้อมูลสาธารณะชุด 1</div>
+        <div class="mt-2">หมวด : การผังเมือง</div>
+        <div class="mt-2">Token : "30ei24c2,2ascpsv./,afminpcfnwof"</div>
+      </div>
+    </div>
+
+    <div>
+      <button type="submit" style="width: 125px" class="btn btn-warning me-3">
+        ตัวอย่างข้อมูล
+      </button>
+      <button type="submit" style="width: 125px" class="btn btn-primary">
+        ขอใช้ข้อมูล
+      </button>
+    </div>
+  </div>
+  <br />
+  <div class="d-flex justify-content-center px-5">
+    <div class="bg-secondary bg-opacity-25 p-3 w-100">
+      <div class="row">
+        <div class="col-3 text-end">รูปแบบข้อมูล :</div>
+        <div class="col">
+          API Service
+          <hr class="my-2 mx-0" />
+        </div>
+      </div>
+
+      <div class="row my-2">
+        <div class="col-3 text-end">Connection String :</div>
+        <div class="col">
+          "ConnectionString": <br />
+          "Server= AQLEXPRESS; <br />
+          Database = DB_1; <br />
+          Trusted_Connection = True;"
+        </div>
+      </div>
+
+      <div class="row my-2">
+        <div class="col-3 text-end">เทเบิ้ลข้อมูล :</div>
+        <div class="col">
+          Table_1
+          <hr class="my-2 mx-0" />
+        </div>
+      </div>
+
+      <div class="row my-2">
+        <div class="col-3 text-end">คอลัมน์ :</div>
+        <div class="col">col_1 / col_2 / col_3 / col_4 / col_5 / col_6</div>
+      </div>
+
+      <div class="row my-2">
+        <div class="col-3 text-end">การเผยแพร่ :</div>
+        <div class="col">
+          ทั่วไป
+          <hr class="my-2 mx-0" />
+        </div>
+      </div>
+
+      <div class="row my-2">
+        <div class="col-3 text-end">หมวดหมู่ :</div>
+        <div class="col">พันธะกิจ / ผังเมือง</div>
+      </div>
+
+      <div class="row my-2">
+        <div class="col-3 text-end">ตัวอย่างเรียกข้อมูล :</div>
+        <div class="col">
+          http://api.dpt.go.th/API/V1/API_DATA/request?resource_id=RFNEXzMx
+        </div>
+      </div>
+
+      <div class="row my-2">
+        <div class="col-3 text-end">ตัวอย่าง Javascript :</div>
+        <div class="col">
+          $.ajax(<br />
+          url:
+          'http://api.dpt.go.th/API/V1/API_DATA/request?resource_id=RFNEXzMx;<br />
+          dataType: 'json;<br />
+          success: function(data) <br />
+          alert('Total results found:'+data)<br />
+          );
+        </div>
+      </div>
+
+      <div class="row my-2">
+        <div class="col-3 text-end">ตัวอย่าง Python :</div>
+        <div class="col">
+          import urllib<br />
+          url =
+          'http://api.dpt.go.th/API/V1/API_DATA/request?resource_id=RFNEXzMx'<br />
+          fileobj = urllib.urlopen(url)<br />
+          print fileobj.read()
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
