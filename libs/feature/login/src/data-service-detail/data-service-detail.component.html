@@ -2,9 +2,12 @@
 
 <div
   class="container px-4 py-2 w-100"
-  style="background-color: #f3eeee; height: calc(100vh - 50px)"
+  style="min-height: calc(100vh - 50px)"
+  [style]="customStyle"
 >
-  <div [routerLink]="['/data-service-list']" role="button">Back</div>
+  <div [routerLink]="['/data-service-list']" class="btn btn-link" role="button">
+    Back
+  </div>
   <div class="px-5 d-flex flex-row justify-content-between">
     <div class="d-flex flex-row">
       <div class="border border-dark" style="width: auto; height: auto">
@@ -25,15 +28,15 @@
     </div>
 
     <div>
-      <button
-        (click)="openDialog()"
-        type="submit"
-        style="width: 125px"
-        class="btn btn-warning me-3"
-      >
+      <button type="submit" style="width: 125px" class="btn btn-warning me-3">
         ตัวอย่างข้อมูล
       </button>
-      <button type="submit" style="width: 125px" class="btn btn-primary">
+      <button
+        type="submit"
+        (click)="openDialog()"
+        style="width: 125px"
+        class="btn btn-primary"
+      >
         ขอใช้ข้อมูล
       </button>
     </div>

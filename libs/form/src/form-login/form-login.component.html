@@ -1,5 +1,5 @@
 <div class="card mb-3" style="width: 400px">
-  <nav class="navbar bg-warning">
+  <nav class="navbar" [style]="customStyle">
     <div class="container-fluid">
       <span class="navbar-brand mb-0">เข้าสู่ระบบ</span>
       <div>
@@ -17,27 +17,58 @@
     <form class="p-3 d-flex flex-column align-items-center">
       <div class="mb-3 w-100">
         <label class="form-label">อีเมล / ชื่อผู้ใช้งาน *</label>
-        <input
-          type="email"
-          class="form-control form-control-sm"
-          id="exampleInputEmail1"
-          placeholder="กรุณากรอกอีเมล / ชื่อผู้ใช้งาน"
-        />
+        <div class="d-flex align-items-center">
+          <i
+            class="bi bi-envelope form-control form-control-sm w-auto"
+            style="
+              background-color: #e9ecef;
+              border-top-right-radius: 0;
+              border-bottom-right-radius: 0;
+            "
+          ></i>
+          <input
+            type="email"
+            class="form-control form-control-sm"
+            style="
+              margin-left: -1px;
+              border-top-left-radius: 0;
+              border-bottom-left-radius: 0;
+            "
+            id="exampleInputEmail1"
+            placeholder="กรุณากรอกอีเมล / ชื่อผู้ใช้งาน"
+          />
+        </div>
       </div>
       <div class="mb-4 w-100">
         <label class="form-label">รหัสผ่าน *</label>
-        <input
-          type="password"
-          class="form-control form-control-sm"
-          id="exampleInputPassword1"
-          placeholder="กรุณากรอกรหัสผ่าน"
-        />
+        <div class="d-flex align-items-center">
+          <i
+            class="bi bi-lock form-control form-control-sm w-auto"
+            style="
+              background-color: #e9ecef;
+              border-top-right-radius: 0;
+              border-bottom-right-radius: 0;
+            "
+          ></i>
+          <input
+            type="password"
+            style="
+              margin-left: -1px;
+              border-top-left-radius: 0;
+              border-bottom-left-radius: 0;
+            "
+            class="form-control form-control-sm"
+            id="exampleInputPassword1"
+            placeholder="กรุณากรอกรหัสผ่าน"
+          />
+        </div>
       </div>
 
       <button
         type="submit"
-        class="btn btn-sm btn-warning mb-5"
-        style="width: 120px"
+        class="btn btn-sm mb-5"
+        style="width: 125px"
+        [style]="customStyle"
         [routerLink]="['/data-service-list']"
       >
         เข้าสู่ระบบ >

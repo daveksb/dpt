@@ -1,5 +1,5 @@
 <div class="card mb-3" style="width: 500px">
-  <nav class="navbar bg-warning">
+  <nav class="navbar" [style]="customStyle">
     <div class="container-fluid">
       <span class="navbar-brand mb-0">ลงทะเบียน</span>
     </div>
@@ -10,42 +10,29 @@
       <div class="d-flex align-items-center w-100 mb-3" style="padding: 0 12px">
         <div class="form-label text-nowrap mb-0 me-3">หน่วยงาน*</div>
         <div class="text-nowrap me-3">
-          <input
-            type="radio"
-            class="me-2"
-            name="status"
-            [value]="1"
-            (change)="radioButtonChanged($event)"
-            checked
-          />
+          <input type="radio" class="me-2" name="status" [value]="1" checked />
           <label class="form-label m-0">ภายนอก</label>
         </div>
         <div class="text-nowrap me-3">
-          <input
-            type="radio"
-            class="me-2"
-            name="status"
-            [value]="2"
-            (change)="radioButtonChanged($event)"
-          />
+          <input type="radio" class="me-2" name="status" [value]="2" />
           <label class="form-label m-0">ภายใน</label>
         </div>
 
-        <ng-container *ngIf="status === 1">
+        <ng-container>
           <input
             type="text"
             class="form-control form-control-sm"
             placeholder="กรุณากรอกชื่อหน่วยงาน"
         /></ng-container>
 
-        <ng-container *ngIf="status === 2">
+        <!--  <ng-container>
           <select class="form-select form-select-sm">
             <option disabled hidden selected>*กรุณาเลือก Category</option>
             <option value="a">a</option>
             <option value="b">b</option>
             <option value="c">c</option>
           </select></ng-container
-        >
+        > -->
       </div>
 
       <div class="row mb-2 w-100">
@@ -146,14 +133,15 @@
       <div class="d-flex my-3">
         <button
           type="submit"
-          class="btn btn-secondary me-2"
+          class="btn btn-outline-secondary me-2"
           [routerLink]="['/login']"
         >
           ยกเลิก
         </button>
         <button
           type="submit"
-          class="btn btn-sm btn-warning"
+          class="btn btn-sm"
+          [style]="customStyle"
           [routerLink]="['/login']"
         >
           ยืนยันการลงทะเบียน >

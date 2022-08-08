@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ThemeService } from '@dpt/shared';
 
 @Component({
   selector: 'dpt-form-forgot-password',
@@ -10,7 +11,16 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./form-forgot-password.component.scss'],
 })
 export class FormForgotPasswordComponent implements OnInit {
-  constructor() {}
+  customStyle = '';
 
-  ngOnInit(): void {}
+  constructor(private themeService: ThemeService) {}
+  selectTheme(evt: any) {
+    this.themeService.setTheme(evt.target.value);
+  }
+
+  ngOnInit(): void {
+    this.themeService.selectedTheme$.subscribe((res) => {
+      this.customStyle = `background-color: var(--form-header-${res})`;
+    });
+  }
 }

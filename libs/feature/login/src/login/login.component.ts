@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.themeService.selectedTheme$.subscribe((res) => {
-      this.customStyle = `background-color: var(--login-bg-${res})`;
+      this.customStyle = `background-color: var(--main-bg-${res})`;
     });
   }
 }

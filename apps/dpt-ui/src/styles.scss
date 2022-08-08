@@ -10,12 +10,23 @@ body {
 }
 
 :root {
-  --background-primary: #5d3943;
-  --background-secondary: #2a5f22;
+  --background-primary: #5f5656;
+  --background-secondary: #d4a59a;
+  --background-third: #d0cfd5;
 
-  --header-primary: #4b1b29;
-  --header-secondary: #104208;
+  --main-bg-primary: #f3eeee;
+  --main-bg-secondary: #f6f6f6;
+  --main-bg-third: #f1f1f9;
 
-  --login-bg-primary: blue;
-  --login-bg-secondary: orange;
+  --top-nav-primary: #270108;
+  --top-nav-secondary: #5c2018;
+  --top-nav-third: #192730;
+
+  --side-nav-primary: #442e32;
+  --side-nav-secondary: #bc4639;
+  --side-nav-third: #2d5a6f;
+
+  --form-header-primary: #ffc107;
+  --form-header-secondary: #4285f4;
+  --form-header-third: #3caea3;
 }

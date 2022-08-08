@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ThemeService } from '@dpt/shared';
 
 @Component({
   selector: 'dpt-side-nav',
@@ -9,7 +10,17 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./side-nav.component.scss'],
 })
 export class SideNavComponent implements OnInit {
-  constructor() {}
+  customStyle = '';
+  constructor(private themeService: ThemeService) {}
 
-  ngOnInit(): void {}
+  selectTheme(evt: any) {
+    this.themeService.setTheme(evt.target.value);
+  }
+
+  ngOnInit(): void {
+    this.themeService.selectedTheme$.subscribe((res) => {
+      this.customStyle = `background-color: var(--side-nav-${res})`;
+    });
+  }
+
 }
