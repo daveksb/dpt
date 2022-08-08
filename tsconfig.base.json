@@ -17,6 +17,7 @@
     "paths": {
       "@dpt/feature/login": ["libs/feature/login/src/index.ts"],
       "@dpt/form": ["libs/form/src/index.ts"],
+      "@dpt/shared": ["libs/shared/src/index.ts"],
       "@dpt/ui": ["libs/ui/src/index.ts"]
     }
   },

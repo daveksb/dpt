@@ -1,6 +1,12 @@
+<select (change)="selectTheme($event)" class="form-select">
+  <option selected>Choose theme</option>
+  <option value="primary">Primary</option>
+  <option value="secondary">Secondary</option>
+</select>
 <div
   class="d-flex align-items-center justify-content-center"
   style="height: 100vh"
+  [style]="customStyle"
 >
   <dpt-form-login></dpt-form-login>
 </div>

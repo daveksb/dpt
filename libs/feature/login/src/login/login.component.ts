@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormLoginComponent } from '@dpt/form';
+import { ThemeService } from '@dpt/shared';
 
 @Component({
   selector: 'dpt-login',
@@ -10,7 +11,16 @@ import { FormLoginComponent } from '@dpt/form';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor() {}
+  customStyle = '';
+  constructor(private themeService: ThemeService) {}
 
-  ngOnInit(): void {}
+  selectTheme(evt: any) {
+    this.themeService.setTheme(evt.target.value);
+  }
+
+  ngOnInit(): void {
+    this.themeService.selectedTheme$.subscribe((res) => {
+      this.customStyle = `background-color: var(--login-bg-${res})`;
+    });
+  }
 }

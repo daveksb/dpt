@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TopNavComponent } from '../top-nav/top-nav.component';
+import { ThemeService } from '@dpt/shared';
 
 @Component({
   selector: 'dpt-pdpa',
@@ -11,7 +12,14 @@ import { TopNavComponent } from '../top-nav/top-nav.component';
   styleUrls: ['./pdpa.component.scss'],
 })
 export class PdpaComponent implements OnInit {
-  constructor() {}
+  customStyle = '';
 
-  ngOnInit(): void {}
+  constructor(private themeService: ThemeService) {}
+
+  ngOnInit(): void {
+    this.themeService.selectedTheme$.subscribe((res) => {
+      console.log('theme = ', res);
+      this.customStyle = `background-color: var(--background-${res})`;
+    });
+  }
 }
