@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DataServiceDialogComponent, TopNavComponent } from '@dpt/ui';
 import { RouterModule } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'dpt-data-service-detail',
@@ -11,12 +12,11 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./data-service-detail.component.scss'],
 })
 export class DataServiceDetailComponent {
-  constructor() {}
-
- /*  openDialog() {
+  constructor(public dialog: MatDialog) {}
+  openDialog() {
     this.dialog.open(DataServiceDialogComponent, {
       height: '400px',
       width: '600px',
     });
-  } */
+  }
 }
