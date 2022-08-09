@@ -16,7 +16,6 @@ export class FormRegisterComponent {
   status = 1;
 
   radioButtonChanged(evt: any) {
-    console.log('evet = ', evt);
     const value = evt.target.value;
     if (value == '1') {
       this.status === 1;

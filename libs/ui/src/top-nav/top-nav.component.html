@@ -84,26 +84,30 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">หน้าหลัก</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">บริการข้อมูล</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">รายการขอชุดข้อมูล</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">อนุมัติเผยแพร่</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">จัดการชุดข้อมูล</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">รายงาน</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">ผู้ดูแลระบบ</a>
-        </li>
+        <ng-container *ngIf="!hideMenu">
+          <li class="nav-item">
+            <a class="nav-link" href="#">บริการข้อมูล</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">รายการขอชุดข้อมูล</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">อนุมัติเผยแพร่</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">จัดการชุดข้อมูล</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">รายงาน</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">ผู้ดูแลระบบ</a>
+          </li>
+        </ng-container>
       </ul>
-      <span class="navbar-text"> ออกจากระบบ </span>
+      <ng-container *ngIf="!hideMenu">
+        <span class="navbar-text"> ออกจากระบบ </span>
+      </ng-container>
     </div>
   </div>
 </nav>
