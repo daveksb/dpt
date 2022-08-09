@@ -77,6 +77,14 @@
       "options": {
         "lintFilePatterns": ["apps/dpt-2/**/*.ts", "apps/dpt-2/**/*.html"]
       }
+    },
+    "deploy": {
+      "executor": "@netlify-builder/deploy:deploy",
+      "options": {
+        "outputPath": "dist/apps/dpt-2",
+        "siteId": "9b6fb622-43ea-48cc-af0d-c9cfeb45730b",
+        "noBuild": true
+      }
     }
   },
   "tags": []
