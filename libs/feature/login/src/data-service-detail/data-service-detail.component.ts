@@ -16,8 +16,7 @@ export class DataServiceDetailComponent {
 
   openDialog() {
     this.dialog.open(DataServiceDialogComponent, {
-      height: '400px',
-      width: '600px',
+      width: '500px',
     });
   }
 }

@@ -7,17 +7,17 @@
     style="background-color: #f3eeee; height: calc(100vh - 50px)"
   >
     <div>
-      <div class="d-flex justify-content-between mb-5 mx-5">
-        <div class="d-flex w-75">
+      <div class="d-flex justify-content-between mb-5">
+        <div class="d-flex w-50">
           <input type="text" placeholder="ค้นหาข้อมูล" class="form-control" />
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" class="btn btn-outline-secondary ms-3">
             <i class="bi bi-search"></i>
           </button>
         </div>
 
         <button
           type="submit"
-          class="btn btn-secondary"
+          class="btn btn-outline-secondary"
           [routerLink]="['/data-service-request']"
         >
           ร้องขอชุดข้อมูล
@@ -26,7 +26,7 @@
 
       <div class="d-flex justify-content-end fs-6">จำนวนข้อมูล 6 ชุด</div>
       <table class="table table-bordered table-striped">
-        <thead class="bg-secondary">
+        <thead class="bg-light">
           <tr>
             <th scope="col" class="text-center">No.</th>
             <th scope="col">ชื่อชุดข้อมูล</th>
@@ -113,7 +113,7 @@
             <td>เอกสาร (PDF)</td>
             <td>
               <i
-                class="bi bi-file-earmark-text fs-5 text-center"
+                class="bi bi-file-earmark-text fs-5"
                 [routerLink]="['/data-service-detail']"
                 role="button"
               ></i>

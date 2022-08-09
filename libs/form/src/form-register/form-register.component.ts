@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -15,11 +15,12 @@ export class FormRegisterComponent {
 
   status = 1;
 
-  radioButtonChanged($event: any) {
-    const value = $event.target.value;
-    if (value === 1) {
+  radioButtonChanged(evt: any) {
+    console.log('evet = ', evt);
+    const value = evt.target.value;
+    if (value == '1') {
       this.status === 1;
-    } else if (value === 2) {
+    } else if (value == '2') {
       this.status === 2;
     }
   }
