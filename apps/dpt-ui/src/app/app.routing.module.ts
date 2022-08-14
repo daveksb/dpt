@@ -7,7 +7,7 @@ import {
   ForgotPasswordComponent,
   LoginComponent,
   RegisterComponent,
-} from '@dpt/feature/login';
+} from '@dpt/feature';
 import { PdpaComponent } from '@dpt/ui';
 
 const routes: Routes = [
