@@ -1,4 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+//$font-family-base: 'ksp bold';
+$enable-cssgrid: true;
+
+@import './node_modules/bootstrap/scss/functions';
+@import './node_modules/bootstrap/scss/variables';
+//@import './node_modules/bootstrap/scss/maps';
+//@import './node_modules/bootstrap/scss/mixins';
+//$theme-colors: map-merge($theme-colors, $customTheme);
+//$font-sizes: map-merge($font-sizes, $customFs);
+
+@import './node_modules/bootstrap/scss/bootstrap';

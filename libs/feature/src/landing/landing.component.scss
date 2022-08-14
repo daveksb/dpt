@@ -1,4 +1,11 @@
 .main-content {
   background-color: #f5ecec;
-  height: 100vh;
+  height: calc(100vh - 116px);
+  width: 100vw;
+}
+
+.box {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1rem;
 }
