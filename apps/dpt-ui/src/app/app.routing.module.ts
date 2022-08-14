@@ -5,12 +5,14 @@ import {
   DataServiceListComponent,
   DataServiceRequestComponent,
   ForgotPasswordComponent,
+  LandingComponent,
   LoginComponent,
   RegisterComponent,
 } from '@dpt/feature';
 import { PdpaComponent } from '@dpt/ui';
 
 const routes: Routes = [
+  { path: 'landing', component: LandingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'pdpa', component: PdpaComponent },
   { path: 'register', component: RegisterComponent },
@@ -18,7 +20,7 @@ const routes: Routes = [
   { path: 'data-service-list', component: DataServiceListComponent },
   { path: 'data-service-detail', component: DataServiceDetailComponent },
   { path: 'data-service-request', component: DataServiceRequestComponent },
-  { path: '**', component: LoginComponent },
+  { path: '**', component: LandingComponent },
 ];
 
 @NgModule({
