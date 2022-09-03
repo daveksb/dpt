@@ -90,7 +90,7 @@
       "executor": "@netlify-builder/deploy:deploy",
       "options": {
         "outputPath": "dist/apps/dpt-ui",
-        "siteId": "9b6fb622-43ea-48cc-af0d-c9cfeb45730b",
+        "siteId": "b6492db9-b476-4837-9f6e-3ed25bc02b85",
         "noBuild": true
       }
     }
