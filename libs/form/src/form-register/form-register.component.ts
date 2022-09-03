@@ -5,8 +5,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'dpt-form-register',
-  standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule],
   templateUrl: './form-register.component.html',
   styleUrls: ['./form-register.component.scss'],
 })

@@ -5,8 +5,6 @@ import { TopNavComponent } from '@dpt/ui';
 
 @Component({
   selector: 'dpt-login',
-  standalone: true,
-  imports: [CommonModule, FormLoginComponent, TopNavComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })

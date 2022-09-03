@@ -1,8 +1,5 @@
 <div class="card mb-5 border-warning rounded rounded-4" style="width: 400px">
-  <nav
-    class="navbar bg-warning bg-gradient bg-opacity-75 rounded-bottom rounded-4"
-    style="height: 70px"
-  >
+  <nav class="navbar bg-warning bg-gradient bg-opacity-75 rounded-bottom rounded-4" style="height: 70px">
     <div class="container-fluid">
       <span class="navbar-brand mb-0 fs-5 ms-3 fw-bold">เข้าสู่ระบบ</span>
     </div>
@@ -12,37 +9,21 @@
     <form class="p-3 d-flex flex-column align-items-center">
       <div class="mb-3 w-100">
         <label class="form-label mb-0">อีเมล / ชื่อผู้ใช้งาน *</label>
-        <input
-          type="email"
-          class="form-control border-warning"
-          placeholder="กรุณากรอกอีเมล / ชื่อผู้ใช้งาน"
-        />
+        <input type="email" class="form-control border-warning" placeholder="กรุณากรอกอีเมล / ชื่อผู้ใช้งาน" />
       </div>
       <div class="mb-5 w-100">
         <label class="form-label mb-0">รหัสผ่าน *</label>
-        <input
-          type="password"
-          class="form-control border-warning"
-          placeholder="กรุณากรอกรหัสผ่าน"
-        />
+        <input type="password" class="form-control border-warning" placeholder="กรุณากรอกรหัสผ่าน" />
       </div>
 
-      <button
-        type="submit"
-        class="btn btn-lg bg-warning mb-4 w-100 bg-opacity-75"
-        style="width: 120px"
-        [routerLink]="['/data-service-list']"
-      >
+      <button type="submit" class="btn btn-lg bg-warning mb-4 w-100 bg-opacity-75" style="width: 120px"
+        [routerLink]="['/data-service-list']">
         เข้าสู่ระบบ
       </button>
 
       <div>
-        <span class="fs-6" [routerLink]="['/forgot-password']" role="button"
-          >ลืมรหัสผ่าน ?</span
-        >
-        <span class="fs-6 ms-3" [routerLink]="['/pdpa']" role="button"
-          >ลงทะเบียน</span
-        >
+        <span class="fs-6" [routerLink]="['/forgot-password']" role="button">ลืมรหัสผ่าน ?</span>
+        <span class="fs-6 ms-3" [routerLink]="['/pdpa']" role="button">ลงทะเบียน</span>
       </div>
     </form>
   </div>

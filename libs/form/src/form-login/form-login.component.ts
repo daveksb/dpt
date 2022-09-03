@@ -4,8 +4,6 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'dpt-form-login',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
   templateUrl: './form-login.component.html',
   styleUrls: ['./form-login.component.scss'],
 })

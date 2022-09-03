@@ -4,8 +4,6 @@ import { FormRegisterComponent } from '@dpt/form';
 
 @Component({
   selector: 'dpt-register',
-  standalone: true,
-  imports: [CommonModule, FormRegisterComponent],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })

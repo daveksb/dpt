@@ -4,8 +4,6 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'dpt-form-forgot-password',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
   templateUrl: './form-forgot-password.component.html',
   styleUrls: ['./form-forgot-password.component.scss'],
 })

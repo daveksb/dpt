@@ -4,8 +4,6 @@ import { TopNavComponent } from '@dpt/ui';
 
 @Component({
   selector: 'dpt-landing',
-  standalone: true,
-  imports: [CommonModule, TopNavComponent],
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss'],
 })

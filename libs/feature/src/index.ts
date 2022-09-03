@@ -11,3 +11,4 @@ export * from './data-service-detail/data-service-detail.component';
 export * from './data-service-request/data-service-request.component';
 
 export * from './landing/landing.component';
+export * from './feature.module';

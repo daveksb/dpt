@@ -4,8 +4,6 @@ import { FormForgotPasswordComponent } from '@dpt/form';
 
 @Component({
   selector: 'dpt-forgot-password',
-  standalone: true,
-  imports: [CommonModule, FormForgotPasswordComponent],
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.scss'],
 })

@@ -5,8 +5,6 @@ import { TopNavComponent } from '../top-nav/top-nav.component';
 
 @Component({
   selector: 'dpt-pdpa',
-  standalone: true,
-  imports: [CommonModule, RouterModule, TopNavComponent],
   templateUrl: './pdpa.component.html',
   styleUrls: ['./pdpa.component.scss'],
 })
