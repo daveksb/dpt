@@ -10,7 +10,9 @@ import { FormRegisterComponent } from '@dpt/form';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  constructor() {}
+  constructor() {
+    //
+  }
 
   ngOnInit(): void {}
 }
