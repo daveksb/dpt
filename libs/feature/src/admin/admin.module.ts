@@ -13,6 +13,9 @@ import { AdminPageSettingComponent } from './admin-page-setting/admin-page-setti
 import { AdminRoleComponent } from './admin-role/admin-role.component';
 import { AdminSoaComponent } from './admin-soa/admin-soa.component';
 import { AdminUserComponent } from './admin-user/admin-user.component';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 const routes: Routes = [
   {
@@ -51,6 +54,9 @@ const routes: Routes = [
     MatDialogModule,
     UiModule,
     FormModule,
+    MatSidenavModule,
+    MatListModule,
+    MatMenuModule,
     RouterModule.forChild(routes),
   ],
   exports: [

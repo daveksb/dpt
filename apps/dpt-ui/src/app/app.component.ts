@@ -10,11 +10,17 @@ export class AppComponent {
   title = 'dpt-ui';
   hideList = ['login', 'register', 'pdpa'];
   isSecondary = true;
+  isActive = true;
+  currentUrl = '';
   constructor(private route: Router) {
     route.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         this.isSecondary = this.hideList.some((d) => val.url.includes(d));
+        this.currentUrl = val.url;
       }
     });
+  }
+  isContainUrl(data: string) {
+    return this.currentUrl.includes(data);
   }
 }

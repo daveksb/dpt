@@ -8,11 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class DataRequestMainComponent implements OnInit {
   navList: any[] = [
     {
-      url: 'data-set',
+      url: 'request-list',
       label: 'ชุดข้อมูล',
     },
     {
-      url: 'request-list',
+      url: 'data-set',
       label: 'ข้อมูลที่ร้องขอ',
     },
   ];

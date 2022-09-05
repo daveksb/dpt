@@ -5,6 +5,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule, Routes } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
 
 import { UiModule } from '@dpt/ui';
@@ -12,6 +14,8 @@ import { FormModule } from '@dpt/form';
 import { DataRequestComponent } from './data-request/data-request.component';
 import { DataRequestAdminComponent } from './data-request-admin/data-request-admin.component';
 import { DataRequestMainComponent } from './data-request-main/data-request-main.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSortModule } from '@angular/material/sort';
 
 const routes: Routes = [
   {
@@ -44,6 +48,10 @@ const routes: Routes = [
     MatSidenavModule,
     MatListModule,
     MatMenuModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatSortModule,
   ],
   exports: [
     DataRequestComponent,

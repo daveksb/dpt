@@ -4,7 +4,10 @@
         <mat-sidenav [opened]="true" [disableClose]="true" mode="side" #snav>
             <mat-nav-list>
                 <div class="header-1 request-label" mat-list-item> หมวดข้อมูล</div>
-                <a mat-list-item [routerLink]="nav.url" *ngFor="let nav of navList">{{nav.label}}</a>
+                <a class="request-item" mat-list-item [routerLink]="nav.url" [routerLinkActive]="'request-active'"
+                    *ngFor=" let nav of
+                    navList">{{nav.label}}
+                </a>
             </mat-nav-list>
         </mat-sidenav>
 

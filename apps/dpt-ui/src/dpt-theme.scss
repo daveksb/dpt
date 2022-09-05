@@ -1,0 +1,19 @@
+@use '@angular/material' as mat;
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+@include mat.core();
+$dark-primary-text: rgba(black, 0.87);
+$light-primary-text: white;
+
+.dpt-theme {
+  $dpt-typography: mat.define-typography-config(
+    $font-family: 'aktiv',
+  );
+
+  $dpt-theme: mat.define-light-theme(
+    (
+      typography: $dpt-typography,
+    )
+  );
+  @include mat.all-component-themes($dpt-theme);
+}

@@ -6,7 +6,7 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-family: 'aktiv', sans-serif;
 }
 
 //$font-family-base: 'ksp bold';
@@ -42,6 +42,45 @@ $enable-cssgrid: true;
   font-size: 32px;
   color: black;
 }
+.main-container {
+  width: 100%;
+}
+
+@font-face {
+  font-family: 'aktiv';
+  src: url(./assets/font/AktivGrotesk-Regular.ttf) format('opentype');
+}
+.dpt-theme .mat-toolbar-single-row {
+  padding: 3rem 5rem;
+}
+
+// mat
 .mat-drawer {
   border: 0px;
+}
+.mat-drawer-content {
+  width: 100%;
+}
+.mat-table {
+  width: 100%;
+}
+.mat-table {
+  box-shadow: 0px;
+}
+.mat-form-field {
+  width: 100%;
+}
+.default-table {
+  th.mat-header-cell {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    color: #4b4e52;
+  }
+  td.mat-cell {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    color: #4b4e52;
+  }
 }

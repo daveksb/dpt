@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'dpt-data-request-form',
@@ -6,7 +8,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./data-request-form.component.scss'],
 })
 export class DataRequestFormComponent implements OnInit {
-  constructor() {}
+  formGroup = new FormGroup({
+    departmentType: new FormControl(),
+    department: new FormControl(),
+    requestFullName: new FormControl(),
+    category: new FormControl(),
+    dataName: new FormControl(),
+    detail: new FormControl(),
+    file: new FormControl(),
+  });
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<any>
+  ) {
+    this.formGroup.patchValue(data);
+    this.formGroup.disable();
+  }
 
   ngOnInit(): void {}
+
+  onDismiss() {
+    this.dialogRef.close();
+  }
 }
