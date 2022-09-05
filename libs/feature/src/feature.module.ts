@@ -11,6 +11,8 @@ import { RouterModule } from '@angular/router';
 import { UiModule } from '@dpt/ui';
 import { LoginComponent } from './login/login.component';
 import { FormModule } from '@dpt/form';
+import { DataPublishComponent } from './data-publish/data-publish.component';
+import { DataReportComponent } from './data-report/data-report.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { FormModule } from '@dpt/form';
     LandingComponent,
     RegisterComponent,
     LoginComponent,
+    DataPublishComponent,
+    DataReportComponent,
   ],
   imports: [CommonModule, RouterModule, MatDialogModule, UiModule, FormModule],
   exports: [

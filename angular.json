@@ -5,6 +5,7 @@
     "dpt-ui": "apps/dpt-ui",
     "feature": "libs/feature",
     "form": "libs/form",
+    "shared": "libs/shared",
     "ui": "libs/ui"
   }
 }

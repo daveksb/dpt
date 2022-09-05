@@ -20,3 +20,28 @@ $enable-cssgrid: true;
 //$font-sizes: map-merge($font-sizes, $customFs);
 
 @import './node_modules/bootstrap/scss/bootstrap';
+.page-content {
+  padding: 3rem 1rem;
+  width: 100%;
+  display: flex;
+  height: 100%;
+  background-color: white;
+  border-radius: 1rem;
+}
+.data-content {
+  padding: 3rem 1rem;
+  width: 100%;
+  display: flex;
+  height: 100%;
+  background-color: white;
+  &:first-child {
+    width: 100%;
+  }
+}
+.header-1 {
+  font-size: 32px;
+  color: black;
+}
+.mat-drawer {
+  border: 0px;
+}

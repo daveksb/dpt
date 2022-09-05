@@ -1,6 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterModule,
+} from '@angular/router';
 
 @Component({
   selector: 'dpt-top-nav',
@@ -8,9 +13,18 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./top-nav.component.scss'],
 })
 export class TopNavComponent implements OnInit {
-  @Input() hideMenu = false;
-
-  constructor() {}
-
+  @Input() isSecondary = false;
+  isActive = true;
+  currentUrl = '';
+  constructor(private route: Router) {
+    route.events.subscribe((val) => {
+      if (val instanceof NavigationEnd) {
+        this.currentUrl = val.url;
+      }
+    });
+  }
   ngOnInit(): void {}
+  isContainUrl(data: string) {
+    return this.currentUrl.includes(data);
+  }
 }
