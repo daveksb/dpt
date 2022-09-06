@@ -1,0 +1,19 @@
+.request-table {
+  width: 100%;
+}
+:host {
+  width: 100%;
+}
+.data-request-data-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.data-list-container {
+  display: flex;
+  gap: 1rem;
+}
+.main-container {
+  background-color: white;
+  padding: 5rem 3rem;
+}

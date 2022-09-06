@@ -17,7 +17,6 @@ import { MatInputModule } from '@angular/material/input';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     MatDialogModule,
     UiModule,
@@ -29,6 +28,7 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

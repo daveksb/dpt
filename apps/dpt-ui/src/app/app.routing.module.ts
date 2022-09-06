@@ -1,6 +1,17 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { Routes, RouterModule } from '@angular/router';
 import {
+  DataPublishComponent,
+  DataReportComponent,
   DataServiceDetailComponent,
   DataServiceListComponent,
   DataServiceRequestComponent,
@@ -9,9 +20,7 @@ import {
   LoginComponent,
   RegisterComponent,
 } from '@dpt/feature';
-import { PdpaComponent } from '@dpt/ui';
-import { DataPublishComponent } from 'libs/feature/src/data-publish/data-publish.component';
-import { DataReportComponent } from 'libs/feature/src/data-report/data-report.component';
+import { PdpaComponent, UiModule } from '@dpt/ui';
 
 const routes: Routes = [
   { path: 'landing', component: LandingComponent },
@@ -49,7 +58,20 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+    MatPaginatorModule,
+    MatDialogModule,
+    UiModule,
+    MatSidenavModule,
+    MatListModule,
+    MatMenuModule,
+    MatToolbarModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

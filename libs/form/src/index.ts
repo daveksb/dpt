@@ -4,3 +4,4 @@ export * from './form-register/form-register.component';
 
 export * from './form-forgot-password/form-forgot-password.component';
 export * from './form.module';
+export * from './data-request-form/data-request-form.component';
