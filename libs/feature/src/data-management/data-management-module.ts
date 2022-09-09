@@ -12,6 +12,12 @@ import { FormModule } from '@dpt/form';
 import { DataManagementDataSetComponent } from './data-management-data-set/data-management-data-set.component';
 import { DataManagementFileComponent } from './data-management-file/data-management-file.component';
 import { DataManagementMainComponent } from './data-management-main/data-management-main.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
 
 const routes: Routes = [
   {
@@ -44,6 +50,13 @@ const routes: Routes = [
     MatSidenavModule,
     MatListModule,
     MatMenuModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatListModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatSortModule,
   ],
   exports: [
     DataManagementDataSetComponent,

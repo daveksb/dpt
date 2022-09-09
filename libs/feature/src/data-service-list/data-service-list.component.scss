@@ -1,10 +1,119 @@
-table.table-bordered {
-  border: 1px solid black;
-  margin-top: 20px;
+.request-table {
+  width: 100%;
 }
-table.table-bordered > thead > tr > th {
-  border: 1px solid black;
+:host {
+  width: 100%;
 }
-table.table-bordered > tbody > tr > td {
-  border: 1px solid black;
+.data-request-data-container {
+  display: flex;
+  gap: 1rem;
+}
+.main-container {
+  padding-top: 8px;
+}
+.page-content {
+  width: 100%;
+  display: flex;
+  height: unset;
+  padding: 3rem 2rem;
+}
+.data-service-header {
+  margin-top: 2rem;
+  width: 100%;
+}
+.search-container {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+}
+.search-input-container {
+  width: 100%;
+}
+.category-container {
+}
+.search-button-container {
+}
+.request-button-container {
+}
+
+.data-service-body {
+  display: flex;
+  width: 100%;
+  .side-bar-header {
+    margin-bottom: 1rem;
+  }
+  .data-service-side-bar {
+    margin-right: 1rem;
+    white-space: nowrap;
+    // width: 300px;
+    .side-bar-item {
+      width: 100%;
+      padding: 1rem;
+      cursor: pointer;
+      height: 56px;
+      gap: 1px;
+    }
+    .side-bar-item--active {
+      background: #f5ecec;
+      border-radius: 8px;
+    }
+  }
+  .data-service-content {
+    display: flex;
+    width: 100%;
+    .data-service-list {
+      width: 100%;
+      .data-service-item {
+        background: #ffffff;
+        box-shadow: 0px 6px 34px rgba(0, 0, 0, 0.08);
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        display: flex;
+        .item-image {
+          padding-right: 1rem;
+          .image {
+            width: 40px;
+            height: 40px;
+            background-color: red;
+          }
+        }
+        .item-content {
+          width: 100%;
+          .item-header {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            .department-container {
+            }
+            .category-container {
+            }
+          }
+          .item-body-container {
+            margin-top: 1rem;
+            width: 100%;
+            .topic-container {
+              margin-top: 1rem;
+              width: 100%;
+            }
+            .sub-topic-container {
+              width: 100%;
+              margin-top: 1rem;
+            }
+            .file-container {
+              width: 100%;
+              margin-top: 1rem;
+              display: flex;
+              gap: 1rem;
+            }
+          }
+          .item-footer {
+            margin-top: 1rem;
+          }
+        }
+      }
+    }
+    .data-service-pagination {
+    }
+  }
 }

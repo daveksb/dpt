@@ -13,6 +13,9 @@ import { DataManagementDataSetFormComponent } from './data-management-data-set-f
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -34,12 +37,23 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
+    MatRadioModule,
+    MatButtonModule,
+    MatSelectModule,
   ],
   exports: [
     FormForgotPasswordComponent,
     FormLoginComponent,
     FormRegisterComponent,
     DataServiceRequestFormComponent,
+    ReactiveFormsModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatButtonModule,
   ],
 })
 export class FormModule {}

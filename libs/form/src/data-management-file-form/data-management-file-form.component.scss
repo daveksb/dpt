@@ -1,0 +1,63 @@
+.file-form-header {
+  display: flex;
+  justify-content: space-between;
+}
+.file-form-container {
+  width: 100%;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    'label value'
+    'label value'
+    'label value'
+    'label value'
+    'label value'
+    'label value';
+}
+.file-label {
+  grid-area: 'label';
+}
+.file-value {
+  grid-area: 'value';
+}
+.department-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.file-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.double-column {
+  display: flex;
+  gap: 1rem;
+}
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+.file-list-container {
+  width: 100%;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    'label value'
+    'label value'
+    'label value'
+    'label value'
+    'label value'
+    'label value';
+}
+.file-name {
+  grid-area: 'label';
+  text-align: left;
+}
+.file-size {
+  grid-area: 'value';
+  text-align: right;
+}

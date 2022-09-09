@@ -167,12 +167,7 @@ export class DataRequestAdminComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
   ngOnInit(): void {}
-  sortChange(sortState: Sort | any) {
-    // This example uses English messages. If your application supports
-    // multiple language, you would internationalize these strings.
-    // Furthermore, you can customize the message to add additional
-    // details about the values being sorted.
-  }
+  sortChange(sortState: Sort | any) {}
   onApprove(id: number) {
     console.log('onApprove', id);
   }

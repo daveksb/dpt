@@ -1,1 +1,126 @@
-<p>data-management-data-set-form works!</p>
+<div mat-dialog-title class="request-form-header">
+    <div class="request-form-header-label">
+        {{ isEdit ? 'แก้ไขชุดข้อมูล': 'เพิ่มชุดข้อมูล'}}
+    </div>
+    <button mat-button (click)="onDismiss()" cdkFocusInitial>X</button>
+
+</div>
+
+<div mat-dialog-content>
+    <div class="request-form-container" [formGroup]="formGroup">
+        <div class="label">
+            รูปแบบข้อมูล
+        </div>
+        <div class="value">
+            <mat-radio-group formControlName="dataType">
+                <mat-radio-button value="FILE">ไฟล์ </mat-radio-button>
+                <mat-radio-button value="API">API</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="label">
+            ชื่อชุดข้อมูล
+        </div>
+        <div class="value">
+            <mat-form-field class="form-field" appearance="outline">
+                <input type="text" matInput formControlName="dataName" placeholder="dataName" />
+            </mat-form-field>
+        </div>
+        <div class="label">
+
+            รายละเอียด
+        </div>
+        <div class="value">
+            <mat-form-field class="form-field" appearance="outline">
+                <input type="text" matInput formControlName="detail" placeholder="detail" />
+            </mat-form-field>
+        </div>
+        <div class="label">
+
+            Link
+        </div>
+        <div class="value">
+            <mat-form-field class="form-field" appearance="outline">
+                <input type="text" matInput formControlName="link" placeholder="Link" />
+            </mat-form-field>
+        </div>
+
+        <ng-container *ngIf="isAPI">
+
+            <div class="label">
+
+                Connection String </div>
+            <div class="value">
+                <mat-form-field class="form-field" appearance="outline">
+                    <input type="text" matInput formControlName="connectionString" placeholder="connectionString" />
+                </mat-form-field>
+            </div>
+
+            <div class="label">
+
+                Data Table
+            </div>
+            <div class="value">
+                <mat-form-field class="form-field" appearance="outline">
+                    <input type="text" matInput formControlName="dataTable" placeholder="dataTable" />
+                </mat-form-field>
+            </div>
+
+            <div class="label">
+
+                Column </div>
+            <div class="value">
+                <mat-form-field class="form-field" appearance="outline">
+                    <input type="text" matInput formControlName="column" placeholder="column" />
+                </mat-form-field>
+            </div>
+
+        </ng-container>
+
+
+        <div class="label">
+
+            หมวดหมู่
+        </div>
+        <div class="value double-column">
+
+            <mat-form-field appearance="outline">
+                <mat-select placeholder="category" formControlName="category">
+                    <mat-option *ngFor="let item of categoryList" [value]="item.value">
+                        {{ item.label }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-select placeholder="subCategory" formControlName="subCategory">
+                    <mat-option *ngFor="let item of subCategoryList" [value]="item.value">
+                        {{ item.label }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="label">
+            การเผยแพร่
+        </div>
+        <div class="value double-column">
+            <mat-form-field appearance="outline">
+                <mat-select placeholder="publishStatus" formControlName="publishStatus">
+                    <mat-option *ngFor="let item of publishStatusList" [value]="item.value">
+                        {{ item.label }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-select placeholder="publishSubStatus" formControlName="publishSubStatus">
+                    <mat-option *ngFor="let item of publishSubStatusList" [value]="item.value">
+                        {{ item.label }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+</div>
+<mat-dialog-actions>
+    <button mat-button (click)="onDismiss()">Cancel</button>
+    <button mat-button (click)="onConfirm()">Confirm</button>
+</mat-dialog-actions>

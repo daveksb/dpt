@@ -1,0 +1,41 @@
+.request-form-header {
+  display: flex;
+  justify-content: space-between;
+}
+.request-form-container {
+  width: 100%;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    'label value'
+    'label value'
+    'label value'
+    'label value'
+    'label value'
+    'label value';
+}
+.request-label {
+  grid-area: 'label';
+}
+.request-value {
+  grid-area: 'value';
+}
+.department-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.file-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.double-column {
+  display: flex;
+  gap: 1rem;
+}
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}

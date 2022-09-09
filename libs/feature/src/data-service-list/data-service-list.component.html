@@ -1,107 +1,81 @@
-<div class="d-flex flex-row">
-  <dpt-side-nav></dpt-side-nav>
-
-  <div class="d-flex flex-column justify-content-between p-5 w-100"
-    style="background-color: #f3eeee; height: calc(100vh - 50px)">
+<div class="page-content">
+  <div class="main-container">
+    <div class="request-label header-1">
+      บริการข้อมูล </div>
     <div>
-      <div class="d-flex justify-content-between mb-5">
-        <div class="d-flex w-50">
-          <input type="text" placeholder="ค้นหาข้อมูล" class="form-control" />
-          <button type="submit" class="btn btn-outline-secondary ms-3">
-            <i class="bi bi-search"></i>
-          </button>
+      <div class="data-service-header">
+        <div class="search-container">
+          <div class="search-input-container">
+            <mat-form-field class="form-field" appearance="outline">
+              <input type="text" matInput [formControl]="form" placeholder="search" />
+            </mat-form-field>
+          </div>
+          <div class="category-container">
+            <mat-form-field appearance="outline">
+              <mat-select placeholder="status">
+                <mat-option *ngFor="let item of categoryList" [value]="item.value">
+                  {{ item.label }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="search-button-container">
+            <button mat-flat-button class="default-button" color="primary" (click)="onSearch()">Search</button>
+          </div>
+          <div class="request-button-container">
+            <button mat-flat-button class="default-button" color="primary" (click)="onRequest()">Add</button>
+          </div>
         </div>
-
-        <button type="submit" class="btn btn-outline-secondary" [routerLink]="['/data-service-request']">
-          ร้องขอชุดข้อมูล
-        </button>
       </div>
+      <div class="data-service-body">
+        <div class="data-service-side-bar">
+          <div class="side-bar-header">
+            กลุ่มชุดข้อมูล
+          </div>
+          <div class="side-bar-item" *ngFor="let item of sideBarList" (click)="onClickFilterCategory(item.value)"
+            [ngClass]="{'side-bar-item--active':currentCategoryId ===item.value}">
+            {{item.label}}
+          </div>
+        </div>
+        <div class="data-service-content">
+          <div class="data-service-list">
+            <div class="data-service-item" *ngFor="let item of tempData">
+              <div class="item-image">
+                <div class="image">
 
-      <div class="d-flex justify-content-end fs-6">จำนวนข้อมูล 6 ชุด</div>
-      <table class="table table-bordered table-striped">
-        <thead class="bg-light">
-          <tr style="height: 50px">
-            <th scope="col" class="text-center">No.</th>
-            <th scope="col">ชื่อชุดข้อมูล</th>
-            <th scope="col">หน่วยงาน</th>
-            <th scope="col">รูปแบบข้อมูล</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="height: 50px">
-            <th scope="row" class="text-center">1</th>
-            <td>กฏกระทรวงผังเมืองรวมจังหวัด</td>
-            <td>สำนักผังประเทศและผังภาค</td>
-            <td>Web Service</td>
-            <td>
-              <i class="bi bi-file-earmark-text fs-5 text-center" [routerLink]="['/data-service-detail']"
-                role="button"></i>
-            </td>
-          </tr>
-          <tr style="height: 50px">
-            <th scope="row" class="text-center">2</th>
-            <td>ประกาศคณะกรรมการผังเมือง : เรื่องพัฒนานโยบายระดับจังหวัด</td>
-            <td>สำนักผังประเทศและผังภาค</td>
-            <td>เอกสาร (PDF)</td>
-            <td>
-              <i class="bi bi-file-earmark-text fs-5 text-center" [routerLink]="['/data-service-detail']"
-                role="button"></i>
-            </td>
-          </tr>
-          <tr style="height: 50px">
-            <th scope="row" class="text-center">3</th>
-            <td>
-              ประกาศคณะกรรมนโยบายการผังเมืองแห่งชาติ : เรื่องผังนโยบายระดับภาค
-            </td>
-            <td>สำนักผังประเทศและผังภาค</td>
-            <td>เอกสาร (PDF)</td>
-            <td>
-              <i class="bi bi-file-earmark-text fs-5 text-center" [routerLink]="['/data-service-detail']"
-                role="button"></i>
-            </td>
-          </tr>
-          <tr style="height: 50px">
-            <th scope="row" class="text-center">4</th>
-            <td>
-              ประกาศคณะกรรมนโยบายการผังเมืองแห่งชาติ :
-              เรื่องผังนโยบายระดับประเทศ
-            </td>
-            <td>สำนักผังประเทศและผังภาค</td>
-            <td>เอกสาร (PDF)</td>
-            <td>
-              <i class="bi bi-file-earmark-text fs-5 text-center" [routerLink]="['/data-service-detail']"
-                role="button"></i>
-            </td>
-          </tr>
-          <tr style="height: 50px">
-            <th scope="row" class="text-center">5</th>
-            <td>ข้อมูลอาคาร 9 ประเภท</td>
-            <td>สำนักควบคุมและตรวจสอบอาคาร</td>
-            <td>Web Service</td>
-            <td>
-              <i class="bi bi-file-earmark-text fs-5 text-center" [routerLink]="['/data-service-detail']"
-                role="button"></i>
-            </td>
-          </tr>
-          <tr style="height: 50px">
-            <th scope="row" class="text-center">6</th>
-            <td>ข้อมูลประชาสัมพันธ์ข่างผังเมือง</td>
-            <td>สำนักผังเมืองรวม</td>
-            <td>เอกสาร (PDF)</td>
-            <td>
-              <i class="bi bi-file-earmark-text fs-5" [routerLink]="['/data-service-detail']" role="button"></i>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+                </div>
+              </div>
+              <div class="item-content">
+                <div class="item-header">
+                  <div class="department-container">
+                    {{ item.department}}
+                  </div>
+                  <div class="category-container">
+                    {{ item.category}}
+                  </div>
+                </div>
+                <div class="item-body-container">
+                  <div class="topic-container">
+                    {{ item.topic}}
+                  </div>
+                  <div class="sub-topic-container">
+                    {{ item.subTopic}}
+                  </div>
+                  <div class="file-container">
+                    <button *ngFor="let data of item.dataList" mat-flat-button class="default-button" color="primary"
+                      (click)="onOpenFile(data)">{{data.dataType}}</button>
+                  </div>
+                </div>
+                <div class="item-footer">
+                  {{ item.view}} Views
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="data-service-pagination">
 
-    <div class="d-flex justify-content-center">
-      <div class="d-flex flex-row p-2 bg-white">
-        <i class="bi bi-chevron-double-left fs-6" role="button"></i>
-        <div class="bg-success text-white px-2 fs-6 mx-2">1</div>
-        <i class="bi bi-chevron-double-right fs-6" role="button"></i>
+          </div>
+        </div>
       </div>
     </div>
   </div>
