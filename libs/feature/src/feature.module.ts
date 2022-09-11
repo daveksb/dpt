@@ -5,6 +5,8 @@ import { DataServiceListComponent } from './data-service-list/data-service-list.
 import { DataServiceRequestComponent } from './data-service-request/data-service-request.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LandingComponent } from './landing/landing.component';
+import { MatTabsModule } from '@angular/material/tabs';
+
 import { RegisterComponent } from './register/register.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
@@ -52,6 +54,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatSortModule,
     MatPaginatorModule,
     MatSelectModule,
+    MatTabsModule,
   ],
   exports: [
     DataServiceDetailComponent,
@@ -61,6 +64,7 @@ import { MatSelectModule } from '@angular/material/select';
     LandingComponent,
     RegisterComponent,
     LoginComponent,
+    MatTabsModule,
   ],
 })
 export class FeatureModule {}

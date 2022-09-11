@@ -1,80 +1,110 @@
 <div class="page-content">
   <div class="main-container">
-    <div class="request-label header-1">
-      บริการข้อมูล </div>
+    <div class="request-label header-1">บริการข้อมูล</div>
     <div>
       <div class="data-service-header">
         <div class="search-container">
           <div class="search-input-container">
             <mat-form-field class="form-field" appearance="outline">
-              <input type="text" matInput [formControl]="form" placeholder="search" />
+              <input
+                type="text"
+                matInput
+                [formControl]="form"
+                placeholder="search"
+              />
             </mat-form-field>
           </div>
           <div class="category-container">
             <mat-form-field appearance="outline">
               <mat-select placeholder="status">
-                <mat-option *ngFor="let item of categoryList" [value]="item.value">
+                <mat-option
+                  *ngFor="let item of categoryList"
+                  [value]="item.value"
+                >
                   {{ item.label }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
           <div class="search-button-container">
-            <button mat-flat-button class="default-button" color="primary" (click)="onSearch()">Search</button>
+            <button
+              mat-flat-button
+              class="default-button"
+              color="primary"
+              (click)="onSearch()"
+            >
+              Search
+            </button>
           </div>
           <div class="request-button-container">
-            <button mat-flat-button class="default-button" color="primary" (click)="onRequest()">Add</button>
+            <button
+              mat-flat-button
+              class="default-button"
+              color="primary"
+              (click)="onRequest()"
+            >
+              Add
+            </button>
           </div>
         </div>
       </div>
       <div class="data-service-body">
         <div class="data-service-side-bar">
-          <div class="side-bar-header">
-            กลุ่มชุดข้อมูล
-          </div>
-          <div class="side-bar-item" *ngFor="let item of sideBarList" (click)="onClickFilterCategory(item.value)"
-            [ngClass]="{'side-bar-item--active':currentCategoryId ===item.value}">
-            {{item.label}}
+          <div class="side-bar-header">กลุ่มชุดข้อมูล</div>
+          <div
+            class="side-bar-item"
+            *ngFor="let item of sideBarList"
+            (click)="onClickFilterCategory(item.value)"
+            [ngClass]="{
+              'side-bar-item--active': currentCategoryId === item.value
+            }"
+          >
+            {{ item.label }}
           </div>
         </div>
         <div class="data-service-content">
           <div class="data-service-list">
-            <div class="data-service-item" *ngFor="let item of tempData">
+            <div
+              class="data-service-item"
+              *ngFor="let item of tempData"
+              (click)="onNavigateData(item.dataId)"
+            >
               <div class="item-image">
-                <div class="image">
-
-                </div>
+                <div class="image"></div>
               </div>
               <div class="item-content">
                 <div class="item-header">
                   <div class="department-container">
-                    {{ item.department}}
+                    {{ item.department }}
                   </div>
                   <div class="category-container">
-                    {{ item.category}}
+                    {{ item.category }}
                   </div>
                 </div>
                 <div class="item-body-container">
                   <div class="topic-container">
-                    {{ item.topic}}
+                    {{ item.topic }}
                   </div>
                   <div class="sub-topic-container">
-                    {{ item.subTopic}}
+                    {{ item.subTopic }}
                   </div>
                   <div class="file-container">
-                    <button *ngFor="let data of item.dataList" mat-flat-button class="default-button" color="primary"
-                      (click)="onOpenFile(data)">{{data.dataType}}</button>
+                    <button
+                      *ngFor="let data of item.dataList"
+                      mat-flat-button
+                      class="default-button"
+                      color="primary"
+                      (click)="onOpenFile(data)"
+                    >
+                      {{ data.dataType }}
+                    </button>
                   </div>
                 </div>
-                <div class="item-footer">
-                  {{ item.view}} Views
-                </div>
+                <div class="item-footer">{{ item.view }} Views</div>
               </div>
             </div>
           </div>
-          <div class="data-service-pagination">
-
-          </div>
+          <div class="data-service-pagination"></div>
         </div>
       </div>
     </div>

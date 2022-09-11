@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'data-service-list', component: DataServiceListComponent },
-  { path: 'data-service-detail', component: DataServiceDetailComponent },
+  { path: 'data-service-detail/:id', component: DataServiceDetailComponent },
   { path: 'data-service-request', component: DataServiceRequestComponent },
   {
     path: 'data-request',

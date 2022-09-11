@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { DataRequestFormComponent } from '@dpt/form';
 
 @Component({
@@ -52,6 +52,7 @@ export class DataServiceListComponent implements OnInit {
       topic: 'testtop',
       subTopic: 'testsub',
       view: 20,
+      dataId: 1,
       dataList: [
         {
           dataType: 'CSV',
@@ -72,6 +73,7 @@ export class DataServiceListComponent implements OnInit {
       topic: 'testtop',
       subTopic: 'testsub',
       view: 20,
+      dataId: 1,
       dataList: [
         {
           dataType: 'CSV',
@@ -92,6 +94,7 @@ export class DataServiceListComponent implements OnInit {
       topic: 'testtop',
       subTopic: 'testsub',
       view: 20,
+      dataId: 1,
       dataList: [
         {
           dataType: 'CSV',
@@ -112,6 +115,7 @@ export class DataServiceListComponent implements OnInit {
       topic: 'testtop',
       subTopic: 'testsub',
       view: 20,
+      dataId: 1,
       dataList: [
         {
           dataType: 'CSV',
@@ -132,6 +136,7 @@ export class DataServiceListComponent implements OnInit {
       topic: 'testtop',
       subTopic: 'testsub',
       view: 20,
+      dataId: 1,
       dataList: [
         {
           dataType: 'CSV',
@@ -152,6 +157,7 @@ export class DataServiceListComponent implements OnInit {
       topic: 'testtop',
       subTopic: 'testsub',
       view: 20,
+      dataId: 1,
       dataList: [
         {
           dataType: 'CSV',
@@ -172,6 +178,7 @@ export class DataServiceListComponent implements OnInit {
       topic: 'testtop',
       subTopic: 'testsub',
       view: 20,
+      dataId: 1,
       dataList: [
         {
           dataType: 'CSV',
@@ -201,7 +208,7 @@ export class DataServiceListComponent implements OnInit {
     },
   ];
   currentCategoryId = -1;
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private route: Router) {}
 
   onClickFilterCategory(value: number) {
     if (value === this.currentCategoryId) {
@@ -250,5 +257,8 @@ export class DataServiceListComponent implements OnInit {
       maxHeight: '800px',
       width: '1000px',
     });
+  }
+  onNavigateData(id: number) {
+    this.route.navigate([`data-service-detail/${id}`]);
   }
 }

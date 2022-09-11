@@ -1,0 +1,131 @@
+:host {
+  width: 100%;
+}
+.data-request-data-container {
+  display: flex;
+  gap: 1rem;
+}
+.main-container {
+  padding-top: 8px;
+}
+.page-content {
+  width: 100%;
+  display: flex;
+  height: unset;
+  padding: 3rem 2rem;
+}
+.data-detail-header {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.data-detail-body {
+  display: flex;
+  width: 100%;
+
+  .data-detail-content {
+    display: flex;
+    width: 100%;
+  }
+}
+.api-data-container {
+  width: 100%;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    'label value'
+    'label value'
+    'label value';
+}
+.label {
+  grid-area: 'label';
+}
+.value {
+  grid-area: 'value';
+}
+
+.data-tab {
+}
+.data-button-container {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+.data-detail-tab {
+  margin-top: 1rem;
+  display: flex;
+  .image-container {
+    padding-right: 1rem;
+    .image {
+      width: 100px;
+      height: 100px;
+      background: red;
+    }
+  }
+  .detail-container {
+    width: 100%;
+    .department-container {
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 20px;
+      color: #492122;
+      margin-top: 1rem;
+      width: 100%;
+    }
+    .topic-container {
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 44px;
+      color: #270108;
+      margin-top: 1rem;
+      width: 100%;
+    }
+    .view-container {
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 25px;
+      color: #8e8b8b;
+      margin-top: 1rem;
+      width: 100%;
+    }
+    .detail1-container {
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 25px;
+      color: #8e8b8b;
+      margin-top: 1rem;
+      width: 100%;
+    }
+    .detail2-container {
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 25px;
+      color: #8e8b8b;
+      margin-top: 1rem;
+      width: 100%;
+    }
+  }
+}
+
+.data-detail-api {
+}
+.api-service {
+}
+.api-link {
+}
+.api-param-table {
+}

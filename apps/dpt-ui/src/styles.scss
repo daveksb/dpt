@@ -6,7 +6,7 @@ body {
 }
 body {
   margin: 0;
-  font-family: 'aktiv', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 //$font-family-base: 'ksp bold';
@@ -47,8 +47,8 @@ $enable-cssgrid: true;
 }
 
 @font-face {
-  font-family: 'aktiv';
-  src: url(./assets/font/AktivGrotesk-Regular.ttf) format('opentype');
+  font-family: 'Poppins';
+  src: url(./assets/font/Poppins-Regular.ttf) format('opentype');
 }
 .dpt-theme .mat-toolbar-single-row {
   padding: 3rem 5rem;
@@ -91,4 +91,10 @@ $enable-cssgrid: true;
 }
 .f-width {
   width: 100%;
+}
+.mat-tab-group {
+  width: 100%;
+}
+.mat-sidenav-content {
+  background-color: #f5ecec;
 }
