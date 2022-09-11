@@ -1,10 +1,7 @@
 .topbar {
   width: 100%;
-  left: 0;
-  top: 0;
-  //background-color: #270108;
-  z-index: 1;
-  padding: 4rem 2rem;
+  padding: 24px;
+  display: flex;
 }
 .second-header {
   font-style: normal;
@@ -19,6 +16,7 @@
   font-weight: 700;
   line-height: 24px;
   color: #270108;
+  margin-bottom: 8px;
 }
 
 .menu-header {
@@ -26,6 +24,7 @@
   font-style: normal;
   line-height: 26px;
   color: #270108;
+  margin: auto;
 }
 .nav-item-active {
   font-style: normal;
@@ -33,4 +32,27 @@
   font-size: 20px;
   line-height: 30px;
   color: #270108;
+}
+
+.image-container {
+  margin-right: 24px;
+}
+.header-list {
+  display: flex;
+  flex-direction: column;
+}
+.nav-link-list {
+  display: flex;
+  gap: 52px 42px;
+  margin-right: 72px;
+}
+.button-list {
+  display: flex;
+}
+.website-container {
+  display: flex;
+  padding-right: 72px;
+}
+.nav-link-item {
+  display: flex;
 }
