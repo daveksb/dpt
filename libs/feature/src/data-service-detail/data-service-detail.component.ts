@@ -122,6 +122,9 @@ export class DataServiceDetailComponent {
     });
   }
   onRequestData() {
-    this.router.navigate(['data-service-request']);
+    this.dialog.open(DataServiceDialogComponent, {
+      width: '500px',
+    });
+    // this.router.navigate(['data-service-request']);
   }
 }

@@ -1,6 +1,6 @@
 .topbar {
   width: 100%;
-  padding: 24px;
+  padding: 24px 24px 24px 0px;
   display: flex;
 }
 .second-header {
@@ -11,7 +11,7 @@
   color: #270108;
 }
 .main-header {
-  font-size: 20px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 700;
   line-height: 24px;
@@ -20,7 +20,7 @@
 }
 
 .menu-header {
-  font-size: 20px;
+  font-size: 14px;
   font-style: normal;
   line-height: 26px;
   color: #270108;
@@ -29,7 +29,7 @@
 .nav-item-active {
   font-style: normal;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 14px;
   line-height: 30px;
   color: #270108;
 }
@@ -43,7 +43,7 @@
 }
 .nav-link-list {
   display: flex;
-  gap: 52px 42px;
+  gap: 32px 20px;
   margin-right: 72px;
 }
 .button-list {
@@ -51,8 +51,12 @@
 }
 .website-container {
   display: flex;
-  padding-right: 72px;
+  padding-right: 32px;
 }
 .nav-link-item {
   display: flex;
+}
+
+.nav-link {
+  font-size: 16px;
 }

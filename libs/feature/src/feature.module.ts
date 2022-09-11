@@ -25,7 +25,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSortModule } from '@angular/material/sort';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
-
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     DataServiceDetailComponent,
@@ -55,6 +55,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatPaginatorModule,
     MatSelectModule,
     MatTabsModule,
+    MatIconModule,
   ],
   exports: [
     DataServiceDetailComponent,
@@ -65,6 +66,7 @@ import { MatSelectModule } from '@angular/material/select';
     RegisterComponent,
     LoginComponent,
     MatTabsModule,
+    MatIconModule,
   ],
 })
 export class FeatureModule {}

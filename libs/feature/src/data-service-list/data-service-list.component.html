@@ -10,13 +10,16 @@
                 type="text"
                 matInput
                 [formControl]="form"
-                placeholder="search"
+                placeholder="ค้นหา"
               />
+              <span matPrefix>
+                <mat-icon>search</mat-icon>
+              </span>
             </mat-form-field>
           </div>
           <div class="category-container">
             <mat-form-field appearance="outline">
-              <mat-select placeholder="status">
+              <mat-select placeholder="เลือก 1 หมวดหมู่">
                 <mat-option
                   *ngFor="let item of categoryList"
                   [value]="item.value"
@@ -29,21 +32,21 @@
           <div class="search-button-container">
             <button
               mat-flat-button
-              class="default-button"
+              class="default-button big-button"
               color="primary"
               (click)="onSearch()"
             >
-              Search
+              ค้นหา
             </button>
           </div>
           <div class="request-button-container">
             <button
-              mat-flat-button
-              class="default-button"
+              mat-stroked-button
+              class="default-button big-button"
               color="primary"
               (click)="onRequest()"
             >
-              Add
+              ร้องขอชุดข้อมูล
             </button>
           </div>
         </div>
@@ -59,7 +62,10 @@
               'side-bar-item--active': currentCategoryId === item.value
             }"
           >
-            {{ item.label }}
+            <div class="side-bar-icon"></div>
+            <div class="side-bar-label">
+              {{ item.label }} ({{ item.count }})
+            </div>
           </div>
         </div>
         <div class="data-service-content">
@@ -92,15 +98,26 @@
                     <button
                       *ngFor="let data of item.dataList"
                       mat-flat-button
-                      class="default-button"
+                      class="default-button file-button"
+                      [ngClass]="
+                        data.dataType === 'CSV'
+                          ? 'file-button--csv'
+                          : 'file-button--pdf'
+                      "
                       color="primary"
                       (click)="onOpenFile(data)"
                     >
+                      <mat-icon class="file-icon"> list_alt </mat-icon>
                       {{ data.dataType }}
                     </button>
                   </div>
                 </div>
-                <div class="item-footer">{{ item.view }} Views</div>
+                <div class="item-footer">
+                  <div class="icon-container">
+                    <mat-icon>visibility</mat-icon>
+                  </div>
+                  {{ item.view }} Views
+                </div>
               </div>
             </div>
           </div>

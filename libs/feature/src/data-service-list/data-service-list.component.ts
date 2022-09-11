@@ -18,23 +18,28 @@ export class DataServiceListComponent implements OnInit {
   sideBarList = [
     {
       value: 1,
-      label: 'Category 1',
+      label: 'เขตการปกครอง',
+      count: 10,
     },
     {
       value: 2,
-      label: 'Category 2',
+      label: 'การใช้ที่ดินปัจจุบัน',
+      count: 10,
     },
     {
       value: 3,
-      label: 'Category 3',
+      label: 'เขตผังเมืองรวม',
+      count: 10,
     },
     {
       value: 4,
-      label: 'Category 4',
+      label: 'การจำแนกการใช้ที่ดิน',
+      count: 10,
     },
     {
       value: 5,
       label: 'Category 5',
+      count: 10,
     },
   ];
   displayedColumns: string[] = [
@@ -48,9 +53,11 @@ export class DataServiceListComponent implements OnInit {
 
   tempData = [
     {
-      department: 'testdep',
-      topic: 'testtop',
-      subTopic: 'testsub',
+      department: 'สำนักผังประเทศและผังภาค',
+      topic:
+        'ประกาศคณะกรรมนโยบายการผังเมืองแห่งชาติ : เรื่องผังนโยบายระดับประเทศ',
+      subTopic:
+        'สำนักผังประเทศและผังภาคตัวอย่าง ว่าด้วยเรื่องประกาศคณะกรรมนโยบายการผังนโยบายระดับประเทศ',
       view: 20,
       dataId: 1,
       dataList: [
@@ -66,12 +73,13 @@ export class DataServiceListComponent implements OnInit {
         },
       ],
       categoryId: 1,
-      category: 'Category 1',
+      category: 'การจำแนกการใช้ที่ดิน',
     },
     {
-      department: 'testdep',
-      topic: 'testtop',
-      subTopic: 'testsub',
+      department: 'สำนักควบคุมและตรวจสอบอาคาร',
+      topic: 'กฎกระทรวงผังเมืองรวมจังหวัด',
+      subTopic:
+        'สำนักผังประเทศและผังภาคตัวอย่าง ว่าด้วยเรื่องประกาศคณะกรรมนโยบายการผังนโยบายระดับประเทศ',
       view: 20,
       dataId: 1,
       dataList: [
@@ -129,7 +137,7 @@ export class DataServiceListComponent implements OnInit {
         },
       ],
       categoryId: 1,
-      category: 'Category 1',
+      category: 'การจำแนกการใช้ที่ดิน',
     },
     {
       department: 'testdep',
@@ -150,7 +158,7 @@ export class DataServiceListComponent implements OnInit {
         },
       ],
       categoryId: 1,
-      category: 'Category 1',
+      category: 'การจำแนกการใช้ที่ดิน',
     },
     {
       department: 'testdep',
@@ -171,7 +179,7 @@ export class DataServiceListComponent implements OnInit {
         },
       ],
       categoryId: 1,
-      category: 'Category 1',
+      category: 'การจำแนกการใช้ที่ดิน',
     },
     {
       department: 'testdep',
@@ -192,7 +200,7 @@ export class DataServiceListComponent implements OnInit {
         },
       ],
       categoryId: 1,
-      category: 'Category 1',
+      category: 'การจำแนกการใช้ที่ดิน',
     },
   ];
 
@@ -230,7 +238,7 @@ export class DataServiceListComponent implements OnInit {
     console.log('onSearch');
   }
   onRequest() {
-    console.log('onRequest');
+    this.route.navigate(['data-service-request']);
   }
   onView(id: number) {
     console.log('onView', id);

@@ -39,8 +39,9 @@ $enable-cssgrid: true;
   }
 }
 .header-1 {
-  font-size: 32px;
+  font-size: 24px;
   color: black;
+  font-weight: 600;
 }
 .main-container {
   width: 100%;
@@ -51,7 +52,7 @@ $enable-cssgrid: true;
   src: url(./assets/font/Poppins-Regular.ttf) format('opentype');
 }
 .dpt-theme .mat-toolbar-single-row {
-  padding: 3rem 5rem;
+  padding: 3rem 4rem;
 }
 
 // mat
@@ -70,6 +71,12 @@ $enable-cssgrid: true;
 .mat-form-field {
   width: 100%;
 }
+.search-input-container {
+  .mat-form-field-outline {
+    background: #f2f4f8;
+  }
+}
+
 .default-table {
   th.mat-header-cell {
     font-style: normal;
@@ -97,4 +104,59 @@ $enable-cssgrid: true;
 }
 .mat-sidenav-content {
   background-color: #f5ecec;
+}
+.dpt-theme {
+  .big-button {
+    &.mat-stroked-button {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 24px;
+      color: #270108;
+      align-items: center;
+      padding: 16px;
+      border: 2px solid #270108;
+      border-radius: 12px;
+    }
+    &.mat-flat-button {
+      padding: 12px 16px;
+      border-radius: 12px;
+      align-items: center;
+      background: #270108;
+      color: white;
+    }
+  }
+  .file-button {
+    // &.mat-stroked-button {
+    //   font-style: normal;
+    //   font-weight: 700;
+    //   font-size: 16px;
+    //   line-height: 24px;
+    //   color: #270108;
+    //   align-items: center;
+    //   padding: 16px;
+    //   border: 2px solid #270108;
+    //   border-radius: 12px;
+    // }
+    padding: 8px 12px;
+    gap: 8px;
+    border-radius: 4px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    &.mat-flat-button {
+      &.file-button--pdf {
+        background: #fff0ed;
+        color: #e96767;
+      }
+      &.file-button--csv {
+        background: #e6faeb;
+        color: #1a9a3e;
+      }
+    }
+  }
+  .file-icon {
+    font-size: 24px;
+  }
 }
