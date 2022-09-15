@@ -224,10 +224,8 @@ export class DataServiceListComponent implements OnInit {
     } else {
       this.currentCategoryId = value;
       this.currentTempData = (
-        JSON.parse(JSON.stringify(this.categoryList)) as any[]
-      ).filter((cat) => {
-        cat.categoryId === value;
-      });
+        JSON.parse(JSON.stringify(this.tempData)) as any[]
+      ).filter((cat) => cat.categoryId === value);
     }
   }
 

@@ -13,7 +13,7 @@ import {
   styleUrls: ['./top-nav.component.scss'],
 })
 export class TopNavComponent implements OnInit {
-  @Input() isSecondary = false;
+  @Input() isSecondary = true;
   isActive = true;
   currentUrl = '';
   constructor(private route: Router) {

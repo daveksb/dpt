@@ -1,165 +1,159 @@
-<div class="card mb-3" style="width: 500px">
-  <nav class="navbar bg-warning bg-opacity-75" style="height: 60px">
-    <div class="container-fluid">
-      <span class="navbar-brand mb-0 ms-2 fw-bold">ลงทะเบียน</span>
+<div class="register-container">
+  <div class="register-header">
+    <div class="register-label">ลงทะเบียน</div>
+    <div class="register-sub-label">Register account</div>
+  </div>
+  <div class="register-body" [formGroup]="formGroup">
+    <div class="department-type-container">
+      <mat-radio-group formControlName="departmentType">
+        <mat-radio-button value="INSIDER">หน่วยงานภายใน </mat-radio-button>
+        <mat-radio-button value="OUTSIDER">หน่วยงานภายนอก</mat-radio-button>
+      </mat-radio-group>
     </div>
-  </nav>
 
-  <div class="card-body">
-    <form class="d-flex flex-column align-items-center">
-      <div class="d-flex align-items-center w-100 mb-3" style="padding: 0 12px">
-        <div class="form-label text-nowrap mb-0 me-3">หน่วยงาน*</div>
-        <div class="text-nowrap me-3">
-          <input
-            type="radio"
-            class="me-2"
-            name="status"
-            [value]="1"
-            (change)="radioButtonChanged($event)"
-            checked
-          />
-          <label class="form-label m-0">ภายนอก</label>
-        </div>
-        <div class="text-nowrap me-3">
-          <input
-            type="radio"
-            class="me-2"
-            name="status"
-            [value]="2"
-            (change)="radioButtonChanged($event)"
-          />
-          <label class="form-label m-0">ภายใน</label>
-        </div>
-
-        <ng-container *ngIf="status === 1">
+    <div class="department-name-container">
+      <ng-container *ngIf="isInsider; else departmentName">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>ชื่อหน่วยงาน</mat-label>
+          <mat-select
+            formControlName="departmentCategory"
+            placeholder="เกรุณาเลือก Category"
+          >
+            <mat-option *ngFor="let item of categoryList" [value]="item.value">
+              {{ item.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field></ng-container
+      >
+      <ng-template #departmentName>
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>ชื่อหน่วยงาน</mat-label>
           <input
             type="text"
-            class="form-control form-control-sm"
+            matInput
+            formControlName="departmentName"
             placeholder="กรุณากรอกชื่อหน่วยงาน"
-        /></ng-container>
-
-        <ng-container *ngIf="status === 2">
-          <select class="form-select form-select-sm">
-            <option disabled hidden selected>*กรุณาเลือก Category</option>
-            <option value="a">a</option>
-            <option value="b">b</option>
-            <option value="c">c</option>
-          </select></ng-container
-        >
-      </div>
-
-      <div class="row mb-2 w-100">
-        <div class="col">
-          <label class="form-label mb-0">ชื่อ-นามสกุล*</label>
-          <input
-            type="email"
-            class="form-control form-control-sm"
-            id="exampleInputEmail1"
           />
-        </div>
-      </div>
+        </mat-form-field>
+      </ng-template>
+    </div>
 
-      <div class="row mb-2 w-100">
-        <div class="col">
-          <label class="form-label mb-0">ชื่อ-นามสกุล(ภาษาอังกฤษ)*</label>
-          <input
-            type="password"
-            class="form-control form-control-sm"
-            id="exampleInputPassword1"
-          />
-        </div>
-      </div>
+    <div class="user-name-th-container">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>ชื่อ-นามสกุล</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="userNameTh"
+          placeholder="ชื่อ-นามสกุล"
+        />
+      </mat-form-field>
+    </div>
 
-      <div class="row mb-2 w-100">
-        <div class="col">
-          <label class="form-label mb-0">เลขบัตรประจำตัวประชาชน*</label>
-          <input
-            type="text"
-            class="form-control form-control-sm"
-            id="exampleInputPassword1"
-          />
-        </div>
-      </div>
+    <div class="user-name-en-container">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>ชื่อ-นามสกุล(ภาษาอังกฤษ)</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="userNameEn"
+          placeholder="ชื่อ-นามสกุล(ภาษาอังกฤษ)"
+        />
+      </mat-form-field>
+    </div>
 
-      <div class="row mb-2 w-100">
-        <div class="col-6">
-          <label class="form-label mb-0">ตำแหน่ง*</label>
-          <input
-            type="text"
-            class="form-control form-control-sm"
-            id="exampleInputPassword1"
-          />
-        </div>
+    <div class="id-number-container">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>เลขบัตรประจำตัวประชาชน</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="idNumber"
+          placeholder="เลขบัตรประจำตัวประชาชน"
+        />
+      </mat-form-field>
+    </div>
 
-        <div class="col-6">
-          <label class="form-label mb-0">เบอร์ติดต่อ*</label>
-          <input
-            type="text"
-            class="form-control form-control-sm"
-            id="exampleInputPassword1"
-          />
-        </div>
-      </div>
+    <div class="position-container">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>ตำแหน่ง</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="position"
+          placeholder="ตำแหน่ง"
+        />
+      </mat-form-field>
+    </div>
 
-      <div class="row mb-2 w-100">
-        <div class="col">
-          <label class="form-label mb-0">อีเมล*</label>
-          <input
-            type="text"
-            class="form-control form-control-sm"
-            id="exampleInputPassword1"
-          />
-        </div>
-      </div>
+    <div class="mobile-container">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>เบอร์ติดต่อ</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="mobile"
+          placeholder="เบอร์ติดต่อ"
+        />
+      </mat-form-field>
+    </div>
 
-      <div class="row mb-2 w-100">
-        <div class="col">
-          <label class="form-label mb-0">ชื่อผู้ใช้งาน*</label>
-          <input
-            type="text"
-            class="form-control form-control-sm"
-            id="exampleInputPassword1"
-          />
-        </div>
-      </div>
+    <div class="email-container">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>อีเมล</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="email"
+          placeholder="อีเมล"
+        />
+      </mat-form-field>
+    </div>
 
-      <div class="row mb-2 w-100">
-        <div class="col-6">
-          <label class="form-label mb-0">รหัสผ่าน*</label>
-          <input
-            type="text"
-            class="form-control form-control-sm"
-            id="exampleInputPassword1"
-          />
-        </div>
+    <div class="user-mame-container">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>ชื่อผู้ใช้งาน</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="userName"
+          placeholder="ชื่อผู้ใช้งาน"
+        />
+      </mat-form-field>
+    </div>
 
-        <div class="col-6">
-          <label class="form-label mb-0">ยืนยันรหัสผ่าน*</label>
-          <input
-            type="text"
-            class="form-control form-control-sm"
-            id="exampleInputPassword1"
-          />
-        </div>
-      </div>
+    <div class="confirm-password-container">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>ยืนยันรหัสผ่าน</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="confirmPassword"
+          placeholder="ยืนยันรหัสผ่าน"
+        />
+      </mat-form-field>
+    </div>
 
-      <div class="my-3">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          [routerLink]="['/login']"
-        >
-          ยกเลิก
-        </button>
-
-        <button
-          type="button"
-          class="btn bg-warning bg-opacity-75 ms-4"
-          [routerLink]="['/login']"
-        >
-          ยืนยันการลงทะเบียน
-        </button>
-      </div>
-    </form>
+    <div class="password-container">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>รหัสผ่าน</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="password"
+          placeholder="รหัสผ่าน"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="register-footer">
+    <button
+      mat-flat-button
+      class="confirm-button"
+      [disabled]="formGroup.invalid"
+      (click)="onConfirm()"
+    >
+      ลงทะเบียน
+    </button>
   </div>
 </div>

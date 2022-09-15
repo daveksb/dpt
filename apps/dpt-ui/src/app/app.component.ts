@@ -8,7 +8,7 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'dpt-ui';
-  hideList = ['login', 'register', 'pdpa'];
+  hideList = ['login', 'register', 'forgot-password', 'pdpa'];
   isSecondary = true;
   isActive = true;
   currentUrl = '';

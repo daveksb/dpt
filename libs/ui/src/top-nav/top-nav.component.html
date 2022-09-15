@@ -1,85 +1,139 @@
-<div class="topbar">
-  <div class="website-container">
-    <div class="image-container">
-      <img
-        src="https://www.dpt.go.th/assets/app/images/logo.png"
-        width="70"
-        height="70"
-      />
+<ng-container *ngIf="!isSecondary; else secondary">
+  <div class="topbar">
+    <div class="website-container">
+      <div class="image-container">
+        <img
+          src="https://www.dpt.go.th/assets/app/images/logo.png"
+          width="70"
+          height="70"
+        />
+      </div>
+      <div class="header-list">
+        <div class="fw-bold main-header">กรมโยธาธิการและผังเมือง</div>
+        <div class="second-header">DEPARTMENT OF PUBLIC WORKS</div>
+        <div class="second-header">AND TOWN & COUNTRY PLANNING</div>
+      </div>
     </div>
-    <div class="header-list">
-      <div class="fw-bold main-header">กรมโยธาธิการและผังเมือง</div>
-      <div class="second-header">DEPARTMENT OF PUBLIC WORKS</div>
-      <div class="second-header">AND TOWN & COUNTRY PLANNING</div>
-      <div *ngIf="isSecondary">SECOND THEME</div>
+    <div class="nav-link-list">
+      <div class="nav-link-item">
+        <a
+          class="nav-link menu-header"
+          [routerLinkActive]="'nav-item-active'"
+          [routerLink]="['/landing']"
+          >หน้าหลัก</a
+        >
+      </div>
+      <div class="nav-link-item">
+        <a
+          class="nav-link menu-header"
+          [routerLinkActive]="'nav-item-active'"
+          [routerLink]="['/data-service-list']"
+          >บริการข้อมูล</a
+        >
+      </div>
+
+      <div class="nav-link-item">
+        <a
+          class="nav-link menu-header"
+          [routerLinkActive]="'nav-item-active'"
+          [routerLink]="['/data-request']"
+          >รายการขอชุดข้อมูล</a
+        >
+      </div>
+
+      <div class="nav-link-item">
+        <a
+          class="nav-link menu-header"
+          [routerLinkActive]="'nav-item-active'"
+          [routerLink]="['/publish']"
+          >อนุมัติเผยแพร่</a
+        >
+      </div>
+
+      <div class="nav-link-item">
+        <a
+          class="nav-link menu-header"
+          [routerLinkActive]="'nav-item-active'"
+          [routerLink]="['/data-management']"
+          >จัดการชุดข้อมูล</a
+        >
+      </div>
+
+      <div class="nav-link-item">
+        <a
+          class="nav-link menu-header"
+          [routerLinkActive]="'nav-item-active'"
+          [routerLink]="['/report']"
+          >รายงาน</a
+        >
+      </div>
+    </div>
+    <div class="button-list">
+      <div>
+        <a class="nav-link" [routerLink]="['/register']">ลงทะเบียน</a>
+        <button class="btn btn-sm btn-dark" [routerLink]="['/login']">
+          เข้าสู่ระบบ
+        </button>
+      </div>
+      <div>
+        <a class="nav-link" [routerLink]="['/admin']">Admin</a>
+        <button class="btn btn-sm btn-dark" [routerLink]="['/login']">
+          เข้าสู่ระบบ
+        </button>
+      </div>
     </div>
   </div>
-  <div class="nav-link-list">
-    <div class="nav-link-item">
-      <a
-        class="nav-link menu-header"
-        [routerLinkActive]="'nav-item-active'"
-        [routerLink]="['/landing']"
-        >หน้าหลัก</a
-      >
+</ng-container>
+<ng-template #secondary>
+  <div class="topbar topbar--secondary">
+    <div class="nav-link-list">
+      <div class="nav-link-item">
+        <a
+          class="nav-link menu-header nav-item-active"
+          [routerLink]="['/landing']"
+          >หน้าหลัก</a
+        >
+      </div>
+      <div class="nav-link-item">
+        <a
+          class="nav-link menu-header"
+          [routerLinkActive]="'nav-item-active'"
+          [routerLink]="['/data-service-list']"
+          >บริการข้อมูล</a
+        >
+      </div>
+      <div class="nav-link-item">
+        <a
+          class="nav-link menu-header"
+          [routerLinkActive]="'nav-item-active'"
+          [routerLink]="['/data-management']"
+          >จัดการชุดข้อมูล</a
+        >
+      </div>
     </div>
-    <div class="nav-link-item">
-      <a
-        class="nav-link menu-header"
-        [routerLinkActive]="'nav-item-active'"
-        [routerLink]="['/data-service-list']"
-        >บริการข้อมูล</a
-      >
-    </div>
-
-    <div class="nav-link-item">
-      <a
-        class="nav-link menu-header"
-        [routerLinkActive]="'nav-item-active'"
-        [routerLink]="['/data-request']"
-        >รายการขอชุดข้อมูล</a
-      >
-    </div>
-
-    <div class="nav-link-item">
-      <a
-        class="nav-link menu-header"
-        [routerLinkActive]="'nav-item-active'"
-        [routerLink]="['/publish']"
-        >อนุมัติเผยแพร่</a
-      >
-    </div>
-
-    <div class="nav-link-item">
-      <a
-        class="nav-link menu-header"
-        [routerLinkActive]="'nav-item-active'"
-        [routerLink]="['/data-management']"
-        >จัดการชุดข้อมูล</a
-      >
+    <div class="website-container">
+      <div class="image-container">
+        <img
+          src="https://www.dpt.go.th/assets/app/images/logo.png"
+          width="70"
+          height="70"
+        />
+      </div>
+      <div class="header-list">
+        <div class="fw-bold main-header">กรมโยธาธิการและผังเมือง</div>
+        <div class="second-header">DEPARTMENT OF PUBLIC WORKS</div>
+        <div class="second-header">AND TOWN & COUNTRY PLANNING</div>
+      </div>
     </div>
 
-    <div class="nav-link-item">
-      <a
-        class="nav-link menu-header"
-        [routerLinkActive]="'nav-item-active'"
-        [routerLink]="['/report']"
-        >รายงาน</a
+    <div class="button-list">
+      <button
+        mat-flat-button
+        class="login-button big-button"
+        [routerLink]="['/login']"
       >
-    </div>
-  </div>
-  <div class="button-list">
-    <div>
-      <a class="nav-link" [routerLink]="['/register']">ลงทะเบียน</a>
-      <button class="btn btn-sm btn-dark" [routerLink]="['/login']">
         เข้าสู่ระบบ
       </button>
     </div>
-    <div>
-      <a class="nav-link" [routerLink]="['/admin']">Admin</a>
-      <button class="btn btn-sm btn-dark" [routerLink]="['/login']">
-        เข้าสู่ระบบ
-      </button>
-    </div>
   </div>
-</div>
+</ng-template>

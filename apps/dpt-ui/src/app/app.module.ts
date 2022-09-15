@@ -13,6 +13,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { CookieService } from 'ngx-cookie-service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenHandleInterceptor } from '@dpt/feature';
+import { SharedModule } from '@dpt/shared';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,8 +35,17 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     AppRoutingModule,
     MatButtonModule,
+    SharedModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    CookieService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenHandleInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

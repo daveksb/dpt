@@ -1,7 +1,10 @@
+:host {
+  width: 100%;
+}
 .topbar {
   width: 100%;
-  padding: 24px 24px 24px 0px;
   display: flex;
+  padding: 1rem 5rem;
 }
 .second-header {
   font-style: normal;
@@ -45,6 +48,7 @@
   display: flex;
   gap: 32px 20px;
   margin-right: 72px;
+  width: 100%;
 }
 .button-list {
   display: flex;
@@ -59,4 +63,37 @@
 
 .nav-link {
   font-size: 16px;
+}
+.topbar.topbar--secondary {
+  background: #270108;
+  display: flex;
+  justify-content: space-between;
+  .nav-link-list {
+    margin-left: 72px;
+    margin-right: 0;
+  }
+  .website-container {
+    width: 100%;
+  }
+
+  .menu-header {
+    color: #fccc30;
+  }
+  .nav-item-active {
+    color: #fccc30;
+    background: #fccc3034;
+    border-radius: 20px;
+    padding: 10px;
+  }
+  .login-button {
+    background-color: white;
+    font-weight: 700;
+    color: #270108;
+    height: 50px;
+    margin: auto;
+    line-height: 24px;
+  }
+  .button-list {
+    justify-content: flex-end;
+  }
 }

@@ -52,7 +52,8 @@ $enable-cssgrid: true;
   src: url(./assets/font/Poppins-Regular.ttf) format('opentype');
 }
 .dpt-theme .mat-toolbar-single-row {
-  padding: 3rem 4rem;
+  padding: 0px;
+  height: auto;
 }
 
 // mat
@@ -158,5 +159,11 @@ $enable-cssgrid: true;
   }
   .file-icon {
     font-size: 24px;
+  }
+}
+
+.login-form-main-container {
+  .mat-form-field-outline {
+    background: #f2f4f8;
   }
 }

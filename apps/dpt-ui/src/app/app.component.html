@@ -1,14 +1,13 @@
 <div class="nav-main-container dpt-theme">
-    <mat-toolbar #navToolbar>
-        <dpt-top-nav [isSecondary]="isSecondary"></dpt-top-nav>
-    </mat-toolbar>
+  <mat-toolbar #navToolbar>
+    <dpt-top-nav [isSecondary]="isSecondary"></dpt-top-nav>
+  </mat-toolbar>
 
-    <mat-sidenav-container class="nav-item-container">
-        <mat-sidenav-content>
-            <div class="main-page">
-                <router-outlet></router-outlet>
-            </div>
-
-        </mat-sidenav-content>
-    </mat-sidenav-container>
+  <mat-sidenav-container class="nav-item-container">
+    <mat-sidenav-content>
+      <div class="main-page" [ngClass]="{ 'main-page-secondary': isSecondary }">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

@@ -1,0 +1,89 @@
+.register-container {
+  width: 100%;
+  .register-header {
+    margin-top: 1rem;
+    text-align: center;
+    .register-label {
+      margin-top: 1rem;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 44px;
+      color: #000000;
+    }
+    .register-sub-label {
+      margin-top: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 29px;
+      color: #000000;
+    }
+  }
+  .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+  .mat-radio-group {
+    margin-top: 14px;
+  }
+  .register-body {
+    margin-top: 2rem;
+    display: grid;
+    grid-row: auto;
+    grid-column: 1fr;
+    gap: 1rem;
+    grid-template-areas:
+      'departmentType departmentType departmentName departmentName'
+      'userNameTh userNameTh userNameEn userNameEn'
+      'idNumber idNumber position mobile'
+      'email email userName userName'
+      'password confirmPassword . .';
+
+    .department-type-container {
+      display: flex;
+      grid-area: departmentType;
+    }
+    .department-name-container {
+      grid-area: departmentName;
+    }
+    .user-name-th-container {
+      grid-area: userNameTh;
+    }
+    .user-name-en-container {
+      grid-area: userNameEn;
+    }
+    .id-number-container {
+      grid-area: idNumber;
+    }
+    .position-container {
+      grid-area: position;
+    }
+    .mobile-container {
+      grid-area: mobile;
+    }
+    .email-container {
+      grid-area: email;
+    }
+    .user-name-container {
+      grid-area: userName;
+    }
+    .confirm-password-container {
+      grid-area: confirmPassword;
+    }
+    .password-container {
+      grid-area: password;
+    }
+  }
+  .register-footer {
+    display: flex;
+    .confirm-button {
+      margin: auto;
+      width: 400px;
+      height: 55px;
+      background: #fccc30;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 20px;
+    }
+  }
+}

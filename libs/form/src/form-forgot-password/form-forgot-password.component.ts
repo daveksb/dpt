@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MainApiService } from '@dpt/shared';
 
 @Component({
   selector: 'dpt-form-forgot-password',
@@ -8,7 +8,18 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./form-forgot-password.component.scss'],
 })
 export class FormForgotPasswordComponent implements OnInit {
-  constructor() {}
+  formGroup = new FormGroup({
+    email: new FormControl(null, Validators.required),
+  });
+  constructor(private apiService: MainApiService) {}
 
   ngOnInit(): void {}
+  onConfirm() {
+    const email = this.formGroup.get('email')?.value;
+    if (this.formGroup.valid && email) {
+      this.apiService.forgotPassword(email).subscribe((res) => {
+        //
+      });
+    }
+  }
 }

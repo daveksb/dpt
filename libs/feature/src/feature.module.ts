@@ -26,6 +26,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
+import { TokenHandleInterceptor } from './interceptor/api-interceptor';
 @NgModule({
   declarations: [
     DataServiceDetailComponent,

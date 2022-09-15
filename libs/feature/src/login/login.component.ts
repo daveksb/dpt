@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormLoginComponent } from '@dpt/form';
-import { TopNavComponent } from '@dpt/ui';
 
 @Component({
   selector: 'dpt-login',
