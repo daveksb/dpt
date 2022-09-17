@@ -7,3 +7,4 @@ export * from './form.module';
 export * from './data-request-form/data-request-form.component';
 export * from './data-management-data-set-form/data-management-data-set-form.component';
 export * from './data-management-file-form/data-management-file-form.component';
+export * from './default-dialog/default-dialog.component';

@@ -26,7 +26,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-import { TokenHandleInterceptor } from './interceptor/api-interceptor';
+import { SharedModule } from '@dpt/shared';
 @NgModule({
   declarations: [
     DataServiceDetailComponent,
@@ -42,8 +42,6 @@ import { TokenHandleInterceptor } from './interceptor/api-interceptor';
   imports: [
     CommonModule,
     RouterModule,
-    UiModule,
-    FormModule,
     FormsModule,
     MatDialogModule,
     MatTableModule,
@@ -57,6 +55,9 @@ import { TokenHandleInterceptor } from './interceptor/api-interceptor';
     MatSelectModule,
     MatTabsModule,
     MatIconModule,
+    UiModule,
+    SharedModule,
+    FormModule,
   ],
   exports: [
     DataServiceDetailComponent,

@@ -1,0 +1,27 @@
+<div mat-dialog-title class="default-dialog-title" *ngIf="data.title">
+  <div class="default-dialog-title-label">
+    {{ data.title }}
+  </div>
+</div>
+
+<div mat-dialog-content class="default-dialog-content">
+  <div class="default-dialog-icon-container"></div>
+  <div class="default-dialog-status-container">
+    {{ data.status }}
+  </div>
+  <div class="default-dialog-message-container">
+    {{ data.message }}
+  </div>
+</div>
+<mat-dialog-actions>
+  <div class="button-container">
+    <button
+      mat-flat-button
+      class="big-button confirm-button"
+      [ngClass]="{ 'confirm-button--error': data?.isError }"
+      (click)="onConfirm()"
+    >
+      ตกลง
+    </button>
+  </div>
+</mat-dialog-actions>

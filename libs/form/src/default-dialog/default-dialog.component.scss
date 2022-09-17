@@ -1,0 +1,37 @@
+.default-dialog-icon-container {
+}
+.default-dialog-status-container {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 48px;
+  text-align: center;
+  color: #080a0c;
+  margin-top: 1rem;
+}
+.default-dialog-message-container {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  margin-top: 1rem;
+  color: #000000;
+}
+.confirm-button {
+  background: #1a9a3e;
+  color: white;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 26px;
+  border-radius: 12px;
+}
+.confirm-button--error {
+  background: red;
+}
+.button-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}

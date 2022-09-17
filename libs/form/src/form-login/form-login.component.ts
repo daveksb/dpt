@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule, formatPercent } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { MainApiService } from '@dpt/shared';
+import { Router } from '@angular/router';
+import { MainApiService, UserService } from '@dpt/shared';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
-
+import { Dialog } from '@angular/cdk/dialog';
+import { DefaultDialogComponent } from '../default-dialog/default-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DateTime } from 'luxon';
 @Component({
   selector: 'dpt-form-login',
   templateUrl: './form-login.component.html',
@@ -17,7 +19,10 @@ export class FormLoginComponent implements OnInit {
   });
   constructor(
     private apiService: MainApiService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private router: Router,
+    private userService: UserService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {}
@@ -26,7 +31,22 @@ export class FormLoginComponent implements OnInit {
     const password = this.formGroup.get('password')?.value;
     if (this.formGroup.valid && email && password) {
       this.apiService.login(email, password).subscribe((res) => {
-        this.cookieService.set('dptUserToken', res.tokenKey);
+        if (res.tokenKey) {
+          const today = DateTime.now();
+          today.plus({ hour: 3 });
+          this.cookieService.set('dptToken', res.tokenKey, today.toJSDate());
+          this.userService.setUser(res);
+          this.router.navigate(['/landing']);
+        } else {
+          this.dialog.open(DefaultDialogComponent, {
+            maxHeight: '800px',
+            width: '500px',
+            data: {
+              status: 'เข้าสู่ระบบไม่สำเร็จ',
+              message: 'กรุณาตรวจสอบ Username และ Password อีกครั้ง',
+            },
+          });
+        }
       });
     }
   }

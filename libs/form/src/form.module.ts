@@ -16,6 +16,18 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { SharedModule } from '@dpt/shared';
+import { DefaultDialogComponent } from './default-dialog/default-dialog.component';
+import { UiModule } from '@dpt/ui';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -27,6 +39,7 @@ import { MatButtonModule } from '@angular/material/button';
     DataPublishFormComponent,
     DataManagementFileFormComponent,
     DataManagementDataSetFormComponent,
+    DefaultDialogComponent,
   ],
 
   imports: [
@@ -40,6 +53,17 @@ import { MatButtonModule } from '@angular/material/button';
     MatRadioModule,
     MatButtonModule,
     MatSelectModule,
+    MatTableModule,
+    MatTooltipModule,
+    MatSidenavModule,
+    MatListModule,
+    MatMenuModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatTabsModule,
+    MatIconModule,
+    SharedModule,
+    UiModule,
   ],
   exports: [
     FormForgotPasswordComponent,
@@ -54,6 +78,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatRadioModule,
     MatSelectModule,
     MatButtonModule,
+    SharedModule,
+    DefaultDialogComponent,
   ],
 })
 export class FormModule {}
