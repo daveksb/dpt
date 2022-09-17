@@ -2,15 +2,27 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import {
+  AbstractControl,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { MainApiService } from '@dpt/shared';
 import { RegisterRequest } from 'libs/shared/src/lib/share.model';
 import { MatDialog } from '@angular/material/dialog';
 import { DefaultDialogComponent } from '../default-dialog/default-dialog.component';
+
+export function SamePasswordValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const password = control?.parent?.get('password')?.value;
+    console.log(password);
+    console.log(control?.value);
+    return password !== control?.value ? { invalidPassword: true } : null;
+  };
+}
 
 @Component({
   selector: 'dpt-form-register',
@@ -30,22 +42,19 @@ export class FormRegisterComponent {
     mobile: new FormControl(null, Validators.required),
     userName: new FormControl(null, Validators.required),
     password: new FormControl(null, Validators.required),
-    confirmPassword: new FormControl(null, Validators.required),
+    confirmPassword: new FormControl(null, [
+      Validators.required,
+      SamePasswordValidator(),
+    ]),
   });
 
-  categoryList = [
-    {
-      label: 'Test category',
-      value: 'test value',
-    },
-    {
-      label: 'Test category',
-      value: 'test value',
-    },
-  ];
+  departmentList: any[] = [];
   constructor(private apiService: MainApiService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
+    this.apiService.getDepartment().subscribe((dep) => {
+      this.departmentList = dep.Department;
+    });
     this.formGroup.get('departmentType')?.valueChanges.subscribe((va) => {
       if (va === 'OUTSIDER') {
         this.formGroup.get('departmentCategory')?.clearValidators();

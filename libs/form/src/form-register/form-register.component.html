@@ -17,10 +17,13 @@
           <mat-label>ชื่อหน่วยงาน</mat-label>
           <mat-select
             formControlName="departmentCategory"
-            placeholder="เกรุณาเลือก Category"
+            placeholder="กรุณาเลือก Category"
           >
-            <mat-option *ngFor="let item of categoryList" [value]="item.value">
-              {{ item.label }}
+            <mat-option
+              *ngFor="let item of departmentList"
+              [value]="item.departmentId"
+            >
+              {{ item.departmentName }}
             </mat-option>
           </mat-select>
         </mat-form-field></ng-container
@@ -121,28 +124,29 @@
         />
       </mat-form-field>
     </div>
-
-    <div class="confirm-password-container">
-      <mat-form-field class="form-field" appearance="outline">
-        <mat-label>ยืนยันรหัสผ่าน</mat-label>
-        <input
-          type="text"
-          matInput
-          formControlName="confirmPassword"
-          placeholder="ยืนยันรหัสผ่าน"
-        />
-      </mat-form-field>
-    </div>
-
     <div class="password-container">
       <mat-form-field class="form-field" appearance="outline">
         <mat-label>รหัสผ่าน</mat-label>
         <input
-          type="text"
+          type="password"
           matInput
           formControlName="password"
           placeholder="รหัสผ่าน"
         />
+      </mat-form-field>
+    </div>
+    <div class="confirm-password-container">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>ยืนยันรหัสผ่าน</mat-label>
+        <input
+          type="password"
+          matInput
+          formControlName="confirmPassword"
+          placeholder="ยืนยันรหัสผ่าน"
+        />
+        <mat-error *ngIf="formGroup.get('confirmPassword')?.invalid">
+          รหัสผ่านไม่ตรงกัน</mat-error
+        >
       </mat-form-field>
     </div>
   </div>
