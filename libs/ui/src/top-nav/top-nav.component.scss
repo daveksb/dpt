@@ -52,6 +52,7 @@
 }
 .button-list {
   display: flex;
+  margin: auto;
 }
 .website-container {
   display: flex;
@@ -96,4 +97,38 @@
   .button-list {
     justify-content: flex-end;
   }
+}
+.login-button {
+  height: 48px;
+  padding: 8px;
+
+  background: #270108;
+  border-radius: 6px;
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  margin-right: 1rem;
+  line-height: 19px;
+}
+.logout-button {
+  padding: 8px;
+  height: 48px;
+  background: #270108;
+  border-radius: 6px;
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  margin-right: 1rem;
+  line-height: 19px;
+}
+.admin-button {
+  color: #270108;
+  padding: 8px;
+  background: white;
+  border-radius: 6px;
+  height: 48px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  margin-right: 1rem;
 }

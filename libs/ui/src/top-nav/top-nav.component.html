@@ -32,7 +32,7 @@
         >
       </div>
 
-      <div class="nav-link-item">
+      <div class="nav-link-item" *ngIf="hasAuth">
         <a
           class="nav-link menu-header"
           [routerLinkActive]="'nav-item-active'"
@@ -41,7 +41,7 @@
         >
       </div>
 
-      <div class="nav-link-item">
+      <div class="nav-link-item" *ngIf="hasAuth">
         <a
           class="nav-link menu-header"
           [routerLinkActive]="'nav-item-active'"
@@ -59,7 +59,7 @@
         >
       </div>
 
-      <div class="nav-link-item">
+      <div class="nav-link-item" *ngIf="hasAuth">
         <a
           class="nav-link menu-header"
           [routerLinkActive]="'nav-item-active'"
@@ -69,18 +69,31 @@
       </div>
     </div>
     <div class="button-list">
-      <div>
-        <a class="nav-link" [routerLink]="['/register']">ลงทะเบียน</a>
-        <button class="btn btn-sm btn-dark" [routerLink]="['/login']">
-          เข้าสู่ระบบ
-        </button>
-      </div>
-      <div>
-        <a class="nav-link" [routerLink]="['/admin']">Admin</a>
-        <button class="btn btn-sm btn-dark" [routerLink]="['/login']">
-          เข้าสู่ระบบ
-        </button>
-      </div>
+      <button
+        *ngIf="isAdmin"
+        mat-flat-button
+        class="admin-button"
+        [routerLink]="['/admin']"
+      >
+        ผู้ดูแลระบบ
+      </button>
+      <button
+        *ngIf="!hasAuth"
+        mat-flat-button
+        class="login-button"
+        [routerLink]="['/login']"
+      >
+        เข้าสู่ระบบ
+      </button>
+      <button
+        *ngIf="hasAuth"
+        class="logout-button"
+        mat-flat-button
+        (click)="logout()"
+        [routerLink]="['/login']"
+      >
+        ออกจากระบบ
+      </button>
     </div>
   </div>
 </ng-container>

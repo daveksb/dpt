@@ -31,10 +31,12 @@ export class FormLoginComponent implements OnInit {
     const password = this.formGroup.get('password')?.value;
     if (this.formGroup.valid && email && password) {
       this.apiService.login(email, password).subscribe((res) => {
+        console.log(res);
         if (res.tokenKey) {
           const today = DateTime.now();
           today.plus({ hour: 3 });
-          this.cookieService.set('dptToken', res.tokenKey, today.toJSDate());
+          this.cookieService.set('dptToken', res.tokenKey, 1);
+          console.log(this.cookieService.get('dptToken'));
           this.userService.setUser(res);
           this.router.navigate(['/landing']);
         } else {

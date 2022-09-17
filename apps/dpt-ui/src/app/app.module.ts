@@ -72,9 +72,8 @@ const routes: Routes = [
       import(
         './../../../../libs/feature/src/data-management/data-management-module'
       ).then((a) => a.DataManagementModule),
-    canActivate: [AuthGuard],
   },
-  { path: 'report', component: DataReportComponent },
+  { path: 'report', component: DataReportComponent, canActivate: [AuthGuard] },
   {
     path: 'admin',
     loadChildren: () =>
@@ -114,6 +113,7 @@ const routes: Routes = [
       useClass: TokenHandleInterceptor,
       multi: true,
     },
+    AuthGuard,
   ],
   bootstrap: [AppComponent],
 })
