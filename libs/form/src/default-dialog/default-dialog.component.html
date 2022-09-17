@@ -5,7 +5,12 @@
 </div>
 
 <div mat-dialog-content class="default-dialog-content">
-  <div class="default-dialog-icon-container"></div>
+  <div class="default-dialog-icon-container">
+    <!-- <img
+      *ngIf="!data.isError"
+      src="../../../../apps/dpt-ui/src/assets/tick-icon.png"
+    /> -->
+  </div>
   <div class="default-dialog-status-container">
     {{ data.status }}
   </div>

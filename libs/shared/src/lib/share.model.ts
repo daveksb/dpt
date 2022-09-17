@@ -45,3 +45,16 @@ export interface UserResponse extends DefaultResponse {
   role: Role;
   tokenKey: string;
 }
+export interface RegisterRequest {
+  depId?: string | null;
+  depName?: string | null;
+  roleId?: string | null;
+  usr?: string | null;
+  pwd?: string | null;
+  pid?: string | null;
+  name?: string | null;
+  lname?: string | null;
+  ename?: string | null;
+  email?: string | null;
+  position?: string | null;
+}

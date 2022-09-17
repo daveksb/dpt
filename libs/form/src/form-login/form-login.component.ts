@@ -44,6 +44,7 @@ export class FormLoginComponent implements OnInit {
             maxHeight: '800px',
             width: '500px',
             data: {
+              isError: true,
               status: 'เข้าสู่ระบบไม่สำเร็จ',
               message: 'กรุณาตรวจสอบ Username และ Password อีกครั้ง',
             },

@@ -8,6 +8,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { MainApiService } from '@dpt/shared';
+import { RegisterRequest } from 'libs/shared/src/lib/share.model';
+import { MatDialog } from '@angular/material/dialog';
+import { DefaultDialogComponent } from '../default-dialog/default-dialog.component';
 
 @Component({
   selector: 'dpt-form-register',
@@ -19,7 +22,7 @@ export class FormRegisterComponent {
     departmentType: new FormControl('INSIDER', Validators.required),
     email: new FormControl(null, Validators.required),
     departmentCategory: new FormControl(null, Validators.required),
-    departmentName: new FormControl(null, Validators.required),
+    departmentName: new FormControl(null),
     userNameTh: new FormControl(null, Validators.required),
     userNameEn: new FormControl(null, Validators.required),
     idNumber: new FormControl(null, Validators.required),
@@ -40,7 +43,7 @@ export class FormRegisterComponent {
       value: 'test value',
     },
   ];
-  constructor(private apiService: MainApiService) {}
+  constructor(private apiService: MainApiService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.formGroup.get('departmentType')?.valueChanges.subscribe((va) => {
@@ -58,11 +61,44 @@ export class FormRegisterComponent {
         this.formGroup.updateValueAndValidity();
       }
     });
+    this.formGroup.updateValueAndValidity();
   }
   onConfirm() {
     if (this.formGroup.valid) {
-      this.apiService.register(this.formGroup.value).subscribe((res) => {
-        //
+      this.apiService.register(this.formGroup.value).subscribe({
+        next: (res) => {
+          if (res.returnCode === '00') {
+            this.dialog.open(DefaultDialogComponent, {
+              maxHeight: '800px',
+              width: '500px',
+              data: {
+                status: 'ลงทะเบียนสำเร็จ',
+                message: 'ลงทะเบียนสำเร็จ',
+              },
+            });
+          } else {
+            this.dialog.open(DefaultDialogComponent, {
+              maxHeight: '800px',
+              width: '500px',
+              data: {
+                isError: true,
+                status: 'ลงทะเบียนไม่สำเร็จ',
+                message: 'กรุณาตรวจสอบข้อมูลอีกครั้ง',
+              },
+            });
+          }
+        },
+        error: (er) => {
+          this.dialog.open(DefaultDialogComponent, {
+            maxHeight: '800px',
+            width: '500px',
+            data: {
+              isError: true,
+              status: 'ลงทะเบียนไม่สำเร็จ',
+              message: 'กรุณาตรวจสอบข้อมูลอีกครั้ง',
+            },
+          });
+        },
       });
     }
   }
@@ -73,5 +109,22 @@ export class FormRegisterComponent {
         ? String(this.formGroup.get('departmentType')?.value)
         : '') === 'INSIDER'
     );
+  }
+  mapForm(): RegisterRequest {
+    const form = this.formGroup.value;
+    return {
+      depId: form.departmentType,
+      depName: form.departmentName,
+      email: form.email,
+      ename: form.userNameEn,
+      name: form.userNameTh,
+      usr: form.userName,
+      lname: '',
+      position: form.position,
+      pwd: form.password,
+      roleId: '',
+      pid: '',
+      // pid:
+    };
   }
 }
