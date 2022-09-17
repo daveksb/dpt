@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'apps/dpt-ui/src/environments/environment';
-import { UserResponse } from './share.model';
+import { DataServiceResponse, UserResponse } from './share.model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,5 +23,18 @@ export class MainApiService {
   forgotPassword(body: any) {
     const url = `dptlogin/register`;
     return this.http.post<any>(`${environment.apiPrefix}/${url}`, body);
+  }
+
+  getPublicDataList() {
+    const url = `dptrequest/getservicedatapublic?`;
+    return this.http.get<DataServiceResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+  getPrivateDataList() {
+    const url = `dptrequest/servicedataprivate?`;
+    return this.http.get<DataServiceResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
   }
 }

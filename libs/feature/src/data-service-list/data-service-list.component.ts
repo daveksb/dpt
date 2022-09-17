@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { DataRequestFormComponent } from '@dpt/form';
+import { MainApiService } from '@dpt/shared';
 
 @Component({
   selector: 'dpt-data-service-list',
@@ -216,7 +217,11 @@ export class DataServiceListComponent implements OnInit {
     },
   ];
   currentCategoryId = -1;
-  constructor(private dialog: MatDialog, private route: Router) {}
+  constructor(
+    private dialog: MatDialog,
+    private route: Router,
+    private mainApiService: MainApiService
+  ) {}
 
   onClickFilterCategory(value: number) {
     if (value === this.currentCategoryId) {
@@ -230,7 +235,19 @@ export class DataServiceListComponent implements OnInit {
   }
 
   onOpenFile(a: any) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.mainApiService.getPrivateDataList().subscribe({
+      next: (res) => {
+        console.log(res);
+        if (res.returnCode === '00') {
+          // to do
+          //         this.currentTempData = res.datareturn;
+        } else {
+        }
+      },
+      error: (err) => {},
+    });
+  }
   sortChange(sortState: Sort | any) {}
   onSearch() {
     console.log('onSearch');

@@ -58,3 +58,16 @@ export interface RegisterRequest {
   email?: string | null;
   position?: string | null;
 }
+export interface DataServiceResponse extends DefaultResponse {
+  datareturn: [];
+}
+export interface DataReturn {
+  apiId: string;
+  apiName: string;
+  apiDetail: string;
+  departmentName: string;
+  privacyName: string;
+  tType: string;
+  catName: string;
+  groupsName: string;
+}
