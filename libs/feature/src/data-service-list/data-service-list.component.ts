@@ -5,8 +5,12 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { DataRequestFormComponent } from '@dpt/form';
-import { MainApiService } from '@dpt/shared';
-
+import { MainApiService, UserService } from '@dpt/shared';
+import { DataReturn, Department } from 'libs/shared/src/lib/share.model';
+export interface Category {
+  value: string;
+  count: 10;
+}
 @Component({
   selector: 'dpt-data-service-list',
   templateUrl: './data-service-list.component.html',
@@ -16,33 +20,8 @@ export class DataServiceListComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   form = new FormControl();
-  sideBarList = [
-    {
-      value: 1,
-      label: 'เขตการปกครอง',
-      count: 10,
-    },
-    {
-      value: 2,
-      label: 'การใช้ที่ดินปัจจุบัน',
-      count: 10,
-    },
-    {
-      value: 3,
-      label: 'เขตผังเมืองรวม',
-      count: 10,
-    },
-    {
-      value: 4,
-      label: 'การจำแนกการใช้ที่ดิน',
-      count: 10,
-    },
-    {
-      value: 5,
-      label: 'Category 5',
-      count: 10,
-    },
-  ];
+  selectForm = new FormControl();
+  sideBarList: Category[] = [];
   displayedColumns: string[] = [
     'order',
     'fullName',
@@ -52,205 +31,111 @@ export class DataServiceListComponent implements OnInit {
     'action',
   ];
 
-  tempData = [
-    {
-      department: 'สำนักผังประเทศและผังภาค',
-      topic:
-        'ประกาศคณะกรรมนโยบายการผังเมืองแห่งชาติ : เรื่องผังนโยบายระดับประเทศ',
-      subTopic:
-        'สำนักผังประเทศและผังภาคตัวอย่าง ว่าด้วยเรื่องประกาศคณะกรรมนโยบายการผังนโยบายระดับประเทศ',
-      view: 20,
-      dataId: 1,
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
-      categoryId: 1,
-      category: 'การจำแนกการใช้ที่ดิน',
-    },
-    {
-      department: 'สำนักควบคุมและตรวจสอบอาคาร',
-      topic: 'กฎกระทรวงผังเมืองรวมจังหวัด',
-      subTopic:
-        'สำนักผังประเทศและผังภาคตัวอย่าง ว่าด้วยเรื่องประกาศคณะกรรมนโยบายการผังนโยบายระดับประเทศ',
-      view: 20,
-      dataId: 1,
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
-      categoryId: 2,
-      category: 'Category 2',
-    },
-    {
-      department: 'testdep',
-      topic: 'testtop',
-      subTopic: 'testsub',
-      view: 20,
-      dataId: 1,
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
-      categoryId: 3,
-      category: 'Category 3',
-    },
-    {
-      department: 'testdep',
-      topic: 'testtop',
-      subTopic: 'testsub',
-      view: 20,
-      dataId: 1,
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
-      categoryId: 1,
-      category: 'การจำแนกการใช้ที่ดิน',
-    },
-    {
-      department: 'testdep',
-      topic: 'testtop',
-      subTopic: 'testsub',
-      view: 20,
-      dataId: 1,
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
-      categoryId: 1,
-      category: 'การจำแนกการใช้ที่ดิน',
-    },
-    {
-      department: 'testdep',
-      topic: 'testtop',
-      subTopic: 'testsub',
-      view: 20,
-      dataId: 1,
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
-      categoryId: 1,
-      category: 'การจำแนกการใช้ที่ดิน',
-    },
-    {
-      department: 'testdep',
-      topic: 'testtop',
-      subTopic: 'testsub',
-      view: 20,
-      dataId: 1,
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
-      categoryId: 1,
-      category: 'การจำแนกการใช้ที่ดิน',
-    },
-  ];
-
-  currentTempData = JSON.parse(JSON.stringify(this.tempData));
-  categoryList = [
-    {
-      label: 'Test category',
-      value: 'test value',
-    },
-    {
-      label: 'Test category',
-      value: 'test value',
-    },
-  ];
-  currentCategoryId = -1;
+  currentData: DataReturn[] = [];
+  defaultData: DataReturn[] = [];
+  departmentList: Department[] = [];
+  currentCategory = '';
   constructor(
     private dialog: MatDialog,
     private route: Router,
-    private mainApiService: MainApiService
+    private mainApiService: MainApiService,
+    private userService: UserService
   ) {}
 
-  onClickFilterCategory(value: number) {
-    if (value === this.currentCategoryId) {
-      this.currentTempData = JSON.parse(JSON.stringify(this.categoryList));
+  onClickFilterCategory(value: string) {
+    if (value === this.currentCategory) {
+      this.currentCategory = '';
+      this.onSearch();
     } else {
-      this.currentCategoryId = value;
-      this.currentTempData = (
-        JSON.parse(JSON.stringify(this.tempData)) as any[]
-      ).filter((cat) => cat.categoryId === value);
+      this.currentCategory = value;
+      this.onSearch();
     }
   }
 
   onOpenFile(a: any) {}
   ngOnInit(): void {
-    this.mainApiService.getPrivateDataList().subscribe({
-      next: (res) => {
-        console.log(res);
-        if (res.returnCode === '00') {
-          // to do
-          //         this.currentTempData = res.datareturn;
-        } else {
-        }
-      },
-      error: (err) => {},
+    this.mainApiService.getDepartment().subscribe((a) => {
+      this.departmentList = a.Department as Department[];
     });
+    if (this.userService.isUserInternal()) {
+      this.mainApiService.getPrivateDataList().subscribe({
+        next: (res) => {
+          console.log(res);
+          if (res.returnCode === '00') {
+            // to do
+            //         this.currentTempData = res.datareturn;
+            this.defaultData = res.datareturn as DataReturn[];
+            this.currentData = res.datareturn as DataReturn[];
+            this.sideBarList = [];
+            const tempList: any = {};
+            (res.datareturn as DataReturn[]).forEach((a) => {
+              if (tempList[a.catName]) {
+                tempList[a.catName]++;
+              } else {
+                tempList[a.catName] = 1;
+              }
+            });
+            for (const key in tempList) {
+              if (Object.prototype.hasOwnProperty.call(tempList, key)) {
+                this.sideBarList.push({
+                  value: key,
+                  count: tempList[key],
+                });
+              }
+            }
+          } else {
+          }
+        },
+        error: (err) => {},
+      });
+    } else {
+      this.mainApiService.getPublicDataList().subscribe({
+        next: (res) => {
+          console.log(res);
+          if (res.returnCode === '00') {
+            // to do
+            //         this.currentTempData = res.datareturn;
+            this.defaultData = res.datareturn as DataReturn[];
+            this.currentData = res.datareturn as DataReturn[];
+            this.sideBarList = [];
+            const tempList: any = {};
+            (res.datareturn as DataReturn[]).forEach((a) => {
+              if (tempList[a.catName]) {
+                tempList[a.catName]++;
+              } else {
+                tempList[a.catName] = 1;
+              }
+            });
+            for (const key in tempList) {
+              if (Object.prototype.hasOwnProperty.call(tempList, key)) {
+                this.sideBarList.push({
+                  value: key,
+                  count: tempList[key],
+                });
+              }
+            }
+          } else {
+          }
+        },
+        error: (err) => {},
+      });
+    }
   }
   sortChange(sortState: Sort | any) {}
   onSearch() {
-    console.log('onSearch');
+    this.currentData = (
+      JSON.parse(JSON.stringify(this.defaultData)) as DataReturn[]
+    ).filter((a) => {
+      return (
+        ((this.form.value as string)?.trim()
+          ? a.apiName.includes(this.form.value)
+          : true) &&
+        (this.selectForm.value
+          ? a.departmentName === this.selectForm.value
+          : true) &&
+        (this.currentCategory ? a.catName === this.currentCategory : true)
+      );
+    });
   }
   onRequest() {
     this.route.navigate(['data-service-request']);
@@ -281,7 +166,7 @@ export class DataServiceListComponent implements OnInit {
       width: '1000px',
     });
   }
-  onNavigateData(id: number) {
+  onNavigateData(id: string) {
     this.route.navigate([`data-service-detail/${id}`]);
   }
 }

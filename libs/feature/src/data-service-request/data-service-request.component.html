@@ -1,48 +1,88 @@
-<div class="container p-5 w-100" style="background-color: #f3eeee; height: calc(100vh - 50px)">
-  <div class="fs-4 mb-5 text-center">กรอกรายละเอียดคำขอชุดข้อมูล</div>
-
-  <div class="d-flex justify-content-center">
-    <div class="d-flex flex-column w-50">
-      <div class="d-flex align-items-center mb-2">
-        <input type="radio" class="me-2" checked />
-        <label class="text-nowrap me-2">หน่วยงานภายนอก</label>
-        <select class="form-select">
-          <option disabled hidden selected>*กรุณาเลือก Category</option>
-          <option value="a">a</option>
-          <option value="b">b</option>
-          <option value="c">c</option>
-        </select>
+<div class="page-content" [formGroup]="formGroup">
+  <div class="data-request-form-item">
+    <div class="data-request-form-header">กรอกรายละเอียดคำขอชุดข้อมูล</div>
+    <div class="data-request-form-body">
+      <div class="department-container">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>หน่วยงาน</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="departmentId"
+            placeholder="กรุณากรอกอีเมล"
+          />
+        </mat-form-field>
       </div>
+      <div class="category-container">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Category</mat-label>
 
-      <div class="row mb-2">
-        <div class="col">
-          <label class="form-label">ชื่อชุดข้อมูล*</label>
-          <input type="text" class="form-control" />
-        </div>
+          <mat-select formControlName="categoryId" placeholder="กรุณากรอกอีเมล">
+            <mat-option *ngFor="let item of category" [value]="item.catId">
+              {{ item.catName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
-
-      <div class="row mb-2">
-        <div class="col">
-          <label class="form-label">รายละเอียด*</label>
-          <input type="text" class="form-control" />
-        </div>
+      <div class="name-container">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>ชื่อชุดข้อมูล</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="requestName"
+            placeholder="กรอกชื่อชุดข้อมูล"
+          />
+        </mat-form-field>
       </div>
-
-      <div class="row mb-2">
-        <div class="col">
-          <label class="form-label">เอกสารคำร้อง/เอกสารแนบ*</label>
-          <input type="file" class="form-control" />
-        </div>
-      </div>
-
-      <div class="d-flex justify-content-center my-5">
-        <button class="btn btn-secondary me-2" style="width: 125px" [routerLink]="['/data-service-list']">
-          ยกเลิก
-        </button>
-        <button class="btn btn-warning" style="width: 125px" [routerLink]="['/data-service-list']">
-          ยืนยัน
-        </button>
+      <div class="detail-container">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>รายละเอียด</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="requestDetail"
+            placeholder="กรอกรายละเอียด"
+          />
+        </mat-form-field>
       </div>
     </div>
+    <div class="data-request-file-container">
+      <div class="data-request-file-header">เอกสารคำร้อง / เอกสารแนบ</div>
+      <div class="data-request-file-body">
+        <div class="data-request-file-label">
+          Select a file or drag and drop here
+        </div>
+        <button
+          mat-stroked-button
+          class="data-request-file-button"
+          (click)="fileInput.click()"
+        >
+          Select File
+        </button>
+      </div>
+      <div *ngIf="rfdata?.name" class="data-request-file-list-label">
+        File added
+      </div>
+
+      <div *ngIf="rfdata?.name" class="data-request-file-list-container">
+        <div class="file-item">
+          <div class="file-name">{{ rfdata.name }}</div>
+          <div class="file-size">{{ rfdata.size }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="data-request-form-footer">
+      <button mat-flat-button class="data-request-button">ยืนยัน</button>
+      <button
+        class="back-button"
+        type="submit"
+        mat-stroked-button
+        (click)="onConfirm()"
+      >
+        ยกเลิก
+      </button>
+    </div>
   </div>
+  <input class="is-invisible" type="file" #fileInput formControlName="rfdata" />
 </div>

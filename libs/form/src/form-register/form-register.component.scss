@@ -30,14 +30,15 @@
     margin-top: 2rem;
     display: grid;
     grid-row: auto;
-    grid-column: 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 1rem;
     grid-template-areas:
       'departmentType departmentType departmentName departmentName'
-      'userNameTh userNameTh userNameEn userNameEn'
+      'userNameTh userNameTh userLastNameTh userLastNameTh'
+      'userNameEn userNameEn userLastNameEn userLastNameEn'
       'idNumber idNumber position mobile'
       'email email userName userName'
-      'password confirmPassword . .';
+      'password password confirmPassword confirmPassword';
 
     .department-type-container {
       display: flex;
@@ -46,11 +47,17 @@
     .department-name-container {
       grid-area: departmentName;
     }
-    .user-name-th-container {
+    .name-th-container {
       grid-area: userNameTh;
     }
-    .user-name-en-container {
+    .last-name-th-container {
+      grid-area: userLastNameTh;
+    }
+    .name-en-container {
       grid-area: userNameEn;
+    }
+    .last-name-en-container {
+      grid-area: userLastNameEn;
     }
     .id-number-container {
       grid-area: idNumber;

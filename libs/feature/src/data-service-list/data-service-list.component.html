@@ -19,12 +19,15 @@
           </div>
           <div class="category-container">
             <mat-form-field appearance="outline">
-              <mat-select placeholder="เลือก 1 หมวดหมู่">
+              <mat-select
+                placeholder="เลือก 1 หมวดหมู่"
+                [formControl]="selectForm"
+              >
                 <mat-option
-                  *ngFor="let item of categoryList"
-                  [value]="item.value"
+                  *ngFor="let item of departmentList"
+                  [value]="item.departmentName"
                 >
-                  {{ item.label }}
+                  {{ item.departmentName }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -59,12 +62,12 @@
             *ngFor="let item of sideBarList"
             (click)="onClickFilterCategory(item.value)"
             [ngClass]="{
-              'side-bar-item--active': currentCategoryId === item.value
+              'side-bar-item--active': currentCategory === item.value
             }"
           >
             <div class="side-bar-icon"></div>
             <div class="side-bar-label">
-              {{ item.label }} ({{ item.count }})
+              {{ item.value }} ({{ item.count }})
             </div>
           </div>
         </div>
@@ -72,8 +75,8 @@
           <div class="data-service-list">
             <div
               class="data-service-item"
-              *ngFor="let item of currentTempData"
-              (click)="onNavigateData(item.dataId)"
+              *ngFor="let item of currentData"
+              (click)="onNavigateData(item.apiId)"
             >
               <div class="item-image">
                 <div class="image"></div>
@@ -81,34 +84,33 @@
               <div class="item-content">
                 <div class="item-header">
                   <div class="department-container">
-                    {{ item.department }}
+                    {{ item.departmentName }}
                   </div>
                   <div class="category-container">
-                    {{ item.category }}
+                    {{ item.catName }}
                   </div>
                 </div>
                 <div class="item-body-container">
                   <div class="topic-container">
-                    {{ item.topic }}
+                    {{ item.apiName }}
                   </div>
                   <div class="sub-topic-container">
-                    {{ item.subTopic }}
+                    {{ item.apiDetail }}
                   </div>
                   <div class="file-container">
                     <button
-                      *ngFor="let data of item.dataList"
                       mat-flat-button
                       class="default-button file-button"
                       [ngClass]="
-                        data.dataType === 'CSV'
+                        item.formatType === 'CSV'
                           ? 'file-button--csv'
                           : 'file-button--pdf'
                       "
                       color="primary"
-                      (click)="onOpenFile(data)"
+                      (click)="onOpenFile(item)"
                     >
                       <mat-icon class="file-icon"> list_alt </mat-icon>
-                      {{ data.dataType }}
+                      {{ item.formatType }}
                     </button>
                   </div>
                 </div>
@@ -116,7 +118,7 @@
                   <div class="icon-container">
                     <mat-icon>visibility</mat-icon>
                   </div>
-                  {{ item.view }} Views
+                  {{ item.countView }} Views
                 </div>
               </div>
             </div>

@@ -20,6 +20,10 @@ export class MainApiService {
     const url = `dptlogin/selectdepartment`;
     return this.http.get<any>(`${environment.apiPrefix}/${url}`);
   }
+  getCategory() {
+    const url = `dptrequest/selectcategory`;
+    return this.http.get<any>(`${environment.apiPrefix}/${url}`);
+  }
   forgotPassword(body: any) {
     const url = `dptlogin/register`;
     return this.http.post<any>(`${environment.apiPrefix}/${url}`, body);

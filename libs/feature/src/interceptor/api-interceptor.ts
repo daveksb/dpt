@@ -12,7 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root',
 })
 export class TokenHandleInterceptor implements HttpInterceptor {
-  private loginUrl = 'ksp/dptlogin';
+  private bypassUrl: string[] = ['ksp/dptlogin', 'dptrequest/selectcategory'];
   constructor(private cookieService: CookieService) {}
   intercept(
     request: HttpRequest<any>,
@@ -20,7 +20,7 @@ export class TokenHandleInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     const token = this.cookieService.get('dptToken');
 
-    if (request.url.includes(this.loginUrl)) {
+    if (this.bypassUrl.some((a) => request.url.includes(a))) {
       return next.handle(request);
     }
 

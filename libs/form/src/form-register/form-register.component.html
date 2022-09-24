@@ -6,8 +6,8 @@
   <div class="register-body" [formGroup]="formGroup">
     <div class="department-type-container">
       <mat-radio-group formControlName="departmentType">
-        <mat-radio-button value="INSIDER">หน่วยงานภายใน </mat-radio-button>
-        <mat-radio-button value="OUTSIDER">หน่วยงานภายนอก</mat-radio-button>
+        <mat-radio-button value="3">หน่วยงานภายใน </mat-radio-button>
+        <mat-radio-button value="2">หน่วยงานภายนอก</mat-radio-button>
       </mat-radio-group>
     </div>
 
@@ -40,27 +40,47 @@
         </mat-form-field>
       </ng-template>
     </div>
-
-    <div class="user-name-th-container">
+    <div class="name-th-container">
       <mat-form-field class="form-field" appearance="outline">
-        <mat-label>ชื่อ-นามสกุล</mat-label>
+        <mat-label>ชื่อ</mat-label>
         <input
           type="text"
           matInput
           formControlName="userNameTh"
-          placeholder="ชื่อ-นามสกุล"
+          placeholder="ชื่อ"
         />
       </mat-form-field>
     </div>
-
-    <div class="user-name-en-container">
+    <div class="last-name-th-container">
       <mat-form-field class="form-field" appearance="outline">
-        <mat-label>ชื่อ-นามสกุล(ภาษาอังกฤษ)</mat-label>
+        <mat-label>นามสกุล</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="userLastNameTh"
+          placeholder="นามสกุล"
+        />
+      </mat-form-field>
+    </div>
+    <div class="name-en-container">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>ชื่อ(ภาษาอังกฤษ)</mat-label>
         <input
           type="text"
           matInput
           formControlName="userNameEn"
-          placeholder="ชื่อ-นามสกุล(ภาษาอังกฤษ)"
+          placeholder="ชื่อ(ภาษาอังกฤษ)"
+        />
+      </mat-form-field>
+    </div>
+    <div class="last-name-en-container">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>นามสกุล(ภาษาอังกฤษ)</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="userLastNameEn"
+          placeholder="นามสกุล(ภาษาอังกฤษ)"
         />
       </mat-form-field>
     </div>
@@ -113,7 +133,7 @@
       </mat-form-field>
     </div>
 
-    <div class="user-mame-container">
+    <div class="user-name-container">
       <mat-form-field class="form-field" appearance="outline">
         <mat-label>ชื่อผู้ใช้งาน</mat-label>
         <input

@@ -15,7 +15,7 @@ import { UserService } from '@dpt/shared';
   styleUrls: ['./top-nav.component.scss'],
 })
 export class TopNavComponent implements OnInit {
-  @Input() isSecondary = true;
+  @Input() isSecondary = false;
   isActive = true;
   currentUrl = '';
   hasAuth = false;

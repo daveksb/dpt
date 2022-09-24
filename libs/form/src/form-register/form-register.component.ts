@@ -31,12 +31,14 @@ export function SamePasswordValidator(): ValidatorFn {
 })
 export class FormRegisterComponent {
   formGroup = new FormGroup({
-    departmentType: new FormControl('INSIDER', Validators.required),
+    departmentType: new FormControl('3', Validators.required),
     email: new FormControl(null, Validators.required),
     departmentCategory: new FormControl(null, Validators.required),
     departmentName: new FormControl(null),
     userNameTh: new FormControl(null, Validators.required),
     userNameEn: new FormControl(null, Validators.required),
+    userLastNameTh: new FormControl(null, Validators.required),
+    userLastNameEn: new FormControl(null, Validators.required),
     idNumber: new FormControl(null, Validators.required),
     position: new FormControl(null, Validators.required),
     mobile: new FormControl(null, Validators.required),
@@ -56,7 +58,8 @@ export class FormRegisterComponent {
       this.departmentList = dep.Department;
     });
     this.formGroup.get('departmentType')?.valueChanges.subscribe((va) => {
-      if (va === 'OUTSIDER') {
+      console.log(va);
+      if (va === '3') {
         this.formGroup.get('departmentCategory')?.clearValidators();
         this.formGroup
           .get('departmentName')
@@ -74,7 +77,7 @@ export class FormRegisterComponent {
   }
   onConfirm() {
     if (this.formGroup.valid) {
-      this.apiService.register(this.formGroup.value).subscribe({
+      this.apiService.register(this.mapForm()).subscribe({
         next: (res) => {
           if (res.returnCode === '00') {
             this.dialog.open(DefaultDialogComponent, {
@@ -116,24 +119,26 @@ export class FormRegisterComponent {
     return (
       (this.formGroup.get('departmentType')?.value
         ? String(this.formGroup.get('departmentType')?.value)
-        : '') === 'INSIDER'
+        : '') === '3'
     );
   }
   mapForm(): RegisterRequest {
     const form = this.formGroup.value;
     return {
-      depId: form.departmentType,
-      depName: form.departmentName,
+      depId:
+        String(form.departmentType) === '2' ? '0' : form.departmentCategory,
+      depName: String(form.departmentType) === '2' ? form.departmentName : null,
       email: form.email,
-      ename: form.userNameEn,
+      name_en: form.userNameEn,
+      lname_en: form.userLastNameEn,
       name: form.userNameTh,
       usr: form.userName,
-      lname: '',
+      lname: form.userLastNameTh,
       position: form.position,
       pwd: form.password,
-      roleId: '',
-      pid: '',
-      // pid:
+      roleId: form.departmentType,
+      pid: form.idNumber,
+      tel: form.mobile,
     };
   }
 }

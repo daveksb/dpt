@@ -28,4 +28,9 @@ export class UserService {
     this.cookieService.set('dptToken', '');
     this.cookieService.set('userSetting', '');
   }
+  isUserInternal() {
+    return (
+      !this.user?.departmentExternal && !!this.user?.department.departmentId
+    );
+  }
 }

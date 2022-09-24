@@ -20,6 +20,11 @@ $enable-cssgrid: true;
 //$font-sizes: map-merge($font-sizes, $customFs);
 
 @import './node_modules/bootstrap/scss/bootstrap';
+.is-invisible {
+  visibility: hidden;
+  height: 0px;
+  width: 0px;
+}
 .page-content {
   padding: 3rem 1rem;
   width: 100%;

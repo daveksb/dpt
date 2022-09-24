@@ -8,6 +8,10 @@ export interface User {
   department: Department;
   role: Role;
   tokenKey: string;
+  departmentExternal: string;
+  nameEn: string;
+  lnameEn: string;
+  position: string;
 }
 export interface Department {
   departmentId: string;
@@ -28,6 +32,11 @@ export interface AccessControl {
   accSetApi: string;
   accApproveWeb: string;
   accSetWeb: string;
+  accDepartment: string;
+  accEdit: string;
+  accSetAccess: string;
+  accManageUser: string;
+  accApproveService: string;
 }
 export interface DefaultResponse {
   returnCode: string;
@@ -44,6 +53,10 @@ export interface UserResponse extends DefaultResponse {
   department: Department;
   role: Role;
   tokenKey: string;
+  departmentExternal: string;
+  nameEn: string;
+  lnameEn: string;
+  position: string;
 }
 export interface RegisterRequest {
   depId?: string | null;
@@ -57,6 +70,9 @@ export interface RegisterRequest {
   ename?: string | null;
   email?: string | null;
   position?: string | null;
+  name_en?: string | null;
+  lname_en?: string | null;
+  tel?: string | null;
 }
 export interface DataServiceResponse extends DefaultResponse {
   datareturn: [];
@@ -70,4 +86,12 @@ export interface DataReturn {
   tType: string;
   catName: string;
   groupsName: string;
+  countView: string;
+  formatType: string;
+  status: string;
+  zone: string;
+}
+export interface Category {
+  catId: number;
+  catName: string;
 }

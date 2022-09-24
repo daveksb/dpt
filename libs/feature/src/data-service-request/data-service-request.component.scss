@@ -1,0 +1,122 @@
+.data-request-form-main-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.data-request-form-item {
+  margin: auto;
+  margin-top: 16px;
+}
+.data-request-form-body {
+  margin-top: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    'data category'
+    'name detail';
+}
+.data-container {
+  grid-area: data;
+}
+.category-container {
+  grid-area: category;
+}
+.name-container {
+  grid-area: name;
+}
+.detail-container {
+  grid-area: detail;
+}
+.data-request-form-footer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+.data-request-form-header {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 44px;
+  color: #000000;
+  margin-top: 1rem;
+}
+
+.data-request-button {
+  height: 50px;
+  background: #fccc30;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.back-button {
+  height: 50px;
+  margin-right: 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.data-request-file-container {
+  width: 100%;
+  margin-top: 16px;
+  .data-request-file-header {
+    margin-top: 16px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 26px;
+    color: #000000;
+  }
+  .data-request-file-body {
+    margin-top: 16px;
+    border: 1px gray dotted;
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    .data-request-file-label {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      color: #080a0c;
+    }
+    .data-request-file-button {
+    }
+  }
+  .data-request-file-list-label {
+    margin-top: 16px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: #000000;
+  }
+
+  .data-request-file-list-container {
+    width: 100%;
+    .file-item {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      .file-name {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 0px;
+        color: #080a0c;
+      }
+      .file-size {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 11px;
+        color: #4b4e52;
+      }
+    }
+  }
+}
