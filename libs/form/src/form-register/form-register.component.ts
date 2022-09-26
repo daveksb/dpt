@@ -85,7 +85,6 @@ export class FormRegisterComponent {
               width: '500px',
               data: {
                 status: 'ลงทะเบียนสำเร็จ',
-                message: 'ลงทะเบียนสำเร็จ',
               },
             });
           } else {

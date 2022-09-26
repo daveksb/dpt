@@ -70,11 +70,19 @@
   display: flex;
   justify-content: space-between;
   .nav-link-list {
-    margin-left: 72px;
     margin-right: 0;
+    width: unset;
+    text-align: center;
   }
   .website-container {
     width: 100%;
+    padding-right: 0px;
+  }
+  .image-container {
+    margin: 0px;
+  }
+  .nav-link {
+    width: 105px;
   }
 
   .menu-header {
@@ -95,7 +103,8 @@
     line-height: 24px;
   }
   .button-list {
-    justify-content: flex-end;
+    // justify-content: flex-end;
+    margin: unset;
   }
 }
 .login-button {

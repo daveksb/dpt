@@ -27,6 +27,8 @@ import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from '@dpt/shared';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 @NgModule({
   declarations: [
     DataServiceDetailComponent,
@@ -58,6 +60,7 @@ import { SharedModule } from '@dpt/shared';
     UiModule,
     SharedModule,
     FormModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     DataServiceDetailComponent,

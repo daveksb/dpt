@@ -16,6 +16,10 @@ import { AdminUserComponent } from './admin-user/admin-user.component';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSortModule } from '@angular/material/sort';
 
 const routes: Routes = [
   {
@@ -58,6 +62,10 @@ const routes: Routes = [
     MatListModule,
     MatMenuModule,
     RouterModule.forChild(routes),
+    MatTableModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatSortModule,
   ],
   exports: [
     AdminMainComponent,

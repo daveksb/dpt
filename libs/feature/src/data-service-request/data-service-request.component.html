@@ -61,28 +61,44 @@
           Select File
         </button>
       </div>
-      <div *ngIf="rfdata?.name" class="data-request-file-list-label">
-        File added
-      </div>
+      <div *ngIf="rfdata" class="data-request-file-list-label">File added</div>
 
-      <div *ngIf="rfdata?.name" class="data-request-file-list-container">
-        <div class="file-item">
-          <div class="file-name">{{ rfdata.name }}</div>
-          <div class="file-size">{{ rfdata.size }}</div>
+      <div *ngIf="rfdata" class="data-request-file-list-container">
+        <div class="file-item" *ngFor="let item of tempFile">
+          <div class="file-name">{{ item.file.name }}</div>
+          <div class="file-size">{{ item.file.size }} Bytes</div>
+          <div class="file-status">
+            <div *ngIf="item.status === 'LOADING'">
+              <mat-spinner [diameter]="40"></mat-spinner>
+            </div>
+            <div *ngIf="item.status === 'DONE'">
+              <button mat-mini-fab (click)="deleteFile(item)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <div class="data-request-form-footer">
-      <button mat-flat-button class="data-request-button">ยืนยัน</button>
+      <button mat-flat-button class="data-request-button" (click)="onConfirm()">
+        ยืนยัน
+      </button>
       <button
         class="back-button"
         type="submit"
         mat-stroked-button
-        (click)="onConfirm()"
+        (click)="back()"
       >
         ยกเลิก
       </button>
     </div>
   </div>
-  <input class="is-invisible" type="file" #fileInput formControlName="rfdata" />
+  <input
+    class="is-invisible"
+    (change)="onFileChange($event)"
+    type="file"
+    #fileInput
+    formControlName="rfdata"
+  />
 </div>

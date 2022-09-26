@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'apps/dpt-ui/src/environments/environment';
-import { DataServiceResponse, UserResponse } from './share.model';
+import {
+  DataServiceResponse,
+  DefaultResponse,
+  UserResponse,
+} from './share.model';
 
 @Injectable({
   providedIn: 'root',
@@ -39,6 +43,28 @@ export class MainApiService {
     const url = `dptrequest/servicedataprivate?`;
     return this.http.get<DataServiceResponse>(
       `${environment.apiPrefix}/${url}`
+    );
+  }
+  uploadFile(body: any) {
+    const url = `dptrequest/insertrequestapifile?`;
+    return this.http.post<DefaultResponse>(
+      `${environment.apiPrefix}/${url}`,
+      body
+    );
+  }
+  deleteFile(body: any) {
+    const url = `dptrequest/deleterequestapifile?`;
+    return this.http.post<DefaultResponse>(
+      `${environment.apiPrefix}/${url}`,
+      body
+    );
+  }
+
+  addRequestApi(body: any) {
+    const url = `dptrequest/insertrequestapi?`;
+    return this.http.post<DefaultResponse>(
+      `${environment.apiPrefix}/${url}`,
+      body
     );
   }
 }
