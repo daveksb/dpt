@@ -14,8 +14,8 @@
 .page-content {
   width: 100%;
   display: flex;
-  height: unset;
   padding: 3rem 2rem;
+  overflow: auto;
 }
 .data-service-header {
   margin-top: 2rem;
@@ -37,9 +37,14 @@
 .request-button-container {
 }
 
+.data-service-main {
+  height: 100%;
+  overflow: hidden;
+}
 .data-service-body {
   display: flex;
   width: 100%;
+  height: 100%;
   .side-bar-header {
     margin-bottom: 1rem;
     font-family: 'Poppins';
@@ -87,6 +92,7 @@
     width: 100%;
     .data-service-list {
       width: 100%;
+      overflow: auto;
       .data-service-item {
         background: #ffffff;
         cursor: pointer;

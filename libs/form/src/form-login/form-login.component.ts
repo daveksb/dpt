@@ -7,6 +7,7 @@ import { Dialog } from '@angular/cdk/dialog';
 import { DefaultDialogComponent } from '../default-dialog/default-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DateTime } from 'luxon';
+import { MD5, SHA1 } from 'crypto-js';
 @Component({
   selector: 'dpt-form-login',
   templateUrl: './form-login.component.html',
@@ -30,7 +31,10 @@ export class FormLoginComponent implements OnInit {
     const email = this.formGroup.get('email')?.value;
     const password = this.formGroup.get('password')?.value;
     if (this.formGroup.valid && email && password) {
+      // const m = MD5(password ?? '');
+      // const sha = SHA1(m);
       this.apiService.login(email, password).subscribe((res) => {
+        // this.apiService.login(email, sha.toString()).subscribe((res) => {
         if (res.tokenKey) {
           const today = DateTime.now();
           today.plus({ hour: 3 });

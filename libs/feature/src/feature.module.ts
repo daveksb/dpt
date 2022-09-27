@@ -61,6 +61,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     SharedModule,
     FormModule,
     MatProgressSpinnerModule,
+    MatIconModule,
   ],
   exports: [
     DataServiceDetailComponent,

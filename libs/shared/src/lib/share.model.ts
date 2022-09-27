@@ -115,3 +115,6 @@ export interface AdminUserList {
   departmentName: string;
   roleName: string;
 }
+export interface AdminRoleListResponse extends DefaultResponse {
+  Role: Role[];
+}

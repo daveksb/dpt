@@ -1,1 +1,119 @@
-<p>admin-role works!</p>
+<div class="main-container">
+  <div class="request-label header-1">จัดการสิทธิ์ผู้ใช้งาน</div>
+  <div class="request-table default-table">
+    <table class="admin-role-table" mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="roleName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Roles</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.roleName }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="accDepartment">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>หน่วยงาน</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.accessControl.accDepartment }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="accReq">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          การขอใช้ข้อมูล
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-icon
+            *ngIf="row.accessControl.accReq === 'T'"
+            fontIcon="done"
+          ></mat-icon>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="accAdd">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          การสร้าง / ลบ API ข้อมูล
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-icon
+            *ngIf="row.accessControl.accAdd === 'T'"
+            fontIcon="done"
+          ></mat-icon>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="accEdit">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          การแก้ไข API ข้อมูล
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-icon
+            *ngIf="row.accessControl.accEdit === 'T'"
+            fontIcon="done"
+          ></mat-icon>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="accApproveApi">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          การอนุมัติการขอใช้ API ข้อมูล
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-icon
+            *ngIf="row.accessControl.accApproveApi === 'T'"
+            fontIcon="done"
+          ></mat-icon>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="accSetApi">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          การแก้ไขการตั้งค่าระบบ
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-icon
+            *ngIf="row.accessControl.accSetApi === 'T'"
+            fontIcon="done"
+          ></mat-icon>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="accSetAccess">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          การกำหนดสิทธิ์ผู้ใช้ในระบบ
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-icon
+            *ngIf="row.accessControl.accSetAccess === 'T'"
+            fontIcon="done"
+          ></mat-icon>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="accManageUser">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          การจัดการผู้ใช้งานระบบ
+        </th>
+
+        <td mat-cell *matCellDef="let row">
+          <mat-icon
+            *ngIf="row.accessControl.accManageUser === 'T'"
+            fontIcon="done"
+          ></mat-icon>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="accApproveService">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          ตรวจสอบและส่งต่อการขอใช้
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-icon
+            *ngIf="row.accessControl.accApproveService === 'T'"
+            fontIcon="done"
+          ></mat-icon>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator
+      [length]="200"
+      [pageSize]="10"
+      [pageSizeOptions]="[10, 50, 100]"
+    >
+    </mat-paginator>
+  </div>
+</div>

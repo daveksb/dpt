@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'apps/dpt-ui/src/environments/environment';
 import {
+  AdminRoleListResponse,
   AdminUserListResponse,
   DataServiceResponse,
   DefaultResponse,
@@ -71,6 +72,12 @@ export class MainApiService {
   getAdminUserList() {
     const url = `dptuser/selectuser?`;
     return this.http.get<AdminUserListResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+  getAdminRoleList() {
+    const url = `dptuser/roleuser?`;
+    return this.http.get<AdminRoleListResponse>(
       `${environment.apiPrefix}/${url}`
     );
   }

@@ -37,12 +37,16 @@ import { FormModule } from '@dpt/form';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: 'landing', component: LandingComponent },
+  { path: 'landing', component: LandingComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'pdpa', component: PdpaComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'data-service-list', component: DataServiceListComponent },
+  {
+    path: 'data-service-list',
+    component: DataServiceListComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'data-service-detail/:id',
     component: DataServiceDetailComponent,
@@ -72,6 +76,7 @@ const routes: Routes = [
       import(
         './../../../../libs/feature/src/data-management/data-management-module'
       ).then((a) => a.DataManagementModule),
+    canActivate: [AuthGuard],
   },
   { path: 'report', component: DataReportComponent, canActivate: [AuthGuard] },
   {

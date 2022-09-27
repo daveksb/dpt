@@ -176,3 +176,29 @@ $enable-cssgrid: true;
     background: #f2f4f8;
   }
 }
+.admin-role-table {
+  td.mat-cell {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    color: #606060;
+  }
+  td.mat-cell.mat-column-roleName {
+    text-align: left;
+  }
+
+  .mat-sort-header-content {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: center;
+    color: #606060;
+  }
+}

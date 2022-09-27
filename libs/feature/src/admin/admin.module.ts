@@ -22,6 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSortModule } from '@angular/material/sort';
 import { TokenHandleInterceptor } from '../interceptor/api-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
 
 const routes: Routes = [
   {
@@ -68,6 +69,7 @@ const routes: Routes = [
     MatPaginatorModule,
     MatButtonModule,
     MatSortModule,
+    MatIconModule,
   ],
   exports: [
     AdminMainComponent,

@@ -14,6 +14,8 @@ import { MainApiService } from '@dpt/shared';
 import { RegisterRequest } from 'libs/shared/src/lib/share.model';
 import { MatDialog } from '@angular/material/dialog';
 import { DefaultDialogComponent } from '../default-dialog/default-dialog.component';
+import * as md5 from 'md5';
+import { SHA1 } from 'crypto-js';
 
 export function SamePasswordValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -34,7 +36,7 @@ export class FormRegisterComponent {
     departmentType: new FormControl('3', Validators.required),
     email: new FormControl(null, Validators.required),
     departmentCategory: new FormControl(null, Validators.required),
-    departmentName: new FormControl(null),
+    departmentName: new FormControl(null, Validators.required),
     userNameTh: new FormControl(null, Validators.required),
     userNameEn: new FormControl(null, Validators.required),
     userLastNameTh: new FormControl(null, Validators.required),
@@ -60,15 +62,15 @@ export class FormRegisterComponent {
     this.formGroup.get('departmentType')?.valueChanges.subscribe((va) => {
       console.log(va);
       if (va === '3') {
-        this.formGroup.get('departmentCategory')?.clearValidators();
-        this.formGroup
-          .get('departmentName')
-          ?.addValidators(Validators.required);
-        this.formGroup.updateValueAndValidity();
-      } else {
         this.formGroup.get('departmentName')?.clearValidators();
         this.formGroup
           .get('departmentCategory')
+          ?.addValidators(Validators.required);
+        this.formGroup.updateValueAndValidity();
+      } else {
+        this.formGroup.get('departmentCategory')?.clearValidators();
+        this.formGroup
+          .get('departmentName')
           ?.addValidators(Validators.required);
         this.formGroup.updateValueAndValidity();
       }
@@ -123,6 +125,8 @@ export class FormRegisterComponent {
   }
   mapForm(): RegisterRequest {
     const form = this.formGroup.value;
+    const m = md5(form?.password ?? '');
+    const sha = SHA1(m);
     return {
       depId:
         String(form.departmentType) === '2' ? '0' : form.departmentCategory,
@@ -134,7 +138,7 @@ export class FormRegisterComponent {
       usr: form.userName,
       lname: form.userLastNameTh,
       position: form.position,
-      pwd: form.password,
+      pwd: sha.toString(),
       roleId: form.departmentType,
       pid: form.idNumber,
       tel: form.mobile,

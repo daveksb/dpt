@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormForgotPasswordComponent } from '@dpt/form';
 
 @Component({
   selector: 'dpt-forgot-password',
