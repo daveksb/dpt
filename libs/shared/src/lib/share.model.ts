@@ -95,3 +95,23 @@ export interface Category {
   catId: number;
   catName: string;
 }
+export interface AdminUserListResponse extends DefaultResponse {
+  datareturn: AdminUserList[];
+}
+export interface AdminUserList {
+  userId: string;
+  username: string;
+  email: string;
+  name: string;
+  lname: string;
+  name_en: string;
+  lname_en: string;
+  personalNumber: string;
+  approve: string;
+  createDate: string;
+  updateDate: string;
+  position: string;
+  departmentNamePublic: string;
+  departmentName: string;
+  roleName: string;
+}

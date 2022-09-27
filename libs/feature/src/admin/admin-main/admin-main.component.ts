@@ -33,7 +33,7 @@ export class AdminMainComponent implements OnInit {
     },
     {
       url: 'soa',
-      label: 'Open Enterprise SOA',
+      label: 'SOA',
     },
   ];
   constructor() {}

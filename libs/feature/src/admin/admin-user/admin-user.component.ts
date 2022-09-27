@@ -4,6 +4,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DataRequestFormComponent } from '@dpt/form';
+import { MainApiService } from '@dpt/shared';
+import { AdminUserList } from 'libs/shared/src/lib/share.model';
 
 @Component({
   selector: 'dpt-admin-user',
@@ -18,155 +20,25 @@ export class AdminUserComponent implements OnInit {
     'order',
     'fullName',
     'department',
+    'email',
     'userName',
-    'dataName',
+    'roleName',
     'action',
   ];
 
-  tempData = [
-    {
-      order: 1,
-      fullName: 'test test',
-      userName: 'userName',
-      department: 'test Department',
-      dataName: 'test data',
-      dataPath: 'path data',
-      dataDate: '2020/22/08',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      userName: 'userName',
-      department: 'test Department',
-      dataName: 'test data',
-      dataPath: 'path data',
-      dataDate: '2020/22/08',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      userName: 'userName',
-      department: 'test Department',
-      dataName: 'test data',
-      dataPath: 'path data',
-      dataDate: '2020/22/08',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      userName: 'userName',
-      department: 'test Department',
-      dataName: 'test data',
-      dataPath: 'path data',
-      dataDate: '2020/22/08',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      userName: 'userName',
-      department: 'test Department',
-      dataName: 'test data',
-      dataPath: 'path data',
-      dataDate: '2020/22/08',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      userName: 'userName',
-      department: 'test Department',
-      dataName: 'test data',
-      dataPath: 'path data',
-      dataDate: '2020/22/08',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      userName: 'userName',
-      department: 'test Department',
-      dataName: 'test data',
-      dataPath: 'path data',
-      dataDate: '2020/22/08',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      userName: 'userName',
-      department: 'test Department',
-      dataName: 'test data',
-      dataPath: 'path data',
-      dataDate: '2020/22/08',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      userName: 'userName',
-      department: 'test Department',
-      dataName: 'test data',
-      dataPath: 'path data',
-      dataDate: '2020/22/08',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      userName: 'userName',
-      department: 'test Department',
-      dataName: 'test data',
-      dataPath: 'path data',
-      dataDate: '2020/22/08',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      userName: 'userName',
-      department: 'test Department',
-      dataName: 'test data',
-      dataPath: 'path data',
-      dataDate: '2020/22/08',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      userName: 'userName',
-      department: 'test Department',
-      dataName: 'test data',
-      dataPath: 'path data',
-      dataDate: '2020/22/08',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      userName: 'userName',
-      department: 'test Department',
-      dataName: 'test data',
-      dataPath: 'path data',
-      dataDate: '2020/22/08',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      userName: 'userName',
-      department: 'test Department',
-      dataName: 'test data',
-      dataPath: 'path data',
-      dataDate: '2020/22/08',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      userName: 'userName',
-      department: 'test Department',
-      dataName: 'test data',
-      dataPath: 'path data',
-      dataDate: '2020/22/08',
-    },
-  ];
-  dataSource = new MatTableDataSource(this.tempData);
-  constructor(private dialog: MatDialog) {}
+  dataSource = new MatTableDataSource();
+  constructor(private dialog: MatDialog, private apiService: MainApiService) {}
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.apiService.getAdminUserList().subscribe((res) => {
+      if (res.datareturn) {
+        this.dataSource = new MatTableDataSource<any>(res.datareturn);
+      }
+    });
+  }
   sortChange(sortState: Sort | any) {}
   onApprove(id: number) {
     console.log('onApprove', id);

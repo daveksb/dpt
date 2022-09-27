@@ -23,7 +23,6 @@ export class TokenHandleInterceptor implements HttpInterceptor {
     if (this.bypassUrl.some((a) => request.url.includes(a))) {
       return next.handle(request);
     }
-
     if (request.method === 'GET') {
       const newRequest = request.clone({
         url: request.url + `&tokenkey=${token}`,

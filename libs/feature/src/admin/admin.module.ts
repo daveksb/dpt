@@ -20,6 +20,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSortModule } from '@angular/material/sort';
+import { TokenHandleInterceptor } from '../interceptor/api-interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -76,6 +78,13 @@ const routes: Routes = [
     AdminDepartmentComponent,
     AdminPageSettingComponent,
     AdminSoaComponent,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenHandleInterceptor,
+      multi: true,
+    },
   ],
 })
 export class AdminModule {}
