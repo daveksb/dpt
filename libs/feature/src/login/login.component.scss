@@ -1,12 +1,18 @@
 .main-login-container {
-  display: flex;
+  display: grid;
+  grid-template-areas: 'image form';
+  grid-template-columns: 3fr 7fr;
+  grid-template-rows: calc(100vh - 102px);
   height: 100%;
 }
 .left-container {
   height: 100%;
-  background-color: rgba(61, 4, 4, 0.418);
+  background-repeat: no-repeat;
+  background-size: cover;
+  grid-area: image;
 }
 .right-container {
+  grid-area: form;
   width: 100%;
   height: 100%;
 }

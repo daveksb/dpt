@@ -35,6 +35,12 @@ export class DataServiceListComponent implements OnInit {
   defaultData: DataReturn[] = [];
   departmentList: Department[] = [];
   currentCategory = '';
+  mapCategory: any = {
+    ผังเมือง: 'target.svg',
+    พัฒนาเมือง: 'expand.svg',
+    การอาคาร: 'file.svg',
+    การช่าง: 'global.svg',
+  };
   constructor(
     private dialog: MatDialog,
     private route: Router,

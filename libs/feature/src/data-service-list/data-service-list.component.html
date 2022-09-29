@@ -65,7 +65,10 @@
               'side-bar-item--active': currentCategory === item.value
             }"
           >
-            <div class="side-bar-icon"></div>
+            <img
+              class="side-bar-icon"
+              [src]="'assets/icon/' + mapCategory[item.value]"
+            />
             <div class="side-bar-label">
               {{ item.value }} ({{ item.count }})
             </div>

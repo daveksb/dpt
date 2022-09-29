@@ -1,9 +1,9 @@
 <div class="landing-main">
   <div class="header-container">
-    <div class="image-container">
-      <img class="image-landing" src="assets/image/landing_1.png" />
-    </div>
-    <div class="search-container">
+    <div
+      class="search-container"
+      [style.background-image]="'url(assets/image/landing_1.png)'"
+    >
       <div class="search-label">ค้นหาชุดข้อมูล</div>
       <div class="search-input-container">
         <mat-form-field class="form-field" appearance="outline">
@@ -23,9 +23,76 @@
         </div>
       </div>
     </div>
+    <!-- <div class="image-container">
+      <img class="image-landing" src="assets/image/landing_1.png" />
+    </div> -->
   </div>
   <div class="body-container">
-    <div class="category-container"></div>
-    <div class="data-list-container"></div>
+    <div class="category-container">
+      <div class="category-header">หมวดหมู่ชุดข้อมูล</div>
+      <div class="category-list">
+        <div class="category-item" *ngFor="let item of category">
+          <div class="category-icon">
+            <img
+              class="category-image"
+              [src]="'assets/icon/' + mapCategory[item.catId]"
+            />
+          </div>
+          <div class="category-label">
+            {{ item.catName }}
+          </div>
+          <div class="category-view">({{ mapCount[item.catId] }})</div>
+        </div>
+      </div>
+    </div>
+    <div class="data-list-container">
+      <div class="data-list-header">ชุดข้อมูลเปิด</div>
+      <div class="data-service-list">
+        <div class="data-service-item" *ngFor="let item of currentData">
+          <div class="item-image">
+            <div class="image"></div>
+          </div>
+          <div class="item-content">
+            <div class="item-header">
+              <div class="department-container">
+                {{ item.departmentName }}
+              </div>
+              <div class="category-item-container">
+                {{ item.catName }}
+              </div>
+            </div>
+            <div class="item-body-container">
+              <div class="topic-container">
+                {{ item.apiName }}
+              </div>
+              <div class="sub-topic-container">
+                {{ item.apiDetail }}
+              </div>
+              <div class="file-container">
+                <button
+                  mat-flat-button
+                  class="default-button file-button"
+                  [ngClass]="
+                    item.formatType === 'CSV'
+                      ? 'file-button--csv'
+                      : 'file-button--pdf'
+                  "
+                  color="primary"
+                >
+                  <mat-icon class="file-icon"> list_alt </mat-icon>
+                  {{ item.formatType }}
+                </button>
+              </div>
+            </div>
+            <div class="item-footer">
+              <div class="icon-container">
+                <mat-icon>visibility</mat-icon>
+              </div>
+              {{ item.countView }} Views
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
