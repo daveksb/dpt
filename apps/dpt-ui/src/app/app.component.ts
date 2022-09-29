@@ -10,7 +10,7 @@ import { Department } from 'libs/shared/src/lib/share.model';
 })
 export class AppComponent implements OnInit {
   title = 'dpt-ui';
-  hideList = ['login', 'register', 'forgot-password', 'pdpa'];
+  hideList = ['/login', '/register', '/forgot-password', '/pdpa'];
   isSecondary = false;
   isActive = true;
   currentUrl = '';
@@ -22,11 +22,13 @@ export class AppComponent implements OnInit {
   ) {
     route.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
-        this.isSecondary = this.hideList.some((d) => val.url.includes(d));
+        console.log(val.url);
+        this.isSecondary = this.hideList.some((d) => val.url === d);
         this.currentUrl = val.url;
         this.hasPadding =
-          this.hideList.some((d) => val.url.includes(d)) ||
-          val.url.includes('landing');
+          this.hideList.some((d) => val.url === d) ||
+          val.url.includes('landing') ||
+          val.url === '/';
       }
     });
   }
