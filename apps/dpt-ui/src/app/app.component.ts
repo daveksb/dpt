@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   isSecondary = false;
   isActive = true;
   currentUrl = '';
+  hasPadding = false;
   constructor(
     private route: Router,
     private apiService: MainApiService,
@@ -23,6 +24,9 @@ export class AppComponent implements OnInit {
       if (val instanceof NavigationEnd) {
         this.isSecondary = this.hideList.some((d) => val.url.includes(d));
         this.currentUrl = val.url;
+        this.hasPadding =
+          this.hideList.some((d) => val.url.includes(d)) ||
+          val.url.includes('landing');
       }
     });
   }

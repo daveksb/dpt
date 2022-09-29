@@ -5,7 +5,7 @@
 
   <mat-sidenav-container class="nav-item-container">
     <mat-sidenav-content>
-      <div class="main-page" [ngClass]="{ 'main-page-secondary': isSecondary }">
+      <div class="main-page" [ngClass]="{ 'main-page-secondary': hasPadding }">
         <router-outlet></router-outlet>
       </div>
     </mat-sidenav-content>

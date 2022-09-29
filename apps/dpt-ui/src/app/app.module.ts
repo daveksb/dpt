@@ -87,12 +87,12 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuard],
   },
-  { path: '**', component: LandingComponent },
+  { path: '**', component: LandingComponent, canActivate: [AuthGuard] },
 ];
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { useHash: true }),
     BrowserModule,
     BrowserAnimationsModule,
     MatSidenavModule,

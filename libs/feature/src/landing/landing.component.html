@@ -1,19 +1,31 @@
-<div class="main-content px-5 py-3 grid">
-  <div class="g-col-10 d-flex flex-column gap-4">
-    <div class="grid h-50">
-      <div class="box g-col-5">Content 1 test</div>
-      <div class="box g-col-7">Content 2</div>
+<div class="landing-main">
+  <div class="header-container">
+    <div class="image-container">
+      <img class="image-landing" src="assets/image/landing_1.png" />
     </div>
-
-    <div class="grid h-50">
-      <div class="box g-col-12">Content 3</div>
+    <div class="search-container">
+      <div class="search-label">ค้นหาชุดข้อมูล</div>
+      <div class="search-input-container">
+        <mat-form-field class="form-field" appearance="outline">
+          <input type="text" matInput placeholder="ค้นหา" />
+          <span matPrefix>
+            <mat-icon>search</mat-icon>
+          </span>
+        </mat-form-field>
+        <div class="search-button-container">
+          <button
+            mat-flat-button
+            class="default-button big-button"
+            color="primary"
+          >
+            ค้นหา
+          </button>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="g-col-2">
-    <div class="d-flex flex-column gap-4">
-      <div class="box" style="height: 250px">Content 4</div>
-      <div class="box" style="height: 250px">Content 5</div>
-      <div class="box" style="height: 250px">Content 6</div>
-    </div>
+  <div class="body-container">
+    <div class="category-container"></div>
+    <div class="data-list-container"></div>
   </div>
 </div>

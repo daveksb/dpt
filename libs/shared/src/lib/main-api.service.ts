@@ -24,11 +24,11 @@ export class MainApiService {
   }
   getDepartment() {
     const url = `dptlogin/selectdepartment`;
-    return this.http.get<any>(`${environment.apiPrefix}/${url}`);
+    return this.http.get<any>(`${environment.apiPrefix}/${url}`, {});
   }
   getCategory() {
     const url = `dptrequest/selectcategory`;
-    return this.http.get<any>(`${environment.apiPrefix}/${url}`);
+    return this.http.get<any>(`${environment.apiPrefix}/${url}`, {});
   }
   forgotPassword(body: any) {
     const url = `dptlogin/register`;

@@ -13,15 +13,21 @@
         "polyfills": "apps/dpt-ui/src/polyfills.ts",
         "tsConfig": "apps/dpt-ui/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/dpt-ui/src/favicon.ico", "apps/dpt-ui/src/assets"],
+        "assets": [
+          "apps/dpt-ui/src/favicon.ico",
+          {
+            "input": "apps/dpt-ui/src/assets",
+            "glob": "**/*",
+            "output": "assets"
+          }
+        ],
         "styles": [
-          // "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
           "apps/dpt-ui/src/dpt-theme.scss",
           "apps/dpt-ui/src/styles.scss",
           "node_modules/bootstrap/dist/css/bootstrap.css"
         ],
         "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"],
-        "allowedCommonJsDependencies": ["crypto-js"]
+        "allowedCommonJsDependencies": ["crypto-js", "md5"]
       },
       "configurations": {
         "production": {

@@ -20,10 +20,11 @@
           การขอใช้ข้อมูล
         </th>
         <td mat-cell *matCellDef="let row">
-          <mat-icon
+          <img
+            class="tick-icon"
             *ngIf="row.accessControl.accReq === 'T'"
-            fontIcon="done"
-          ></mat-icon>
+            src="assets/icon/tick-icon.png"
+          />
         </td>
       </ng-container>
 
@@ -32,10 +33,11 @@
           การสร้าง / ลบ API ข้อมูล
         </th>
         <td mat-cell *matCellDef="let row">
-          <mat-icon
+          <img
+            class="tick-icon"
             *ngIf="row.accessControl.accAdd === 'T'"
-            fontIcon="done"
-          ></mat-icon>
+            src="assets/icon/tick-icon.png"
+          />
         </td>
       </ng-container>
       <ng-container matColumnDef="accEdit">
@@ -43,10 +45,11 @@
           การแก้ไข API ข้อมูล
         </th>
         <td mat-cell *matCellDef="let row">
-          <mat-icon
+          <img
+            class="tick-icon"
             *ngIf="row.accessControl.accEdit === 'T'"
-            fontIcon="done"
-          ></mat-icon>
+            src="assets/icon/tick-icon.png"
+          />
         </td>
       </ng-container>
       <ng-container matColumnDef="accApproveApi">
@@ -54,10 +57,11 @@
           การอนุมัติการขอใช้ API ข้อมูล
         </th>
         <td mat-cell *matCellDef="let row">
-          <mat-icon
+          <img
+            class="tick-icon"
             *ngIf="row.accessControl.accApproveApi === 'T'"
-            fontIcon="done"
-          ></mat-icon>
+            src="assets/icon/tick-icon.png"
+          />
         </td>
       </ng-container>
       <ng-container matColumnDef="accSetApi">
@@ -65,10 +69,11 @@
           การแก้ไขการตั้งค่าระบบ
         </th>
         <td mat-cell *matCellDef="let row">
-          <mat-icon
+          <img
+            class="tick-icon"
             *ngIf="row.accessControl.accSetApi === 'T'"
-            fontIcon="done"
-          ></mat-icon>
+            src="assets/icon/tick-icon.png"
+          />
         </td>
       </ng-container>
       <ng-container matColumnDef="accSetAccess">
@@ -76,10 +81,11 @@
           การกำหนดสิทธิ์ผู้ใช้ในระบบ
         </th>
         <td mat-cell *matCellDef="let row">
-          <mat-icon
+          <img
+            class="tick-icon"
             *ngIf="row.accessControl.accSetAccess === 'T'"
-            fontIcon="done"
-          ></mat-icon>
+            src="assets/icon/tick-icon.png"
+          />
         </td>
       </ng-container>
       <ng-container matColumnDef="accManageUser">
@@ -88,10 +94,11 @@
         </th>
 
         <td mat-cell *matCellDef="let row">
-          <mat-icon
+          <img
+            class="tick-icon"
             *ngIf="row.accessControl.accManageUser === 'T'"
-            fontIcon="done"
-          ></mat-icon>
+            src="assets/icon/tick-icon.png"
+          />
         </td>
       </ng-container>
       <ng-container matColumnDef="accApproveService">
@@ -99,10 +106,11 @@
           ตรวจสอบและส่งต่อการขอใช้
         </th>
         <td mat-cell *matCellDef="let row">
-          <mat-icon
+          <img
+            class="tick-icon"
             *ngIf="row.accessControl.accApproveService === 'T'"
-            fontIcon="done"
-          ></mat-icon>
+            src="assets/icon/tick-icon.png"
+          />
         </td>
       </ng-container>
 
