@@ -30,6 +30,7 @@ import {
   LandingComponent,
   LoginComponent,
   RegisterComponent,
+  RoleGuard,
   TokenHandleInterceptor,
 } from '@dpt/feature';
 import { SharedModule } from '@dpt/shared';
@@ -37,7 +38,7 @@ import { FormModule } from '@dpt/form';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: 'landing', component: LandingComponent, canActivate: [AuthGuard] },
+  { path: 'landing', component: LandingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'pdpa', component: PdpaComponent },
   { path: 'register', component: RegisterComponent },
@@ -55,7 +56,10 @@ const routes: Routes = [
   {
     path: 'data-service-request',
     component: DataServiceRequestComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, RoleGuard],
+    data: {
+      permission: ['accReq'],
+    },
   },
   {
     path: 'data-request',
@@ -63,12 +67,18 @@ const routes: Routes = [
       import('./../../../../libs/feature/src/request/data-request-module').then(
         (a) => a.DataRequestModule
       ),
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, RoleGuard],
+    data: {
+      permission: ['accApproveService'],
+    },
   },
   {
     path: 'publish',
     component: DataPublishComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, RoleGuard],
+    data: {
+      permission: ['accApproveApi'],
+    },
   },
   {
     path: 'data-management',
@@ -76,7 +86,10 @@ const routes: Routes = [
       import(
         './../../../../libs/feature/src/data-management/data-management-module'
       ).then((a) => a.DataManagementModule),
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, RoleGuard],
+    data: {
+      permission: ['accAdd', 'accEdit'],
+    },
   },
   { path: 'report', component: DataReportComponent, canActivate: [AuthGuard] },
   {
@@ -85,7 +98,10 @@ const routes: Routes = [
       import('./../../../../libs/feature/src/admin/admin.module').then(
         (a) => a.AdminModule
       ),
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, RoleGuard],
+    data: {
+      permission: ['accSetApi', 'accSetAccess', 'accManageUser'],
+    },
   },
   { path: '**', component: LandingComponent, canActivate: [AuthGuard] },
 ];

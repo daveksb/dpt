@@ -75,7 +75,7 @@
           </div>
         </div>
         <div class="data-service-content">
-          <div class="data-service-list">
+          <div *ngIf="currentData.length > 0" class="data-service-list">
             <div
               class="data-service-item"
               *ngFor="let item of currentData"
@@ -112,8 +112,8 @@
                       color="primary"
                       (click)="onOpenFile(item)"
                     >
-                      <mat-icon class="file-icon"> list_alt </mat-icon>
                       {{ item.formatType }}
+                      <mat-icon class="file-icon"> list_alt </mat-icon>
                     </button>
                   </div>
                 </div>
@@ -126,6 +126,19 @@
               </div>
             </div>
           </div>
+          <ng-container *ngIf="currentData.length === 0">
+            <div class="no-data-container">
+              <div class="no-data-item">
+                <div class="search-icon-container">
+                  <img class="search-icon" src="assets/icon/search.svg" />
+                </div>
+                <div class="search-label">ค้นหาข้อมูลไม่พบ</div>
+                <div class="search-detail">
+                  ใช้คำอื่นที่แตกต่างหรือเปลี่ยนคำที่ต้องการค้นหา
+                </div>
+              </div>
+            </div>
+          </ng-container>
           <div class="data-service-pagination"></div>
         </div>
       </div>

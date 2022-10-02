@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MainApiService, UserService } from '@dpt/shared';
 import { Category, DataReturn } from 'libs/shared/src/lib/share.model';
 
@@ -9,6 +10,7 @@ import { Category, DataReturn } from 'libs/shared/src/lib/share.model';
 })
 export class LandingComponent implements OnInit {
   category: Category[] = [];
+  form = new FormControl();
   mapCategory: any = {
     1: 'target.svg',
     2: 'expand.svg',
@@ -22,7 +24,7 @@ export class LandingComponent implements OnInit {
     4: '38',
   };
   currentData: DataReturn[] = [];
-
+  defaultData: DataReturn[] = [];
   constructor(
     private mainApiService: MainApiService,
     private userService: UserService
@@ -30,30 +32,29 @@ export class LandingComponent implements OnInit {
 
   onOpenFile(a: any) {}
   ngOnInit(): void {
-    if (this.userService.isUserInternal()) {
-      this.mainApiService.getPrivateDataList().subscribe({
-        next: (res) => {
-          console.log(res);
-          if (res.returnCode === '00') {
-            this.currentData = res.datareturn as DataReturn[];
-          } else {
-          }
-        },
-        error: (err) => {},
-      });
-    } else {
-      this.mainApiService.getPublicDataList().subscribe({
-        next: (res) => {
-          if (res.returnCode === '00') {
-            this.currentData = res.datareturn as DataReturn[];
-          } else {
-          }
-        },
-        error: (err) => {},
-      });
-    }
+    this.mainApiService.getLandingList().subscribe({
+      next: (res) => {
+        console.log(res);
+        if (res.returnCode === '00') {
+          this.currentData = res.datareturn as DataReturn[];
+          this.defaultData = res.datareturn as DataReturn[];
+        } else {
+        }
+      },
+      error: (err) => {},
+    });
     this.mainApiService.getCategory().subscribe((a: any) => {
       this.category = a.Category;
+    });
+  }
+  search() {
+    console.log(this.form.value);
+    this.currentData = (
+      JSON.parse(JSON.stringify(this.defaultData)) as DataReturn[]
+    ).filter((a) => {
+      return (this.form.value as string)?.trim()
+        ? a.apiName.includes(this.form.value)
+        : true;
     });
   }
 }

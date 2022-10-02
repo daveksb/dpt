@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="nav-link-list">
-      <div class="nav-link-item">
+      <div class="nav-link-item" *ngIf="hasPermission('landing')">
         <a
           class="nav-link menu-header"
           [routerLinkActive]="'nav-item-active'"
@@ -23,7 +23,7 @@
           >หน้าหลัก</a
         >
       </div>
-      <div class="nav-link-item">
+      <div class="nav-link-item" *ngIf="hasPermission('data-service-list')">
         <a
           class="nav-link menu-header"
           [routerLinkActive]="'nav-item-active'"
@@ -32,7 +32,7 @@
         >
       </div>
 
-      <div class="nav-link-item" *ngIf="hasAuth">
+      <div class="nav-link-item" *ngIf="hasPermission('data-request')">
         <a
           class="nav-link menu-header"
           [routerLinkActive]="'nav-item-active'"
@@ -41,7 +41,7 @@
         >
       </div>
 
-      <div class="nav-link-item" *ngIf="hasAuth">
+      <div class="nav-link-item" *ngIf="hasPermission('publish')">
         <a
           class="nav-link menu-header"
           [routerLinkActive]="'nav-item-active'"
@@ -50,16 +50,16 @@
         >
       </div>
 
-      <div class="nav-link-item">
+      <div class="nav-link-item" *ngIf="hasPermission('data-management')">
         <a
           class="nav-link menu-header"
           [routerLinkActive]="'nav-item-active'"
-          [routerLink]="['/data-management']"
+          [routerLink]="['/data-management/data-set']"
           >จัดการชุดข้อมูล</a
         >
       </div>
 
-      <div class="nav-link-item" *ngIf="hasAuth">
+      <div class="nav-link-item" *ngIf="hasPermission('report')">
         <a
           class="nav-link menu-header"
           [routerLinkActive]="'nav-item-active'"
@@ -70,28 +70,29 @@
     </div>
     <div class="button-list">
       <button
-        *ngIf="isAdmin"
+        *ngIf="hasPermission('admin')"
         mat-flat-button
-        class="admin-button"
-        [routerLink]="['/admin']"
+        class="admin-button medium-button"
+        [routerLink]="['/admin/user']"
       >
         ผู้ดูแลระบบ
       </button>
       <button
         *ngIf="!hasAuth"
         mat-flat-button
-        class="login-button"
+        class="login-button medium-button"
         [routerLink]="['/login']"
       >
         เข้าสู่ระบบ
       </button>
       <button
         *ngIf="hasAuth"
-        class="logout-button"
+        class="logout-button medium-button"
         mat-flat-button
         (click)="logout()"
         [routerLink]="['/login']"
       >
+        <img class="log-out-button" src="assets/icon/log-out.png" />
         ออกจากระบบ
       </button>
     </div>
@@ -115,7 +116,7 @@
     <div class="button-list">
       <button
         mat-flat-button
-        class="login-button big-button"
+        class="login-button medium-button"
         [routerLink]="['/login']"
       >
         เข้าสู่ระบบ

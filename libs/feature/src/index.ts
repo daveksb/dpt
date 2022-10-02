@@ -21,3 +21,4 @@ export * from './data-report/data-report.component';
 export * from './data-publish/data-publish.component';
 export * from './interceptor/api-interceptor';
 export * from './guard/auth.guard';
+export * from './guard/role.guard';

@@ -98,7 +98,7 @@
     background-color: white;
     font-weight: 700;
     color: #270108;
-    height: 50px;
+    height: 40px;
     margin: auto;
     line-height: 24px;
   }
@@ -108,9 +108,7 @@
   }
 }
 .login-button {
-  height: 48px;
   padding: 8px;
-
   background: #270108;
   border-radius: 6px;
   color: white;
@@ -121,7 +119,6 @@
 }
 .logout-button {
   padding: 8px;
-  height: 48px;
   background: #270108;
   border-radius: 6px;
   color: white;
@@ -135,9 +132,13 @@
   padding: 8px;
   background: white;
   border-radius: 6px;
-  height: 48px;
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
   margin-right: 1rem;
+}
+.log-out-button {
+  width: 18px;
+  height: 18px;
+  margin-left: 4px;
 }

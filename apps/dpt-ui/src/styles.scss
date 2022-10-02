@@ -123,6 +123,32 @@ $enable-cssgrid: true;
   }
 }
 
+.mat-tab-label-active {
+  background: #f5ecec;
+  border-radius: 12px 12px 0px 0px;
+}
+.mat-tab-label.mat-tab-label-active .mat-tab-label-content {
+  font-weight: 600;
+  font-size: 18px;
+  color: #232830;
+}
+.mat-tab-label .mat-tab-label-content {
+  font-weight: 600;
+  font-size: 18px;
+  color: rgb(118, 126, 129);
+}
+
+.mat-ink-bar {
+  display: none;
+}
+.mat-tab-body-content {
+  border: 4px solid rgb(245, 236, 236, 0.6);
+  border-radius: 0px 12px 12px 12px;
+}
+.dpt-theme .mat-tab-header {
+  border-bottom: 0px;
+}
+
 .default-table {
   th.mat-header-cell {
     font-style: normal;
@@ -180,6 +206,27 @@ $enable-cssgrid: true;
       align-items: center;
       background: #270108;
       color: white;
+    }
+  }
+  .medium-button {
+    &.mat-stroked-button {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 24px;
+      height: 36px;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 12px;
+    }
+    &.mat-flat-button {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 8px 12px;
+      height: 36px;
+      border-radius: 12px;
+      align-items: center;
     }
   }
   .file-button {

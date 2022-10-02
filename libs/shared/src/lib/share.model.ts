@@ -118,3 +118,31 @@ export interface AdminUserList {
 export interface AdminRoleListResponse extends DefaultResponse {
   Role: Role[];
 }
+export interface DataServiceDetailResponse extends DefaultResponse {
+  apiId: string;
+  apiName: string;
+  apiDetail: string;
+  apiLink: string;
+  departmentName: string;
+  privacyName: string;
+  tType: string;
+  catName: string;
+  groupsName: string;
+  countview: string;
+  zone: string;
+  jsonField: string;
+}
+export interface DataServiceDetail {
+  apiId: string;
+  apiName: string;
+  apiDetail: string;
+  apiLink: string;
+  departmentName: string;
+  privacyName: string;
+  tType: string;
+  catName: string;
+  groupsName: string;
+  countview: string;
+  zone: string;
+  jsonField: string;
+}

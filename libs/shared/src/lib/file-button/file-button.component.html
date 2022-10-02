@@ -1,0 +1,13 @@
+<button
+  mat-flat-button
+  class="default-button file-button"
+  [ngClass]="formatType === 'CSV' ? 'file-button--csv' : 'file-button--pdf'"
+  color="primary"
+>
+  <div class="button-item">
+    <div class="file-label">
+      {{ formatType | uppercase }}
+    </div>
+    <mat-icon class="file-icon"> list_alt </mat-icon>
+  </div>
+</button>

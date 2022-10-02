@@ -4,6 +4,8 @@ import { environment } from 'apps/dpt-ui/src/environments/environment';
 import {
   AdminRoleListResponse,
   AdminUserListResponse,
+  DataReturn,
+  DataServiceDetailResponse,
   DataServiceResponse,
   DefaultResponse,
   UserResponse,
@@ -78,6 +80,18 @@ export class MainApiService {
   getAdminRoleList() {
     const url = `dptuser/roleuser?`;
     return this.http.get<AdminRoleListResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+  getLandingList() {
+    const url = `/dptlogin/apidatapublic?`;
+    return this.http.get<DataServiceResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+  getDataServiceDetail(apiId: string) {
+    const url = `dptrequest/getservicedatapublicpertime?apiId=${apiId}`;
+    return this.http.get<DataServiceDetailResponse>(
       `${environment.apiPrefix}/${url}`
     );
   }

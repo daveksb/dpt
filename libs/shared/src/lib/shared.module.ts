@@ -9,6 +9,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { FileButtonComponent } from './file-button/file-button.component';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   imports: [
     CommonModule,
@@ -22,8 +24,10 @@ import { MatSelectModule } from '@angular/material/select';
     MatRadioModule,
     MatButtonModule,
     MatSelectModule,
+    MatIconModule,
   ],
-  exports: [MatDialogModule],
+  exports: [MatDialogModule, FileButtonComponent],
   providers: [MainApiService],
+  declarations: [FileButtonComponent],
 })
 export class SharedModule {}

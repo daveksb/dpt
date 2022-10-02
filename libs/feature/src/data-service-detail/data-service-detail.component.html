@@ -1,14 +1,25 @@
 <div class="page-content">
   <div class="main-container">
     <div class="data-detail-header">
-      <div>บริการข้อมูล > {{ data.category }} > {{ data.topic }}</div>
+      <div class="left-container">
+        <div *ngIf="apiDetail" class="other-label">
+          บริการข้อมูล > {{ apiDetail.catName }} >
+        </div>
+        <div *ngIf="apiDetail" class="api-name">
+          &nbsp;
+          {{ apiDetail.apiName }}
+        </div>
+      </div>
+      <div class="back-button" (click)="back()">< Back</div>
     </div>
-    <div class="request-label header-1">บริการข้อมูล</div>
+    <div class="request-label header-1">
+      {{ apiDetail?.apiName }}
+    </div>
 
     <div class="data-button-container">
       <button
-        mat-flat-button
-        class="default-button"
+        mat-stroked-button
+        class="default-button big-button"
         color="primary"
         (click)="onShowExampleData()"
       >
@@ -16,7 +27,7 @@
       </button>
       <button
         mat-flat-button
-        class="default-button"
+        class="request-data-button big-button"
         color="primary"
         (click)="onRequestData()"
       >
@@ -25,35 +36,55 @@
     </div>
     <div class="data-detail-body">
       <mat-tab-group class="data-tab" dynamicHeight>
-        <mat-tab label="รายละเอียด">
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <img class="small-icon" src="assets/icon/file.svg" />
+            รายละเอียด
+          </ng-template>
           <div class="data-detail-tab">
             <div class="image-container">
               <div class="image"></div>
             </div>
             <div class="detail-container">
               <div class="department-container">
-                {{ data.department }}
+                {{ apiDetail?.departmentName }}
               </div>
               <div class="topic-container">
-                {{ data.topic }}
+                {{ apiDetail?.apiName }}
+              </div>
+              <div class="file-type-container">
+                <dpt-file-button
+                  [formatType]="apiDetail?.tType ?? ''"
+                ></dpt-file-button>
               </div>
               <div class="view-container">
-                {{ data.view }}
+                <div class="icon-container">
+                  <mat-icon>visibility</mat-icon>
+                </div>
+                {{ apiDetail?.countview }} Views
               </div>
               <div class="detail1-container">
-                {{ data.detail1 }}
-              </div>
-              <div class="detail2-container">
-                {{ data.detail2 }}
+                {{ apiDetail?.apiDetail }}
               </div>
             </div>
           </div>
         </mat-tab>
-        <mat-tab label="การใช้งาน Api">
+        <mat-tab *ngIf="apiDetail?.tType === 'api'">
+          <ng-template mat-tab-label>
+            <img class="small-icon" src="assets/icon/chip.svg" />
+            การใช้งาน Api
+          </ng-template>
           <div class="data-detail-api">
             <div class="api-service">API Service</div>
             <div class="api-link">
-              {{ data.api.apiUrl }}
+              <img
+                class="copy-icon"
+                (click)="copy()"
+                src="assets/icon/copy.svg"
+              />
+              <div class="api-link-label">
+                {{ apiDetail?.apiLink }}
+              </div>
             </div>
             <div class="api-param-table">
               <table mat-table [dataSource]="dataSource">
@@ -82,21 +113,21 @@
               </table>
             </div>
             <hr />
-            <div class="api-data-label">การเรียกข้อมูล API</div>
+            <!-- <div class="api-data-label">การเรียกข้อมูล API</div>
             <div class="api-data-container">
               <div class="label">Connection String :</div>
               <div class="value">
-                {{ data.api.connectionString }}
+                {{ apiDetail.api.connectionString }}
               </div>
               <div class="label">ตัวอย่างการเรียกข้อมูล:</div>
               <div class="value">
-                {{ data.api.dataRequestExample }}
+                {{ apiDetail.api.dataRequestExample }}
               </div>
               <div class="label">ตัวอย่าง Javascript :</div>
               <div class="value">
-                {{ data.api.javascriptExample }}
+                {{ apiDetail.api.javascriptExample }}
               </div>
-            </div>
+            </div> -->
           </div>
         </mat-tab>
       </mat-tab-group>

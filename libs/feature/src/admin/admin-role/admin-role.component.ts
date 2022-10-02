@@ -15,7 +15,6 @@ export class AdminRoleComponent implements OnInit {
 
   displayedColumns: string[] = [
     'roleName',
-    'accDepartment',
     'accReq',
     'accAdd',
     'accEdit',
