@@ -103,7 +103,7 @@ const routes: Routes = [
       permission: ['accSetApi', 'accSetAccess', 'accManageUser'],
     },
   },
-  { path: '**', component: LandingComponent, canActivate: [AuthGuard] },
+  { path: '**', component: LandingComponent },
 ];
 @NgModule({
   declarations: [AppComponent],

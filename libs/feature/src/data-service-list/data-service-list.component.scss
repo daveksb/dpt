@@ -30,12 +30,6 @@
 .search-input-container {
   width: 100%;
 }
-.category-container {
-}
-.search-button-container {
-}
-.request-button-container {
-}
 
 .data-service-main {
   height: 100%;
@@ -180,8 +174,6 @@
         }
       }
     }
-    .data-service-pagination {
-    }
   }
 }
 .no-data-container {
@@ -217,4 +209,11 @@
       color: #000000;
     }
   }
+}
+
+.side-bar-item-form {
+  padding: 1rem 0px 0px 0px;
+  gap: 1px;
+  margin-left: 1rem;
+  display: flex;
 }

@@ -1,81 +1,81 @@
 <div class="main-container">
-    <div class="request-label header-1">
-        อนุมัติเผยแพร่ </div>
-    <div class="d-flex justify-content-between mt-5">
-        <div class="d-flex w-50">
-            <input type="text" placeholder="ค้นหาข้อมูล" class="form-control" />
-            <button type="submit" class="btn btn-outline-secondary ms-3">
-                <i class="bi bi-search"></i>
-            </button>
-        </div>
+  <div class="request-label header-1">อนุมัติเผยแพร่</div>
+  <div class="header-container">
+    <div class="search-input-container">
+      <mat-form-field class="form-field" appearance="outline">
+        <input type="text" matInput placeholder="ค้นหา" />
+        <span matPrefix>
+          <mat-icon>search</mat-icon>
+        </span>
+      </mat-form-field>
     </div>
-    <div class="request-table default-table">
-        <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortChange($event)">
+    <button mat-flat-button class="default-button big-button" color="primary">
+      ค้นหา
+    </button>
+  </div>
+  <div class="request-table default-table">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      (matSortChange)="sortChange($event)"
+    >
+      <ng-container matColumnDef="order">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ลำดับที่</th>
+        <td mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}</td>
+      </ng-container>
 
-            <ng-container matColumnDef="order">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                    ลำดับที่
-                </th>
-                <td mat-cell *matCellDef="let row; let i = index"> {{i+1}} </td>
-            </ng-container>
+      <ng-container matColumnDef="dataName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ชื่อชุดข้อมูล</th>
+        <td mat-cell *matCellDef="let row">{{ row.dataName }}</td>
+      </ng-container>
 
-            <ng-container matColumnDef="dataName">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                    ชื่อชุดข้อมูล
-                </th>
-                <td mat-cell *matCellDef="let row"> {{row.dataName}} </td>
-            </ng-container>
+      <ng-container matColumnDef="department">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>หน่วยงาน</th>
+        <td mat-cell *matCellDef="let row">{{ row.department }}</td>
+      </ng-container>
 
-            <ng-container matColumnDef="department">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                    หน่วยงาน
-                </th>
-                <td mat-cell *matCellDef="let row"> {{row.department}} </td>
-            </ng-container>
+      <ng-container matColumnDef="dataList">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>รูปแบบข้อมูล</th>
+        <td mat-cell *matCellDef="let row">
+          <div class="data-list-container">
+            <dpt-file-button [formatType]="row.dataType"></dpt-file-button>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>สถานะ</th>
+        <td mat-cell *matCellDef="let row">
+          <mat-form-field class="status-list" appearance="outline">
+            <mat-select placeholder="status">
+              <mat-option *ngFor="let item of statusList" [value]="item.value">
+                {{ item.label }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row">
+          <div class="data-request-data-container">
+            <img
+              src="assets/icon/view.png"
+              class="default-icon"
+              (click)="onView(row.id)"
+            />
+          </div>
+        </td>
+      </ng-container>
 
-            <ng-container matColumnDef="dataList">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                    รูปแบบข้อมูล
-                </th>
-                <td mat-cell *matCellDef=" let row">
-                    <div class="data-list-container">
-                        <ng-container *ngFor="let item of row.dataList">
-                            <button mat-flat-button class="default-button" color="primary"
-                                (click)="onDownload(item.id)">{{item.dataType}}</button>
-                        </ng-container>
-                    </div>
-                </td>
-            </ng-container>
-            <ng-container matColumnDef="status">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                    สถานะ
-                </th>
-                <td mat-cell *matCellDef=" let row">
-                    <mat-form-field appearance="outline">
-                        <mat-select placeholder="status">
-                            <mat-option *ngFor="let item of statusList" [value]="item.value">
-                                {{ item.label }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </td>
-            </ng-container>
-            <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef>
-                </th>
-                <td mat-cell *matCellDef=" let row">
-                    <div class="data-request-data-container">
-                        <button mat-flat-button class="default-button" color="primary"
-                            (click)="onView(row.id)">View</button>
-                    </div>
-                </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-        </table>
-        <mat-paginator [length]="200" [pageSize]="10" [pageSizeOptions]="[10, 50, 100]">
-        </mat-paginator>
-    </div>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator
+      [length]="200"
+      [pageSize]="10"
+      [pageSizeOptions]="[10, 50, 100]"
+    >
+    </mat-paginator>
+  </div>
 </div>

@@ -42,43 +42,35 @@
             <ng-container *ngIf="row.approve !== 'Y'">
               <button
                 mat-flat-button
-                class="default-button"
-                color="primary"
+                class="default-button approve-button"
                 (click)="onApprove(row.id)"
               >
-                Approve
+                อนุมัติ
               </button>
               <button
                 mat-flat-button
-                class="default-button"
-                color="primary"
+                class="default-button cancel-button"
                 (click)="onCancel(row.id)"
               >
-                Cancel
+                ไม่อนุมัติ
               </button>
             </ng-container>
 
             <ng-container *ngIf="row.approve === 'Y'">
-              <button mat-flat-button class="default-button" color="primary">
-                Activated
+              <button mat-flat-button class="default-button activate-button">
+                ใช้งานได้
               </button>
             </ng-container>
-            <button
-              mat-flat-button
-              class="default-button"
-              color="primary"
+            <img
+              src="assets/icon/view.png"
+              class="default-icon"
               (click)="onView(row.id)"
-            >
-              View
-            </button>
-            <button
-              mat-flat-button
-              class="default-button"
-              color="primary"
+            />
+            <img
+              src="assets/icon/delete.svg"
+              class="default-icon"
               (click)="onView(row.id)"
-            >
-              Delete
-            </button>
+            />
           </div>
         </td>
       </ng-container>

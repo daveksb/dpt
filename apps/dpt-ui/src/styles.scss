@@ -178,6 +178,9 @@ $enable-cssgrid: true;
   background-color: white;
   // background-color: #f5ecec;
 }
+.status-list .mat-form-field-wrapper {
+  padding: 0px;
+}
 
 .dpt-theme {
   font-family: 'Sukhumvit', sans-serif;
@@ -294,4 +297,54 @@ $enable-cssgrid: true;
     text-align: center;
     color: #606060;
   }
+}
+img.default-icon {
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+}
+.activate-button.mat-flat-button {
+  background: #e8f4ff;
+  border-radius: 4px;
+  height: 36px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #3f89fe;
+  order: 0;
+}
+.approve-button.mat-flat-button {
+  background: #e6faeb;
+  border-radius: 4px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  height: 36px;
+  line-height: 24px;
+  text-align: center;
+  color: #1a9a3e;
+}
+.deactivate-button.mat-flat-button {
+  background: #edeef3;
+  border-radius: 4px;
+  font-style: normal;
+  height: 36px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #7f838b;
+}
+.cancel-button.mat-flat-button {
+  height: 36px;
+  background: #ffffff;
+  border: 2px solid #fff0ed;
+  border-radius: 4px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+  color: #e96767;
 }

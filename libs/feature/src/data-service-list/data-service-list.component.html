@@ -73,6 +73,32 @@
               {{ item.value }} ({{ item.count }})
             </div>
           </div>
+          <ng-container [formGroup]="formGroup">
+            <div class="side-bar-item-form">
+              <mat-form-field appearance="fill">
+                <mat-label>จังหวัด</mat-label>
+                <mat-select formControlName="province" multiple>
+                  <mat-option
+                    *ngFor="let province of provinceList"
+                    [value]="province.id"
+                    >{{ province.nameTh }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="side-bar-item-form">
+              <mat-form-field appearance="fill">
+                <mat-label>อำเภอ</mat-label>
+                <mat-select formControlName="amphue" multiple>
+                  <mat-option
+                    *ngFor="let amphue of currentAmphueList"
+                    [value]="amphue.id"
+                    >{{ amphue.nameTh }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </ng-container>
         </div>
         <div class="data-service-content">
           <div *ngIf="currentData.length > 0" class="data-service-list">
@@ -101,20 +127,9 @@
                     {{ item.apiDetail }}
                   </div>
                   <div class="file-container">
-                    <button
-                      mat-flat-button
-                      class="default-button file-button"
-                      [ngClass]="
-                        item.formatType === 'CSV'
-                          ? 'file-button--csv'
-                          : 'file-button--pdf'
-                      "
-                      color="primary"
-                      (click)="onOpenFile(item)"
-                    >
-                      {{ item.formatType }}
-                      <mat-icon class="file-icon"> list_alt </mat-icon>
-                    </button>
+                    <dpt-file-button
+                      [formatType]="item.formatType"
+                    ></dpt-file-button>
                   </div>
                 </div>
                 <div class="item-footer">

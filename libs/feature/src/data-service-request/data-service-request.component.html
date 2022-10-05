@@ -72,9 +72,11 @@
               <mat-spinner [diameter]="40"></mat-spinner>
             </div>
             <div *ngIf="item.status === 'DONE'">
-              <button mat-mini-fab (click)="deleteFile(item)">
-                <mat-icon>delete</mat-icon>
-              </button>
+              <img
+                src="assets/icon/delete.svg"
+                class="default-icon"
+                (click)="deleteFile(item)"
+              />
             </div>
           </div>
         </div>

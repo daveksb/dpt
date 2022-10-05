@@ -75,19 +75,7 @@
                 {{ item.apiDetail }}
               </div>
               <div class="file-container">
-                <button
-                  mat-flat-button
-                  class="default-button file-button"
-                  [ngClass]="
-                    item.formatType === 'CSV'
-                      ? 'file-button--csv'
-                      : 'file-button--pdf'
-                  "
-                  color="primary"
-                >
-                  <mat-icon class="file-icon"> list_alt </mat-icon>
-                  {{ item.formatType }}
-                </button>
+                <dpt-file-button [formatType]="item.tType"></dpt-file-button>
               </div>
             </div>
             <div class="item-footer">

@@ -26,7 +26,7 @@ export class DataRequestComponent implements OnInit {
     {
       order: 1,
       fullName: 'test test',
-      status: 'Active',
+      status: 'Activate',
       department: 'test Department',
       dataName: 'test data',
       dataPath: 'path data',
@@ -35,7 +35,7 @@ export class DataRequestComponent implements OnInit {
     {
       order: 1,
       fullName: 'test test',
-      status: 'Active',
+      status: 'Activate',
       department: 'test Department',
       dataName: 'test data',
       dataPath: 'path data',
@@ -44,7 +44,7 @@ export class DataRequestComponent implements OnInit {
     {
       order: 1,
       fullName: 'test test',
-      status: 'Active',
+      status: 'Decline',
       department: 'test Department',
       dataName: 'test data',
       dataPath: 'path data',
@@ -53,7 +53,7 @@ export class DataRequestComponent implements OnInit {
     {
       order: 1,
       fullName: 'test test',
-      status: 'Active',
+      status: 'Pending',
       department: 'test Department',
       dataName: 'test data',
       dataPath: 'path data',
@@ -62,7 +62,7 @@ export class DataRequestComponent implements OnInit {
     {
       order: 1,
       fullName: 'test test',
-      status: 'Active',
+      status: 'Activate',
       department: 'test Department',
       dataName: 'test data',
       dataPath: 'path data',
@@ -71,7 +71,7 @@ export class DataRequestComponent implements OnInit {
     {
       order: 1,
       fullName: 'test test',
-      status: 'Active',
+      status: 'Activate',
       department: 'test Department',
       dataName: 'test data',
       dataPath: 'path data',
@@ -80,7 +80,7 @@ export class DataRequestComponent implements OnInit {
     {
       order: 1,
       fullName: 'test test',
-      status: 'Active',
+      status: 'Activate',
       department: 'test Department',
       dataName: 'test data',
       dataPath: 'path data',
@@ -89,7 +89,7 @@ export class DataRequestComponent implements OnInit {
     {
       order: 1,
       fullName: 'test test',
-      status: 'Active',
+      status: 'Activate',
       department: 'test Department',
       dataName: 'test data',
       dataPath: 'path data',
@@ -98,7 +98,7 @@ export class DataRequestComponent implements OnInit {
     {
       order: 1,
       fullName: 'test test',
-      status: 'Active',
+      status: 'Activate',
       department: 'test Department',
       dataName: 'test data',
       dataPath: 'path data',
@@ -107,7 +107,7 @@ export class DataRequestComponent implements OnInit {
     {
       order: 1,
       fullName: 'test test',
-      status: 'Active',
+      status: 'Activate',
       department: 'test Department',
       dataName: 'test data',
       dataPath: 'path data',
@@ -116,7 +116,7 @@ export class DataRequestComponent implements OnInit {
     {
       order: 1,
       fullName: 'test test',
-      status: 'Active',
+      status: 'Activate',
       department: 'test Department',
       dataName: 'test data',
       dataPath: 'path data',
@@ -125,7 +125,7 @@ export class DataRequestComponent implements OnInit {
     {
       order: 1,
       fullName: 'test test',
-      status: 'Active',
+      status: 'Activate',
       department: 'test Department',
       dataName: 'test data',
       dataPath: 'path data',
@@ -134,7 +134,7 @@ export class DataRequestComponent implements OnInit {
     {
       order: 1,
       fullName: 'test test',
-      status: 'Active',
+      status: 'Activate',
       department: 'test Department',
       dataName: 'test data',
       dataPath: 'path data',
@@ -143,7 +143,7 @@ export class DataRequestComponent implements OnInit {
     {
       order: 1,
       fullName: 'test test',
-      status: 'Active',
+      status: 'Activate',
       department: 'test Department',
       dataName: 'test data',
       dataPath: 'path data',
@@ -152,7 +152,7 @@ export class DataRequestComponent implements OnInit {
     {
       order: 1,
       fullName: 'test test',
-      status: 'Active',
+      status: 'Activate',
       department: 'test Department',
       dataName: 'test data',
       dataPath: 'path data',

@@ -1,74 +1,81 @@
 <div class="main-container">
-    <div class="data-management-header">
-
-        <div class="data-management-label header-1">
-            การจัดการบริการชุดข้อมูล </div>
-        <div class="data-management-button-container">
-            <button mat-flat-button class="default-button" color="primary" (click)="onAddItem()">เพิ่มข้อมูล</button>
-        </div>
+  <div class="data-management-header">
+    <div class="data-management-label header-1">การจัดการบริการชุดข้อมูล</div>
+    <div class="data-management-button-container">
+      <button
+        mat-flat-button
+        class="default-button"
+        color="primary"
+        (click)="onAddItem()"
+      >
+        เพิ่มข้อมูล
+      </button>
     </div>
-    <div class="data-management-table default-table">
-        <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortChange($event)">
+  </div>
+  <div class="data-management-table default-table">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      (matSortChange)="sortChange($event)"
+    >
+      <ng-container matColumnDef="order">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ลำดับที่</th>
+        <td mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}</td>
+      </ng-container>
 
-            <ng-container matColumnDef="order">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                    ลำดับที่
-                </th>
-                <td mat-cell *matCellDef="let row; let i = index"> {{i+1}} </td>
-            </ng-container>
+      <ng-container matColumnDef="dataName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ชื่อชุดข้อมูล</th>
+        <td mat-cell *matCellDef="let row">{{ row.dataName }}</td>
+      </ng-container>
 
-            <ng-container matColumnDef="dataName">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                    ชื่อชุดข้อมูล
-                </th>
-                <td mat-cell *matCellDef="let row"> {{row.dataName}} </td>
-            </ng-container>
+      <ng-container matColumnDef="department">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>หน่วยงาน</th>
+        <td mat-cell *matCellDef="let row">{{ row.department }}</td>
+      </ng-container>
 
-            <ng-container matColumnDef="department">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                    หน่วยงาน
-                </th>
-                <td mat-cell *matCellDef="let row"> {{row.department}} </td>
-            </ng-container>
+      <ng-container matColumnDef="dataList">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>รูปแบบข้อมูล</th>
+        <td mat-cell *matCellDef="let row">
+          <div class="data-management-data-container">
+            <dpt-file-button [formatType]="row.dataType"></dpt-file-button>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="publishStatus">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>การเผยแพร่</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-flat-button class="default-button approve-button">
+            {{ row.publishStatus }}
+          </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row">
+          <div class="data-management-data-container">
+            <img
+              src="assets/icon/view.png"
+              class="default-icon"
+              (click)="onEdit(row.id)"
+            />
+            <img
+              src="assets/icon/delete.svg"
+              class="default-icon"
+              (click)="onDelete(row.id)"
+            />
+          </div>
+        </td>
+      </ng-container>
 
-            <ng-container matColumnDef="dataList">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                    รูปแบบข้อมูล
-                </th>
-                <td mat-cell *matCellDef=" let row">
-                    <div class="data-management-data-container">
-                        <ng-container *ngFor="let item of row.dataList">
-                            <button mat-flat-button class="default-button" color="primary"
-                                (click)="onDownload(item.id)">{{item.dataType}}</button>
-                        </ng-container>
-                    </div>
-                </td>
-            </ng-container>
-            <ng-container matColumnDef="publishStatus">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                    การเผยแพร่ </th>
-                <td mat-cell *matCellDef=" let row">
-                    <button mat-flat-button class="default-button" color="primary">{{row.publishStatus}}</button>
-                </td>
-            </ng-container>
-            <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef>
-                </th>
-                <td mat-cell *matCellDef=" let row">
-                    <div class="data-management-data-container">
-                        <button mat-flat-button class="default-button" color="primary"
-                            (click)="onEdit(row.id)">Edit</button>
-                        <button mat-flat-button class="default-button" color="primary"
-                            (click)="onDelete(row.id)">Delete</button>
-                    </div>
-                </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-        </table>
-        <mat-paginator [length]="200" [pageSize]="10" [pageSizeOptions]="[10, 50, 100]">
-        </mat-paginator>
-    </div>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator
+      [length]="200"
+      [pageSize]="10"
+      [pageSizeOptions]="[10, 50, 100]"
+    >
+    </mat-paginator>
+  </div>
 </div>

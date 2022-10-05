@@ -27,280 +27,172 @@ export class DataManagementFileComponent implements AfterViewInit {
     {
       order: 1,
       fullName: 'test test',
+      publishStatus: 'ทั่วไป',
       dataName: 'dataName',
       dataDate: '20/2/2022',
       department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-      ],
+      dataType: 'CSV',
+      dataId: 11,
     },
     {
       order: 1,
       fullName: 'test test',
+      publishStatus: 'ทั่วไป',
       dataName: 'dataName',
+      dataDate: '20/2/2022',
+      department: 'test Department',
+      dataType: 'PDF',
+      dataId: 12,
+      dataLink: 'test',
+    },
+    {
+      order: 1,
+      fullName: 'test test',
+      publishStatus: 'ทั่วไป',
+      dataName: 'dataName',
+      dataDate: '20/2/2022',
+      department: 'test Department',
+      dataType: 'CSV',
+      dataId: 11,
+      dataLink: 'test',
+    },
+    {
+      order: 1,
+      fullName: 'test test',
+      publishStatus: 'ทั่วไป',
+      dataName: 'dataName',
+      dataDate: '20/2/2022',
+      department: 'test Department',
+      dataType: 'CSV',
+      dataId: 11,
+      dataLink: 'test',
+    },
+    {
+      order: 1,
+      fullName: 'test test',
+      publishStatus: 'ทั่วไป',
+      dataName: 'dataName',
+      dataDate: '20/2/2022',
+      department: 'test Department',
+      dataType: 'CSV',
+      dataId: 11,
+      dataLink: 'test',
+    },
+    {
+      order: 1,
+      fullName: 'test test',
+      publishStatus: 'ทั่วไป',
+      dataName: 'dataName',
+      dataDate: '20/2/2022',
+      department: 'test Department',
+      dataType: 'CSV',
+      dataId: 11,
+      dataLink: 'test',
+    },
+    {
+      order: 1,
+      fullName: 'test test',
+      publishStatus: 'ทั่วไป',
+      dataName: 'dataName',
+      dataDate: '20/2/2022',
+      department: 'test Department',
 
-      dataDate: '20/2/2022',
-      department: 'test Department',
-      dataList: [
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
+      dataType: 'PDF',
+      dataId: 12,
+      dataLink: 'test',
     },
     {
       order: 1,
       fullName: 'test test',
+      publishStatus: 'ทั่วไป',
       dataName: 'dataName',
+      dataDate: '20/2/2022',
+      department: 'test Department',
 
-      dataDate: '20/2/2022',
-      department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
+      dataType: 'PDF',
+      dataId: 12,
+      dataLink: 'test',
     },
     {
       order: 1,
       fullName: 'test test',
+      publishStatus: 'ทั่วไป',
       dataName: 'dataName',
+      dataDate: '20/2/2022',
+      department: 'test Department',
 
-      dataDate: '20/2/2022',
-      department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
+      dataType: 'CSV',
+      dataId: 11,
+      dataLink: 'test',
     },
     {
       order: 1,
       fullName: 'test test',
+      publishStatus: 'ทั่วไป',
       dataName: 'dataName',
+      dataDate: '20/2/2022',
+      department: 'test Department',
 
-      dataDate: '20/2/2022',
-      department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-      ],
+      dataType: 'PDF',
+      dataId: 12,
+      dataLink: 'test',
     },
     {
       order: 1,
       fullName: 'test test',
+      publishStatus: 'ทั่วไป',
       dataName: 'dataName',
+      dataDate: '20/2/2022',
+      department: 'test Department',
+      dataType: 'CSV',
+      dataId: 11,
+      dataLink: 'test',
+    },
+    {
+      order: 1,
+      fullName: 'test test',
+      publishStatus: 'ทั่วไป',
+      dataName: 'dataName',
+      dataDate: '20/2/2022',
+      department: 'test Department',
 
-      dataDate: '20/2/2022',
-      department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
+      dataType: 'PDF',
+      dataId: 12,
+      dataLink: 'test',
     },
     {
       order: 1,
       fullName: 'test test',
+      publishStatus: 'ทั่วไป',
       dataName: 'dataName',
+      dataDate: '20/2/2022',
+      department: 'test Department',
+      dataType: 'CSV',
+      dataId: 11,
+      dataLink: 'test',
+    },
+    {
+      order: 1,
+      fullName: 'test test',
+      publishStatus: 'ทั่วไป',
+      dataName: 'dataName',
+      dataDate: '20/2/2022',
+      department: 'test Department',
 
-      dataDate: '20/2/2022',
-      department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
+      dataType: 'PDF',
+      dataId: 12,
+      dataLink: 'test',
     },
     {
       order: 1,
       fullName: 'test test',
-      dataName: 'dataName',
-
-      dataDate: '20/2/2022',
-      department: 'test Department',
-      dataList: [
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
-    },
-    {
-      order: 1,
-      fullName: 'test test',
+      publishStatus: 'ทั่วไป',
       dataName: 'dataName',
       dataDate: '20/2/2022',
       department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      dataName: 'dataName',
-
-      dataDate: '20/2/2022',
-      department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      dataName: 'dataName',
-
-      dataDate: '20/2/2022',
-      department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      dataName: 'dataName',
-
-      dataDate: '20/2/2022',
-      department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      dataName: 'dataName',
-
-      dataDate: '20/2/2022',
-      department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      dataName: 'dataName',
-
-      dataDate: '20/2/2022',
-      department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      dataName: 'dataName',
-
-      dataDate: '20/2/2022',
-      department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
+      dataType: 'PDF',
+      dataId: 12,
+      dataLink: 'test',
     },
   ];
   dataSource = new MatTableDataSource(this.tempData);
@@ -322,6 +214,7 @@ export class DataManagementFileComponent implements AfterViewInit {
     console.log('onView', id);
     const data = {
       dataName: 'dataName',
+      dataDate: '20/2/2022',
       dataTable: 'asd',
       dataType: 'API',
       detail: 'detail',
@@ -353,6 +246,7 @@ export class DataManagementFileComponent implements AfterViewInit {
     console.log('onView', id);
     const data = {
       dataName: 'dataName',
+      dataDate: '20/2/2022',
       dataTable: 'asd',
       dataType: 'API',
       detail: 'detail',

@@ -30,263 +30,154 @@ export class DataPublishComponent implements OnInit, AfterViewInit {
       fullName: 'test test',
       dataName: 'dataName',
       department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-      ],
+      dataType: 'CSV',
+      dataId: 11,
+      dataLink: 'test',
     },
     {
       order: 1,
       fullName: 'test test',
       dataName: 'dataName',
       department: 'test Department',
-      dataList: [
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
+      dataType: 'PDF',
+      dataId: 12,
+      dataLink: 'test',
     },
     {
       order: 1,
       fullName: 'test test',
       dataName: 'dataName',
       department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
+      dataType: 'CSV',
+      dataId: 11,
+      dataLink: 'test',
     },
     {
       order: 1,
       fullName: 'test test',
       dataName: 'dataName',
       department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
+      dataType: 'CSV',
+      dataId: 11,
+      dataLink: 'test',
     },
     {
       order: 1,
       fullName: 'test test',
       dataName: 'dataName',
       department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-      ],
+      dataType: 'CSV',
+      dataId: 11,
+      dataLink: 'test',
     },
     {
       order: 1,
       fullName: 'test test',
       dataName: 'dataName',
       department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
+      dataType: 'CSV',
+      dataId: 11,
+      dataLink: 'test',
     },
     {
       order: 1,
       fullName: 'test test',
       dataName: 'dataName',
       department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
+
+      dataType: 'PDF',
+      dataId: 12,
+      dataLink: 'test',
     },
     {
       order: 1,
       fullName: 'test test',
       dataName: 'dataName',
       department: 'test Department',
-      dataList: [
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
+
+      dataType: 'PDF',
+      dataId: 12,
+      dataLink: 'test',
     },
     {
       order: 1,
       fullName: 'test test',
       dataName: 'dataName',
       department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
+
+      dataType: 'CSV',
+      dataId: 11,
+      dataLink: 'test',
     },
     {
       order: 1,
       fullName: 'test test',
       dataName: 'dataName',
       department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
+
+      dataType: 'PDF',
+      dataId: 12,
+      dataLink: 'test',
     },
     {
       order: 1,
       fullName: 'test test',
       dataName: 'dataName',
       department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
+      dataType: 'CSV',
+      dataId: 11,
+      dataLink: 'test',
     },
     {
       order: 1,
       fullName: 'test test',
       dataName: 'dataName',
       department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
+
+      dataType: 'PDF',
+      dataId: 12,
+      dataLink: 'test',
     },
     {
       order: 1,
       fullName: 'test test',
       dataName: 'dataName',
       department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
+      dataType: 'CSV',
+      dataId: 11,
+      dataLink: 'test',
     },
     {
       order: 1,
       fullName: 'test test',
       dataName: 'dataName',
       department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
+
+      dataType: 'PDF',
+      dataId: 12,
+      dataLink: 'test',
     },
     {
       order: 1,
       fullName: 'test test',
       dataName: 'dataName',
       department: 'test Department',
-      dataList: [
-        {
-          dataType: 'CSV',
-          dataId: 11,
-          dataLink: 'test',
-        },
-        {
-          dataType: 'PDF',
-          dataId: 12,
-          dataLink: 'test',
-        },
-      ],
+      dataType: 'PDF',
+      dataId: 12,
+      dataLink: 'test',
     },
   ];
   statusList = [
     {
-      label: 'Published',
+      label: 'เผยแพร่',
       value: 1,
     },
     {
-      label: 'Pending',
+      label: 'รอออนุมัติ',
       value: 2,
     },
     {
-      label: 'Archive',
+      label: 'ถูกจัดเก็บ',
       value: 3,
     },
   ];
