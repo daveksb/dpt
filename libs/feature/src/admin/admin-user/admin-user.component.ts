@@ -23,6 +23,7 @@ export class AdminUserComponent implements OnInit {
     'email',
     'userName',
     'roleName',
+    'statusAction',
     'action',
   ];
 

@@ -31,10 +31,6 @@ export class AdminMainComponent implements OnInit {
       url: 'page-setting',
       label: 'จัดการหน้าหลัก',
     },
-    {
-      url: 'soa',
-      label: 'SOA',
-    },
   ];
   constructor() {}
 

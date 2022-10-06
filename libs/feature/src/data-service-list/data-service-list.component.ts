@@ -34,7 +34,7 @@ export class DataServiceListComponent implements OnInit {
     'dataName',
     'action',
   ];
-
+  canRequest = false;
   currentData: DataReturn[] = [];
   defaultData: DataReturn[] = [];
   departmentList: Department[] = [];
@@ -6043,6 +6043,8 @@ export class DataServiceListComponent implements OnInit {
     this.mainApiService.getDepartment().subscribe((a) => {
       this.departmentList = a.Department as Department[];
     });
+    this.canRequest =
+      this.userService.getUser()?.role.accessControl.accReq === 'T';
     if (this.userService.isUserInternal()) {
       this.mainApiService.getPrivateDataList().subscribe({
         next: (res) => {

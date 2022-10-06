@@ -6,10 +6,17 @@
         <a
           class="request-item"
           mat-list-item
-          [routerLink]="nav.url"
+          [routerLink]="'request-list'"
           [routerLinkActive]="'request-active'"
-          *ngFor="let nav of navList"
-          >{{ nav.label }}
+          >{{ 'ชุดข้อมูล' }}
+        </a>
+        <a
+          class="request-item"
+          mat-list-item
+          [routerLink]="'data-set'"
+          [routerLinkActive]="'request-active'"
+          *ngIf="canRequest"
+          >{{ 'ข้อมูลที่ร้องขอ' }}
         </a>
       </mat-nav-list>
     </mat-sidenav>

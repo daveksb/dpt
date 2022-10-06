@@ -4,10 +4,13 @@ import { environment } from 'apps/dpt-ui/src/environments/environment';
 import {
   AdminRoleListResponse,
   AdminUserListResponse,
-  DataReturn,
+  DataRequest,
+  DataRequestResponse,
+  DataRequestSecretaryResponse,
   DataServiceDetailResponse,
   DataServiceResponse,
   DefaultResponse,
+  PublishDataResponse,
   UserResponse,
 } from './share.model';
 
@@ -92,6 +95,43 @@ export class MainApiService {
   getDataServiceDetail(apiId: string) {
     const url = `dptrequest/getservicedatapublicpertime?apiId=${apiId}`;
     return this.http.get<DataServiceDetailResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+  getPublishList() {
+    const url = `dptrequest/servicedataprivate`;
+    return this.http.get<PublishDataResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+  updatePublishStatus(apiId: string, status: string) {
+    const url = `dptrequest/servicedataprivateapprove?`;
+    return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
+      apiId,
+      status,
+    });
+  }
+  updateRequestStatus(body: DataRequest) {
+    const url = `dptrequest/servicedataprivateapprove?`;
+    return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
+      ...body,
+    });
+  }
+  getUserDataService() {
+    const url = `dptrequest/selectrequser?`;
+    return this.http.get<DataRequestResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+  getSecretaryDataService() {
+    const url = `dptrequest/selectreqsecre?`;
+    return this.http.get<DataRequestSecretaryResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+  getOwnerDataService(departmentId: string) {
+    const url = `dptrequest/selectreqdepart?depId=${departmentId}`;
+    return this.http.get<DataRequestSecretaryResponse>(
       `${environment.apiPrefix}/${url}`
     );
   }

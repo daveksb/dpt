@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MainApiService, UserService } from '@dpt/shared';
 import { DataRequestFormComponent } from 'libs/form/src/data-request-form/data-request-form.component';
 
 @Component({
@@ -161,12 +162,26 @@ export class DataRequestAdminComponent implements OnInit, AfterViewInit {
     },
   ];
   dataSource = new MatTableDataSource(this.tempData);
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private userService: UserService,
+    private mainApiService: MainApiService
+  ) {}
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // 1	ผู้ดูแลระบบ
+    // 2	ผู้ใช้งานระบบภายนอก
+    // 3	ผู้ใช้งานระบบภายใน
+    // 4	เลขานุการ
+    // 5	เจ้าของข้อมูล
+    // 6	เจ้าของข้อมูล (Admin)
+    // to do
+    const role = this.userService.getUser()?.role.roleId;
+    // this.mainApiService.getPublishList
+  }
   sortChange(sortState: Sort | any) {}
   onApprove(id: number) {
     console.log('onApprove', id);

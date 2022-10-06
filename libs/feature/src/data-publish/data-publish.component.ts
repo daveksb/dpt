@@ -1,10 +1,13 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { DataRequestFormComponent } from '@dpt/form';
-
+import { DataRequestFormComponent, DefaultDialogComponent } from '@dpt/form';
+import { MainApiService } from '@dpt/shared';
+import { DataReturn } from 'libs/shared/src/lib/share.model';
+import { Router } from '@angular/router';
 @Component({
   selector: 'dpt-data-publish',
   templateUrl: './data-publish.component.html',
@@ -24,198 +27,99 @@ export class DataPublishComponent implements OnInit, AfterViewInit {
     'action',
   ];
 
-  tempData = [
-    {
-      order: 1,
-      fullName: 'test test',
-      dataName: 'dataName',
-      department: 'test Department',
-      dataType: 'CSV',
-      dataId: 11,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      dataName: 'dataName',
-      department: 'test Department',
-      dataType: 'PDF',
-      dataId: 12,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      dataName: 'dataName',
-      department: 'test Department',
-      dataType: 'CSV',
-      dataId: 11,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      dataName: 'dataName',
-      department: 'test Department',
-      dataType: 'CSV',
-      dataId: 11,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      dataName: 'dataName',
-      department: 'test Department',
-      dataType: 'CSV',
-      dataId: 11,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      dataName: 'dataName',
-      department: 'test Department',
-      dataType: 'CSV',
-      dataId: 11,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      dataName: 'dataName',
-      department: 'test Department',
-
-      dataType: 'PDF',
-      dataId: 12,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      dataName: 'dataName',
-      department: 'test Department',
-
-      dataType: 'PDF',
-      dataId: 12,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      dataName: 'dataName',
-      department: 'test Department',
-
-      dataType: 'CSV',
-      dataId: 11,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      dataName: 'dataName',
-      department: 'test Department',
-
-      dataType: 'PDF',
-      dataId: 12,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      dataName: 'dataName',
-      department: 'test Department',
-      dataType: 'CSV',
-      dataId: 11,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      dataName: 'dataName',
-      department: 'test Department',
-
-      dataType: 'PDF',
-      dataId: 12,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      dataName: 'dataName',
-      department: 'test Department',
-      dataType: 'CSV',
-      dataId: 11,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      dataName: 'dataName',
-      department: 'test Department',
-
-      dataType: 'PDF',
-      dataId: 12,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      dataName: 'dataName',
-      department: 'test Department',
-      dataType: 'PDF',
-      dataId: 12,
-      dataLink: 'test',
-    },
-  ];
   statusList = [
     {
       label: 'เผยแพร่',
-      value: 1,
+      value: 'Y',
+      icon: 'activate',
     },
+
     {
-      label: 'รอออนุมัติ',
-      value: 2,
-    },
-    {
-      label: 'ถูกจัดเก็บ',
-      value: 3,
+      label: 'ไม่เผยเเพร่',
+      value: 'N',
+      icon: 'archive',
     },
   ];
-  dataSource = new MatTableDataSource(this.tempData);
-  constructor(private dialog: MatDialog) {}
+  publishList: DataReturn[] = [];
+  defaultList: DataReturn[] = [];
+  dataSource = new MatTableDataSource<DataReturn>([]);
+  page = 0;
+  pageSize = 10;
+  form = new FormControl();
+  constructor(
+    private dialog: MatDialog,
+    private mainApiservice: MainApiService,
+    private router: Router
+  ) {}
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.refresh();
+  }
+  refresh() {
+    this.mainApiservice.getPublishList().subscribe((res) => {
+      if (res.returnCode === '00') {
+        this.publishList = res.datareturn;
+        this.defaultList = res.datareturn;
+        this.dataSource = new MatTableDataSource(this.publishList);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      }
+    });
+  }
   sortChange(sortState: Sort | any) {}
   onDownload(a: any) {
     console.log(a);
   }
-  onView(id: number) {
-    console.log('onView', id);
-    const data = {
-      departmentType: 1,
-      department: 'test',
-      requestFullName: 'test test',
-      category: 'test category',
-      userName: 'userName',
-      detail: 'detail',
-      files: [
-        {
-          name: 'name',
-          fileSize: 50,
+
+  onChange(value: DataReturn) {
+    this.mainApiservice
+      .updatePublishStatus(value.apiId, value.status)
+      .subscribe({
+        next: () => {
+          this.refresh();
         },
-        {
-          name: 'name',
-          fileSize: 50,
+        error: () => {
+          this.dialog.open(DefaultDialogComponent, {
+            maxHeight: '800px',
+            width: '500px',
+            data: {
+              isError: true,
+              status: 'ดำเนินการไม่สำเร็จ',
+            },
+          });
         },
-      ],
-    };
-    const dialogRef = this.dialog.open(DataRequestFormComponent, {
-      data,
-      maxHeight: '800px',
-      width: '1000px',
-    });
+      });
+  }
+  onView(row: DataReturn) {
+    this.router.navigate(['/data-service-detail/' + row.apiId]);
+    // console.log('onView', row);
+    // const data = {
+    //   departmentType: row.privacyName,
+    //   department: row.departmentName,
+    //   requestFullName: row.catName,
+    //   category: row.catName,
+    //   userName: row.catName,
+    //   detail: row.apiDetail,
+    //   formatType: row.formatType,
+    // };
+    // const dialogRef = this.dialog.open(DataRequestFormComponent, {
+    //   data,
+    //   maxHeight: '800px',
+    //   width: '1000px',
+    // });
+  }
+  onSearch() {
+    this.dataSource.data = (
+      JSON.parse(JSON.stringify(this.defaultList)) as DataReturn[]
+    ).filter((a) => a.apiName.includes(this.form.value));
+  }
+  getLabel(a: string) {
+    return this.statusList.find((stat) => stat.value === a)?.label;
+  }
+  getIcon(a: string) {
+    return this.statusList.find((stat) => stat.value === a)?.icon;
   }
 }

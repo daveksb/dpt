@@ -3,13 +3,18 @@
   <div class="header-container">
     <div class="search-input-container">
       <mat-form-field class="form-field" appearance="outline">
-        <input type="text" matInput placeholder="ค้นหา" />
+        <input [formControl]="form" type="text" matInput placeholder="ค้นหา" />
         <span matPrefix>
           <mat-icon>search</mat-icon>
         </span>
       </mat-form-field>
     </div>
-    <button mat-flat-button class="default-button big-button" color="primary">
+    <button
+      (click)="onSearch()"
+      mat-flat-button
+      class="default-button big-button"
+      color="primary"
+    >
       ค้นหา
     </button>
   </div>
@@ -22,24 +27,31 @@
     >
       <ng-container matColumnDef="order">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>ลำดับที่</th>
-        <td mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}</td>
+        <td mat-cell *matCellDef="let row; let i = index">
+          {{
+            i +
+              1 +
+              (dataSource.paginator?.pageIndex ?? 0) *
+                (dataSource.paginator?.pageSize ?? 0)
+          }}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="dataName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>ชื่อชุดข้อมูล</th>
-        <td mat-cell *matCellDef="let row">{{ row.dataName }}</td>
+        <td mat-cell *matCellDef="let row">{{ row.apiName }}</td>
       </ng-container>
 
       <ng-container matColumnDef="department">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>หน่วยงาน</th>
-        <td mat-cell *matCellDef="let row">{{ row.department }}</td>
+        <td mat-cell *matCellDef="let row">{{ row.departmentName }}</td>
       </ng-container>
 
       <ng-container matColumnDef="dataList">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>รูปแบบข้อมูล</th>
         <td mat-cell *matCellDef="let row">
           <div class="data-list-container">
-            <dpt-file-button [formatType]="row.dataType"></dpt-file-button>
+            <dpt-file-button [formatType]="row.formatType"></dpt-file-button>
           </div>
         </td>
       </ng-container>
@@ -47,9 +59,44 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>สถานะ</th>
         <td mat-cell *matCellDef="let row">
           <mat-form-field class="status-list" appearance="outline">
-            <mat-select placeholder="status">
-              <mat-option *ngFor="let item of statusList" [value]="item.value">
-                {{ item.label }}
+            <mat-select
+              [(value)]="row.status"
+              (valueChange)="onChange(row)"
+              placeholder="status"
+            >
+              <mat-select-trigger>
+                <div class="option-item">
+                  <div class="img-container">
+                    <img
+                      class="default-icon"
+                      [src]="
+                        'assets/icon/' +
+                        (getIcon(row.status) | lowercase) +
+                        '.svg'
+                      "
+                    />
+                  </div>
+                  <div class="label-container">
+                    {{ getLabel(row.status) }}
+                  </div>
+                </div>
+              </mat-select-trigger>
+              <mat-option
+                *ngFor="let item of statusList"
+                [value]="item.value"
+                [disabled]="item.value === ''"
+              >
+                <div class="option-item">
+                  <div class="img-container">
+                    <img
+                      class="default-icon"
+                      [src]="'assets/icon/' + (item.icon | lowercase) + '.svg'"
+                    />
+                  </div>
+                  <div class="label-container">
+                    {{ item.label }}
+                  </div>
+                </div>
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -62,7 +109,7 @@
             <img
               src="assets/icon/view.png"
               class="default-icon"
-              (click)="onView(row.id)"
+              (click)="onView(row)"
             />
           </div>
         </td>

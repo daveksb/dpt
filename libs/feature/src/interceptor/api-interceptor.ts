@@ -12,7 +12,11 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root',
 })
 export class TokenHandleInterceptor implements HttpInterceptor {
-  private bypassUrl: string[] = ['ksp/dptlogin', 'dptrequest/selectcategory'];
+  private bypassUrl: string[] = [
+    'ksp/dptlogin',
+    'dptrequest/selectcategory',
+    'dptrequest/servicedataprivate',
+  ];
   constructor(private cookieService: CookieService) {}
   intercept(
     request: HttpRequest<any>,

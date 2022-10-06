@@ -77,6 +77,9 @@ export interface RegisterRequest {
 export interface DataServiceResponse extends DefaultResponse {
   datareturn: [];
 }
+export interface PublishDataResponse extends DefaultResponse {
+  datareturn: DataReturn[];
+}
 export interface DataReturn {
   apiId: string;
   apiName: string;
@@ -145,4 +148,38 @@ export interface DataServiceDetail {
   countview: string;
   zone: string;
   jsonField: string;
+}
+
+export interface DataRequest {
+  reqId: string;
+  reqName: string;
+  reqDescription: string;
+  reqFile: string;
+  reqCreate: string;
+  reqApprove: string;
+  departmentName: string;
+  catName: string;
+}
+export interface DataRequestResponse extends DefaultResponse {
+  datareturn: DataRequest[];
+}
+export interface DataRequestSecretary extends DataRequest {
+  userId: '161';
+  name: 'ทดสอบ2';
+  lname: 'ระบบ2';
+  name_en: 'test2';
+  lname_en: 'system2';
+  departmentNameExternal: 'กรมจัด';
+}
+
+export interface DataRequestSecretaryResponse extends DefaultResponse {
+  datareturn: DataRequestSecretary[];
+}
+
+export interface DataRequestRequest {
+  depId: string;
+  reason: string;
+  secUserId: string;
+  approve: string;
+  reqId: string;
 }
