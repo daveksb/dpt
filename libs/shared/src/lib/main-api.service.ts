@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'apps/dpt-ui/src/environments/environment';
 import {
+  AdminDepartmentResponse,
   AdminRoleListResponse,
   AdminUserListResponse,
   DataRequest,
@@ -74,6 +75,27 @@ export class MainApiService {
       body
     );
   }
+  addAdminDepartment(body: any) {
+    const url = `dptuser/insertdepartment`;
+    return this.http.post<DefaultResponse>(
+      `${environment.apiPrefix}/${url}`,
+      body
+    );
+  }
+  updateAdminDepartment(body: any) {
+    const url = `dptuser/updatedepartment`;
+    return this.http.post<DefaultResponse>(
+      `${environment.apiPrefix}/${url}`,
+      body
+    );
+  }
+  deleteAdminDepartment(body: any) {
+    const url = `dptuser/deletedepartment`;
+    return this.http.post<DefaultResponse>(
+      `${environment.apiPrefix}/${url}`,
+      body
+    );
+  }
   getAdminUserList() {
     const url = `dptuser/selectuser?`;
     return this.http.get<AdminUserListResponse>(
@@ -101,6 +123,12 @@ export class MainApiService {
   getPublishList() {
     const url = `dptrequest/servicedataprivate`;
     return this.http.get<PublishDataResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+  getAdminDepartmentList() {
+    const url = `dptuser/selectdepartment?`;
+    return this.http.get<AdminDepartmentResponse>(
       `${environment.apiPrefix}/${url}`
     );
   }

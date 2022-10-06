@@ -1,0 +1,48 @@
+<div mat-dialog-title class="request-form-header">
+  <div class="request-form-header-label">
+    {{ isEdit ? 'แก้ไขหน่วยงาน' : 'เพิ่มหน่วยงาน' }}
+  </div>
+  <button mat-button (click)="onDismiss()" cdkFocusInitial>X</button>
+</div>
+
+<div mat-dialog-content>
+  <div class="request-form-container" [formGroup]="formGroup">
+    <div class="label">ข้อมูลหน่วยงาน</div>
+    <div class="value">
+      <div class="department-container">
+        <div class="department-type-container">
+          <mat-radio-group formControlName="departmentType">
+            <mat-radio-button value="3">หน่วยงานภายใน </mat-radio-button>
+            <mat-radio-button value="2">หน่วยงานภายนอก</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </div>
+    <div class="label">ชื่อหน่วยงาน</div>
+    <div class="value">
+      <mat-form-field class="form-field" appearance="outline">
+        <input
+          type="text"
+          matInput
+          formControlName="departmentName"
+          placeholder="กรอกชื่อหน่วยงาน"
+        />
+      </mat-form-field>
+    </div>
+    <div class="label">ในสังกัด</div>
+    <div class="value">
+      <mat-form-field class="form-field" appearance="outline">
+        <input
+          type="text"
+          matInput
+          formControlName="departmentMember"
+          placeholder="หน่วยงานในสังกัด"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+<mat-dialog-actions>
+  <button mat-button (click)="onDismiss()">ยกเลิก</button>
+  <button mat-button (click)="onConfirm()">ยืนยัน</button>
+</mat-dialog-actions>

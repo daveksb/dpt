@@ -183,3 +183,11 @@ export interface DataRequestRequest {
   approve: string;
   reqId: string;
 }
+export interface AdminDepartment {
+  departmentId: string;
+  departmentName: string;
+  departmentMember: string;
+}
+export interface AdminDepartmentResponse {
+  datareturn: AdminDepartment[];
+}

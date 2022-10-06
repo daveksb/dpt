@@ -1,0 +1,26 @@
+.department-table {
+  width: 100%;
+}
+:host {
+  width: 100%;
+}
+.data-department-data-container {
+  display: flex;
+  gap: 1rem;
+}
+.main-container {
+}
+.department-header {
+  display: flex;
+  justify-content: space-between;
+}
+.big-button.mat-flat-button {
+  background: #fccc30;
+  border-radius: 12px;
+  font-family: 'Aktiv Grotesk';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 26px;
+  color: #080a0c;
+}

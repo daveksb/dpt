@@ -1,81 +1,89 @@
-<div mat-dialog-title class="request-form-header">
-    <div class="request-form-header-label">
-        รายละเอียดข้อมูล
-    </div>
-    <button mat-button (click)="onDismiss()" cdkFocusInitial>X</button>
-
+<div mat-dialog-title class="department-form-header">
+  <div class="department-form-header-label">รายละเอียดข้อมูล</div>
+  <button mat-button (click)="onDismiss()" cdkFocusInitial>X</button>
 </div>
 
 <div mat-dialog-content>
-    <div class="request-form-container" [formGroup]="formGroup">
-        <div class="label">
-            ข้อมูลหน่วยงาน
-        </div>
-        <div class="value">
-            <div class="department-container">
-                <mat-form-field class="form-field" appearance="outline">
-                    <mat-label>หน่วยงาน</mat-label>
-                    <input type="text" matInput formControlName="departmentType" placeholder="department" />
-                </mat-form-field>
-                <mat-form-field class="form-field" appearance="outline">
-                    <mat-label>ภายใน</mat-label>
-                    <input type="text" matInput formControlName="department" placeholder="department" />
-                </mat-form-field>
-
-            </div>
-
-        </div>
-        <div class="label">
-            ชื่อ - สกุลผู้ร้องขอ
-        </div>
-        <div class="value">
-            <mat-form-field class="form-field" appearance="outline">
-                <input type="text" matInput formControlName="requestFullName" placeholder="requestFullName" />
-            </mat-form-field>
-        </div>
-        <div class="label">
-
-            หมวดหมู่
-        </div>
-        <div class="value">
-            <mat-form-field class="form-field" appearance="outline">
-                <input type="text" matInput formControlName="category" placeholder="category" />
-            </mat-form-field>
-        </div>
-        <div class="label">
-
-            ชื่อชุดข้อมูล
-        </div>
-        <div class="value">
-            <mat-form-field class="form-field" appearance="outline">
-                <input type="text" matInput formControlName="dataName" placeholder="dataName" />
-            </mat-form-field>
-        </div>
-        <div class="label">
-
-            รายละเอียด
-        </div>
-        <div class="value">
-            <mat-form-field class="form-field" appearance="outline">
-                <input type="text" matInput formControlName="detail" placeholder="detail" />
-            </mat-form-field>
-        </div>
+  <div class="department-form-container" [formGroup]="formGroup">
+    <div class="label">ข้อมูลหน่วยงาน</div>
+    <div class="value">
+      <div class="department-container">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>หน่วยงาน</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="departmentType"
+            placeholder="department"
+          />
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>ภายใน</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="department"
+            placeholder="department"
+          />
+        </mat-form-field>
+      </div>
     </div>
-    <div class="file-container">
-        <div class="file-container-label">
-            เอกสารคำร้อง / เอกสารแนบ
-        </div>
-        <div class="file-list">
-            <div class="file-item" *ngFor="let item of data.files">
-                <div class="file-item-name">
-                    {{item.name}}
-                </div>
-                <div class="file-item-size">
-                    {{item.size}} KB
-                </div>
-            </div>
-        </div>
+    <div class="label">ชื่อ - สกุลผู้ร้องขอ</div>
+    <div class="value">
+      <mat-form-field class="form-field" appearance="outline">
+        <input
+          type="text"
+          matInput
+          formControlName="requestFullName"
+          placeholder="requestFullName"
+        />
+      </mat-form-field>
     </div>
+    <div class="label">หมวดหมู่</div>
+    <div class="value">
+      <mat-form-field class="form-field" appearance="outline">
+        <input
+          type="text"
+          matInput
+          formControlName="category"
+          placeholder="category"
+        />
+      </mat-form-field>
+    </div>
+    <div class="label">ชื่อชุดข้อมูล</div>
+    <div class="value">
+      <mat-form-field class="form-field" appearance="outline">
+        <input
+          type="text"
+          matInput
+          formControlName="dataName"
+          placeholder="dataName"
+        />
+      </mat-form-field>
+    </div>
+    <div class="label">รายละเอียด</div>
+    <div class="value">
+      <mat-form-field class="form-field" appearance="outline">
+        <input
+          type="text"
+          matInput
+          formControlName="detail"
+          placeholder="detail"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="file-container">
+    <div class="file-container-label">เอกสารคำร้อง / เอกสารแนบ</div>
+    <div class="file-list">
+      <div class="file-item" *ngFor="let item of data.files">
+        <div class="file-item-name">
+          {{ item.name }}
+        </div>
+        <div class="file-item-size">{{ item.size }} KB</div>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>

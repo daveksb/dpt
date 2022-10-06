@@ -28,6 +28,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { AdminDepartmentFormComponent } from './admin-department-form/admin-department-form.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     DataManagementFileFormComponent,
     DataManagementDataSetFormComponent,
     DefaultDialogComponent,
+    AdminDepartmentFormComponent,
   ],
 
   imports: [

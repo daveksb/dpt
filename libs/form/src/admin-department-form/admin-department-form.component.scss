@@ -1,8 +1,8 @@
-.department-form-header {
+.request-form-header {
   display: flex;
   justify-content: space-between;
 }
-.department-form-container {
+.request-form-container {
   width: 100%;
   display: grid;
   gap: 1rem;
@@ -31,4 +31,20 @@
   display: flex;
   justify-content: space-between;
   gap: 1rem;
+}
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+.mat-radio-group {
+  margin-top: 14px;
+}
+.big-button {
+  background: #fccc30;
+  border-radius: 12px;
+  font-family: 'Aktiv Grotesk';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 26px;
+  color: #080a0c;
 }
