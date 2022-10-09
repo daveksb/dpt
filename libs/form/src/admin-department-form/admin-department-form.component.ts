@@ -10,7 +10,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class AdminDepartmentFormComponent implements OnInit {
   formGroup = new FormGroup({
     departmentId: new FormControl(),
-    departmentType: new FormControl(),
     departmentName: new FormControl(),
     departmentMember: new FormControl(),
   });
@@ -19,12 +18,10 @@ export class AdminDepartmentFormComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<any>
   ) {
-    this.formGroup.patchValue(data);
+    this.formGroup.patchValue(data.adminDepartment);
   }
 
-  ngOnInit(): void {
-    console.log(this.data);
-  }
+  ngOnInit(): void {}
 
   onDismiss() {
     this.dialogRef.close();

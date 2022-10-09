@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import {
   AdminDepartmentFormComponent,
   DataRequestFormComponent,
+  DefaultDialogComponent,
 } from '@dpt/form';
 import { MainApiService } from '@dpt/shared';
 import { AdminDepartment } from 'libs/shared/src/lib/share.model';
@@ -33,6 +34,9 @@ export class AdminDepartmentComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
   ngOnInit(): void {
+    this.refresh();
+  }
+  refresh() {
     this.apiService.getAdminDepartmentList().subscribe((res) => {
       if (res.datareturn) {
         this.dataSource = new MatTableDataSource<any>(res.datareturn);
@@ -47,10 +51,43 @@ export class AdminDepartmentComponent implements OnInit {
     console.log('onApprove', id);
   }
   onDelete(id: string) {
-    this.apiService.deleteAdminDepartment({
-      departmentId: id,
-    });
-    // .subscribe((res) => {});
+    this.apiService
+      .deleteAdminDepartment({
+        departmentId: id,
+      })
+      .subscribe({
+        next: (res) => {
+          if (res.returnCode === '00') {
+            this.dialog.open(DefaultDialogComponent, {
+              maxHeight: '800px',
+              width: '500px',
+              data: {
+                status: 'ดำเนินการสำเร็จ',
+              },
+            });
+            this.refresh();
+          } else {
+            this.dialog.open(DefaultDialogComponent, {
+              maxHeight: '800px',
+              width: '500px',
+              data: {
+                isError: true,
+                status: 'ดำเนินการไม่สำเร็จ',
+              },
+            });
+          }
+        },
+        error: () => {
+          this.dialog.open(DefaultDialogComponent, {
+            maxHeight: '800px',
+            width: '500px',
+            data: {
+              isError: true,
+              status: 'ดำเนินการไม่สำเร็จ',
+            },
+          });
+        },
+      });
   }
   onEdit(row: AdminDepartment) {
     const data = {
@@ -76,18 +113,86 @@ export class AdminDepartmentComponent implements OnInit {
     });
   }
   onConfirm(isEdit: boolean, form: any) {
+    console.log(form.value);
     if (isEdit) {
-      this.apiService.updateAdminDepartment({
-        departmentId: form.departmentId,
-        departmentName: form.departmentName,
-        departmentMember: form.departmentMember,
-      });
+      this.apiService
+        .updateAdminDepartment({
+          departmentId: form.value.departmentId,
+          departmentName: form.value.departmentName,
+          departmentMember: form.value.departmentMember,
+        })
+        .subscribe({
+          next: (res) => {
+            if (res.returnCode === '00') {
+              this.dialog.open(DefaultDialogComponent, {
+                maxHeight: '800px',
+                width: '500px',
+                data: {
+                  status: 'ดำเนินการสำเร็จ',
+                },
+              });
+              this.refresh();
+            } else {
+              this.dialog.open(DefaultDialogComponent, {
+                maxHeight: '800px',
+                width: '500px',
+                data: {
+                  isError: true,
+                  status: 'ดำเนินการไม่สำเร็จ',
+                },
+              });
+            }
+          },
+          error: () => {
+            this.dialog.open(DefaultDialogComponent, {
+              maxHeight: '800px',
+              width: '500px',
+              data: {
+                isError: true,
+                status: 'ดำเนินการไม่สำเร็จ',
+              },
+            });
+          },
+        });
     } else {
-      this.apiService.addAdminDepartment({
-        departmentName: form.departmentName,
-        departmentMember: form.departmentMember,
-      });
+      this.apiService
+        .addAdminDepartment({
+          departmentName: form.value.departmentName,
+          departmentMember: form.value.departmentMember,
+        })
+        .subscribe({
+          next: (res) => {
+            if (res.returnCode === '00') {
+              this.dialog.open(DefaultDialogComponent, {
+                maxHeight: '800px',
+                width: '500px',
+                data: {
+                  status: 'ดำเนินการสำเร็จ',
+                },
+              });
+              this.refresh();
+            } else {
+              this.dialog.open(DefaultDialogComponent, {
+                maxHeight: '800px',
+                width: '500px',
+                data: {
+                  isError: true,
+                  status: 'ดำเนินการไม่สำเร็จ',
+                },
+              });
+            }
+          },
+          error: () => {
+            this.dialog.open(DefaultDialogComponent, {
+              maxHeight: '800px',
+              width: '500px',
+              data: {
+                isError: true,
+                status: 'ดำเนินการไม่สำเร็จ',
+              },
+            });
+          },
+        });
     }
-    console.log(form, isEdit);
   }
 }
