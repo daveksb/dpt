@@ -1,3 +1,5 @@
+import { DateTime } from 'luxon';
+
 export interface User {
   userId: string;
   username: string;
@@ -188,6 +190,29 @@ export interface AdminDepartment {
   departmentName: string;
   departmentMember: string;
 }
-export interface AdminDepartmentResponse {
+export interface AdminDepartmentResponse extends DefaultResponse {
   datareturn: AdminDepartment[];
+}
+
+export interface ReportByDate {
+  count: number;
+  timeline: string;
+}
+export interface ReportByUser {
+  count: number;
+  role: string;
+}
+export interface AdminReportByUserResponse extends DefaultResponse {
+  datareturn: ReportByUser[];
+}
+export interface AdminReportByDateResponse extends DefaultResponse {
+  datareturn: ReportByDate[];
+}
+export interface LineReport {
+  name: string;
+  series: LineReportSerie[];
+}
+export interface LineReportSerie {
+  name: string;
+  value: number;
 }

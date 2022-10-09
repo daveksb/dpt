@@ -1,1 +1,95 @@
-<div class="page-content">Report</div>
+<div class="page-content">
+  <div class="main-container">
+    <div class="report-label header-1">รายงาน</div>
+    <div class="report-filter-container" [formGroup]="form">
+      <mat-form-field class="report-input" appearance="fill">
+        <mat-date-range-input [rangePicker]="campaignOnePicker">
+          <input
+            matStartDate
+            placeholder="เลือกวันที่เริ่มต้น"
+            formControlName="startDate"
+          />
+          <input
+            matEndDate
+            placeholder="เลือกวันที่สิ้นสุด"
+            formControlName="endDate"
+          />
+        </mat-date-range-input>
+        <mat-hint>วว/ดด/ปปปป - วว/ดด/ปปปป</mat-hint>
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="campaignOnePicker"
+        ></mat-datepicker-toggle>
+        <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+      </mat-form-field>
+      <mat-form-field class="report-input" appearance="outline">
+        <mat-select placeholder="เลือก 1 หมวดหมู่" formControlName="apiId">
+          <mat-option *ngFor="let item of apiList" [value]="item.apiId">
+            {{ item.apiName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="report-detail-body">
+      <mat-tab-group
+        (selectedIndexChange)="onIndexChange($event)"
+        class="data-tab"
+        dynamicHeight
+      >
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <img class="small-icon" src="assets/icon/file.svg" />
+            รายงานการใช้งาน API แยกตามเวลา
+          </ng-template>
+          <ng-template matTabContent>
+            <div class="count-label">จำนวนการใช้งาน API</div>
+            <br />
+            <div class="count-no">{{ count }}</div>
+
+            <div class="report-detail-tab">
+              <ngx-charts-line-chart
+                [legendTitle]="''"
+                [scheme]="colorScheme"
+                [legend]="legend"
+                [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel"
+                [xAxis]="xAxis"
+                [yAxis]="yAxis"
+                [xAxisLabel]="xAxisLabel"
+                [yAxisLabel]="yAxisLabel"
+                [timeline]="timeline"
+                [results]="reportByDate"
+                class="report-chart"
+              >
+              </ngx-charts-line-chart>
+            </div>
+          </ng-template>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <img class="small-icon" src="assets/icon/graph.svg" />
+            รายงานการใช้งาน API แยกตามผู้ใช้งาน
+          </ng-template>
+          <ng-template matTabContent>
+            <div class="report-detail-api">
+              <ngx-charts-bar-vertical
+                [legendTitle]="''"
+                [scheme]="colorScheme"
+                [legend]="legend"
+                [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel"
+                [xAxis]="xAxis"
+                [yAxis]="yAxis"
+                [xAxisLabel]="apiXAxisLabel"
+                [yAxisLabel]="apiYAxisLabel"
+                [results]="reportByUser"
+              >
+              </ngx-charts-bar-vertical>
+            </div>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

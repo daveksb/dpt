@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'apps/dpt-ui/src/environments/environment';
 import {
   AdminDepartmentResponse,
+  AdminReportByDateResponse,
+  AdminReportByUserResponse,
   AdminRoleListResponse,
   AdminUserListResponse,
   DataRequest,
@@ -120,8 +122,9 @@ export class MainApiService {
       `${environment.apiPrefix}/${url}`
     );
   }
+
   getPublishList() {
-    const url = `dptrequest/servicedataprivate`;
+    const url = `dptrequest/servicedatabroadcast?`;
     return this.http.get<PublishDataResponse>(
       `${environment.apiPrefix}/${url}`
     );
@@ -160,6 +163,21 @@ export class MainApiService {
   getOwnerDataService(departmentId: string) {
     const url = `dptrequest/selectreqdepart?depId=${departmentId}`;
     return this.http.get<DataRequestSecretaryResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+  getReportByDate(startDate: string, endDate: string, apiId: string) {
+    const url = `dptreport/reportapiperrole?apiId=${apiId}&startDate=${startDate}&endDate=${endDate}
+    `;
+    return this.http.get<AdminReportByDateResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+  getReportByUser(startDate: string, endDate: string, apiId: string) {
+    console.log(startDate);
+    const url = `dptreport/reportapiperrole?apiId=${apiId}&startDate=${startDate}&endDate=${endDate}
+    `;
+    return this.http.get<AdminReportByUserResponse>(
       `${environment.apiPrefix}/${url}`
     );
   }

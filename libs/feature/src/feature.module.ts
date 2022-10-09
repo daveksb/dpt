@@ -28,6 +28,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from '@dpt/shared';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     SharedModule,
     FormModule,
     MatProgressSpinnerModule,
+    NgxChartsModule,
+    MatDatepickerModule,
   ],
   exports: [
     DataServiceDetailComponent,
