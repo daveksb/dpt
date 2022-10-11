@@ -9,3 +9,5 @@ export * from './data-management-data-set-form/data-management-data-set-form.com
 export * from './data-management-file-form/data-management-file-form.component';
 export * from './default-dialog/default-dialog.component';
 export * from './admin-department-form/admin-department-form.component';
+
+export * from './admin-sao-form/admin-sao-form.component';

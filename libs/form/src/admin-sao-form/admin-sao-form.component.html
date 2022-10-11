@@ -1,0 +1,35 @@
+<div mat-dialog-title class="sao-form-header">
+  <div class="sao-form-header-label">ตั้งค่าการเข้าใช้ API</div>
+  <button mat-button (click)="onDismiss()" cdkFocusInitial>X</button>
+</div>
+
+<div mat-dialog-content>
+  <div class="sao-form-container" [formGroup]="formGroup">
+    <div class="label">จำนวนการเข้าถึง api / ครั้ง</div>
+    <div class="value">
+      <mat-form-field class="form-field" appearance="outline">
+        <input
+          type="text"
+          matInput
+          formControlName="maxLimit"
+          placeholder="จำนวนครั้ง"
+        />
+      </mat-form-field>
+    </div>
+    <div class="label">ภายในระยะเวลา / วินาที</div>
+    <div class="value">
+      <mat-form-field class="form-field" appearance="outline">
+        <input
+          type="text"
+          matInput
+          formControlName="timePeriod"
+          placeholder="ระยะเวลา (วินาที)"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+<mat-dialog-actions>
+  <button mat-button (click)="onDismiss()">ยกเลิก</button>
+  <button mat-button (click)="onConfirm()">ยืนยัน</button>
+</mat-dialog-actions>

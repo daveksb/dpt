@@ -1,0 +1,24 @@
+.sao-table {
+  width: 100%;
+  margin-top: 24px;
+}
+:host {
+  width: 100%;
+}
+.sao-data-container {
+  display: flex;
+  gap: 1rem;
+}
+.main-container {
+}
+
+.sao-header {
+  display: flex;
+  justify-content: space-between;
+}
+.mat-cell.mat-column-tokenCode {
+  word-break: break-all;
+}
+.sao-global-label {
+  margin-top: 8px;
+}

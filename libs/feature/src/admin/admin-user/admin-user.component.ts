@@ -36,7 +36,7 @@ export class AdminUserComponent implements OnInit {
   ngOnInit(): void {
     this.apiService.getAdminUserList().subscribe((res) => {
       if (res.datareturn) {
-        this.dataSource = new MatTableDataSource<any>(res.datareturn);
+        this.dataSource.data = res.datareturn;
       }
     });
   }

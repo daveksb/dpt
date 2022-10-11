@@ -29,6 +29,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AdminDepartmentFormComponent } from './admin-department-form/admin-department-form.component';
+import { AdminSaoFormComponent } from './admin-sao-form/admin-sao-form.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { AdminDepartmentFormComponent } from './admin-department-form/admin-depa
     DataManagementDataSetFormComponent,
     DefaultDialogComponent,
     AdminDepartmentFormComponent,
+    AdminSaoFormComponent,
   ],
 
   imports: [
@@ -82,6 +84,7 @@ import { AdminDepartmentFormComponent } from './admin-department-form/admin-depa
     MatButtonModule,
     SharedModule,
     DefaultDialogComponent,
+    AdminSaoFormComponent,
   ],
 })
 export class FormModule {}

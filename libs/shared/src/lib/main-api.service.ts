@@ -14,6 +14,8 @@ import {
   DataServiceResponse,
   DefaultResponse,
   PublishDataResponse,
+  SaoApiServiceResponse,
+  SaoGlobalResponse,
   UserResponse,
 } from './share.model';
 
@@ -166,9 +168,31 @@ export class MainApiService {
       `${environment.apiPrefix}/${url}`
     );
   }
+  getSaoList() {
+    const url = `dptuser/selectmanageapiservice?`;
+    return this.http.get<SaoApiServiceResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+  getSaoGlobal() {
+    const url = `dptuser/selectsoaconfig?`;
+    return this.http.get<SaoGlobalResponse>(`${environment.apiPrefix}/${url}`);
+  }
+  updateSaoConfig(body: any) {
+    const url = `dptuser/updatesoaconfigperuser?`;
+    return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
+      ...body,
+    });
+  }
+  updateSaoGlobalConfig(body: any) {
+    const url = `dptuser/updatesoaconfig?`;
+    return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
+      ...body,
+    });
+  }
   getReportByDate(startDate: string, endDate: string, apiId: string) {
-    const url = `dptreport/reportapiperrole?apiId=${apiId}&startDate=${startDate}&endDate=${endDate}
-    `;
+    const url = `dptreport/reportapipertime?apiId=${apiId}&startDate=${startDate}&endDate=${endDate}
+      `;
     return this.http.get<AdminReportByDateResponse>(
       `${environment.apiPrefix}/${url}`
     );
@@ -176,7 +200,7 @@ export class MainApiService {
   getReportByUser(startDate: string, endDate: string, apiId: string) {
     console.log(startDate);
     const url = `dptreport/reportapiperrole?apiId=${apiId}&startDate=${startDate}&endDate=${endDate}
-    `;
+        `;
     return this.http.get<AdminReportByUserResponse>(
       `${environment.apiPrefix}/${url}`
     );

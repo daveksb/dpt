@@ -1,1 +1,99 @@
-<p>admin-soa works!</p>
+<div class="main-container">
+  <div class="sao-header">
+    <div class="sao-label">
+      <div class="sao-label header-1">การตั้งค่าระบบควบคุมการใช้งาน API</div>
+      <div class="sao-global-label">
+        การตั้งค่าระบบควบคุมการใช้งาน API ทั้งหมด จำนวนการเข้าถึง API
+        {{ saoGlobal?.maxCallsLimit }} ครั้ง ภายในระยะเวลา
+        {{ saoGlobal?.timePeriod }} วินาที
+      </div>
+    </div>
+    <div class="sao-button-container">
+      <button
+        mat-flat-button
+        class="default-button big-button"
+        (click)="onEditGlobal()"
+      >
+        ตั้งค่าการเข้าใช้ทั้งหมด
+      </button>
+    </div>
+  </div>
+  <div class="sao-table default-table">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      (matSortChange)="sortChange($event)"
+    >
+      <ng-container matColumnDef="order">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ลำดับที่</th>
+        <td mat-cell *matCellDef="let row; let i = index">
+          {{
+            i +
+              1 +
+              (dataSource.paginator?.pageIndex ?? 0) *
+                (dataSource.paginator?.pageSize ?? 0)
+          }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="apiName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ชื่อ API</th>
+        <td mat-cell *matCellDef="let row">{{ row.apiName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="fullName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          ชื่อผู้เข้าใช้
+        </th>
+        <td mat-cell *matCellDef="let row">{{ row.name }} {{ row.lname }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="tokenCode">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          รหัสการเข้าใช้
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.tokenCode }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="maxLimit">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          จำนวนการเข้าถึง api / ครั้ง
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.maxLimit }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="timePeriod">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          ภายในระยะเวลา / วินาที
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.timePeriod }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row">
+          <div class="sao-data-container">
+            <img
+              src="assets/icon/edit.svg"
+              class="default-icon"
+              (click)="onEdit(row)"
+            />
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator
+      [length]="200"
+      [pageSize]="10"
+      [pageSizeOptions]="[10, 50, 100]"
+    >
+    </mat-paginator>
+  </div>
+</div>

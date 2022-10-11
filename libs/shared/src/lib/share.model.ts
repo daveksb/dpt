@@ -216,3 +216,34 @@ export interface LineReportSerie {
   name: string;
   value: number;
 }
+export interface SaoApiService {
+  tokenId: string;
+  tokenCode: string;
+  status: string;
+  createDate: string;
+  expireDate: string;
+  countDate: string;
+  apiName: string;
+  apiDetail: string;
+  apiDepartmentName: string;
+  zone: string;
+  name: string;
+  lname: string;
+  name_en: string;
+  lname_en: string;
+  departmentName: string;
+  departmentNameExternal: string;
+  maxLimit: string;
+  timePeriod: string;
+}
+export interface SaoApiServiceResponse extends DefaultResponse {
+  datareturn: SaoApiService[];
+}
+export interface SaoGlobal {
+  sId: string;
+  maxCallsLimit: string;
+  timePeriod: string;
+}
+export interface SaoGlobalResponse extends DefaultResponse {
+  SoaConfig: SaoGlobal[];
+}

@@ -90,86 +90,31 @@ export class DataReportComponent implements OnInit {
     if (this.tabIndex === 0) {
       this.apiService
         .getReportByDate(
-          DateTime.fromJSDate(form.startDate).toISODate().toString(),
-          DateTime.fromJSDate(form.endDate).toISODate().toString(),
+          DateTime.fromJSDate(form.startDate).toISODate().toString() +
+            'T00:00:00',
+          DateTime.fromJSDate(form.endDate).toISODate().toString() +
+            'T23:59:59',
           form.apiId
         )
         .subscribe((res) => {
-          // if (res.returnCode === '00') {
-          const a: ReportByDate[] = [
-            {
-              count: 2,
-              timeline: '2022-08-14T07:00:00.000+07:00',
-            },
-            {
-              count: 2,
-              timeline: '2022-08-14T08:00:00.000+07:00',
-            },
-            {
-              count: 1,
-              timeline: '2022-08-14T09:00:00.000+07:00',
-            },
-            {
-              count: 8,
-              timeline: '2022-08-14T16:00:00.000+07:00',
-            },
-            {
-              count: 2,
-              timeline: '2022-08-15T07:00:00.000+07:00',
-            },
-            {
-              count: 1,
-              timeline: '2022-08-15T08:00:00.000+07:00',
-            },
-            {
-              count: 1,
-              timeline: '2022-08-15T09:00:00.000+07:00',
-            },
-            {
-              count: 1,
-              timeline: '2022-08-16T08:00:00.000+07:00',
-            },
-            {
-              count: 2,
-              timeline: '2022-08-16T16:00:00.000+07:00',
-            },
-          ];
-          this.count = a.reduce((p, c) => p + c.count, 0);
-          this.mapFromReportByDate(a);
-          // this.mapFromReportByDate(res.datareturn);
-          // }
+          if (res.returnCode === '00') {
+            this.count = res.datareturn.reduce((p, c) => p + c.count, 0);
+            this.mapFromReportByDate(res.datareturn);
+          }
         });
     } else {
       this.apiService
         .getReportByUser(
-          DateTime.fromJSDate(form.startDate).toISODate().toString(),
-          DateTime.fromJSDate(form.endDate).toISODate().toString(),
+          DateTime.fromJSDate(form.startDate).toISODate().toString() +
+            'T00:00:00',
+          DateTime.fromJSDate(form.endDate).toISODate().toString() +
+            'T23:59:59',
           form.apiId
         )
         .subscribe((res) => {
-          // if (res.returnCode === '00') {
-          const a: ReportByUser[] = [
-            {
-              count: 8,
-              role: 'ผู้ดูแลระบบ',
-            },
-            {
-              count: 15,
-              role: 'ผู้ใช้งานระบบภายนอก',
-            },
-            {
-              count: 2,
-              role: 'ผู้ใช้งานระบบภายใน',
-            },
-            {
-              count: 2,
-              role: 'เจ้าของข้อมูล',
-            },
-          ];
-
-          this.mapFromReportByUser(a);
-          // this.mapFromReportByUser(res.datareturn);
-          // }
+          if (res.returnCode === '00') {
+            this.mapFromReportByUser(res.datareturn);
+          }
         });
     }
   }

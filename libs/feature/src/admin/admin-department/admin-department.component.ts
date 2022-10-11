@@ -5,7 +5,6 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   AdminDepartmentFormComponent,
-  DataRequestFormComponent,
   DefaultDialogComponent,
 } from '@dpt/form';
 import { MainApiService } from '@dpt/shared';
@@ -39,7 +38,7 @@ export class AdminDepartmentComponent implements OnInit {
   refresh() {
     this.apiService.getAdminDepartmentList().subscribe((res) => {
       if (res.datareturn) {
-        this.dataSource = new MatTableDataSource<any>(res.datareturn);
+        this.dataSource.data = res.datareturn;
       }
     });
   }

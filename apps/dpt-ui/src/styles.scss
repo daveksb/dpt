@@ -94,7 +94,7 @@ $enable-cssgrid: true;
   }
 }
 .header-1 {
-  font-size: 24px;
+  font-size: 22px;
   color: black;
   font-weight: 600;
 }
@@ -159,14 +159,14 @@ $enable-cssgrid: true;
   th.mat-header-cell {
     font-style: normal;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 16px;
     color: #4b4e52;
     padding: 0.5rem;
   }
   td.mat-cell {
+    font-size: 14px;
     font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
+    font-weight: 400;
     color: #4b4e52;
     padding: 0.5rem;
   }
