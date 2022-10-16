@@ -18,6 +18,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
+import { MatIconModule } from '@angular/material/icon';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenHandleInterceptor } from '../interceptor/api-interceptor';
 
 const routes: Routes = [
   {
@@ -57,11 +60,19 @@ const routes: Routes = [
     MatFormFieldModule,
     MatSelectModule,
     MatSortModule,
+    MatIconModule,
   ],
   exports: [
     DataManagementDataSetComponent,
     DataManagementFileComponent,
     DataManagementMainComponent,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenHandleInterceptor,
+      multi: true,
+    },
   ],
 })
 export class DataManagementModule {}

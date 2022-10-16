@@ -16,6 +16,9 @@ export class TokenHandleInterceptor implements HttpInterceptor {
     'ksp/dptlogin',
     'dptrequest/selectcategory',
     'dptrequest/servicedataprivate',
+    'dptrequest/selectprivacy',
+    'dptrequest/selecttypedata',
+    'dptrequest/selectgroups',
   ];
   constructor(private cookieService: CookieService) {}
   intercept(

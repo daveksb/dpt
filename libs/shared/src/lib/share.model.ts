@@ -247,3 +247,89 @@ export interface SaoGlobal {
 export interface SaoGlobalResponse extends DefaultResponse {
   SoaConfig: SaoGlobal[];
 }
+
+export interface InsertApiRequest {
+  privacyId: string;
+  apiName: string;
+  attribute: string;
+  active: string;
+  departmentId: string;
+  typeId: string;
+  zone: string;
+  catId: string;
+  groupsId: string;
+  apiDetail: string;
+  apiLink: string;
+  formatType: string;
+  jsonField: string;
+}
+export interface Privacy {
+  privacyId: number;
+  privacyName: string;
+}
+export interface PrivacyResponse {
+  Privacy: Privacy[];
+}
+export interface DataType {
+  tId: number;
+  tType: string;
+}
+export interface DataTypeResponse {
+  TypeData: DataType[];
+}
+export interface CategoryGroup {
+  groupsId: number;
+  groupsName: string;
+}
+export interface CategoryGroupResponse {
+  Groups: CategoryGroup[];
+}
+
+export interface AdminLog {
+  logsId: string;
+  ipAddress: string;
+  logsCreate: string;
+  apiId: string;
+  apiName: string;
+  apiDetail: string;
+  zone: string;
+  formatType: string;
+  username: string;
+  name: string;
+  lname: string;
+  name_en: string;
+  lname_en: string;
+  email: string;
+  personalNumber: string;
+  departmentNamePublic: string;
+  departmentName: string;
+}
+
+export interface AdminLogResponse extends DefaultResponse {
+  datareturn: AdminLog[];
+}
+
+export interface AdminData {
+  tokenId: string;
+  tokenCode: string;
+  status: string;
+  createDate: string;
+  expireDate: string;
+  countDate: string;
+  apiName: string;
+  apiDetail: string;
+  apiDepartmentName: string;
+  zone: string;
+  name: string;
+  lname: string;
+  name_en: string;
+  lname_en: string;
+  departmentName: string;
+  departmentNameExternal: string;
+  maxLimit: string;
+  timePeriod: string;
+}
+
+export interface AdminDataResponse extends DefaultResponse {
+  datareturn: AdminData[];
+}

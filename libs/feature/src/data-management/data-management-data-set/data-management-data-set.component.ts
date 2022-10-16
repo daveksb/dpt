@@ -1,9 +1,20 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DataManagementDataSetFormComponent } from '@dpt/form';
+import { MainApiService, UserService } from '@dpt/shared';
+import {
+  Category,
+  CategoryGroup,
+  DataReturn,
+  DataType,
+  Department,
+  InsertApiRequest,
+  Privacy,
+} from 'libs/shared/src/lib/share.model';
 
 @Component({
   selector: 'dpt-data-management-data-set',
@@ -13,6 +24,9 @@ import { DataManagementDataSetFormComponent } from '@dpt/form';
 export class DataManagementDataSetComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  form = new FormControl();
+  categoryForm = new FormControl();
+  category: Category[] = [];
 
   displayedColumns: string[] = [
     'order',
@@ -22,171 +36,47 @@ export class DataManagementDataSetComponent implements AfterViewInit {
     'publishStatus',
     'action',
   ];
-
-  tempData = [
-    {
-      order: 1,
-      fullName: 'test test',
-      publishStatus: 'ทั่วไป',
-      dataName: 'dataName',
-      department: 'test Department',
-      dataType: 'CSV',
-      dataId: 11,
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      publishStatus: 'ทั่วไป',
-      dataName: 'dataName',
-      department: 'test Department',
-      dataType: 'PDF',
-      dataId: 12,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      publishStatus: 'ทั่วไป',
-      dataName: 'dataName',
-      department: 'test Department',
-      dataType: 'CSV',
-      dataId: 11,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      publishStatus: 'ทั่วไป',
-      dataName: 'dataName',
-      department: 'test Department',
-      dataType: 'CSV',
-      dataId: 11,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      publishStatus: 'ทั่วไป',
-      dataName: 'dataName',
-      department: 'test Department',
-      dataType: 'CSV',
-      dataId: 11,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      publishStatus: 'ทั่วไป',
-      dataName: 'dataName',
-      department: 'test Department',
-      dataType: 'CSV',
-      dataId: 11,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      publishStatus: 'ทั่วไป',
-      dataName: 'dataName',
-      department: 'test Department',
-
-      dataType: 'PDF',
-      dataId: 12,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      publishStatus: 'ทั่วไป',
-      dataName: 'dataName',
-      department: 'test Department',
-
-      dataType: 'PDF',
-      dataId: 12,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      publishStatus: 'ทั่วไป',
-      dataName: 'dataName',
-      department: 'test Department',
-
-      dataType: 'CSV',
-      dataId: 11,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      publishStatus: 'ทั่วไป',
-      dataName: 'dataName',
-      department: 'test Department',
-
-      dataType: 'PDF',
-      dataId: 12,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      publishStatus: 'ทั่วไป',
-      dataName: 'dataName',
-      department: 'test Department',
-      dataType: 'CSV',
-      dataId: 11,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      publishStatus: 'ทั่วไป',
-      dataName: 'dataName',
-      department: 'test Department',
-
-      dataType: 'PDF',
-      dataId: 12,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      publishStatus: 'ทั่วไป',
-      dataName: 'dataName',
-      department: 'test Department',
-      dataType: 'CSV',
-      dataId: 11,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      publishStatus: 'ทั่วไป',
-      dataName: 'dataName',
-      department: 'test Department',
-
-      dataType: 'PDF',
-      dataId: 12,
-      dataLink: 'test',
-    },
-    {
-      order: 1,
-      fullName: 'test test',
-      publishStatus: 'ทั่วไป',
-      dataName: 'dataName',
-      department: 'test Department',
-      dataType: 'PDF',
-      dataId: 12,
-      dataLink: 'test',
-    },
-  ];
-  dataSource = new MatTableDataSource(this.tempData);
-  constructor(private dialog: MatDialog) {}
+  currentData: DataReturn[] = [];
+  defaultData: DataReturn[] = [];
+  privacyList: Privacy[] = [];
+  dataTypeList: DataType[] = [];
+  categoryGroupList: CategoryGroup[] = [];
+  dataSource = new MatTableDataSource(this.defaultData);
+  departmentId = '';
+  constructor(
+    private dialog: MatDialog,
+    private mainApiService: MainApiService,
+    private userService: UserService
+  ) {}
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+    this.mainApiService.getCategory().subscribe((a: any) => {
+      this.category = a.Category;
+    });
+    this.mainApiService.getPrivacy().subscribe((res) => {
+      this.privacyList = res.Privacy;
+    });
+    this.mainApiService.getDataType().subscribe((res) => {
+      this.dataTypeList = res.TypeData;
+    });
+    this.mainApiService.getCategoryGroup().subscribe((res) => {
+      this.categoryGroupList = res.Groups;
+    });
+    this.departmentId =
+      this.userService.getUser()?.department.departmentId ?? '';
+    this.refresh();
   }
 
+  refresh() {
+    this.mainApiService
+      .getDataByDepartment(this.departmentId)
+      .subscribe((data) => {
+        this.dataSource.data = data.datareturn;
+        this.defaultData = data.datareturn;
+        // this.onSearch();
+      });
+  }
   sortChange(sortState: Sort | any) {}
   onDownload(a: any) {
     console.log(a);
@@ -195,20 +85,13 @@ export class DataManagementDataSetComponent implements AfterViewInit {
     console.log('onDelete', id);
   }
 
-  onEdit(id: number) {
-    console.log('onView', id);
+  onEdit(row: DataReturn) {
     const data = {
-      category: 'test value',
-      column: 'asd',
-      connectionString: 'asd',
-      dataName: 'dataName',
-      dataTable: 'asd',
-      dataType: 'API',
-      detail: 'detail',
-      link: 'asdsa',
-      publishStatus: 'test value',
-      publishSubStatus: 'test value',
-      subCategory: 'test value',
+      ...row,
+      dataTypeList: this.dataTypeList,
+      privacyList: this.privacyList,
+      categoryList: this.category,
+      categoryGroupList: this.categoryGroupList,
       onConfirm: this.onAddDataConfirm.bind(this),
       isEdit: true,
     };
@@ -227,7 +110,20 @@ export class DataManagementDataSetComponent implements AfterViewInit {
       width: '1000px',
     });
   }
-  onAddDataConfirm(form: any) {
+  onAddDataConfirm(form: InsertApiRequest) {
     console.log(form);
+  }
+  onSearch() {
+    this.currentData = (
+      JSON.parse(JSON.stringify(this.defaultData)) as DataReturn[]
+    ).filter((a) => {
+      return (
+        ((this.form.value as string)?.trim()
+          ? a.apiName.includes(this.form.value)
+          : true) &&
+        (this.categoryForm ? a.catName === this.categoryForm.value : true)
+      );
+    });
+    this.dataSource.data = this.currentData;
   }
 }

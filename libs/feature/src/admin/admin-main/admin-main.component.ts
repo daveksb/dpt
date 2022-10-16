@@ -27,10 +27,10 @@ export class AdminMainComponent implements OnInit {
       url: 'department',
       label: 'จัดการหน่วยงาน',
     },
-    {
-      url: 'page-setting',
-      label: 'จัดการหน้าหลัก',
-    },
+    // {
+    //   url: 'page-setting',
+    //   label: 'จัดการหน้าหลัก',
+    // },
     {
       url: 'soa',
       label: 'Open Enterprise SOA',

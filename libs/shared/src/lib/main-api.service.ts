@@ -2,17 +2,23 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'apps/dpt-ui/src/environments/environment';
 import {
+  AdminDataResponse,
   AdminDepartmentResponse,
+  AdminLogResponse,
   AdminReportByDateResponse,
   AdminReportByUserResponse,
   AdminRoleListResponse,
   AdminUserListResponse,
+  CategoryGroupResponse,
   DataRequest,
   DataRequestResponse,
   DataRequestSecretaryResponse,
   DataServiceDetailResponse,
   DataServiceResponse,
+  DataTypeResponse,
   DefaultResponse,
+  Privacy,
+  PrivacyResponse,
   PublishDataResponse,
   SaoApiServiceResponse,
   SaoGlobalResponse,
@@ -137,6 +143,10 @@ export class MainApiService {
       `${environment.apiPrefix}/${url}`
     );
   }
+  getAdminDatatList() {
+    const url = `dptuser/selectmanageapiservice?`;
+    return this.http.get<AdminDataResponse>(`${environment.apiPrefix}/${url}`);
+  }
   updatePublishStatus(apiId: string, status: string) {
     const url = `dptrequest/servicedataprivateapprove?`;
     return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
@@ -192,17 +202,44 @@ export class MainApiService {
   }
   getReportByDate(startDate: string, endDate: string, apiId: string) {
     const url = `dptreport/reportapipertime?apiId=${apiId}&startDate=${startDate}&endDate=${endDate}
-      `;
+    `;
     return this.http.get<AdminReportByDateResponse>(
       `${environment.apiPrefix}/${url}`
     );
   }
+  getAdminLogByDate(startDate: string, endDate: string) {
+    const url = `dptuser/selectlogapi?&startDate=${startDate}&endDate=${endDate}
+    `;
+    return this.http.get<AdminLogResponse>(`${environment.apiPrefix}/${url}`);
+  }
   getReportByUser(startDate: string, endDate: string, apiId: string) {
     console.log(startDate);
     const url = `dptreport/reportapiperrole?apiId=${apiId}&startDate=${startDate}&endDate=${endDate}
-        `;
+      `;
     return this.http.get<AdminReportByUserResponse>(
       `${environment.apiPrefix}/${url}`
     );
+  }
+
+  getDataByDepartment(departmentId: string) {
+    const url = `dptrequest/servicedatadepartment?depId=${departmentId}`;
+    return this.http.get<PublishDataResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+
+  getPrivacy() {
+    const url = `dptrequest/selectprivacy`;
+    return this.http.get<PrivacyResponse>(`${environment.apiPrefix}/${url}`);
+  }
+  getCategoryGroup() {
+    const url = `dptrequest/selectgroups`;
+    return this.http.get<CategoryGroupResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+  getDataType() {
+    const url = `dptrequest/selecttypedata`;
+    return this.http.get<DataTypeResponse>(`${environment.apiPrefix}/${url}`);
   }
 }

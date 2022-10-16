@@ -1,0 +1,38 @@
+:host {
+  width: 100%;
+}
+.data-request-data-container {
+  display: flex;
+  gap: 1rem;
+}
+.header-1 {
+  font-style: normal;
+  font-weight: 600;
+}
+.main-container {
+  padding-top: 8px;
+}
+.page-content {
+  width: 100%;
+  display: flex;
+  height: unset;
+  padding: 48px 32px;
+}
+.admin-log-detail-header {
+  width: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.admin-log-detail-body {
+  width: 100%;
+}
+
+.admin-log-input {
+  max-width: 500px;
+}
+.admin-log-filter-container {
+  justify-content: flex-end;
+  display: flex;
+}

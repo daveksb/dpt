@@ -23,6 +23,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { TokenHandleInterceptor } from '../interceptor/api-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 const routes: Routes = [
   {
@@ -34,7 +35,7 @@ const routes: Routes = [
       { path: 'log', component: AdminLogApiComponent },
       { path: 'data-set', component: AdminDataSetComponent },
       { path: 'department', component: AdminDepartmentComponent },
-      { path: 'page-setting', component: AdminPageSettingComponent },
+      // { path: 'page-setting', component: AdminPageSettingComponent },
       { path: 'soa', component: AdminSoaComponent },
     ],
   },
@@ -70,6 +71,7 @@ const routes: Routes = [
     MatButtonModule,
     MatSortModule,
     MatIconModule,
+    MatDatepickerModule,
   ],
   exports: [
     AdminMainComponent,
