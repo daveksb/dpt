@@ -17,12 +17,14 @@ import {
   DataServiceResponse,
   DataTypeResponse,
   DefaultResponse,
-  Privacy,
   PrivacyResponse,
+  ProvinceResponse,
   PublishDataResponse,
   SaoApiServiceResponse,
   SaoGlobalResponse,
+  TokenPublicResponse,
   UserResponse,
+  ZoneResponse,
 } from './share.model';
 
 @Injectable({
@@ -241,5 +243,22 @@ export class MainApiService {
   getDataType() {
     const url = `dptrequest/selecttypedata`;
     return this.http.get<DataTypeResponse>(`${environment.apiPrefix}/${url}`);
+  }
+  getProvinces() {
+    const url = `dptrequest/selectprovince`;
+    return this.http.get<ProvinceResponse>(`${environment.apiPrefix}/${url}`);
+  }
+  getZones() {
+    const url = `dptrequest/zonename`;
+    return this.http.get<ZoneResponse>(`${environment.apiPrefix}/${url}`);
+  }
+  getTokenPublic(body: any) {
+    const url = `dptrequest/insertapitokenpublic`;
+    return this.http.post<TokenPublicResponse>(
+      `${environment.apiPrefix}/${url}`,
+      {
+        ...body,
+      }
+    );
   }
 }

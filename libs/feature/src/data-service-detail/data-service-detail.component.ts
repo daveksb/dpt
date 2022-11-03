@@ -4,7 +4,7 @@ import { DataServiceDialogComponent, TopNavComponent } from '@dpt/ui';
 import { ActivatedRoute, Route, Router, RouterModule } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { MainApiService } from '@dpt/shared';
+import { MainApiService, UserService } from '@dpt/shared';
 import { DefaultDialogComponent } from '@dpt/form';
 import { DataServiceDetail } from 'libs/shared/src/lib/share.model';
 export interface DataService {
@@ -164,7 +164,7 @@ export class DataServiceDetailComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private route: ActivatedRoute,
-
+    private userService: UserService,
     private mainApiService: MainApiService
   ) {}
   ngOnInit(): void {
@@ -203,11 +203,19 @@ export class DataServiceDetailComponent implements OnInit {
   onShowExampleData() {
     this.dialog.open(DataServiceDialogComponent, {
       width: '500px',
+      data: {
+        apiId: this.apiDetail?.apiId,
+        userId: this.userService.getUser()?.userId,
+      },
     });
   }
   onRequestData() {
     this.dialog.open(DataServiceDialogComponent, {
       width: '500px',
+      data: {
+        apiId: this.apiDetail?.apiId,
+        userId: this.userService.getUser()?.userId,
+      },
     });
     // this.router.navigate(['data-service-request']);
   }

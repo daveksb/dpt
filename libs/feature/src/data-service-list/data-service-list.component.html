@@ -77,24 +77,24 @@
           <ng-container [formGroup]="formGroup">
             <div class="side-bar-item-form">
               <mat-form-field appearance="fill">
-                <mat-label>จังหวัด</mat-label>
-                <mat-select formControlName="province" multiple>
+                <mat-label>ภูมิภาค</mat-label>
+                <mat-select formControlName="zoneName" multiple>
                   <mat-option
-                    *ngFor="let province of provinceList"
-                    [value]="province.id"
-                    >{{ province.nameTh }}</mat-option
+                    *ngFor="let zone of zones"
+                    [value]="zone.ZONE_NAME"
+                    >{{ zone.ZONE_NAME }}</mat-option
                   >
                 </mat-select>
               </mat-form-field>
             </div>
             <div class="side-bar-item-form">
               <mat-form-field appearance="fill">
-                <mat-label>อำเภอ</mat-label>
-                <mat-select formControlName="amphue" multiple>
+                <mat-label>จังหวัด</mat-label>
+                <mat-select formControlName="province" multiple>
                   <mat-option
-                    *ngFor="let amphue of currentAmphueList"
-                    [value]="amphue.id"
-                    >{{ amphue.nameTh }}</mat-option
+                    *ngFor="let province of currentProvinceList"
+                    [value]="province.provinceCode"
+                    >{{ province.provinceName }}</mat-option
                   >
                 </mat-select>
               </mat-form-field>

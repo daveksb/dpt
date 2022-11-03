@@ -54,7 +54,7 @@ export class DataReportComponent implements OnInit {
       ],
     },
   ];
-  apiList: DataReturn[] = [];
+  apiList: Partial<DataReturn>[] = [];
   colorScheme: any = {
     domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5'],
   };
@@ -66,6 +66,10 @@ export class DataReportComponent implements OnInit {
     this.apiService.getPublishList().subscribe((res) => {
       if (res.returnCode === '00') {
         this.apiList = res.datareturn;
+        this.apiList.unshift({
+          apiId: 'all',
+          apiName: 'ทั้งหมด',
+        });
       }
     });
   }

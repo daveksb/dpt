@@ -77,7 +77,7 @@ export interface RegisterRequest {
   tel?: string | null;
 }
 export interface DataServiceResponse extends DefaultResponse {
-  datareturn: [];
+  datareturn: DataReturn[];
 }
 export interface PublishDataResponse extends DefaultResponse {
   datareturn: DataReturn[];
@@ -95,6 +95,9 @@ export interface DataReturn {
   formatType: string;
   status: string;
   zone: string;
+  provinceCode: string;
+  provinceName: string;
+  zoneName: string;
 }
 export interface Category {
   catId: number;
@@ -332,4 +335,24 @@ export interface AdminData {
 
 export interface AdminDataResponse extends DefaultResponse {
   datareturn: AdminData[];
+}
+export interface Province {
+  provinceCode: string;
+  provinceName: string;
+  zoneName: string;
+}
+
+export interface ProvinceResponse extends DefaultResponse {
+  Province: Province[];
+}
+export interface TokenPublicResponse extends DefaultResponse {
+  email: string;
+  tokenKey: string;
+}
+export interface Zone {
+  ZONE_NAME: string;
+}
+
+export interface ZoneResponse extends DefaultResponse {
+  dbZoneNameOutput: Zone[];
 }

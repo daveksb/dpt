@@ -1,24 +1,5 @@
 <div class="page-content">
-  <mat-sidenav-container [hasBackdrop]="false" class="data-management-page">
-    <mat-sidenav [opened]="true" [disableClose]="true" mode="side" #snav>
-      <div class="header-1 management-label" mat-list-item>หมวดข้อมูล</div>
-
-      <mat-nav-list>
-        <a
-          class="management-item"
-          mat-list-item
-          [routerLink]="nav.url"
-          [routerLinkActive]="'management-active'"
-          *ngFor="let nav of navList"
-          >{{ nav.label }}
-        </a>
-      </mat-nav-list>
-    </mat-sidenav>
-
-    <mat-sidenav-content>
-      <div class="data-content">
-        <router-outlet></router-outlet>
-      </div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+  <div class="data-content">
+    <router-outlet></router-outlet>
+  </div>
 </div>
