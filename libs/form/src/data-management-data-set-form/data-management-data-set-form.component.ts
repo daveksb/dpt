@@ -1,15 +1,26 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormArray,
+  AbstractControl,
+} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { MainApiService } from '@dpt/shared';
+import { UserService } from '@dpt/shared';
 import {
   Category,
   CategoryGroup,
   DataType,
-  InsertApiRequest,
   Privacy,
+  Province,
 } from 'libs/shared/src/lib/share.model';
-
+export interface TableParam {
+  name?: string;
+  type?: string;
+  description?: string;
+  default?: string;
+}
 @Component({
   selector: 'dpt-data-management-data-set-form',
   templateUrl: './data-management-data-set-form.component.html',
@@ -17,25 +28,45 @@ import {
 })
 export class DataManagementDataSetFormComponent implements OnInit {
   formGroup = new FormGroup<any>({
-    privacyId: new FormControl<string>('FILE'),
+    privacyId: new FormControl<any>(null, Validators.required),
+    apiId: new FormControl<any>(null, Validators.required),
     apiName: new FormControl<any>(null, Validators.required),
     attribute: new FormControl<any>(null, Validators.required),
     active: new FormControl<any>('N', Validators.required),
-    typeId: new FormControl<any>(null, Validators.required),
+    createBy: new FormControl<any>(
+      this.userService.getUser()?.userId,
+      Validators.required
+    ),
+    departmentId: new FormControl<any>(
+      this.userService.getUser()?.department.departmentId,
+      Validators.required
+    ),
+    typeId: new FormControl<any>(1, Validators.required),
     zone: new FormControl<any>(null, Validators.required),
     catId: new FormControl<any>(null, Validators.required),
     groupsId: new FormControl<any>(null, Validators.required),
     apiDetail: new FormControl<any>(null, Validators.required),
     apiLink: new FormControl<any>(null, Validators.required),
-    formatType: new FormControl<any>(null, Validators.required),
+    formatType: new FormControl<any>('CSV', Validators.required),
     jsonField: new FormControl<any>(null, Validators.required),
+    provinceCode: new FormControl<any>(null, Validators.required),
   });
   dataTypeList: DataType[] = [];
-
+  jsonForm = new FormGroup({
+    form: new FormArray([
+      // new FormGroup({
+      //   name: new FormControl<any>(null, Validators.required),
+      //   type: new FormControl<any>(null, Validators.required),
+      //   description: new FormControl<any>(null, Validators.required),
+      //   default: new FormControl<any>(null, Validators.required),
+      // }),
+    ]),
+  });
   privacyList: Privacy[] = [];
   categoryGroupList: CategoryGroup[] = [];
   categoryList: Category[] = [];
-
+  provinceList: Province[] = [];
+  displayedColumns = ['name', 'type', 'description', 'default', 'action'];
   statusList = [
     {
       label: 'ถูกใช้งาน',
@@ -49,28 +80,90 @@ export class DataManagementDataSetFormComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<any>,
-    private mainApiService: MainApiService
+    private userService: UserService
   ) {
+    this.formGroup.get('active')?.disable(); // ToDo enable if admin department
     this.formGroup.patchValue(data);
     this.categoryList = data.categoryList;
     this.privacyList = data.privacyList;
+    this.provinceList = data.provinceList;
     this.dataTypeList = data.dataTypeList;
     this.categoryGroupList = data.categoryGroupList;
-  }
+    if (this.data.isEdit) {
+      this.formGroup.get('formatType')?.disable();
+    }
+    if (this.data.jsonField) {
+      const form = JSON.parse(
+        atob(this.data.jsonField) ?? '[]'
+      ) as TableParam[];
+      form.forEach((g) => {
+        const newGroup = new FormGroup({
+          name: new FormControl<any>(g.name),
+          type: new FormControl<any>(g.type),
+          description: new FormControl<any>(g.description),
+          default: new FormControl<any>(g.default),
+        });
+        this.formArray.push(newGroup);
+      });
+      if (!this.isAPI) {
+        this.formGroup.get('link')?.disable();
+      } else {
+        this.formGroup.get('link')?.enable();
+      }
+      // this.jsonForm
+      //   .get('form')(this.jsonForm.get('form') as FormArray)
+      //   .patchValue(JSON.parse(atob(this.data.jsonField) ?? '[]'));
+    }
 
-  ngOnInit(): void {}
+    // this.dataSource.data = this.jsonForm.controls;
+  }
+  // getForm(index: number, form: string) {
+  // return this.jsonForm.at(index).get(form) as FormControl;
+  // }
+
+  get formArray() {
+    return (this.jsonForm.get('form') as FormArray)
+      .controls as AbstractControl[];
+  }
+  ngOnInit(): void {
+    this.formGroup.get('formatType')?.valueChanges.subscribe((res) => {
+      if (!this.isAPI) {
+        this.formGroup.get('link')?.disable();
+      } else {
+        this.formGroup.get('link')?.enable();
+      }
+    });
+  }
 
   onDismiss() {
     this.dialogRef.close();
   }
   onConfirm() {
-    this.data.onConfirm(this.formGroup);
+    // this.formGroup.get('jsonField')?.setValue(null);
+    this.formGroup
+      .get('jsonField')
+      ?.setValue(JSON.stringify(this.jsonForm.get('form')?.value));
+    this.formGroup.get('');
+    this.data.onConfirm(this.formGroup.getRawValue());
     this.onDismiss();
   }
   get isAPI() {
-    return this.formGroup.get('selectgroups')?.value === 'API';
+    return this.formGroup.get('formatType')?.value === 'API';
   }
   get isEdit() {
     return this.data.isEdit;
+  }
+  addRow() {
+    (this.jsonForm.get('form') as FormArray).push(
+      new FormGroup({
+        name: new FormControl<any>(null, Validators.required),
+        type: new FormControl<any>(null, Validators.required),
+        description: new FormControl<any>(null, Validators.required),
+        default: new FormControl<any>(null, Validators.required),
+      })
+    );
+  }
+  deleteRow(i: number) {
+    (this.jsonForm.get('form') as FormArray).removeAt(i);
   }
 }

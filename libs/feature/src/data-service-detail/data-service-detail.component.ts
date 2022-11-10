@@ -175,7 +175,9 @@ export class DataServiceDetailComponent implements OnInit {
           //
           const { returnCode, returnMessage, ...rest } = res;
           this.apiDetail = rest;
-          this.dataSource = new MatTableDataSource(JSON.parse(res.jsonField));
+          this.dataSource = new MatTableDataSource(
+            JSON.parse(atob(res.jsonField))
+          );
           // this.dataSource = new MatTableDataSource(this.apiParams);
         } else {
           this.dialog.open(DefaultDialogComponent, {

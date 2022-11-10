@@ -254,7 +254,7 @@ export interface SaoGlobalResponse extends DefaultResponse {
 export interface InsertApiRequest {
   privacyId: string;
   apiName: string;
-  attribute: string;
+  attribute: string | null;
   active: string;
   departmentId: string;
   typeId: string;
@@ -265,6 +265,9 @@ export interface InsertApiRequest {
   apiLink: string;
   formatType: string;
   jsonField: string;
+}
+export interface UpdateApiRequest extends InsertApiRequest {
+  apiId: string;
 }
 export interface Privacy {
   privacyId: number;
@@ -355,4 +358,12 @@ export interface Zone {
 
 export interface ZoneResponse extends DefaultResponse {
   dbZoneNameOutput: Zone[];
+}
+export interface ApiType {
+  tId: string;
+  tType: string;
+}
+
+export interface ApiTypeResponse extends DefaultResponse {
+  TypeData: ApiType[];
 }

@@ -9,6 +9,7 @@ import {
   AdminReportByUserResponse,
   AdminRoleListResponse,
   AdminUserListResponse,
+  ApiTypeResponse,
   CategoryGroupResponse,
   DataRequest,
   DataRequestResponse,
@@ -229,6 +230,12 @@ export class MainApiService {
       `${environment.apiPrefix}/${url}`
     );
   }
+  getDataByDepartmentNew(departmentId: string) {
+    const url = `dptrequest/selectdatadepartment?depId=${departmentId}`;
+    return this.http.get<PublishDataResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
 
   getPrivacy() {
     const url = `dptrequest/selectprivacy`;
@@ -252,6 +259,10 @@ export class MainApiService {
     const url = `dptrequest/zonename`;
     return this.http.get<ZoneResponse>(`${environment.apiPrefix}/${url}`);
   }
+  getApiType() {
+    const url = `dptrequest/selecttypedata`;
+    return this.http.get<ApiTypeResponse>(`${environment.apiPrefix}/${url}`);
+  }
   getTokenPublic(body: any) {
     const url = `dptrequest/insertapitokenpublic`;
     return this.http.post<TokenPublicResponse>(
@@ -260,5 +271,18 @@ export class MainApiService {
         ...body,
       }
     );
+  }
+
+  addApiData(body: any) {
+    const url = `dptrequest/insertapidepartment?`;
+    return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
+      ...body,
+    });
+  }
+  updateApiData(body: any) {
+    const url = `dptrequest/updateapidepartment?`;
+    return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
+      ...body,
+    });
   }
 }

@@ -9,8 +9,9 @@
   <div class="request-form-container" [formGroup]="formGroup">
     <div class="label">รูปแบบข้อมูล</div>
     <div class="value">
-      <mat-radio-group formControlName="tType">
-        <mat-radio-button value="FILE">ไฟล์ </mat-radio-button>
+      <mat-radio-group formControlName="formatType">
+        <mat-radio-button value="CSV">CSV </mat-radio-button>
+        <mat-radio-button value="PDF">PDF</mat-radio-button>
         <mat-radio-button value="API">API</mat-radio-button>
       </mat-radio-group>
     </div>
@@ -20,58 +21,105 @@
         <input
           type="text"
           matInput
-          formControlName="dataName"
+          formControlName="apiName"
           placeholder="apiName"
         />
       </mat-form-field>
     </div>
+
     <div class="label">รายละเอียด</div>
     <div class="value">
       <mat-form-field class="form-field" appearance="outline">
         <input
           type="text"
           matInput
-          formControlName="detail"
+          formControlName="apiDetail"
           placeholder="apiDetail"
         />
       </mat-form-field>
     </div>
 
-    <ng-container *ngIf="isAPI">
-      <div class="label">Link</div>
-      <div class="value">
-        <mat-form-field class="form-field" appearance="outline">
-          <input
-            type="text"
-            matInput
-            formControlName="apiLink"
-            placeholder="apiLink"
-          />
-        </mat-form-field>
-      </div>
+    <div class="label">{{ isAPI ? 'Link' : 'ซื่อไฟล์' }}</div>
+    <div class="value">
+      <mat-form-field class="form-field" appearance="outline">
+        <input
+          type="text"
+          matInput
+          formControlName="apiLink"
+          [placeholder]="isAPI ? 'Link' : 'ซื่อไฟล์'"
+        />
+      </mat-form-field>
+    </div>
 
+    <ng-container *ngIf="isAPI">
       <div class="label">Data Table</div>
       <div class="value">
-        <mat-form-field class="form-field" appearance="outline">
-          <input
-            type="text"
-            matInput
-            formControlName="dataTable"
-            placeholder="dataTable"
-          />
-        </mat-form-field>
-      </div>
+        <button
+          class="float-left"
+          mat-icon-button
+          color="primary"
+          (click)="addRow()"
+        >
+          <mat-icon>add_circle_outline</mat-icon>
+          เพิ่มแถว
+        </button>
+        <form class="basic-container" [formGroup]="jsonForm">
+          <div formArrayName="form">
+            <div
+              class="table-row"
+              *ngFor="let formRow of formArray; let i = index"
+              [formGroupName]="i"
+            >
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label>Name</mat-label>
 
-      <div class="label">Column</div>
-      <div class="value">
-        <mat-form-field class="form-field" appearance="outline">
-          <input
-            type="text"
-            matInput
-            formControlName="column"
-            placeholder="column"
-          />
-        </mat-form-field>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="name"
+                  placeholder="name"
+                />
+              </mat-form-field>
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label>Type</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="type"
+                  placeholder="type"
+                />
+              </mat-form-field>
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label>Description</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="description"
+                  placeholder="description"
+                />
+              </mat-form-field>
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label>Default</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  placeholder="default"
+                  formControlName="default"
+                />
+              </mat-form-field>
+              <button
+                class="float-left"
+                mat-icon-button
+                color="primary"
+                aria-label="Remove/clear"
+                (click)="deleteRow(i)"
+                matTooltip="Remove"
+              >
+                <mat-icon>highlight_off</mat-icon>
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </ng-container>
 
@@ -79,16 +127,19 @@
     <div class="value double-column">
       <mat-form-field appearance="outline">
         <mat-select placeholder="category" formControlName="catId">
-          <mat-option *ngFor="let item of categoryList" [value]="item.catId">
+          <mat-option
+            *ngFor="let item of categoryList"
+            [value]="item.catId.toString()"
+          >
             {{ item.catName }}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-select placeholder="subCategory" formControlName="groupsName">
+        <mat-select placeholder="subCategory" formControlName="groupsId">
           <mat-option
             *ngFor="let item of categoryGroupList"
-            [value]="item.groupsId"
+            [value]="item.groupsId.toString()"
           >
             {{ item.groupsName }}
           </mat-option>
@@ -98,24 +149,44 @@
     <div class="label">การเผยแพร่</div>
     <div class="value double-column">
       <mat-form-field appearance="outline">
-        <mat-select placeholder="privacyName" formControlName="privacyName">
+        <mat-select placeholder="privacyId" formControlName="privacyId">
           <mat-option
             *ngFor="let item of privacyList"
-            [value]="item.privacyName"
+            [value]="item.privacyId.toString()"
           >
             {{ item.privacyName }}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-select placeholder="status" formControlName="status">
-          <mat-option *ngFor="let item of statusList" [value]="item.value">
+        <mat-select placeholder="active" formControlName="active">
+          <mat-option
+            *ngFor="let item of statusList"
+            [value]="item.value.toString()"
+          >
             {{ item.label }}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
+    <div class="label">จังหวัด</div>
+    <div class="value">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-select placeholder="provinceCode" formControlName="provinceCode">
+          <mat-option
+            *ngFor="let item of provinceList"
+            [value]="item.provinceCode.toString()"
+          >
+            {{ item.provinceName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </div>
+  <button class="float-left" mat-icon-button color="primary">
+    <mat-icon>add_circle_outline</mat-icon>
+    เพิ่มไฟล์
+  </button>
 </div>
 <mat-dialog-actions>
   <button mat-button (click)="onDismiss()">Cancel</button>

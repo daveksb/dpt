@@ -39,3 +39,12 @@
 .mat-radio-button ~ .mat-radio-button {
   margin-left: 16px;
 }
+.table-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+.action-container {
+  display: flex;
+  gap: 8px;
+}

@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DataManagementDataSetFormComponent } from '@dpt/form';
 import { MainApiService, UserService } from '@dpt/shared';
 import {
+  ApiType,
   Category,
   CategoryGroup,
   DataReturn,
@@ -14,6 +15,8 @@ import {
   Department,
   InsertApiRequest,
   Privacy,
+  Province,
+  UpdateApiRequest,
 } from 'libs/shared/src/lib/share.model';
 
 @Component({
@@ -41,6 +44,8 @@ export class DataManagementDataSetComponent implements AfterViewInit {
   privacyList: Privacy[] = [];
   dataTypeList: DataType[] = [];
   categoryGroupList: CategoryGroup[] = [];
+  provinceList: Province[] = [];
+  apiTypeList: ApiType[] = [];
   dataSource = new MatTableDataSource(this.defaultData);
   departmentId = '';
   constructor(
@@ -63,6 +68,12 @@ export class DataManagementDataSetComponent implements AfterViewInit {
     this.mainApiService.getCategoryGroup().subscribe((res) => {
       this.categoryGroupList = res.Groups;
     });
+    this.mainApiService.getProvinces().subscribe((res) => {
+      this.provinceList = res.Province;
+    });
+    this.mainApiService.getApiType().subscribe((res) => {
+      this.apiTypeList = res.TypeData;
+    });
     this.departmentId =
       this.userService.getUser()?.department.departmentId ?? '';
     this.refresh();
@@ -70,7 +81,7 @@ export class DataManagementDataSetComponent implements AfterViewInit {
 
   refresh() {
     this.mainApiService
-      .getDataByDepartment(this.departmentId)
+      .getDataByDepartmentNew(this.departmentId)
       .subscribe((data) => {
         this.dataSource.data = data.datareturn;
         this.defaultData = data.datareturn;
@@ -78,12 +89,8 @@ export class DataManagementDataSetComponent implements AfterViewInit {
       });
   }
   sortChange(sortState: Sort | any) {}
-  onDownload(a: any) {
-    console.log(a);
-  }
-  onDelete(id: number) {
-    console.log('onDelete', id);
-  }
+  onDownload(a: any) {}
+  onDelete(id: number) {}
 
   onEdit(row: DataReturn) {
     const data = {
@@ -92,7 +99,9 @@ export class DataManagementDataSetComponent implements AfterViewInit {
       privacyList: this.privacyList,
       categoryList: this.category,
       categoryGroupList: this.categoryGroupList,
-      onConfirm: this.onAddDataConfirm.bind(this),
+      apiTypeList: this.apiTypeList,
+      provinceList: this.provinceList,
+      onConfirm: this.onEditDataConfirm.bind(this),
       isEdit: true,
     };
 
@@ -103,6 +112,12 @@ export class DataManagementDataSetComponent implements AfterViewInit {
   }
   onAddItem() {
     const data = {
+      dataTypeList: this.dataTypeList,
+      privacyList: this.privacyList,
+      categoryList: this.category,
+      provinceList: this.provinceList,
+      categoryGroupList: this.categoryGroupList,
+      apiTypeList: this.apiTypeList,
       onConfirm: this.onAddDataConfirm.bind(this),
     };
     const dialogRef = this.dialog.open(DataManagementDataSetFormComponent, {
@@ -111,7 +126,21 @@ export class DataManagementDataSetComponent implements AfterViewInit {
     });
   }
   onAddDataConfirm(form: InsertApiRequest) {
-    console.log(form);
+    this.mainApiService.addApiData(form).subscribe((res) => {
+      if (res.returnCode === '00') {
+        this.refresh();
+      }
+    });
+  }
+  onEditDataConfirm(form: UpdateApiRequest) {
+    form.zone = form.privacyId === '1' ? 'PB' : 'PV';
+    form.typeId = form.typeId.toString();
+    form.attribute = null;
+    this.mainApiService.updateApiData(form).subscribe((res) => {
+      if (res.returnCode === '00') {
+        this.refresh();
+      }
+    });
   }
   onSearch() {
     this.currentData = (
