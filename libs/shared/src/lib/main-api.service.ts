@@ -11,6 +11,7 @@ import {
   AdminUserListResponse,
   ApiTypeResponse,
   CategoryGroupResponse,
+  CheckFileResponse,
   DataRequest,
   DataRequestResponse,
   DataRequestSecretaryResponse,
@@ -284,5 +285,17 @@ export class MainApiService {
     return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
       ...body,
     });
+  }
+  insertFileTemp(body: any) {
+    const url = `dptrequest/inserttempfile?`;
+    return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
+      ...body,
+    });
+  }
+  selectFileTemp(refId: string) {
+    const url = `dptrequest/selecttempfile`;
+    return this.http.get<CheckFileResponse>(
+      `${environment.apiPrefix}/${url}?refId=${refId}`
+    );
   }
 }

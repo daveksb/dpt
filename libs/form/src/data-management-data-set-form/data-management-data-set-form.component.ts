@@ -7,14 +7,18 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { UserService } from '@dpt/shared';
+import { MainApiService, UserService } from '@dpt/shared';
 import {
   Category,
   CategoryGroup,
+  CheckFileResponse,
   DataType,
   Privacy,
   Province,
 } from 'libs/shared/src/lib/share.model';
+import { DateTime } from 'luxon';
+import { interval, Observable, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
 export interface TableParam {
   name?: string;
   type?: string;
@@ -62,6 +66,7 @@ export class DataManagementDataSetFormComponent implements OnInit {
       // }),
     ]),
   });
+  generateRefId = '';
   privacyList: Privacy[] = [];
   categoryGroupList: CategoryGroup[] = [];
   categoryList: Category[] = [];
@@ -77,10 +82,12 @@ export class DataManagementDataSetFormComponent implements OnInit {
       value: 'N',
     },
   ];
+  cancelSubject$ = new Subject();
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<any>,
-    private userService: UserService
+    private userService: UserService,
+    private mainApiService: MainApiService
   ) {
     this.formGroup.get('active')?.disable(); // ToDo enable if admin department
     this.formGroup.patchValue(data);
@@ -126,6 +133,9 @@ export class DataManagementDataSetFormComponent implements OnInit {
       .controls as AbstractControl[];
   }
   ngOnInit(): void {
+    if (!this.data.refId) {
+      this.getRefId();
+    }
     this.formGroup.get('formatType')?.valueChanges.subscribe((res) => {
       if (!this.isAPI) {
         this.formGroup.get('link')?.disable();
@@ -133,9 +143,14 @@ export class DataManagementDataSetFormComponent implements OnInit {
         this.formGroup.get('link')?.enable();
       }
     });
+    const role = this.userService.getUser()?.role.roleId;
+    if (role === '6' || role === '1') {
+      this.formGroup.get('active')?.enable();
+    }
   }
 
   onDismiss() {
+    this.cancelSubject$.next(true);
     this.dialogRef.close();
   }
   onConfirm() {
@@ -165,5 +180,62 @@ export class DataManagementDataSetFormComponent implements OnInit {
   }
   deleteRow(i: number) {
     (this.jsonForm.get('form') as FormArray).removeAt(i);
+  }
+
+  addFile() {
+    const temp = this.data.apiLink ?? '';
+    const hasPrefix = (temp as string).includes('TA');
+    if (hasPrefix) {
+      this.generateRefId = (this.data.apiLink as string).split('.')[0];
+    }
+    if (!this.data.apiLink) {
+      this.mainApiService
+        .insertFileTemp({
+          refId: this.generateRefId,
+        })
+        .subscribe((res) => {
+          if (res.returnCode === '00') {
+            const temp = interval(10000);
+            temp.pipe(takeUntil(this.cancelSubject$)).subscribe(() => {
+              this.mainApiService.selectFileTemp(this.generateRefId).subscribe({
+                next: (select) => {
+                  if (
+                    select.returnCode === '99' ||
+                    select.returnCode === '98'
+                  ) {
+                    this.cancelSubject$.next(true);
+                  } else {
+                    if (select.returnCode === '00') {
+                      if (select.tfFileName) {
+                        this.formGroup
+                          .get('apiLink')
+                          ?.setValue(select.tfFileName);
+                        this.cancelSubject$.next(true);
+                      }
+                    }
+                  }
+                },
+                error: () => {
+                  this.cancelSubject$.next(true);
+                },
+              });
+            });
+            //
+          } else console.log(res);
+        });
+    }
+
+    window.open(
+      'http://38.242.138.3/9A5387D3066CAD4D72E2B730A7456639E97E5C6D/uploadfiledata.php?refId=' +
+        this.generateRefId,
+      '_blank'
+    );
+  }
+  getRefId() {
+    this.generateRefId = `TA${this.userService.getUser()?.userId}${
+      DateTime.now().second
+    }${DateTime.now().minute}${DateTime.now().hour}${DateTime.now().day}${
+      DateTime.now().month
+    }${DateTime.now().year}`;
   }
 }

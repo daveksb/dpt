@@ -21,6 +21,7 @@ export class TokenHandleInterceptor implements HttpInterceptor {
     'dptrequest/selectgroups',
     'dptrequest/selectprovince',
     'dptrequest/zonename',
+    'dptrequest/selecttempfile',
   ];
   constructor(private cookieService: CookieService) {}
   intercept(

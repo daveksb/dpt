@@ -367,3 +367,17 @@ export interface ApiType {
 export interface ApiTypeResponse extends DefaultResponse {
   TypeData: ApiType[];
 }
+export interface CheckFile {
+  tfId: string;
+  tfRef: string;
+  tfFileName: string;
+  tfTimestamp: string;
+  tfFlag: string;
+}
+export interface CheckFileResponse extends DefaultResponse {
+  tfId: string;
+  tfRef: string;
+  tfFileName: string;
+  tfTimestamp: string;
+  tfFlag: string;
+}
