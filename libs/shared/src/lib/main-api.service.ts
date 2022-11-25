@@ -22,6 +22,12 @@ import {
   PrivacyResponse,
   ProvinceResponse,
   PublishDataResponse,
+  RequestApiDataResponse,
+  RequestApiFileResponse,
+  RequestApiFileViewResponse,
+  RequestApiSecretaryResponse,
+  RequestApiUser,
+  RequestApiUserResponse,
   SaoApiServiceResponse,
   SaoGlobalResponse,
   TokenPublicResponse,
@@ -297,5 +303,57 @@ export class MainApiService {
     return this.http.get<CheckFileResponse>(
       `${environment.apiPrefix}/${url}?refId=${refId}`
     );
+  }
+
+  getRequestApiUser() {
+    const url = `dptrequest/selectrequser?`;
+    return this.http.get<RequestApiUserResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+
+  getRequestApiUserFile(rfTransaction: string, rfUserId: string) {
+    const url = `dptrequest/selectrequestapifile?rfTransaction=${rfTransaction}&rfUserId=${rfUserId}`;
+    return this.http.get<RequestApiFileResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+
+  getRequestApiFileView(rfId: string) {
+    const url = `dptrequest/selectrequestapiperfile?rfId=${rfId}`;
+    return this.http.get<RequestApiFileViewResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+
+  getRequestApiSecretary() {
+    const url = `dptrequest/selectreqsecre?`;
+    return this.http.get<RequestApiSecretaryResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+  getRequestApiDepart(depId: string) {
+    const url = `dptrequest/selectreqdepart?depId=${depId}`;
+    return this.http.get<RequestApiSecretaryResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+  getRequestApiData(depId: string) {
+    const url = `dptrequest/selectreqdepartprivate?depId=${depId}`;
+    return this.http.get<RequestApiDataResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+  updateApproval(body: any) {
+    const url = `dptrequest/approvesecretary?`;
+    return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
+      ...body,
+    });
+  }
+  updateApprovalDepartment(body: any) {
+    const url = `dptrequest//approvedepartment?`;
+    return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
+      ...body,
+    });
   }
 }

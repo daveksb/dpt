@@ -11,3 +11,4 @@ export * from './default-dialog/default-dialog.component';
 export * from './admin-department-form/admin-department-form.component';
 
 export * from './admin-sao-form/admin-sao-form.component';
+export * from './approve-department-form/approve-department-form.component';

@@ -381,3 +381,81 @@ export interface CheckFileResponse extends DefaultResponse {
   tfTimestamp: string;
   tfFlag: string;
 }
+
+export interface RequestApiUser {
+  reqId: string;
+  reqName: string;
+  reqDescription: string;
+  reqFile: string;
+  reqCreate: string;
+  reqApprove: string;
+  departmentName: string;
+  catName: string;
+}
+
+export interface RequestApiUserResponse extends DefaultResponse {
+  datareturn: RequestApiUser[];
+}
+export interface RequestApiFile {
+  rfId: string;
+  rfName: string;
+  rfMime: string;
+  rfTransaction: string;
+  rfUserId: string;
+  rfTimestamp: string;
+}
+
+export interface RequestApiFileResponse extends DefaultResponse {
+  datareturn: RequestApiFile[];
+}
+export interface RequestApiFileView extends RequestApiFile {
+  rfData: string;
+}
+
+export interface RequestApiFileViewResponse extends DefaultResponse {
+  rfId: string;
+  rfName: string;
+  rfMime: string;
+  rfTransaction: string;
+  rfUserId: string;
+  rfData: string;
+  rfTimestamp: string;
+}
+export interface RequestApiSecretary {
+  reqId: string;
+  userId: string;
+  reqName: string;
+  reqDescription: string;
+  reqFile: string;
+  reqCreate: string;
+  reqApprove: string;
+  catName: string;
+  name: string;
+  lname: string;
+  name_en: string;
+  lname_en: string;
+  departmentName: string;
+  departmentNameExternal: string;
+}
+
+export interface RequestApiSecretaryResponse extends DefaultResponse {
+  datareturn: RequestApiSecretary[];
+}
+export interface RequestApiData {
+  apiName: string;
+  apiDetail: string;
+  zone: string;
+  status: string;
+  userId: string;
+  name: string;
+  lname: string;
+  name_en: string;
+  lname_en: string;
+  departmentName: string;
+  departmentNameExternal: string;
+  tokenId: string;
+}
+
+export interface RequestApiDataResponse extends DefaultResponse {
+  datareturn: RequestApiData[];
+}

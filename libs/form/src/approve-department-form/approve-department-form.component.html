@@ -1,0 +1,54 @@
+<div mat-dialog-title class="department-form-header">
+  <div class="department-form-header-label">รายละเอียดข้อมูล</div>
+  <button mat-button (click)="onDismiss()" cdkFocusInitial>X</button>
+</div>
+
+<div mat-dialog-content>
+  <div class="department-form-container" [formGroup]="formGroup">
+    <div class="label">ข้อมูลหน่วยงาน</div>
+    <div class="value">
+      <div class="department-container">
+        <mat-form-field appearance="outline">
+          <mat-select
+            placeholder="เลือก 1 หมวดหมู่"
+            formControlName="department"
+          >
+            <mat-option
+              *ngFor="let item of departments"
+              [value]="item.departmentName"
+            >
+              {{ item.departmentName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="label">รายละเอียด</div>
+    <div class="value">
+      <mat-form-field class="form-field" appearance="outline">
+        <textarea
+          type="text"
+          matInput
+          formControlName="reason"
+          placeholder="reason"
+        ></textarea>
+      </mat-form-field>
+    </div>
+    <ng-container *ngIf="data.roleId === '6' || data.roleId === '5'">
+      <div class="label">Api</div>
+      <div class="value">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-select placeholder="โปรดเลือก" formControlName="apiId">
+            <mat-option *ngFor="let item of apiList" [value]="item.apiId">
+              {{ item.apiName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </ng-container>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onConfirm()">ตกลง</button>
+  <button mat-button (click)="onDismiss()">ยกเลิก</button>
+</div>

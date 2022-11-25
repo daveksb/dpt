@@ -30,6 +30,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AdminDepartmentFormComponent } from './admin-department-form/admin-department-form.component';
 import { AdminSaoFormComponent } from './admin-sao-form/admin-sao-form.component';
+import { FileListFormComponent } from './file-list-form/file-list-form.component';
+import { ApproveDepartmentFormComponent } from './approve-department-form/approve-department-form.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { AdminSaoFormComponent } from './admin-sao-form/admin-sao-form.component
     DefaultDialogComponent,
     AdminDepartmentFormComponent,
     AdminSaoFormComponent,
+    FileListFormComponent,
+    ApproveDepartmentFormComponent,
   ],
 
   imports: [
@@ -68,6 +72,7 @@ import { AdminSaoFormComponent } from './admin-sao-form/admin-sao-form.component
     MatIconModule,
     SharedModule,
     UiModule,
+    MatSelectModule,
   ],
   exports: [
     FormForgotPasswordComponent,
@@ -85,6 +90,7 @@ import { AdminSaoFormComponent } from './admin-sao-form/admin-sao-form.component
     SharedModule,
     DefaultDialogComponent,
     AdminSaoFormComponent,
+    FileListFormComponent,
   ],
 })
 export class FormModule {}

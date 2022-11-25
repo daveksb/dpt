@@ -1,7 +1,5 @@
 <div class="main-container">
-  <div class="request-label header-1">
-    รายการร้องขอใช้ชุดข้อมูล ( ผู้ร้องขอ )
-  </div>
+  <div class="request-label header-1">รายการการขอใช้ชุดข้อมูล</div>
   <div class="request-table default-table">
     <table
       mat-table
@@ -16,12 +14,12 @@
 
       <ng-container matColumnDef="fullName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>ชื่อ-นามสกุล</th>
-        <td mat-cell *matCellDef="let row">{{ row.fullName }}</td>
+        <td mat-cell *matCellDef="let row">{{ row.name }} {{ row.lname }}</td>
       </ng-container>
 
       <ng-container matColumnDef="department">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>หน่วยงาน</th>
-        <td mat-cell *matCellDef="let row">{{ row.department }}</td>
+        <td mat-cell *matCellDef="let row">{{ row.departmentName }}</td>
       </ng-container>
 
       <ng-container matColumnDef="dataName">
@@ -30,10 +28,9 @@
           <div class="data-request-data-container">
             <div class="dataName">
               <a [href]="row.dataPath">
-                {{ row.dataName }}
+                {{ row.apiName }}
               </a>
             </div>
-            <div class="dataDate">{{ row.dataDate }}</div>
           </div>
         </td>
       </ng-container>
@@ -42,9 +39,11 @@
         <td mat-cell *matCellDef="let row">
           <img
             class="default-icon"
-            [src]="'assets/icon/' + (row.status | lowercase) + '.svg'"
+            [src]="
+              'assets/icon/' + (getStatus(row.status) | lowercase) + '.svg'
+            "
           />
-          {{ row.status }}
+          {{ getStatus(row.status) }}
         </td>
       </ng-container>
       <ng-container matColumnDef="action">
@@ -55,11 +54,6 @@
               src="assets/icon/edit.svg"
               class="default-icon"
               (click)="onDownload(row.id)"
-            />
-            <img
-              src="assets/icon/view.png"
-              class="default-icon"
-              (click)="onView(row.id)"
             />
           </div>
         </td>

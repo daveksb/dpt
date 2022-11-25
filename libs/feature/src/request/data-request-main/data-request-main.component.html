@@ -8,7 +8,7 @@
           mat-list-item
           [routerLink]="'request-list'"
           [routerLinkActive]="'request-active'"
-          >{{ 'ชุดข้อมูล' }}
+          >{{ 'ข้อมูลที่ร้องขอ' }}
         </a>
         <a
           class="request-item"
@@ -16,7 +16,7 @@
           [routerLink]="'data-set'"
           [routerLinkActive]="'request-active'"
           *ngIf="canRequest"
-          >{{ 'ข้อมูลที่ร้องขอ' }}
+          >{{ 'ชุดข้อมูล' }}
         </a>
       </mat-nav-list>
     </mat-sidenav>

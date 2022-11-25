@@ -18,10 +18,10 @@ export class LandingComponent implements OnInit {
     4: 'global.svg',
   };
   mapCount: any = {
-    1: '2',
-    2: '34',
-    3: '15',
-    4: '38',
+    '1': '0',
+    '2': '0',
+    '3': '0',
+    '4': '0',
   };
   currentData: DataReturn[] = [];
   defaultData: DataReturn[] = [];
@@ -32,19 +32,26 @@ export class LandingComponent implements OnInit {
 
   onOpenFile(a: any) {}
   ngOnInit(): void {
-    this.mainApiService.getLandingList().subscribe({
-      next: (res) => {
-        console.log(res);
-        if (res.returnCode === '00') {
-          this.currentData = res.datareturn as DataReturn[];
-          this.defaultData = res.datareturn as DataReturn[];
-        } else {
-        }
-      },
-      error: (err) => {},
-    });
     this.mainApiService.getCategory().subscribe((a: any) => {
       this.category = a.Category;
+      this.mainApiService.getLandingList().subscribe({
+        next: (res) => {
+          if (res.returnCode === '00') {
+            this.currentData = res.datareturn as DataReturn[];
+            this.defaultData = res.datareturn as DataReturn[];
+            const temp: any = {};
+            res.datareturn.forEach((res) => {
+              const catId =
+                this.category.find((a) => a.catName === res.catName)?.catId ??
+                0;
+              temp[catId] = temp[catId] ? temp[catId] + 1 : 1;
+            });
+            this.mapCount = temp;
+          } else {
+          }
+        },
+        error: (err) => {},
+      });
     });
   }
   search() {

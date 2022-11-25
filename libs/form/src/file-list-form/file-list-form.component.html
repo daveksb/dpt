@@ -1,0 +1,26 @@
+<div mat-dialog-title class="department-form-header">
+  <div class="department-form-header-label">ไฟล์</div>
+  <button mat-button (click)="onDismiss()" cdkFocusInitial>X</button>
+</div>
+
+<div mat-dialog-content>
+  <div class="department-form-container">
+    <ng-container *ngFor="let item of fileList">
+      <div class="label">ชื่อไฟล์</div>
+      <div class="value">
+        {{ item.rfName }}
+      </div>
+      <div class="action">
+        <img
+          src="assets/icon/edit.svg"
+          class="default-icon"
+          (click)="downloadFile(item.rfId)"
+        />
+      </div>
+    </ng-container>
+  </div>
+  <!-- <div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</div> -->
+</div>

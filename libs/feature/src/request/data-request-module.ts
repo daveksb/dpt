@@ -16,6 +16,8 @@ import { DataRequestAdminComponent } from './data-request-admin/data-request-adm
 import { DataRequestMainComponent } from './data-request-main/data-request-main.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSortModule } from '@angular/material/sort';
+import { TokenHandleInterceptor } from '../interceptor/api-interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -52,6 +54,13 @@ const routes: Routes = [
     MatPaginatorModule,
     MatButtonModule,
     MatSortModule,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenHandleInterceptor,
+      multi: true,
+    },
   ],
   exports: [
     DataRequestComponent,
