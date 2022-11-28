@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { DefaultDialogComponent } from '@dpt/form';
 import { MainApiService, UserService } from '@dpt/shared';
 import { UserRequestFormComponent } from 'libs/form/src/user-request-form/user-request-form.component';
 import {
@@ -98,19 +99,77 @@ export class AdminUserComponent implements OnInit {
       .deleteUser({
         userId: id,
       })
-      .subscribe((res) => {
-        if (res.returnCode === '00') {
-          this.refresh();
-        }
+      .subscribe({
+        next: (res) => {
+          if (res.returnCode === '00') {
+            this.refresh();
+            this.dialog.closeAll();
+            this.dialog.open(DefaultDialogComponent, {
+              maxHeight: '800px',
+              width: '500px',
+              data: {
+                status: 'ดำเนินการสำเร็จ',
+              },
+            });
+            this.refresh();
+          } else {
+            this.dialog.open(DefaultDialogComponent, {
+              maxHeight: '800px',
+              width: '500px',
+              data: {
+                isError: true,
+                status: 'ดำเนินการไม่สำเร็จ',
+              },
+            });
+          }
+        },
+        error: () => {
+          this.dialog.open(DefaultDialogComponent, {
+            maxHeight: '800px',
+            width: '500px',
+            data: {
+              isError: true,
+              status: 'ดำเนินการไม่สำเร็จ',
+            },
+          });
+        },
       });
   }
   onConfirm(form: any) {
-    this.apiService.updateUserStatus(form).subscribe((res: DefaultResponse) => {
-      if (res.returnCode === '00') {
-        //
-        this.refresh();
-        this.dialog.closeAll();
-      }
+    this.apiService.updateUserStatus(form).subscribe({
+      next: (res) => {
+        if (res.returnCode === '00') {
+          this.refresh();
+          this.dialog.closeAll();
+          this.dialog.open(DefaultDialogComponent, {
+            maxHeight: '800px',
+            width: '500px',
+            data: {
+              status: 'ดำเนินการสำเร็จ',
+            },
+          });
+          this.refresh();
+        } else {
+          this.dialog.open(DefaultDialogComponent, {
+            maxHeight: '800px',
+            width: '500px',
+            data: {
+              isError: true,
+              status: 'ดำเนินการไม่สำเร็จ',
+            },
+          });
+        }
+      },
+      error: () => {
+        this.dialog.open(DefaultDialogComponent, {
+          maxHeight: '800px',
+          width: '500px',
+          data: {
+            isError: true,
+            status: 'ดำเนินการไม่สำเร็จ',
+          },
+        });
+      },
     });
   }
 }

@@ -356,7 +356,7 @@ export class MainApiService {
     });
   }
   updateUserStatus(body: any) {
-    const url = `dptrequest/updateflaguser?`;
+    const url = `dptuser/updateflaguser?`;
     return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
       ...body,
     });
