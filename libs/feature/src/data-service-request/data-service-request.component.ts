@@ -61,7 +61,7 @@ export class DataServiceRequestComponent implements OnInit {
           .uploadFile({
             rfname: file.name,
             rfmime: file.type,
-            rfdata: reader.result as string,
+            rfdata: btoa(reader.result as string),
             rftrans: this.rftrans,
             rfusrid: this.userService.getUser()?.userId,
           })

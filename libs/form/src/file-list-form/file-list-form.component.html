@@ -26,13 +26,13 @@
 
     <div class="label">ชื่อชุดข้อมูล</div>
     <div class="value">
-      {{ data.apiDetail.reqName }}
+      {{ data.apiDetail.reqName ?? data.apiDetail.apiName }}
     </div>
     <div class="action"></div>
 
     <div class="label">รายละเอียด</div>
     <div class="value">
-      {{ data.apiDetail.reqDescription }}
+      {{ data.apiDetail.reqDescription ?? data.apiDetail.apiDetail }}
     </div>
     <div class="action"></div>
     <ng-container *ngFor="let item of fileList">

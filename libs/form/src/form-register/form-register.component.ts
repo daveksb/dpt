@@ -34,7 +34,7 @@ export class FormRegisterComponent {
     departmentType: new FormControl('3', Validators.required),
     email: new FormControl(null, Validators.required),
     departmentCategory: new FormControl(null, Validators.required),
-    departmentName: new FormControl(null, Validators.required),
+    departmentName: new FormControl(null),
     userNameTh: new FormControl(null, Validators.required),
     userNameEn: new FormControl(null, Validators.required),
     userLastNameTh: new FormControl(null, Validators.required),

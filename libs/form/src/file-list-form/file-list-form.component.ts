@@ -40,7 +40,7 @@ export class FileListFormComponent implements OnInit {
     this.mainApiService.getRequestApiFileView(id).subscribe((res) => {
       if (res.returnCode === '00') {
         const link = document.createElement('a');
-        link.href = res.rfData;
+        link.href = atob(res.rfData);
         link.download = res.rfName;
         link.click();
         link.remove();

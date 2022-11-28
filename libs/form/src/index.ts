@@ -12,3 +12,4 @@ export * from './admin-department-form/admin-department-form.component';
 
 export * from './admin-sao-form/admin-sao-form.component';
 export * from './approve-department-form/approve-department-form.component';
+export * from './data-service-dialog/data-service-dialog.component';

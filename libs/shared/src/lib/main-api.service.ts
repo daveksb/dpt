@@ -355,6 +355,12 @@ export class MainApiService {
       ...body,
     });
   }
+  updateApprovalDepartmentPrivate(body: any) {
+    const url = `dptrequest/approvedepartmentprivate?`;
+    return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
+      ...body,
+    });
+  }
   updateUserStatus(body: any) {
     const url = `dptuser/updateflaguser?`;
     return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {

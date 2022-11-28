@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { DataRequestFormComponent } from './data-request-form.component';
+import { DataRequestFormComponent } from '../data-request-form/data-request-form.component';
 
 describe('DataRequestFormComponent', () => {
   let component: DataRequestFormComponent;

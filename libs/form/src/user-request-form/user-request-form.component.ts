@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AdminUserList, Role, UserService } from '@dpt/shared';
+import { AdminUserList, Role } from '@dpt/shared';
 
 @Component({
   selector: 'dpt-user-request-form',

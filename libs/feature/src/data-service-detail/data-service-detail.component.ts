@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DataServiceDialogComponent, TopNavComponent } from '@dpt/ui';
-import { ActivatedRoute, Route, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MainApiService, UserService } from '@dpt/shared';
-import { DefaultDialogComponent } from '@dpt/form';
+import { DataServiceDialogComponent, DefaultDialogComponent } from '@dpt/form';
 import { DataServiceDetail } from 'libs/shared/src/lib/share.model';
 export interface DataService {
   topic: string;
@@ -203,22 +201,91 @@ export class DataServiceDetailComponent implements OnInit {
     });
   }
   onShowExampleData() {
-    this.dialog.open(DataServiceDialogComponent, {
-      width: '500px',
-      data: {
-        apiId: this.apiDetail?.apiId,
-        userId: this.userService.getUser()?.userId,
-      },
+    const body = {
+      userId: this.userService.getUser()?.userId,
+      apiId: this.apiDetail?.apiId,
+      countdatetemp: '365',
+      countdate: '365',
+      zone: this.apiDetail?.zone,
+    };
+    let token = '';
+    this.mainApiService.getTokenPublic(body).subscribe((res) => {
+      if (res.returnCode === '01') {
+        token = res.tokenKey;
+        this.dialog.open(DataServiceDialogComponent, {
+          width: '500px',
+          data: {
+            tokenKey: token,
+          },
+        });
+      }
+      if (res.returnCode === '00') {
+        this.dialog.closeAll();
+        this.dialog.open(DefaultDialogComponent, {
+          maxHeight: '800px',
+          width: '500px',
+          data: {
+            status: 'รอให้เจ้าของข้อมูลอนุมัติ',
+          },
+        });
+      }
+      if (res.returnCode === '98') {
+        this.dialog.closeAll();
+        this.dialog.open(DefaultDialogComponent, {
+          maxHeight: '800px',
+          width: '500px',
+          data: {
+            isError: true,
+            status: 'มีข้อมูลที่ร้องขอแล้ว',
+          },
+        });
+      }
     });
+
+    // this.router.navigate(['data-service-request']);
   }
   onRequestData() {
-    this.dialog.open(DataServiceDialogComponent, {
-      width: '500px',
-      data: {
-        apiId: this.apiDetail?.apiId,
-        userId: this.userService.getUser()?.userId,
-      },
+    const body = {
+      userId: this.userService.getUser()?.userId,
+      apiId: this.apiDetail?.apiId,
+      countdatetemp: '365',
+      countdate: '365',
+      zone: this.apiDetail?.zone,
+    };
+    let token = '';
+    this.mainApiService.getTokenPublic(body).subscribe((res) => {
+      if (res.returnCode === '01') {
+        token = res.tokenKey;
+        this.dialog.open(DataServiceDialogComponent, {
+          width: '500px',
+          data: {
+            tokenKey: token,
+          },
+        });
+      }
+      if (res.returnCode === '00') {
+        this.dialog.closeAll();
+        this.dialog.open(DefaultDialogComponent, {
+          maxHeight: '800px',
+          width: '500px',
+          data: {
+            status: 'รอให้เจ้าของข้อมูลอนุมัติ',
+          },
+        });
+      }
+      if (res.returnCode === '98') {
+        this.dialog.closeAll();
+        this.dialog.open(DefaultDialogComponent, {
+          maxHeight: '800px',
+          width: '500px',
+          data: {
+            isError: true,
+            status: 'มีข้อมูลที่ร้องขอแล้ว',
+          },
+        });
+      }
     });
+
     // this.router.navigate(['data-service-request']);
   }
   back() {

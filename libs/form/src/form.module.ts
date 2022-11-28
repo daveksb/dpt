@@ -33,6 +33,7 @@ import { AdminSaoFormComponent } from './admin-sao-form/admin-sao-form.component
 import { FileListFormComponent } from './file-list-form/file-list-form.component';
 import { ApproveDepartmentFormComponent } from './approve-department-form/approve-department-form.component';
 import { UserRequestFormComponent } from './user-request-form/user-request-form.component';
+import { DataServiceDialogComponent } from './data-service-dialog/data-service-dialog.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { UserRequestFormComponent } from './user-request-form/user-request-form.
     FileListFormComponent,
     ApproveDepartmentFormComponent,
     UserRequestFormComponent,
+    DataServiceDialogComponent,
   ],
 
   imports: [
@@ -91,6 +93,7 @@ import { UserRequestFormComponent } from './user-request-form/user-request-form.
     MatButtonModule,
     SharedModule,
     DefaultDialogComponent,
+    DataServiceDialogComponent,
     AdminSaoFormComponent,
     FileListFormComponent,
   ],
