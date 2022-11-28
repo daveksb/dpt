@@ -350,7 +350,19 @@ export class MainApiService {
     });
   }
   updateApprovalDepartment(body: any) {
-    const url = `dptrequest//approvedepartment?`;
+    const url = `dptrequest/approvedepartment?`;
+    return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
+      ...body,
+    });
+  }
+  updateUserStatus(body: any) {
+    const url = `dptrequest/updateflaguser?`;
+    return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
+      ...body,
+    });
+  }
+  deleteUser(body: any) {
+    const url = `dptuser/deleteuser?`;
     return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
       ...body,
     });

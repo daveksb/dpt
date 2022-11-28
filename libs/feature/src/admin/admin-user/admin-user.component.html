@@ -51,14 +51,14 @@
               <button
                 mat-flat-button
                 class="default-button approve-button"
-                (click)="onApprove(row.id)"
+                (click)="onApprove(row)"
               >
                 อนุมัติ
               </button>
               <button
                 mat-flat-button
                 class="default-button cancel-button"
-                (click)="onCancel(row.id)"
+                (click)="onCancel(row)"
               >
                 ไม่อนุมัติ
               </button>
@@ -76,9 +76,14 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
         <td mat-cell *matCellDef="let row">
           <img
+            src="assets/icon/view.png"
+            class="default-icon"
+            (click)="onView(row)"
+          />
+          <img
             src="assets/icon/delete.svg"
             class="default-icon"
-            (click)="onView(row.id)"
+            (click)="onDelete(row.userId)"
           />
         </td>
       </ng-container>

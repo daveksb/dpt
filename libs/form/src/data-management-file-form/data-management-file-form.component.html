@@ -1,73 +1,75 @@
 <div mat-dialog-title class="file-form-header">
-    <div class="file-form-header-label">
-        {{ isEdit ? 'แก้ไขชุดข้อมูล': 'เพิ่มชุดข้อมูล'}}
-    </div>
-    <button mat-button (click)="onDismiss()" cdkFocusInitial>X</button>
-
+  <div class="file-form-header-label">
+    {{ isEdit ? 'แก้ไขชุดข้อมูล' : 'เพิ่มชุดข้อมูล' }}
+  </div>
+  <button mat-button (click)="onDismiss()" cdkFocusInitial>X</button>
 </div>
 
 <div mat-dialog-content>
-    <div class="file-form-container" [formGroup]="formGroup">
-        <div class="label">
-            ชื่อไฟล์
-        </div>
-        <div class="value">
-            <mat-form-field class="form-field" appearance="outline">
-                <input type="text" matInput formControlName="dataName" placeholder="dataName" />
-            </mat-form-field>
-        </div>
-        <div class="label">
-
-            รายละเอียด
-        </div>
-        <div class="value">
-            <mat-form-field class="form-field" appearance="outline">
-                <input type="text" matInput formControlName="detail" placeholder="detail" />
-            </mat-form-field>
-        </div>
-        <div class="label">
-            หน่วยงาน
-        </div>
-        <div class="value">
-            <mat-form-field class="form-field" appearance="outline">
-                <input type="text" matInput formControlName="department" placeholder="department" />
-            </mat-form-field>
-        </div>
-        <div class="label">
-            รูปแบบข้อมูล
-        </div>
-        <div class="value">
-            <mat-form-field class="form-field" appearance="outline">
-                <input type="text" matInput formControlName="dataType" placeholder="dataType" />
-            </mat-form-field>
-        </div>
-
-        <div class="label">
-            แนบไฟล์
-        </div>
-        <div class="value">
-            <input type="file" formControlName="file" />
-        </div>
-
-
+  <div class="file-form-container" [formGroup]="formGroup">
+    <div class="label">ชื่อไฟล์</div>
+    <div class="value">
+      <mat-form-field class="form-field" appearance="outline">
+        <input
+          type="text"
+          matInput
+          formControlName="dataName"
+          placeholder="dataName"
+        />
+      </mat-form-field>
     </div>
-    <div class="d-flex f-width">
-        แนบไฟล์
+    <div class="label">รายละเอียด</div>
+    <div class="value">
+      <mat-form-field class="form-field" appearance="outline">
+        <input
+          type="text"
+          matInput
+          formControlName="detail"
+          placeholder="detail"
+        />
+      </mat-form-field>
     </div>
-    <div *ngIf="data?.fileList" class="file-list">
-        <ng-container *ngFor="let item of data?.fileList">
-            <div class="file-name">
-                {{item.fileName}}
-            </div>
-            <div class="file-size">
-                {{item.fileSize}}
-            </div>
-        </ng-container>
-
+    <div class="label">หน่วยงาน</div>
+    <div class="value">
+      <mat-form-field class="form-field" appearance="outline">
+        <input
+          type="text"
+          matInput
+          formControlName="department"
+          placeholder="department"
+        />
+      </mat-form-field>
+    </div>
+    <div class="label">รูปแบบข้อมูล</div>
+    <div class="value">
+      <mat-form-field class="form-field" appearance="outline">
+        <input
+          type="text"
+          matInput
+          formControlName="dataType"
+          placeholder="dataType"
+        />
+      </mat-form-field>
     </div>
 
+    <div class="label">แนบไฟล์</div>
+    <div class="value">
+      <input type="file" formControlName="file" />
+    </div>
+  </div>
+  <div class="d-flex f-width">แนบไฟล์</div>
+  <div *ngIf="data?.fileList" class="file-list">
+    <ng-container *ngFor="let item of data?.fileList">
+      <div class="file-name">
+        {{ item.fileName }}
+      </div>
+      <div class="file-size">
+        {{ item.fileSize }}
+      </div>
+    </ng-container>
+  </div>
 </div>
 <mat-dialog-actions>
-    <button mat-button (click)="onDismiss()">Cancel</button>
-    <button mat-button (click)="onConfirm()">Confirm</button>
+  <button mat-button (click)="onDismiss()">ยกเลิก</button>
+  <button mat-button (click)="onConfirm()">ตกลง</button>
 </mat-dialog-actions>

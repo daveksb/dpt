@@ -3,9 +3,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { DataRequestFormComponent } from '@dpt/form';
-import { MainApiService } from '@dpt/shared';
-import { AdminUserList } from 'libs/shared/src/lib/share.model';
+import { MainApiService, UserService } from '@dpt/shared';
+import { UserRequestFormComponent } from 'libs/form/src/user-request-form/user-request-form.component';
+import {
+  AdminUserList,
+  DefaultResponse,
+  Role,
+} from 'libs/shared/src/lib/share.model';
 
 @Component({
   selector: 'dpt-admin-user',
@@ -26,14 +30,26 @@ export class AdminUserComponent implements OnInit {
     'statusAction',
     'action',
   ];
-
+  roleList: Role[] = [];
   dataSource = new MatTableDataSource();
-  constructor(private dialog: MatDialog, private apiService: MainApiService) {}
+  constructor(
+    private dialog: MatDialog,
+    private apiService: MainApiService,
+    private userService: UserService
+  ) {}
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
   ngOnInit(): void {
+    this.refresh();
+    this.apiService.getAdminRoleList().subscribe((res) => {
+      if (res.Role) {
+        this.roleList = res.Role;
+      }
+    });
+  }
+  refresh() {
     this.apiService.getAdminUserList().subscribe((res) => {
       if (res.datareturn) {
         this.dataSource.data = res.datareturn;
@@ -41,36 +57,60 @@ export class AdminUserComponent implements OnInit {
     });
   }
   sortChange(sortState: Sort | any) {}
-  onApprove(id: number) {
-    console.log('onApprove', id);
+  onApprove(row: AdminUserList) {
+    const roleId = this.roleList.find(
+      (res) => res.roleName === row.roleName
+    )?.roleId;
+    if (roleId) {
+      this.onConfirm({
+        roleId,
+        userId: row.userId,
+        status: 'Y',
+      });
+    }
   }
-  onCancel(id: number) {
-    console.log('onApprove', id);
+  onCancel(row: AdminUserList) {
+    const roleId = this.roleList.find(
+      (res) => res.roleName === row.roleName
+    )?.roleId;
+    if (roleId) {
+      this.onConfirm({
+        roleId,
+        userId: row.userId,
+        status: 'N',
+      });
+    }
   }
-  onView(id: number) {
-    console.log('onView', id);
+  onView(row: AdminUserList) {
     const data = {
-      departmentType: 1,
-      department: 'test',
-      requestFullName: 'test test',
-      category: 'test category',
-      dataName: 'dataName',
-      detail: 'detail',
-      files: [
-        {
-          name: 'name',
-          fileSize: 50,
-        },
-        {
-          name: 'name',
-          fileSize: 50,
-        },
-      ],
+      userDetail: row,
+      roleList: this.roleList,
+      userId: row.userId,
+      onConfirm: this.onConfirm.bind(this),
     };
-    const dialogRef = this.dialog.open(DataRequestFormComponent, {
+    const dialogRef = this.dialog.open(UserRequestFormComponent, {
       data,
       maxHeight: '800px',
-      width: '1000px',
+    });
+  }
+  onDelete(id: string) {
+    this.apiService
+      .deleteUser({
+        userId: id,
+      })
+      .subscribe((res) => {
+        if (res.returnCode === '00') {
+          this.refresh();
+        }
+      });
+  }
+  onConfirm(form: any) {
+    this.apiService.updateUserStatus(form).subscribe((res: DefaultResponse) => {
+      if (res.returnCode === '00') {
+        //
+        this.refresh();
+        this.dialog.closeAll();
+      }
     });
   }
 }

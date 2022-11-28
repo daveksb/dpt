@@ -32,6 +32,7 @@ import { AdminDepartmentFormComponent } from './admin-department-form/admin-depa
 import { AdminSaoFormComponent } from './admin-sao-form/admin-sao-form.component';
 import { FileListFormComponent } from './file-list-form/file-list-form.component';
 import { ApproveDepartmentFormComponent } from './approve-department-form/approve-department-form.component';
+import { UserRequestFormComponent } from './user-request-form/user-request-form.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { ApproveDepartmentFormComponent } from './approve-department-form/approv
     AdminSaoFormComponent,
     FileListFormComponent,
     ApproveDepartmentFormComponent,
+    UserRequestFormComponent,
   ],
 
   imports: [

@@ -8,7 +8,7 @@ export interface Batch {
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class FileService {
   batchList: Batch[] = [];
   constructor() {}
   startInterval(refId: string, interval: Observable<number>) {

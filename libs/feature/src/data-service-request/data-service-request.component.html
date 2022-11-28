@@ -9,15 +9,15 @@
             type="text"
             matInput
             formControlName="departmentId"
-            placeholder="กรุณากรอกอีเมล"
+            placeholder="หน่วยงาน"
           />
         </mat-form-field>
       </div>
       <div class="category-container">
         <mat-form-field class="form-field" appearance="outline">
-          <mat-label>Category</mat-label>
+          <mat-label>หมวดหมู่</mat-label>
 
-          <mat-select formControlName="categoryId" placeholder="กรุณากรอกอีเมล">
+          <mat-select formControlName="categoryId" placeholder="หมวดหมู่">
             <mat-option *ngFor="let item of category" [value]="item.catId">
               {{ item.catName }}
             </mat-option>

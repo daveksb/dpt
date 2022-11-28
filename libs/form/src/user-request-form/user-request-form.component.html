@@ -1,0 +1,58 @@
+<div mat-dialog-title class="department-form-header">
+  <div class="department-form-header-label">รายละเอียดผู้ใช้งาน</div>
+  <button mat-button (click)="onDismiss()" cdkFocusInitial>X</button>
+</div>
+
+<div mat-dialog-content>
+  <div class="department-form-container" [formGroup]="form">
+    <div class="label">ข้อมูลหน่วยงาน</div>
+    <div class="value">
+      {{
+        userDetail?.departmentName
+          ? userDetail?.departmentName
+          : userDetail?.departmentNamePublic
+      }}
+    </div>
+    <div class="label">ชื่อ - สกุลผู้ร้องขอ</div>
+    <div class="value">{{ userDetail?.name }} {{ userDetail?.lname }}</div>
+    <div class="label">ชื่อ - สกุลผู้ร้องขอภาษาอังกฤษ</div>
+    <div class="value">
+      {{ userDetail?.name_en }} {{ userDetail?.lname_en }}
+    </div>
+    <div class="label">ตำแหน่ง</div>
+    <div class="value">
+      {{ userDetail?.position }}
+    </div>
+    <div class="label">อีเมล์</div>
+    <div class="value">
+      {{ userDetail?.email }}
+    </div>
+    <div class="label">เบอร์โทรศัพท์</div>
+    <div class="value">
+      {{ userDetail?.personalNumber }}
+    </div>
+
+    <div class="label">ชื่อทีใช้ในระบบ</div>
+    <div class="value">
+      {{ userDetail?.username }}
+    </div>
+    <div class="label">หน้าที่</div>
+    <div class="value">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>หน้าที่</mat-label>
+        <mat-select formControlName="roleId" placeholder="กรุณาเลือก">
+          <mat-option
+            *ngFor="let item of roleList"
+            [value]="item.roleId.toString()"
+          >
+            {{ item.roleName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+<mat-dialog-actions>
+  <button mat-button (click)="onDismiss()">ยกเลิก</button>
+  <button mat-button (click)="onConfirm()">ตกลง</button>
+</mat-dialog-actions>
