@@ -23,9 +23,7 @@ export class DataManagementFileFormComponent implements OnInit {
     this.formGroup.patchValue(data);
   }
 
-  ngOnInit(): void {
-    console.log(this.data);
-  }
+  ngOnInit(): void {}
 
   onDismiss() {
     this.dialogRef.close();
@@ -35,7 +33,7 @@ export class DataManagementFileFormComponent implements OnInit {
     this.onDismiss();
   }
   get isAPI() {
-    return this.formGroup.get('dataType')?.value === 'API';
+    return this.formGroup.get('dataType')?.value === '1';
   }
   get isEdit() {
     return this.data.isEdit;

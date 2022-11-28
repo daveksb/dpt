@@ -9,11 +9,16 @@
   <div class="request-form-container" [formGroup]="formGroup">
     <div class="label">รูปแบบข้อมูล</div>
     <div class="value">
-      <mat-radio-group formControlName="formatType">
-        <mat-radio-button value="CSV">CSV </mat-radio-button>
-        <mat-radio-button value="PDF">PDF</mat-radio-button>
-        <mat-radio-button value="API">API</mat-radio-button>
-      </mat-radio-group>
+      <mat-form-field appearance="outline">
+        <mat-select placeholder="รูปแบบข้อมูล" formControlName="typeId">
+          <mat-option
+            *ngFor="let item of dataTypeList"
+            [value]="item.tId.toString()"
+          >
+            {{ item.tType }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     <div class="label">ชื่อชุดข้อมูล</div>
     <div class="value">
@@ -22,7 +27,7 @@
           type="text"
           matInput
           formControlName="apiName"
-          placeholder="apiName"
+          placeholder="ชื่อชุดข้อมูล"
         />
       </mat-form-field>
     </div>
@@ -34,7 +39,7 @@
           type="text"
           matInput
           formControlName="apiDetail"
-          placeholder="apiDetail"
+          placeholder="รายละเอียด"
         />
       </mat-form-field>
     </div>
@@ -126,7 +131,7 @@
     <div class="label">หมวดหมู่</div>
     <div class="value double-column">
       <mat-form-field appearance="outline">
-        <mat-select placeholder="category" formControlName="catId">
+        <mat-select placeholder="หมวดหมู่" formControlName="catId">
           <mat-option
             *ngFor="let item of categoryList"
             [value]="item.catId.toString()"
@@ -136,7 +141,7 @@
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-select placeholder="subCategory" formControlName="groupsId">
+        <mat-select placeholder="กลุ่มหมวดหมู่" formControlName="groupsId">
           <mat-option
             *ngFor="let item of categoryGroupList"
             [value]="item.groupsId.toString()"
@@ -149,7 +154,7 @@
     <div class="label">การเผยแพร่</div>
     <div class="value double-column">
       <mat-form-field appearance="outline">
-        <mat-select placeholder="privacyId" formControlName="privacyId">
+        <mat-select placeholder="การเผยแพร่" formControlName="privacyId">
           <mat-option
             *ngFor="let item of privacyList"
             [value]="item.privacyId.toString()"
@@ -159,7 +164,7 @@
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-select placeholder="active" formControlName="active">
+        <mat-select placeholder="สถานะ" formControlName="active">
           <mat-option
             *ngFor="let item of statusList"
             [value]="item.value.toString()"
@@ -172,7 +177,7 @@
     <div class="label">จังหวัด</div>
     <div class="value">
       <mat-form-field class="form-field" appearance="outline">
-        <mat-select placeholder="provinceCode" formControlName="provinceCode">
+        <mat-select placeholder="จังหวัด" formControlName="provinceCode">
           <mat-option
             *ngFor="let item of provinceList"
             [value]="item.provinceCode.toString()"
@@ -184,7 +189,7 @@
     </div>
   </div>
   <button
-    *ngIf="formGroup.get('formatType')?.value !== 'API'"
+    *ngIf="formGroup.get('typeId')?.value !== '1'"
     class="float-left"
     mat-icon-button
     (click)="addFile()"

@@ -41,7 +41,9 @@
           <img
             class="default-icon"
             [src]="
-              'assets/icon/' + (getStatus(row.reqApprove) | lowercase) + '.svg'
+              'assets/icon/' +
+              (getStatusIcon(row.reqApprove) | lowercase) +
+              '.svg'
             "
           />
           {{ getStatus(row.reqApprove) }}
@@ -54,14 +56,14 @@
             <button
               mat-flat-button
               class="default-button approve-button"
-              (click)="onApprove(row.reqId)"
+              (click)="onApprove(row.reqId, row.userId)"
             >
               {{ roleId === '4' ? 'ส่งต่อ' : 'อนุมัติ' }}
             </button>
             <button
               mat-flat-button
               class="default-button cancel-button"
-              (click)="onCancel(row.reqId)"
+              (click)="onCancel(row.reqId, row.userId)"
             >
               ไม่อนุมัติ
             </button>

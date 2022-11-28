@@ -55,7 +55,6 @@ export class LandingComponent implements OnInit {
     });
   }
   search() {
-    console.log(this.form.value);
     this.currentData = (
       JSON.parse(JSON.stringify(this.defaultData)) as DataReturn[]
     ).filter((a) => {

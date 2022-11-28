@@ -36,7 +36,6 @@ export class DataServiceRequestComponent implements OnInit {
     return this.formGroup.get('rfdata')?.getRawValue() as FileList;
   }
   ngOnInit(): void {
-    console.log(this.userService.getUser());
     this.apiService.getCategory().subscribe((a) => {
       this.category = a.Category;
     });
@@ -48,7 +47,6 @@ export class DataServiceRequestComponent implements OnInit {
   }
 
   onFileChange(a: any) {
-    console.log(a.target?.files[0]);
     const file = a.target?.files[0] as File;
     if (file && file.size > 0) {
       const reader = new FileReader();
@@ -63,7 +61,7 @@ export class DataServiceRequestComponent implements OnInit {
           .uploadFile({
             rfname: file.name,
             rfmime: file.type,
-            rfdata: btoa(reader.result as string),
+            rfdata: reader.result as string,
             rftrans: this.rftrans,
             rfusrid: this.userService.getUser()?.userId,
           })

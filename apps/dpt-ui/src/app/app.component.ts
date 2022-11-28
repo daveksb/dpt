@@ -22,7 +22,6 @@ export class AppComponent implements OnInit {
   ) {
     route.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
-        console.log(val.url);
         this.isSecondary = this.hideList.some((d) => val.url === d);
         this.currentUrl = val.url;
         this.hasPadding =

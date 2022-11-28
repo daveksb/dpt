@@ -36,7 +36,9 @@
         <a
           class="nav-link menu-header"
           [routerLinkActive]="'nav-item-active'"
-          [routerLink]="['/data-request/data-set']"
+          [routerLink]="[
+            canRequest ? '/data-request/data-set' : '/data-request/request-list'
+          ]"
           >รายการขอชุดข้อมูล</a
         >
       </div>

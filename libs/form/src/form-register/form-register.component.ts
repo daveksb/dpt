@@ -20,8 +20,6 @@ import { SHA1 } from 'crypto-js';
 export function SamePasswordValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const password = control?.parent?.get('password')?.value;
-    console.log(password);
-    console.log(control?.value);
     return password !== control?.value ? { invalidPassword: true } : null;
   };
 }
@@ -60,7 +58,6 @@ export class FormRegisterComponent {
       this.departmentList = dep.Department;
     });
     this.formGroup.get('departmentType')?.valueChanges.subscribe((va) => {
-      console.log(va);
       if (va === '3') {
         this.formGroup.get('departmentName')?.clearValidators();
         this.formGroup

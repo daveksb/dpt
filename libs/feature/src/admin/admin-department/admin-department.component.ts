@@ -112,7 +112,6 @@ export class AdminDepartmentComponent implements OnInit {
     });
   }
   onConfirm(isEdit: boolean, form: any) {
-    console.log(form.value);
     if (isEdit) {
       this.apiService
         .updateAdminDepartment({

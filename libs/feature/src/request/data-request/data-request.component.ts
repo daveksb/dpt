@@ -5,6 +5,7 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MainApiService, RequestApiData, UserService } from '@dpt/shared';
 import { DataRequestFormComponent } from 'libs/form/src/data-request-form/data-request-form.component';
+import { FileListFormComponent } from 'libs/form/src/file-list-form/file-list-form.component';
 @Component({
   selector: 'dpt-data-request',
   templateUrl: './data-request.component.html',
@@ -56,8 +57,34 @@ export class DataRequestComponent implements OnInit {
       });
   }
   sortChange(sortState: Sort | any) {}
-  onDownload(id: number) {
-    console.log('onApprove', id);
+  onDownload(row: any) {
+    this.mainApiService
+      .getRequestApiUserFile(
+        row.reqFile,
+        row.userId ?? this.userService.getUser()?.userId
+      )
+      .subscribe({
+        next: (res) => {
+          const dialogRef = this.dialog.open(FileListFormComponent, {
+            data: {
+              fileList: res.datareturn,
+              apiDetail: row,
+            },
+            maxHeight: '800px',
+            width: '1000px',
+          });
+        },
+        error: () => {
+          const dialogRef = this.dialog.open(FileListFormComponent, {
+            data: {
+              fileList: [],
+              apiDetail: row,
+            },
+            maxHeight: '800px',
+            width: '1000px',
+          });
+        },
+      });
   }
 
   onView(id: number) {

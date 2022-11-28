@@ -126,14 +126,15 @@ export class DataRequestAdminComponent implements OnInit, AfterViewInit {
     }
   }
   sortChange(sortState: Sort | any) {}
-  onApprove(id: string) {
+  onApprove(id: string, userId?: string) {
     const dialogRef = this.dialog.open(ApproveDepartmentFormComponent, {
       data: {
         departments: this.departmentList,
-        approve: 'A',
+        approve: this.userService.getUser()?.role.roleId === '4' ? 'P' : 'A',
         reqId: id,
         userId: this.userService.getUser()?.userId,
-        roleId: '5',
+        roleId: this.userService.getUser()?.role.roleId,
+        reqUserId: userId,
         depId: this.userService.getUser()?.department.departmentId,
       },
       maxHeight: '800px',
@@ -143,7 +144,7 @@ export class DataRequestAdminComponent implements OnInit, AfterViewInit {
       this.refresh();
     });
   }
-  onCancel(id: number) {
+  onCancel(id: number, userId?: string) {
     const dialogRef = this.dialog.open(ApproveDepartmentFormComponent, {
       data: {
         departments: this.departmentList,
@@ -152,7 +153,7 @@ export class DataRequestAdminComponent implements OnInit, AfterViewInit {
         userId: this.userService.getUser()?.userId,
         roleId: this.userService.getUser()?.role.roleId,
         depId: this.userService.getUser()?.department.departmentId,
-        //reqUserId: this
+        reqUserId: userId,
       },
       maxHeight: '800px',
       width: '1000px',
@@ -162,7 +163,6 @@ export class DataRequestAdminComponent implements OnInit, AfterViewInit {
     });
   }
   onView(id: number) {
-    console.log('onView', id);
     const data = {
       departmentType: 1,
       department: 'test',
@@ -190,10 +190,22 @@ export class DataRequestAdminComponent implements OnInit, AfterViewInit {
 
   getStatus(status: string) {
     if (status === 'P') {
+      return 'รออนุมัติ';
+    }
+    if (status === 'A') {
+      return 'อนุมัติ';
+    }
+    if (status === 'D') {
+      return 'ไม่อนุมัติ';
+    }
+    return '';
+  }
+  getStatusIcon(status: string) {
+    if (status === 'P') {
       return 'Pending';
     }
     if (status === 'A') {
-      return 'Approve';
+      return 'Activate';
     }
     if (status === 'D') {
       return 'Decline';
@@ -204,18 +216,29 @@ export class DataRequestAdminComponent implements OnInit, AfterViewInit {
     this.mainApiService
       .getRequestApiUserFile(
         row.reqFile,
-        this.userService.getUser()?.userId ?? ''
+        row.userId ?? this.userService.getUser()?.userId
       )
-      .subscribe((res) => {
-        if (res.returnCode === '00') {
+      .subscribe({
+        next: (res) => {
           const dialogRef = this.dialog.open(FileListFormComponent, {
-            data: res.datareturn,
+            data: {
+              fileList: res.datareturn,
+              apiDetail: row,
+            },
             maxHeight: '800px',
             width: '1000px',
           });
-        } else {
-          alert(res.returnMessage);
-        }
+        },
+        error: () => {
+          const dialogRef = this.dialog.open(FileListFormComponent, {
+            data: {
+              fileList: [],
+              apiDetail: row,
+            },
+            maxHeight: '800px',
+            width: '1000px',
+          });
+        },
       });
   }
 }

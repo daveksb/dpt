@@ -33,7 +33,6 @@ export class ApproveDepartmentFormComponent implements OnInit {
     this.mainApiService.getDataByDepartment(data.depId).subscribe((res) => {
       this.apiList = res.datareturn;
     });
-    console.log(data.roleId);
   }
 
   ngOnInit(): void {}
@@ -42,33 +41,33 @@ export class ApproveDepartmentFormComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  // onConfirm() {
+  //   this.mainApiService
+  //     .updateApprovalDepartment({
+  //       apiId: this.formGroup.get('apiId')?.value,
+  //       depId: this.formGroup.get('department')?.value,
+  //       reason: this.formGroup.get('reason')?.value,
+  //       userId: this.data.reqUserId,
+  //       depUserId: this.data.userId,
+  //       approve: this.data.approve,
+  //       reqId: this.data.reqId,
+  //       countdatetemp: '365',
+  //       countdate: '365',
+  //     })
+  //     .subscribe({
+  //       next: (res) => {
+  //         if (res.returnCode === '00') {
+  //           this.onDismiss();
+  //         } else {
+  //           alert(res.returnMessage);
+  //         }
+  //       },
+  //       error: () => {
+  //         this.onDismiss();
+  //       },
+  //     });
+  // }
   onConfirm() {
-    this.mainApiService
-      .updateApprovalDepartment({
-        apiId: this.formGroup.get('apiId')?.value,
-        depId: this.formGroup.get('department')?.value,
-        reason: this.formGroup.get('reason')?.value,
-        userId: this.data.reqUserId,
-        depUserId: this.data.userId,
-        approve: this.data.approve,
-        reqId: this.data.reqId,
-        countdatetemp: '365',
-        countdate: '365',
-      })
-      .subscribe({
-        next: (res) => {
-          if (res.returnCode === '00') {
-            this.onDismiss();
-          } else {
-            alert(res.returnMessage);
-          }
-        },
-        error: () => {
-          this.onDismiss();
-        },
-      });
-  }
-  onConfirm1() {
     if (this.data.roleId === '4') {
       this.mainApiService
         .updateApproval({
@@ -97,8 +96,7 @@ export class ApproveDepartmentFormComponent implements OnInit {
           apiId: this.formGroup.get('apiId')?.value,
           depId: this.formGroup.get('department')?.value,
           reason: this.formGroup.get('reason')?.value,
-          // userId: this.data.reqUserId,
-          userId: this.data.userId,
+          userId: this.data.reqUserId,
           depUserId: this.data.userId,
           approve: this.data.approve,
           reqId: this.data.reqId,

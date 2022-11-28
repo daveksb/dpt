@@ -1,7 +1,9 @@
 <button
   mat-flat-button
   class="default-button file-button"
-  [ngClass]="formatType === 'CSV' ? 'file-button--csv' : 'file-button--pdf'"
+  [ngClass]="
+    (formatType | lowercase) === 'api' ? 'file-button--pdf' : 'file-button--csv'
+  "
   color="primary"
 >
   <div class="button-item">

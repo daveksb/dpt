@@ -51,7 +51,7 @@ export class DataManagementDataSetFormComponent implements OnInit {
     groupsId: new FormControl<any>(null, Validators.required),
     apiDetail: new FormControl<any>(null, Validators.required),
     apiLink: new FormControl<any>(null, Validators.required),
-    formatType: new FormControl<any>('CSV', Validators.required),
+    formatType: new FormControl<any>('FILE', Validators.required),
     jsonField: new FormControl<any>(null, Validators.required),
     provinceCode: new FormControl<any>(null, Validators.required),
   });
@@ -91,13 +91,14 @@ export class DataManagementDataSetFormComponent implements OnInit {
   ) {
     this.formGroup.get('active')?.disable(); // ToDo enable if admin department
     this.formGroup.patchValue(data);
+    this.formGroup.get('typeId')?.setValue(data.tId);
     this.categoryList = data.categoryList;
     this.privacyList = data.privacyList;
     this.provinceList = data.provinceList;
     this.dataTypeList = data.dataTypeList;
     this.categoryGroupList = data.categoryGroupList;
     if (this.data.isEdit) {
-      this.formGroup.get('formatType')?.disable();
+      this.formGroup.get('typeId')?.disable();
     }
     if (this.data.jsonField) {
       const form = JSON.parse(
@@ -136,7 +137,7 @@ export class DataManagementDataSetFormComponent implements OnInit {
     if (!this.data.refId) {
       this.getRefId();
     }
-    this.formGroup.get('formatType')?.valueChanges.subscribe((res) => {
+    this.formGroup.get('typeId')?.valueChanges.subscribe((res) => {
       if (!this.isAPI) {
         this.formGroup.get('link')?.disable();
       } else {
@@ -155,15 +156,23 @@ export class DataManagementDataSetFormComponent implements OnInit {
   }
   onConfirm() {
     // this.formGroup.get('jsonField')?.setValue(null);
+    if (this.jsonForm.get('form')?.value) {
+      this.formGroup
+        .get('jsonField')
+        ?.setValue(JSON.stringify(this.jsonForm.get('form')?.value));
+    }
+
     this.formGroup
-      .get('jsonField')
-      ?.setValue(JSON.stringify(this.jsonForm.get('form')?.value));
-    this.formGroup.get('');
+      .get('formatType')
+      ?.setValue(
+        this.formGroup.get('typeId')?.value?.toString() === '1' ? 'API' : 'FILE'
+      );
+
     this.data.onConfirm(this.formGroup.getRawValue());
     this.onDismiss();
   }
   get isAPI() {
-    return this.formGroup.get('formatType')?.value === 'API';
+    return this.formGroup.get('typeId')?.value === '1';
   }
   get isEdit() {
     return this.data.isEdit;

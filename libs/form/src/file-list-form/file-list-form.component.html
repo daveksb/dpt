@@ -1,10 +1,40 @@
 <div mat-dialog-title class="department-form-header">
-  <div class="department-form-header-label">ไฟล์</div>
+  <div class="department-form-header-label">รายละเอียดข้อมูล</div>
   <button mat-button (click)="onDismiss()" cdkFocusInitial>X</button>
 </div>
 
 <div mat-dialog-content>
-  <div class="department-form-container">
+  <div class="department-form-container" [formGroup]="formGroup">
+    <div class="label">ข้อมูลหน่วยงาน</div>
+    <div class="value">
+      {{ data.apiDetail.departmentName }}
+    </div>
+    <div class="action"></div>
+    <div class="label">หมวดหมู่</div>
+    <div class="value">
+      {{ data.apiDetail.catName }}
+    </div>
+    <div class="action"></div>
+
+    <ng-container *ngIf="data.apiDetail.name || data.apiDetail.lname">
+      <div class="label">ชื่อ - สกุลผู้ร้องขอ</div>
+      <div class="value">
+        {{ data.apiDetail.name }} {{ data.apiDetail.lname }}
+      </div>
+      <div class="action"></div>
+    </ng-container>
+
+    <div class="label">ชื่อชุดข้อมูล</div>
+    <div class="value">
+      {{ data.apiDetail.reqName }}
+    </div>
+    <div class="action"></div>
+
+    <div class="label">รายละเอียด</div>
+    <div class="value">
+      {{ data.apiDetail.reqDescription }}
+    </div>
+    <div class="action"></div>
     <ng-container *ngFor="let item of fileList">
       <div class="label">ชื่อไฟล์</div>
       <div class="value">
@@ -19,8 +49,4 @@
       </div>
     </ng-container>
   </div>
-  <!-- <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
-</div> -->
 </div>

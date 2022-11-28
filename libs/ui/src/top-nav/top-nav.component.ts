@@ -70,7 +70,6 @@ export class TopNavComponent {
         this.currentUrl = val.url;
         this.hasAuth = !!this.cookieService.get('dptToken');
         this.isAdmin = !!(this.userService.getUser()?.role?.roleId === '1');
-        console.log(this.userService.getUser());
       }
     });
   }
@@ -88,5 +87,11 @@ export class TopNavComponent {
     } else {
       return false;
     }
+  }
+  get canRequest() {
+    return (
+      this.userService.getUser()?.role.roleId === '5' ||
+      this.userService.getUser()?.role.roleId === '6'
+    );
   }
 }

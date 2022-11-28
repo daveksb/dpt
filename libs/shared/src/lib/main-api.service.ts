@@ -223,7 +223,6 @@ export class MainApiService {
     return this.http.get<AdminLogResponse>(`${environment.apiPrefix}/${url}`);
   }
   getReportByUser(startDate: string, endDate: string, apiId: string) {
-    console.log(startDate);
     const url = `dptreport/reportapiperrole?apiId=${apiId}&startDate=${startDate}&endDate=${endDate}
       `;
     return this.http.get<AdminReportByUserResponse>(

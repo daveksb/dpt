@@ -18,8 +18,11 @@ export class DataRequestMainComponent implements OnInit {
     // 4	เลขานุการ
     // 5	เจ้าของข้อมูล
     // 6	เจ้าของข้อมูล (Admin)
-    this.canRequest = !!this.canRequestRole.find(
-      (a) => a === (this.userService.getUser()?.role.roleId ?? 0)
-    );
+    // this.canRequest = !!this.canRequestRole.find(
+    //   (a) => a === (this.userService.getUser()?.role.roleId ?? 0)
+    // );
+    this.canRequest =
+      this.userService.getUser()?.role.roleId === '5' ||
+      this.userService.getUser()?.role.roleId === '6';
   }
 }
