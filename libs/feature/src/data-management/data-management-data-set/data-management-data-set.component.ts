@@ -4,7 +4,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { DataManagementDataSetFormComponent } from '@dpt/form';
+import {
+  DataManagementDataSetFormComponent,
+  DefaultDialogComponent,
+} from '@dpt/form';
 import { MainApiService, UserService } from '@dpt/shared';
 import {
   ApiType,
@@ -90,7 +93,36 @@ export class DataManagementDataSetComponent implements AfterViewInit {
   }
   sortChange(sortState: Sort | any) {}
   onDownload(a: any) {}
-  onDelete(id: number) {}
+  onDelete(apiId: number) {
+    this.mainApiService
+      .deleteApiData({
+        apiId,
+      })
+      .subscribe({
+        next: (res) => {
+          if (res.returnCode === '00') {
+            this.dialog.open(DefaultDialogComponent, {
+              maxHeight: '800px',
+              width: '500px',
+              data: {
+                status: 'ดำเนินการสำเร็จ',
+              },
+            });
+            this.refresh();
+          }
+        },
+        error: () => {
+          this.dialog.open(DefaultDialogComponent, {
+            maxHeight: '800px',
+            width: '500px',
+            data: {
+              isError: true,
+              status: 'ดำเนินการไม่สำเร็จ',
+            },
+          });
+        },
+      });
+  }
 
   onEdit(row: DataReturn) {
     const data = {
@@ -126,20 +158,58 @@ export class DataManagementDataSetComponent implements AfterViewInit {
     });
   }
   onAddDataConfirm(form: InsertApiRequest) {
-    this.mainApiService.addApiData(form).subscribe((res) => {
-      if (res.returnCode === '00') {
-        this.refresh();
-      }
+    this.mainApiService.addApiData(form).subscribe({
+      next: (res) => {
+        if (res.returnCode === '00') {
+          this.dialog.open(DefaultDialogComponent, {
+            maxHeight: '800px',
+            width: '500px',
+            data: {
+              status: 'ดำเนินการสำเร็จ',
+            },
+          });
+          this.refresh();
+        }
+      },
+      error: () => {
+        this.dialog.open(DefaultDialogComponent, {
+          maxHeight: '800px',
+          width: '500px',
+          data: {
+            isError: true,
+            status: 'ดำเนินการไม่สำเร็จ',
+          },
+        });
+      },
     });
   }
   onEditDataConfirm(form: UpdateApiRequest) {
     form.zone = form.privacyId === '1' ? 'PB' : 'PV';
     form.typeId = form.typeId.toString();
     form.attribute = null;
-    this.mainApiService.updateApiData(form).subscribe((res) => {
-      if (res.returnCode === '00') {
-        this.refresh();
-      }
+    this.mainApiService.updateApiData(form).subscribe({
+      next: (res) => {
+        if (res.returnCode === '00') {
+          this.dialog.open(DefaultDialogComponent, {
+            maxHeight: '800px',
+            width: '500px',
+            data: {
+              status: 'ดำเนินการสำเร็จ',
+            },
+          });
+          this.refresh();
+        }
+      },
+      error: () => {
+        this.dialog.open(DefaultDialogComponent, {
+          maxHeight: '800px',
+          width: '500px',
+          data: {
+            isError: true,
+            status: 'ดำเนินการไม่สำเร็จ',
+          },
+        });
+      },
     });
   }
   onSearch() {

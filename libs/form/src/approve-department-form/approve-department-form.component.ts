@@ -1,12 +1,17 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import {
   DataReturn,
   Department,
   MainApiService,
   UserService,
 } from '@dpt/shared';
+import { DefaultDialogComponent } from '../default-dialog/default-dialog.component';
 
 @Component({
   selector: 'dpt-approve-department-form',
@@ -26,7 +31,8 @@ export class ApproveDepartmentFormComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<any>,
     private mainApiService: MainApiService,
-    private userService: UserService
+    private userService: UserService,
+    private dialog: MatDialog
   ) {
     this.formGroup.patchValue(data);
     this.departments = data.departments;
@@ -106,13 +112,37 @@ export class ApproveDepartmentFormComponent implements OnInit {
         .subscribe({
           next: (res) => {
             if (res.returnCode === '00' || res.returnCode === '01') {
+              this.dialog.open(DefaultDialogComponent, {
+                maxHeight: '800px',
+                width: '500px',
+                data: {
+                  status: 'ดำเนินการสำเร็จ',
+                },
+              });
               this.onDismiss();
             } else {
-              alert(res.returnMessage);
+              this.dialog.closeAll();
+              this.dialog.open(DefaultDialogComponent, {
+                maxHeight: '800px',
+                width: '500px',
+                data: {
+                  isError: true,
+                  status: 'ดำเนินการไม่สำเร็จ',
+                },
+              });
             }
           },
           error: () => {
             this.onDismiss();
+            this.dialog.closeAll();
+            this.dialog.open(DefaultDialogComponent, {
+              maxHeight: '800px',
+              width: '500px',
+              data: {
+                isError: true,
+                status: 'ดำเนินการไม่สำเร็จ',
+              },
+            });
           },
         });
     }

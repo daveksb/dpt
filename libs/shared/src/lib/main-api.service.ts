@@ -291,6 +291,12 @@ export class MainApiService {
       ...body,
     });
   }
+  deleteApiData(body: any) {
+    const url = `/dptrequest/servicedataprivatedepdelete?`;
+    return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
+      ...body,
+    });
+  }
   insertFileTemp(body: any) {
     const url = `dptrequest/inserttempfile?`;
     return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
