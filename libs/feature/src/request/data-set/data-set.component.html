@@ -1,0 +1,75 @@
+<div class="main-container">
+  <div class="admin-data-header">
+    <div class="admin-data-label header-1">รายการจัดการชุดข้อมูล</div>
+  </div>
+  <div class="admin-data-table default-table">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      (matSortChange)="sortChange($event)"
+      class="admin-user-table"
+    >
+      <ng-container matColumnDef="order">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ลำดับที่</th>
+        <td mat-cell *matCellDef="let row; let i = index">
+          {{
+            i +
+              1 +
+              (dataSource.paginator?.pageIndex ?? 0) *
+                (dataSource.paginator?.pageSize ?? 0)
+          }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="apiName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>รายการ</th>
+        <td mat-cell *matCellDef="let row">{{ row.apiName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="fullName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          ชื่อผู้เข้าใช้
+        </th>
+        <td mat-cell *matCellDef="let row">{{ row.name }} {{ row.lname }}</td>
+      </ng-container>
+      <ng-container matColumnDef="tokenCode">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          รหัสการเข้าใช้
+        </th>
+        <td mat-cell *matCellDef="let row">{{ row.tokenCode }}</td>
+      </ng-container>
+      <ng-container matColumnDef="zone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          ความเป็นส่วนตัว
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.zone === 'PB' ? 'ภายนอก' : 'ภายใน' }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="createDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>วันที่สร้าง</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.createDate | date: 'dd/MMM/yyyy HH:mm' }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="expireDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          วันที่หมดอายุุ
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.expireDate | date: 'dd/MMM/yyyy HH:mm' }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator
+      [length]="200"
+      [pageSize]="10"
+      [pageSizeOptions]="[10, 50, 100]"
+    >
+    </mat-paginator>
+  </div>
+</div>

@@ -18,6 +18,13 @@
           *ngIf="canRequest"
           >{{ 'ชุดข้อมูล' }}
         </a>
+        <a
+          class="request-item"
+          mat-list-item
+          [routerLink]="'data-request'"
+          [routerLinkActive]="'request-active'"
+          >{{ 'ชุดข้อมูลที่เคยร้องขอ' }}
+        </a>
       </mat-nav-list>
     </mat-sidenav>
 

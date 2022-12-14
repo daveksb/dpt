@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Route, Router, RouterModule } from '@angular/router';
 import {
   AbstractControl,
   FormControl,
@@ -11,7 +11,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MainApiService } from '@dpt/shared';
-import { RegisterRequest } from 'libs/shared/src/lib/share.model';
+import { RegisterRequest } from '@dpt/shared';
 import { MatDialog } from '@angular/material/dialog';
 import { DefaultDialogComponent } from '../default-dialog/default-dialog.component';
 import * as md5 from 'md5';
@@ -51,7 +51,11 @@ export class FormRegisterComponent {
   });
 
   departmentList: any[] = [];
-  constructor(private apiService: MainApiService, private dialog: MatDialog) {}
+  constructor(
+    private apiService: MainApiService,
+    private dialog: MatDialog,
+    private route: Router
+  ) {}
 
   ngOnInit(): void {
     this.apiService.getDepartment().subscribe((dep) => {
@@ -79,12 +83,16 @@ export class FormRegisterComponent {
       this.apiService.register(this.mapForm()).subscribe({
         next: (res) => {
           if (res.returnCode === '00') {
-            this.dialog.open(DefaultDialogComponent, {
+            const ref = this.dialog.open(DefaultDialogComponent, {
               maxHeight: '800px',
               width: '500px',
               data: {
                 status: 'ลงทะเบียนสำเร็จ',
+                message: 'รอการอนุมัติจากเจ้าหน้าที่',
               },
+            });
+            ref.afterClosed().subscribe(() => {
+              this.route.navigate(['landing']);
             });
           } else {
             this.dialog.open(DefaultDialogComponent, {

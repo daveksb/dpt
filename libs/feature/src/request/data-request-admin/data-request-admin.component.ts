@@ -3,10 +3,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ApproveDepartmentFormComponent } from '@dpt/form';
-import { Department, MainApiService, UserService } from '@dpt/shared';
-import { DataRequestFormComponent } from 'libs/form/src/data-request-form/data-request-form.component';
-import { FileListFormComponent } from 'libs/form/src/file-list-form/file-list-form.component';
+import {
+  ApproveDepartmentFormComponent,
+  DataRequestFormComponent,
+  FileListFormComponent,
+} from '@dpt/form';
+import { Department, UserService, MainApiService } from '@dpt/shared';
 
 @Component({
   selector: 'dpt-data-request-admin',

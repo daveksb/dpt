@@ -18,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSortModule } from '@angular/material/sort';
 import { TokenHandleInterceptor } from '../interceptor/api-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { DataSetComponent } from './data-set/data-set.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,7 @@ const routes: Routes = [
     children: [
       { path: 'request-list', component: DataRequestAdminComponent },
       { path: 'data-set', component: DataRequestComponent },
+      { path: 'data-request', component: DataSetComponent },
     ],
   },
   {
@@ -39,6 +41,7 @@ const routes: Routes = [
     DataRequestComponent,
     DataRequestAdminComponent,
     DataRequestMainComponent,
+    DataSetComponent,
   ],
   imports: [
     CommonModule,
@@ -65,6 +68,7 @@ const routes: Routes = [
   exports: [
     DataRequestComponent,
     DataRequestAdminComponent,
+    DataSetComponent,
     DataRequestMainComponent,
   ],
 })
