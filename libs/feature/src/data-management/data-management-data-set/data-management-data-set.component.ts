@@ -139,7 +139,7 @@ export class DataManagementDataSetComponent implements AfterViewInit {
 
     const dialogRef = this.dialog.open(DataManagementDataSetFormComponent, {
       data,
-      width: '1000px',
+      minWidth: '1000px',
     });
   }
   onAddItem() {
@@ -154,10 +154,13 @@ export class DataManagementDataSetComponent implements AfterViewInit {
     };
     const dialogRef = this.dialog.open(DataManagementDataSetFormComponent, {
       data,
-      width: '1000px',
+      minWidth: '1000px',
     });
   }
   onAddDataConfirm(form: InsertApiRequest) {
+    form.zone = form.privacyId === '1' ? 'PB' : 'PV';
+    form.typeId = form.typeId.toString();
+    form.attribute = null;
     this.mainApiService.addApiData(form).subscribe({
       next: (res) => {
         if (res.returnCode === '00') {

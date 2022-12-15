@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MainApiService, UserService } from '@dpt/shared';
+import { Base64 } from 'js-base64';
 import {
   Category,
   CategoryGroup,
@@ -102,7 +103,8 @@ export class DataManagementDataSetFormComponent implements OnInit {
     }
     if (this.data.jsonField) {
       const form = JSON.parse(
-        atob(this.data.jsonField) ?? '[]'
+        Base64.decode((JSON.parse(atob(this.data.jsonField)) as any).data) ??
+          '[]'
       ) as TableParam[];
       form.forEach((g) => {
         const newGroup = new FormGroup({
@@ -157,9 +159,11 @@ export class DataManagementDataSetFormComponent implements OnInit {
   onConfirm() {
     // this.formGroup.get('jsonField')?.setValue(null);
     if (this.jsonForm.get('form')?.value) {
-      this.formGroup
-        .get('jsonField')
-        ?.setValue(JSON.stringify(this.jsonForm.get('form')?.value));
+      this.formGroup.get('jsonField')?.setValue(
+        JSON.stringify({
+          data: Base64.encode(JSON.stringify(this.jsonForm.get('form')?.value)),
+        })
+      );
     }
 
     this.formGroup

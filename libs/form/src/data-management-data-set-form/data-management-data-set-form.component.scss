@@ -6,7 +6,7 @@
   width: 100%;
   display: grid;
   gap: 1rem;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 80px 1fr;
   grid-template-rows: auto;
   grid-template-areas:
     'label value'
@@ -16,10 +16,10 @@
     'label value'
     'label value';
 }
-.request-label {
+.label {
   grid-area: 'label';
 }
-.request-value {
+.value {
   grid-area: 'value';
 }
 .department-container {

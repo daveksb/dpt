@@ -67,6 +67,12 @@ export class MainApiService {
       `${environment.apiPrefix}/${url}`
     );
   }
+  getRequestedData() {
+    const url = `dptrequest/getservicedatapublicuse?`;
+    return this.http.get<DataServiceResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
   getPrivateDataList() {
     const url = `dptrequest/servicedataprivate?`;
     return this.http.get<DataServiceResponse>(

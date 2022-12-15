@@ -3,13 +3,7 @@
     <div class="admin-data-label header-1">รายการจัดการชุดข้อมูล</div>
   </div>
   <div class="admin-data-table default-table">
-    <table
-      mat-table
-      [dataSource]="dataSource"
-      matSort
-      (matSortChange)="sortChange($event)"
-      class="admin-user-table"
-    >
+    <table mat-table [dataSource]="dataSource" matSort class="admin-user-table">
       <ng-container matColumnDef="order">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>ลำดับที่</th>
         <td mat-cell *matCellDef="let row; let i = index">
@@ -26,18 +20,11 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>รายการ</th>
         <td mat-cell *matCellDef="let row">{{ row.apiName }}</td>
       </ng-container>
-
-      <ng-container matColumnDef="fullName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          ชื่อผู้เข้าใช้
-        </th>
-        <td mat-cell *matCellDef="let row">{{ row.name }} {{ row.lname }}</td>
-      </ng-container>
       <ng-container matColumnDef="tokenCode">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           รหัสการเข้าใช้
         </th>
-        <td mat-cell *matCellDef="let row">{{ row.tokenCode }}</td>
+        <td mat-cell *matCellDef="let row">{{ row.tokenKey }}</td>
       </ng-container>
       <ng-container matColumnDef="zone">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>

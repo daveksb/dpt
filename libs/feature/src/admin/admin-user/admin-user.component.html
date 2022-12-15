@@ -65,7 +65,11 @@
             </ng-container>
 
             <ng-container *ngIf="row.approve === 'Y'">
-              <button mat-flat-button class="default-button activate-button">
+              <button
+                mat-flat-button
+                class="default-button activate-button disabled-button"
+                disableRipple
+              >
                 ใช้งานได้
               </button>
             </ng-container>

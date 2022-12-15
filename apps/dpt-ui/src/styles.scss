@@ -238,6 +238,9 @@ $enable-cssgrid: true;
       align-items: center;
     }
   }
+  .privacy-button {
+    cursor: default;
+  }
   .file-button {
     // &.mat-stroked-button {
     //   font-style: normal;
@@ -250,6 +253,7 @@ $enable-cssgrid: true;
     //   border: 2px solid #270108;
     //   border-radius: 12px;
     // }
+    cursor: default;
     padding: 8px 12px;
     gap: 8px;
     border-radius: 4px;
@@ -331,6 +335,18 @@ img.default-icon {
   color: #3f89fe;
   order: 0;
 }
+.warning-button.mat-flat-button {
+  background: #fff4bda2;
+  border-radius: 4px;
+  height: 36px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #ffc400;
+  order: 0;
+}
 .approve-button.mat-flat-button {
   background: #e6faeb;
   border-radius: 4px;
@@ -363,4 +379,7 @@ img.default-icon {
   font-size: 16px;
   text-align: center;
   color: #e96767;
+}
+.disabled-button {
+  cursor: default;
 }

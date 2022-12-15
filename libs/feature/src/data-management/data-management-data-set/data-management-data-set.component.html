@@ -79,7 +79,12 @@
       <ng-container matColumnDef="publishStatus">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>การเผยแพร่</th>
         <td mat-cell *matCellDef="let row">
-          <button mat-flat-button class="default-button approve-button">
+          <button
+            mat-flat-button
+            [disableRipple]="true"
+            class="default-button activate-button privacy-button"
+            [ngClass]="{ 'warning-button': row.zone === 'PV' }"
+          >
             {{ row.privacyName }}
           </button>
         </td>

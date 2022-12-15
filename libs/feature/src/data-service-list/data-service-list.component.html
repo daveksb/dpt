@@ -131,6 +131,19 @@
                     <dpt-file-button
                       [formatType]="item.tType"
                     ></dpt-file-button>
+
+                    <button
+                      mat-flat-button
+                      [disableRipple]="true"
+                      class="default-button activate-button disabled-button"
+                      [ngClass]="{ 'warning-button': item.zone === 'PV' }"
+                    >
+                      <div class="button-item">
+                        <div class="privacy-label">
+                          {{ item.privacyName }}
+                        </div>
+                      </div>
+                    </button>
                   </div>
                 </div>
                 <div class="item-footer">
