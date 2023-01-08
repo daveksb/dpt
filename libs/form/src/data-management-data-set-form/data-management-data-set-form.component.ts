@@ -16,7 +16,7 @@ import {
   DataType,
   Privacy,
   Province,
-} from 'libs/shared/src/lib/share.model';
+} from '@dpt/shared';
 import { DateTime } from 'luxon';
 import { interval, Observable, takeUntil } from 'rxjs';
 import { Subject } from 'rxjs';
@@ -84,6 +84,7 @@ export class DataManagementDataSetFormComponent implements OnInit {
     },
   ];
   cancelSubject$ = new Subject();
+  hasFile = false;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<any>,
@@ -124,6 +125,12 @@ export class DataManagementDataSetFormComponent implements OnInit {
       //   .get('form')(this.jsonForm.get('form') as FormArray)
       //   .patchValue(JSON.parse(atob(this.data.jsonField) ?? '[]'));
     }
+    const temp = this.data.apiLink ?? '';
+    const hasPrefix = (temp as string).includes('TA');
+    if (hasPrefix) {
+      this.generateRefId = (this.data.apiLink as string).split('.')[0];
+    }
+    this.hasFile = !!this.generateRefId;
 
     // this.dataSource.data = this.jsonForm.controls;
   }
@@ -216,6 +223,7 @@ export class DataManagementDataSetFormComponent implements OnInit {
                     select.returnCode === '99' ||
                     select.returnCode === '98'
                   ) {
+                    this.hasFile = false;
                     this.cancelSubject$.next(true);
                   } else {
                     if (select.returnCode === '00') {
@@ -223,6 +231,7 @@ export class DataManagementDataSetFormComponent implements OnInit {
                         this.formGroup
                           .get('apiLink')
                           ?.setValue(select.tfFileName);
+                        this.hasFile = true;
                         this.cancelSubject$.next(true);
                       }
                     }

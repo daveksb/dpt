@@ -35,12 +35,12 @@
     <div class="label">รายละเอียด</div>
     <div class="value">
       <mat-form-field class="form-field" appearance="outline">
-        <input
+        <textarea
           type="text"
           matInput
           formControlName="apiDetail"
           placeholder="รายละเอียด"
-        />
+        ></textarea>
       </mat-form-field>
     </div>
 
@@ -195,7 +195,7 @@
     (click)="addFile()"
   >
     <mat-icon>add_circle_outline</mat-icon>
-    เพิ่มไฟล์
+    {{ hasFile ? 'แก้ไขไฟล์' : 'เพิ่มไฟล์' }}
   </button>
 </div>
 <mat-dialog-actions>
