@@ -36,8 +36,9 @@
       'departmentType departmentType departmentName departmentName'
       'userNameTh userNameTh userLastNameTh userLastNameTh'
       'userNameEn userNameEn userLastNameEn userLastNameEn'
-      'idNumber idNumber position mobile'
-      'email email userName userName'
+      'idNumber idNumber position position'
+      'email email mobile mobile'
+      'userName userName userName userName'
       'password password confirmPassword confirmPassword';
 
     .department-type-container {

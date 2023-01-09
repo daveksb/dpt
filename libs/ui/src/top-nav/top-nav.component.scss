@@ -160,6 +160,12 @@
     display: none;
   }
 }
+@media (max-width: 1080px) {
+  .topbar {
+    display: flex;
+    justify-content: center;
+  }
+}
 @media (max-width: 1024px) {
   .image-logo {
     width: 50px;
@@ -170,10 +176,5 @@
   }
   .website-container {
     padding-right: 16px;
-  }
-}
-@media (max-width: 860px) {
-  .website-container {
-    display: none;
   }
 }

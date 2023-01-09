@@ -7,6 +7,10 @@
 .main-page-secondary {
   padding: 0;
 }
+.main-page-pdpa {
+  padding: 0;
+  background-color: #7c656c;
+}
 .nav-main-container {
   height: 100%;
   display: flex;
@@ -14,9 +18,20 @@
 }
 .nav-item-container {
   height: 100%;
+  flex: 1;
+  display: flex;
 }
 @media (max-width: 1024px) {
   .main-page {
     padding: 16px 24px;
   }
+}
+@media (min-width: 1080px) {
+  //   .dpt-sidenav {
+  //     display: none;
+  //   }
+  //   .nav-main-container mat-tool-bar {
+  //     display: none;
+  //   }
+  // }
 }

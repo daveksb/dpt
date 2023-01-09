@@ -19,3 +19,11 @@
 .image-landing {
   height: 100%;
 }
+@media (max-width: 1079px) {
+  .left-container {
+    display: none;
+  }
+  .main-login-container {
+    grid-template-areas: 'form form';
+  }
+}

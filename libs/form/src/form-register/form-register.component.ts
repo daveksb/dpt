@@ -43,13 +43,17 @@ export class FormRegisterComponent {
     position: new FormControl(null, Validators.required),
     mobile: new FormControl(null, Validators.required),
     userName: new FormControl(null, Validators.required),
-    password: new FormControl(null, Validators.required),
+    password: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(8),
+    ]),
     confirmPassword: new FormControl(null, [
       Validators.required,
       SamePasswordValidator(),
+      Validators.minLength(8),
     ]),
   });
-
+  checked = false;
   departmentList: any[] = [];
   constructor(
     private apiService: MainApiService,
@@ -101,7 +105,7 @@ export class FormRegisterComponent {
               data: {
                 isError: true,
                 status: 'ลงทะเบียนไม่สำเร็จ',
-                message: 'กรุณาตรวจสอบข้อมูลอีกครั้ง',
+                message: res.returnMessage,
               },
             });
           }
@@ -113,7 +117,7 @@ export class FormRegisterComponent {
             data: {
               isError: true,
               status: 'ลงทะเบียนไม่สำเร็จ',
-              message: 'กรุณาตรวจสอบข้อมูลอีกครั้ง',
+              message: er.returnMessage,
             },
           });
         },

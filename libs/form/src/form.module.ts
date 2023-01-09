@@ -34,6 +34,7 @@ import { FileListFormComponent } from './file-list-form/file-list-form.component
 import { ApproveDepartmentFormComponent } from './approve-department-form/approve-department-form.component';
 import { UserRequestFormComponent } from './user-request-form/user-request-form.component';
 import { DataServiceDialogComponent } from './data-service-dialog/data-service-dialog.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { DataServiceDialogComponent } from './data-service-dialog/data-service-d
     MatPaginatorModule,
     MatTabsModule,
     MatIconModule,
+    MatCheckboxModule,
     SharedModule,
     UiModule,
     MatSelectModule,

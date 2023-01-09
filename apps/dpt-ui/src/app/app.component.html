@@ -1,11 +1,29 @@
-<div class="nav-main-container dpt-theme">
+<div #nav class="nav-main-container dpt-theme">
   <mat-toolbar #navToolbar>
-    <dpt-top-nav [isSecondary]="isSecondary"></dpt-top-nav>
+    <dpt-top-nav
+      (clickToggle)="onClickToggle()"
+      [isSecondary]="isSecondary"
+    ></dpt-top-nav>
   </mat-toolbar>
 
   <mat-sidenav-container class="nav-item-container">
+    <mat-sidenav
+      #sidenav
+      mode="side"
+      [opened]="isOpen"
+      class="dpt-sidenav"
+      *ngIf="!isSecondary"
+    >
+      <dpt-side-nav [isSecondary]="isSecondary"></dpt-side-nav>
+    </mat-sidenav>
     <mat-sidenav-content>
-      <div class="main-page" [ngClass]="{ 'main-page-secondary': hasPadding }">
+      <div
+        class="main-page"
+        [ngClass]="{
+          'main-page-secondary': hasPadding,
+          'main-page-pdpa': isPdpa
+        }"
+      >
         <router-outlet></router-outlet>
       </div>
     </mat-sidenav-content>

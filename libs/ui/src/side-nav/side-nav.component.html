@@ -1,5 +1,108 @@
-<div class="sidebar"></div>
+<ng-container *ngIf="!isSecondary; else secondary">
+  <div class="nav-link-list">
+    <mat-nav-list>
+      <a
+        *ngIf="hasPermission('landing')"
+        class="nav-link menu-header"
+        [routerLinkActive]="'nav-item-active'"
+        [routerLink]="['/landing']"
+        mat-list-item
+        >หน้าหลัก</a
+      >
+      <a
+        class="nav-link menu-header"
+        *ngIf="hasPermission('data-service-list')"
+        [routerLinkActive]="'nav-item-active'"
+        [routerLink]="['/data-service-list']"
+        mat-list-item
+        >บริการข้อมูล</a
+      >
 
-<div class="body-text">
-  <!-- body content -->
-</div>
+      <a
+        *ngIf="hasPermission('data-request')"
+        class="nav-link menu-header"
+        [routerLinkActive]="'nav-item-active'"
+        mat-list-item
+        [routerLink]="[
+          canRequest ? '/data-request/data-set' : '/data-request/request-list'
+        ]"
+        >รายการขอชุดข้อมูล</a
+      >
+
+      <a
+        class="nav-link menu-header"
+        *ngIf="hasPermission('publish')"
+        [routerLinkActive]="'nav-item-active'"
+        mat-list-item
+        [routerLink]="['/publish']"
+        >อนุมัติเผยแพร่</a
+      >
+
+      <a
+        *ngIf="hasPermission('data-management')"
+        class="nav-link menu-header"
+        [routerLinkActive]="'nav-item-active'"
+        mat-list-item
+        [routerLink]="['/data-management/data-set']"
+        >จัดการชุดข้อมูล</a
+      >
+
+      <a
+        *ngIf="hasPermission('report')"
+        class="nav-link menu-header"
+        [routerLinkActive]="'nav-item-active'"
+        [routerLink]="['/report']"
+        mat-list-item
+        >รายงาน</a
+      >
+
+      <a
+        *ngIf="hasPermission('admin')"
+        class="nav-link menu-header"
+        [routerLinkActive]="'nav-item-active'"
+        [routerLink]="['/admin/user']"
+        mat-list-item
+        >ผู้ดูแลระบบ</a
+      >
+      <a
+        class="nav-link menu-header"
+        [routerLink]="['/login']"
+        mat-list-item
+        (click)="logout()"
+        *ngIf="hasAuth"
+        ><img class="log-out-button" src="assets/icon/log-out.png" />
+        ออกจากระบบ</a
+      >
+    </mat-nav-list>
+  </div>
+</ng-container>
+<ng-template #secondary>
+  <div class="topbar topbar--secondary">
+    <div class="nav-link-list">
+      <div class="nav-link-item">
+        <a
+          class="nav-link menu-header nav-item-active"
+          [routerLink]="['/landing']"
+          >หน้าหลัก</a
+        >
+      </div>
+    </div>
+    <div class="image-container">
+      <img
+        src="https://www.dpt.go.th/assets/app/images/logo.png"
+        width="70"
+        height="70"
+      />
+    </div>
+
+    <div class="button-list">
+      <button
+        mat-flat-button
+        class="login-button medium-button"
+        [routerLink]="['/login']"
+      >
+        เข้าสู่ระบบ
+      </button>
+    </div>
+  </div>
+</ng-template>

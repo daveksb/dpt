@@ -15,3 +15,11 @@
   font-weight: 600;
   font-size: 20px;
 }
+.pdpa-main-container {
+  padding: 16px 24px;
+}
+@media (max-width: 1024px) {
+  .pdpa-main-container {
+    padding: 0px;
+  }
+}

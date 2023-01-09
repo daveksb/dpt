@@ -70,6 +70,7 @@ $enable-cssgrid: true;
 //$font-sizes: map-merge($font-sizes, $customFs);
 
 @import './node_modules/bootstrap/scss/bootstrap';
+
 .is-invisible {
   visibility: hidden;
   height: 0px;
@@ -105,6 +106,20 @@ $enable-cssgrid: true;
 .dpt-theme .mat-toolbar-single-row {
   padding: 0px;
   height: auto;
+}
+@media (max-width: 1079px) {
+  .dpt-theme .mat-toolbar-single-row .topbar .nav-link-list {
+    display: none;
+  }
+  .dpt-theme .mat-toolbar-single-row .topbar .button-list {
+    display: none;
+  }
+  .dpt-theme .mat-toolbar-single-row .topbar--secondary .nav-link-list {
+    display: flex;
+  }
+  .dpt-theme .mat-toolbar-single-row .topbar--secondary .button-list {
+    display: flex;
+  }
 }
 
 // mat

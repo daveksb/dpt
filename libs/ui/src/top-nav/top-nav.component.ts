@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from '@dpt/shared';
@@ -12,6 +12,7 @@ interface MapString {
 })
 export class TopNavComponent {
   @Input() isSecondary = false;
+  @Output() clickToggle = new EventEmitter();
   isActive = true;
   currentUrl = '';
   hasAuth = false;
@@ -93,5 +94,8 @@ export class TopNavComponent {
       this.userService.getUser()?.role.roleId === '5' ||
       this.userService.getUser()?.role.roleId === '6'
     );
+  }
+  onClickToggle() {
+    this.clickToggle.emit(true);
   }
 }

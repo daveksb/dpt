@@ -153,6 +153,9 @@
           formControlName="password"
           placeholder="รหัสผ่าน"
         />
+        <mat-error *ngIf="formGroup.get('password')?.invalid"
+          >รหัสผ่านต้องมีความยาวไม่น้อยกว่า 8 ตัวอักษร</mat-error
+        >
       </mat-form-field>
     </div>
     <div class="confirm-password-container">
@@ -170,11 +173,20 @@
       </mat-form-field>
     </div>
   </div>
+  <div class="pdpa-container">
+    <mat-checkbox class="example-margin" [(ngModel)]="checked"
+      >ยินยอมการให้ข้อมูลเพื่อผู้ให้บริการเก็บรวบรวม ใช้
+      และเปิดเผยข้อมูลส่วนบุคคล เพื่อวัตถุประสงค์ในการให้ใช้การเว็ปไชต์
+      รวมถึงวัตถุประสงค์อื่นๆ
+
+      <a [routerLink]="'/pdpa'" target="_blank">รายละเอียด</a>
+    </mat-checkbox>
+  </div>
   <div class="register-footer">
     <button
       mat-flat-button
       class="confirm-button"
-      [disabled]="formGroup.invalid"
+      [disabled]="formGroup.invalid || !checked"
       (click)="onConfirm()"
     >
       ลงทะเบียน

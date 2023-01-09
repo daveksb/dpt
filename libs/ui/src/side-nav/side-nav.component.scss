@@ -1,7 +1,165 @@
-.sidebar {
+:host {
+  width: 100%;
+}
+.topbar {
+  width: 100%;
+  display: flex;
+  padding: 1rem 5rem;
+}
+.second-header {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #270108;
+}
+.main-header {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  color: #270108;
+  margin-bottom: 8px;
+}
+
+.menu-header {
+  font-size: 14px;
+  font-style: normal;
+  line-height: 26px;
+  color: #270108;
+  margin: auto;
+}
+.nav-item-active {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 30px;
+  color: #270108;
+}
+
+.image-container {
+  margin-right: 24px;
+}
+.header-list {
+  display: flex;
+  flex-direction: column;
+}
+.nav-link-list {
+  display: flex;
+  gap: 32px 20px;
+  width: 100%;
+  padding: 16px;
+  text-align: left;
+}
+.button-list {
+  display: flex;
+  margin: auto;
+}
+.website-container {
+  display: flex;
+  padding-right: 32px;
+}
+
+.nav-link {
+  font-size: 16px;
+}
+
+.data-request-page {
+  width: 100%;
+  display: flex;
   height: 100%;
-  width: 200px;
-  left: 0;
-  top: 0;
-  background-color: #663b43;
+  background: white;
+}
+
+.nav-item-active {
+  background: #f5ecec;
+  border-radius: 8px;
+}
+.nav-item {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  color: #4a5567;
+}
+.dpt-theme.mat-drawer-side {
+  border: 0px;
+}
+
+.topbar.topbar--secondary {
+  background: #270108;
+  display: flex;
+  justify-content: space-between;
+  .nav-link-list {
+    margin-right: 0;
+    width: unset;
+    text-align: left;
+  }
+  .website-container {
+    width: 100%;
+    padding-right: 0px;
+  }
+  .image-container {
+    margin: 0px;
+  }
+
+  .menu-header {
+    color: #fccc30;
+  }
+  .nav-item-active {
+    color: #fccc30;
+    background: #fccc3034;
+    border-radius: 20px;
+    padding: 10px;
+  }
+  .login-button {
+    background-color: white;
+    font-weight: 700;
+    color: #270108;
+    height: 40px;
+    margin: auto;
+    line-height: 24px;
+  }
+  .button-list {
+    // justify-content: flex-end;
+    margin: unset;
+  }
+}
+.login-button {
+  padding: 8px;
+  background: #270108;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 16px;
+  margin-right: 1rem;
+  line-height: 19px;
+}
+.logout-button {
+  padding: 8px;
+  background: #270108;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 16px;
+  margin-right: 1rem;
+  line-height: 19px;
+}
+.admin-button {
+  color: #270108;
+  padding: 8px;
+  background: white;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  margin-right: 1rem;
+}
+.log-out-button {
+  width: 18px;
+  height: 18px;
+  color: #270108;
+  filter: invert(1);
+  margin-right: 4px;
+}
+.image-logo {
+  width: 70px;
+  height: 70px;
 }
