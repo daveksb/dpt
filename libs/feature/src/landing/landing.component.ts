@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MainApiService, UserService } from '@dpt/shared';
 import { Category, DataReturn } from 'libs/shared/src/lib/share.model';
+import { DataService } from '../data-service-detail/data-service-detail.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'dpt-landing',
@@ -25,10 +27,7 @@ export class LandingComponent implements OnInit {
   };
   currentData: DataReturn[] = [];
   defaultData: DataReturn[] = [];
-  constructor(
-    private mainApiService: MainApiService,
-    private userService: UserService
-  ) {}
+  constructor(private mainApiService: MainApiService, private route: Router) {}
 
   onOpenFile(a: any) {}
   ngOnInit(): void {
@@ -62,5 +61,8 @@ export class LandingComponent implements OnInit {
         ? a.apiName.includes(this.form.value)
         : true;
     });
+  }
+  onClick(data: DataReturn) {
+    this.route.navigate(['/data-service-detail/' + data.apiId]);
   }
 }

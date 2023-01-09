@@ -54,7 +54,11 @@
     <div class="data-list-container">
       <div class="data-list-header">ชุดข้อมูลเปิด</div>
       <div class="data-service-list">
-        <div class="data-service-item" *ngFor="let item of currentData">
+        <div
+          class="data-service-item"
+          (click)="onClick(item)"
+          *ngFor="let item of currentData"
+        >
           <div class="item-image">
             <div class="image"></div>
           </div>
