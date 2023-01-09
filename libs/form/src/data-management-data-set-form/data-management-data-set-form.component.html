@@ -31,8 +31,8 @@
         />
       </mat-form-field>
     </div>
-    <div class="label">วันที่จัดทำข้อมูล</div>
-    <div class="value">
+    <div *ngIf="!isEdit" class="label">วันที่จัดทำข้อมูล</div>
+    <div *ngIf="!isEdit" class="value">
       <!-- <mat-form-field class="form-field" appearance="outline">
         <input
           type="date"

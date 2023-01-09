@@ -86,6 +86,7 @@ export class DataManagementDataSetFormComponent implements OnInit {
       value: 'N',
     },
   ];
+  apiList = ['1', '14', '15', '16'];
   cancelSubject$ = new Subject();
   hasFile = false;
   tempFile: any;
@@ -107,19 +108,22 @@ export class DataManagementDataSetFormComponent implements OnInit {
       this.formGroup.get('typeId')?.disable();
     }
     if (this.data.jsonField) {
-      const form = JSON.parse(
-        Base64.decode((JSON.parse(atob(this.data.jsonField)) as any).data) ??
-          '[]'
-      ) as TableParam[];
-      form.forEach((g) => {
-        const newGroup = new FormGroup({
-          name: new FormControl<any>(g.name),
-          type: new FormControl<any>(g.type),
-          description: new FormControl<any>(g.description),
-          default: new FormControl<any>(g.default),
+      if (this.data.tType !== 'zip') {
+        const form = JSON.parse(
+          Base64.decode((JSON.parse(atob(this.data.jsonField)) as any).data) ??
+            '[]'
+        ) as TableParam[];
+        form.forEach((g) => {
+          const newGroup = new FormGroup({
+            name: new FormControl<any>(g.name),
+            type: new FormControl<any>(g.type),
+            description: new FormControl<any>(g.description),
+            default: new FormControl<any>(g.default),
+          });
+          this.formArray.push(newGroup);
         });
-        this.formArray.push(newGroup);
-      });
+      }
+
       if (!this.isAPI) {
         this.formGroup.get('link')?.disable();
       } else {
@@ -169,10 +173,22 @@ export class DataManagementDataSetFormComponent implements OnInit {
   }
   onConfirm() {
     // this.formGroup.get('jsonField')?.setValue(null);
-    if (this.jsonForm.get('form')?.value) {
+    if (
+      this.jsonForm.get('form')?.value &&
+      this.formGroup.get('typeId')?.value?.toString() !== '10'
+    ) {
       this.formGroup.get('jsonField')?.setValue(
         JSON.stringify({
           data: Base64.encode(JSON.stringify(this.jsonForm.get('form')?.value)),
+        })
+      );
+    }
+    if (this.formGroup.get('typeId')?.value?.toString() === '10') {
+      this.formGroup.get('jsonField')?.setValue(
+        JSON.stringify({
+          data: Base64.encode(
+            JSON.stringify(this.formGroup.get('jsonField')?.value)
+          ),
         })
       );
     }
@@ -180,7 +196,11 @@ export class DataManagementDataSetFormComponent implements OnInit {
     this.formGroup
       .get('formatType')
       ?.setValue(
-        this.formGroup.get('typeId')?.value?.toString() === '1' ? 'API' : 'FILE'
+        this.apiList.some(
+          (a) => this.formGroup.get('typeId')?.value?.toString() === a
+        )
+          ? 'API'
+          : 'FILE'
       );
     this.formGroup.get('picture')?.setValue(this.tempFile);
     this.formGroup
@@ -190,7 +210,6 @@ export class DataManagementDataSetFormComponent implements OnInit {
           .toISODate()
           .toString()
       );
-    console.log(this.formGroup);
     const { tempPicture, ...res } = this.formGroup.getRawValue();
     this.data.onConfirm(res);
     this.onDismiss();
@@ -209,7 +228,7 @@ export class DataManagementDataSetFormComponent implements OnInit {
     }
   }
   get isAPI() {
-    return this.formGroup.get('typeId')?.value === '1';
+    return this.apiList.some((r) => this.formGroup.get('typeId')?.value === r);
   }
   get isEdit() {
     return this.data.isEdit;
@@ -258,6 +277,13 @@ export class DataManagementDataSetFormComponent implements OnInit {
                           .get('apiLink')
                           ?.setValue(select.tfFileName);
                         this.hasFile = true;
+                        const name = select.tfFileName.split('.');
+                        if (name[name.length - 1] === 'zip') {
+                          select.tfZipB64 = select.tfZipB64.replace(/\n/g, '');
+                          const base64 = Base64.decode(select.tfZipB64 ?? '');
+                          this.formGroup.get('jsonField')?.setValue(base64);
+                        }
+
                         this.cancelSubject$.next(true);
                       }
                     }

@@ -123,7 +123,6 @@ export class DataServiceListComponent implements OnInit {
                 res.tempPicture =
                   this.sanitizer.bypassSecurityTrustResourceUrl(base64String);
               }
-              console.log(res.tempPicture);
             });
             this.defaultData = res.datareturn as DataReturn[];
             this.currentData = res.datareturn as DataReturn[];
@@ -152,7 +151,6 @@ export class DataServiceListComponent implements OnInit {
     } else {
       this.mainApiService.getPublicDataList().subscribe({
         next: (res) => {
-          console.log(res);
           if (res.returnCode === '00') {
             res.datareturn.forEach((res) => {
               if (res.picture) {
@@ -160,7 +158,6 @@ export class DataServiceListComponent implements OnInit {
                 res.tempPicture =
                   this.sanitizer.bypassSecurityTrustResourceUrl(base64String);
               }
-              console.log(res.tempPicture);
             });
             this.defaultData = res.datareturn as DataReturn[];
             this.currentData = res.datareturn as DataReturn[];

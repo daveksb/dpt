@@ -149,6 +149,7 @@ export interface DataServiceDetailResponse extends DefaultResponse {
   updateDate: string;
   picture: any;
   tempPicture?: any;
+  tokenKey: string;
 }
 export interface DataServiceDetail {
   apiId: string;
@@ -166,6 +167,7 @@ export interface DataServiceDetail {
   createDate: string;
   updateDate: string;
   picture: any;
+  tokenKey: string;
   tempPicture?: any;
   jsonField: string;
 }
@@ -395,6 +397,7 @@ export interface CheckFileResponse extends DefaultResponse {
   tfFileName: string;
   tfTimestamp: string;
   tfFlag: string;
+  tfZipB64: string;
 }
 
 export interface RequestApiUser {

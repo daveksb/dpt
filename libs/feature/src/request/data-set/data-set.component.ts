@@ -17,7 +17,6 @@ export class DataSetComponent implements OnInit {
   displayedColumns: string[] = [
     'order',
     'apiName',
-    'tokenCode',
     'zone',
     'createDate',
     'expireDate',

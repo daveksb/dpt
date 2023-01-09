@@ -98,8 +98,6 @@ export class AdminDataSetComponent implements OnInit {
       tokenId: row.tokenId,
       status: row.status,
     };
-    console.log(data);
-
     const dialogRef = this.dialog.open(AdminDataSetFormComponent, {
       data,
       maxHeight: '800px',

@@ -154,8 +154,8 @@ export class MainApiService {
       `${environment.apiPrefix}/${url}`
     );
   }
-  getDataServiceDetail(apiId: string) {
-    const url = `dptrequest/getservicedatapublicpertime?apiId=${apiId}`;
+  getDataServiceDetail(apiId: string, userId: string) {
+    const url = `dptrequest/getservicedatapublicpertime?apiId=${apiId}&&userId=${userId}`;
     return this.http.get<DataServiceDetailResponse>(
       `${environment.apiPrefix}/${url}`
     );
