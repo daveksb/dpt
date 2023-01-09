@@ -190,39 +190,47 @@ export class DataServiceDetailComponent implements OnInit {
           this.apiDetail = rest;
 
           if (this.apiDetail.tType === 'zip') {
-            const a = this.apiDetail.jsonField;
-            const b = a.replace(/\n/g, '');
-            const c = atob(b);
-            const i = JSON.parse(c).data;
-            const f = atob(i);
-            const g = f.slice(1, -1);
-            const h = g.replace(/\\n/g, '');
-            const j = atob(h);
-            const k = JSON.parse(j).data;
-            const l = Base64.decode(k);
-            const m = JSON.parse(l);
-            const n = JSON.parse(m);
+            try {
+              const a = this.apiDetail.jsonField;
+              const b = a.replace(/\n/g, '');
+              const c = atob(b);
+              const i = JSON.parse(c).data;
+              const f = atob(i);
+              const g = f.slice(1, -1);
+              const h = g.replace(/\\n/g, '');
+              const j = atob(h);
+              const k = JSON.parse(j).data;
+              const l = Base64.decode(k);
+              const m = JSON.parse(l);
+              const n = JSON.parse(m);
+              const newList = (n as any[])?.map((data) => {
+                return {
+                  name: data['ชื่อไฟล์'],
+                  size: data['ขนาดไฟล์'],
+                };
+              });
+              this.dataSourceZip.data = newList;
+            } catch {
+              this.dataSourceZip.data = [];
+            }
+
             // const data = JSON.parse(
             //   Base64.decode(res.jsonField.replace(/\n/g, ''))
             // )?.data;
             // console.log(data);
             // console.log(Base64.decode(res.jsonField.replace(/\n/g, '')));
             // console.log(Base64.decode(data).replace(/\n/g, ''));
-            const newList = (n as any[])?.map((data) => {
-              return {
-                name: data['ชื่อไฟล์'],
-                size: data['ขนาดไฟล์'],
-              };
-            });
-            this.dataSourceZip.data = newList;
           } else {
-            this.dataSource = new MatTableDataSource(
-              JSON.parse(
+            try {
+              const data = JSON.parse(
                 Base64.decode(
                   JSON.parse(Base64.decode(res.jsonField))?.data ?? ''
                 )
-              )
-            );
+              );
+              this.dataSource = new MatTableDataSource(data);
+            } catch {
+              this.dataSource.data = [];
+            }
           }
           // btoa((JSON.parse(atob(a)) as any).data);
           // const a =
