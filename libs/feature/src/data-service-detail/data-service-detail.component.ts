@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MainApiService, UserService } from '@dpt/shared';
 import { DataServiceDialogComponent, DefaultDialogComponent } from '@dpt/form';
+import { DomSanitizer } from '@angular/platform-browser';
 import { DataServiceDetail } from 'libs/shared/src/lib/share.model';
 export interface DataService {
   topic: string;
@@ -163,7 +164,8 @@ export class DataServiceDetailComponent implements OnInit {
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private userService: UserService,
-    private mainApiService: MainApiService
+    private mainApiService: MainApiService,
+    private sanitizer: DomSanitizer
   ) {}
   ngOnInit(): void {
     const apiId = this.route.snapshot.params['id'];
@@ -172,6 +174,11 @@ export class DataServiceDetailComponent implements OnInit {
         if (res.returnCode === '00' || res.returnCode === '01') {
           //
           const { returnCode, returnMessage, ...rest } = res;
+          if (rest.picture) {
+            const base64String = atob(rest.picture);
+            rest.tempPicture =
+              this.sanitizer.bypassSecurityTrustResourceUrl(base64String);
+          }
           this.apiDetail = rest;
           this.dataSource = new MatTableDataSource(
             JSON.parse(atob(res.jsonField))

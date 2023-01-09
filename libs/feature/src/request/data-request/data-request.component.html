@@ -63,7 +63,7 @@
             <button
               mat-flat-button
               class="default-button cancel-button"
-              (click)="onCancel(row.tokenId)"
+              (click)="onCancel(row.name + ' ' + row.lname, row.tokenId)"
             >
               ไม่อนุมัติ
             </button>

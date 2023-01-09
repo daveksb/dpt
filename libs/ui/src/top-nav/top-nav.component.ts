@@ -61,6 +61,7 @@ export class TopNavComponent {
       'data-management',
     ],
   };
+  userName = '';
   constructor(
     private route: Router,
     private cookieService: CookieService,
@@ -73,6 +74,7 @@ export class TopNavComponent {
         this.isAdmin = !!(this.userService.getUser()?.role?.roleId === '1');
       }
     });
+    this.userName = this.userService.getUser()?.name ?? '';
   }
   isContainUrl(data: string) {
     return this.currentUrl.includes(data);

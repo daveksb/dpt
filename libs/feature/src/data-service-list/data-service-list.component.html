@@ -109,7 +109,12 @@
               (click)="onNavigateData(item.apiId)"
             >
               <div class="item-image">
-                <div class="image"></div>
+                <div *ngIf="!item.picture" class="image"></div>
+                <img
+                  *ngIf="item.picture"
+                  class="profile-image"
+                  [src]="item.tempPicture"
+                />
               </div>
               <div class="item-content">
                 <div class="item-header">

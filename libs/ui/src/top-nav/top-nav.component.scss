@@ -52,7 +52,9 @@
 }
 .button-list {
   display: flex;
-  margin: auto;
+  margin: auto 0;
+  justify-content: flex-end;
+  width: 100%;
 }
 .website-container {
   display: flex;
@@ -147,17 +149,24 @@
   height: 70px;
 }
 
-@media (max-width: 1350px) {
+@media (max-width: 1480px) {
   .topbar {
     padding: 1rem;
   }
   .nav-link-list {
     margin-right: 1rem;
+    width: unset;
   }
 }
 @media (max-width: 1250px) {
   .header-list {
     display: none;
+  }
+  .user-name {
+    display: none;
+  }
+  .nav-link-list {
+    width: unset;
   }
 }
 @media (max-width: 1080px) {
@@ -177,4 +186,12 @@
   .website-container {
     padding-right: 16px;
   }
+}
+.user-name {
+  margin-right: 8px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 38px;
+  color: #270108;
 }

@@ -1,0 +1,30 @@
+<div mat-dialog-title class="department-form-header">
+  <div class="department-form-header-label">รายละเอียดข้อมูล</div>
+  <button mat-button (click)="onDismiss()" cdkFocusInitial>X</button>
+</div>
+
+<div mat-dialog-content>
+  <div class="department-form-container" [formGroup]="formGroup">
+    <div class="label">ชื่อผู้ร้องขอข้อมูล</div>
+    <div class="value">
+      <div class="department-container">
+        {{ userName }}
+      </div>
+    </div>
+    <div class="label">รายละเอียด</div>
+    <div class="value">
+      <mat-form-field class="form-field" appearance="outline">
+        <textarea
+          type="text"
+          matInput
+          formControlName="reason"
+          placeholder="รายละเอียด"
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onConfirm()">ตกลง</button>
+  <button mat-button (click)="onDismiss()">ยกเลิก</button>
+</div>

@@ -35,7 +35,12 @@
           </ng-template>
           <div class="data-detail-tab">
             <div class="image-container">
-              <div class="image"></div>
+              <div *ngIf="!apiDetail?.picture" class="image"></div>
+              <img
+                *ngIf="apiDetail?.picture"
+                class="profile-image"
+                [src]="apiDetail?.tempPicture"
+              />
             </div>
             <div class="detail-container">
               <div class="department-container">

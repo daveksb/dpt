@@ -35,6 +35,10 @@ import { ApproveDepartmentFormComponent } from './approve-department-form/approv
 import { UserRequestFormComponent } from './user-request-form/user-request-form.component';
 import { DataServiceDialogComponent } from './data-service-dialog/data-service-dialog.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
+import { DeclineDepartmentFormComponent } from './decline-department-form/decline-department-form.component';
+import { AdminDataSetFormComponent } from './admin-data-set-form/admin-data-set-form.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +57,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     ApproveDepartmentFormComponent,
     UserRequestFormComponent,
     DataServiceDialogComponent,
+    DeclineDepartmentFormComponent,
+    AdminDataSetFormComponent,
   ],
 
   imports: [
@@ -75,10 +81,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatPaginatorModule,
     MatTabsModule,
     MatIconModule,
+    MatDatepickerModule,
     MatCheckboxModule,
     SharedModule,
     UiModule,
     MatSelectModule,
+    MatNativeDateModule,
+    MatRippleModule,
   ],
   exports: [
     FormForgotPasswordComponent,
@@ -98,6 +107,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     DataServiceDialogComponent,
     AdminSaoFormComponent,
     FileListFormComponent,
+    DeclineDepartmentFormComponent,
+    AdminDataSetFormComponent,
   ],
+  providers: [MatDatepickerModule],
 })
 export class FormModule {}

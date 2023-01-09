@@ -86,6 +86,9 @@
       >
         เข้าสู่ระบบ
       </button>
+      <div *ngIf="userName && hasAuth" class="user-name">
+        {{ userName }}
+      </div>
       <button
         *ngIf="hasAuth"
         class="logout-button medium-button"

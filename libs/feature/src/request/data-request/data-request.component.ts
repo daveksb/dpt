@@ -3,7 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { DefaultDialogComponent } from '@dpt/form';
+import {
+  DeclineDepartmentFormComponent,
+  DefaultDialogComponent,
+} from '@dpt/form';
 import { Department, MainApiService, UserService } from '@dpt/shared';
 import { FileListFormComponent } from 'libs/form/src/file-list-form/file-list-form.component';
 @Component({
@@ -115,46 +118,20 @@ export class DataRequestComponent implements OnInit {
         },
       });
   }
-  onCancel(tokenId?: string) {
-    this.mainApiService
-      .updateApprovalDepartmentPrivate({
+  onCancel(name: string, tokenId?: string) {
+    const dialogRef = this.dialog.open(DeclineDepartmentFormComponent, {
+      data: {
         tokenId: tokenId,
         depUserId: this.userService.getUser()?.userId,
+        name: name,
         approve: 'N',
-      })
-      .subscribe({
-        next: (res) => {
-          if (res.returnCode === '00' || res.returnCode === '01') {
-            this.dialog.open(DefaultDialogComponent, {
-              maxHeight: '800px',
-              width: '500px',
-              data: {
-                status: 'ดำเนินการสำเร็จ',
-              },
-            });
-            this.refresh();
-          } else {
-            this.dialog.open(DefaultDialogComponent, {
-              maxHeight: '800px',
-              width: '500px',
-              data: {
-                isError: true,
-                status: 'ดำเนินการไม่สำเร็จ',
-              },
-            });
-          }
-        },
-        error: () => {
-          this.dialog.open(DefaultDialogComponent, {
-            maxHeight: '800px',
-            width: '500px',
-            data: {
-              isError: true,
-              status: 'ดำเนินการไม่สำเร็จ',
-            },
-          });
-        },
-      });
+      },
+      maxHeight: '800px',
+      width: '1000px',
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.refresh();
+    });
   }
 
   getStatus(status: string) {

@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { DataRequestFormComponent } from '@dpt/form';
 import { MainApiService, UserService } from '@dpt/shared';
@@ -59,7 +60,8 @@ export class DataServiceListComponent implements OnInit {
     private dialog: MatDialog,
     private route: Router,
     private mainApiService: MainApiService,
-    private userService: UserService
+    private userService: UserService,
+    private sanitizer: DomSanitizer
   ) {}
 
   onClickFilterCategory(value: string) {
@@ -115,7 +117,14 @@ export class DataServiceListComponent implements OnInit {
         next: (res) => {
           if (res.returnCode === '00') {
             // to do
-            //         this.currentTempData = res.datareturn;
+            res.datareturn.forEach((res) => {
+              if (res.picture) {
+                const base64String = atob(res.picture);
+                res.tempPicture =
+                  this.sanitizer.bypassSecurityTrustResourceUrl(base64String);
+              }
+              console.log(res.tempPicture);
+            });
             this.defaultData = res.datareturn as DataReturn[];
             this.currentData = res.datareturn as DataReturn[];
             this.sideBarList = [];
@@ -145,8 +154,14 @@ export class DataServiceListComponent implements OnInit {
         next: (res) => {
           console.log(res);
           if (res.returnCode === '00') {
-            // to do
-            //         this.currentTempData = res.datareturn;
+            res.datareturn.forEach((res) => {
+              if (res.picture) {
+                const base64String = atob(res.picture);
+                res.tempPicture =
+                  this.sanitizer.bypassSecurityTrustResourceUrl(base64String);
+              }
+              console.log(res.tempPicture);
+            });
             this.defaultData = res.datareturn as DataReturn[];
             this.currentData = res.datareturn as DataReturn[];
             this.sideBarList = [];

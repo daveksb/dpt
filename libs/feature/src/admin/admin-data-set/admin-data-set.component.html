@@ -33,12 +33,7 @@
         </th>
         <td mat-cell *matCellDef="let row">{{ row.name }} {{ row.lname }}</td>
       </ng-container>
-      <ng-container matColumnDef="tokenCode">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          รหัสการเข้าใช้
-        </th>
-        <td mat-cell *matCellDef="let row">{{ row.tokenCode }}</td>
-      </ng-container>
+
       <ng-container matColumnDef="zone">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           ความเป็นส่วนตัว
@@ -65,8 +60,16 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
         <td mat-cell *matCellDef="let row">
-          <img src="assets/icon/edit.svg" class="default-icon" />
-          <img src="assets/icon/delete.svg" class="default-icon" />
+          <img
+            src="assets/icon/edit.svg"
+            class="default-icon"
+            (click)="onEdit(row)"
+          />
+          <img
+            (click)="onDelete(row.tokenId)"
+            src="assets/icon/delete.svg"
+            class="default-icon"
+          />
         </td>
       </ng-container>
 

@@ -31,6 +31,41 @@
         />
       </mat-form-field>
     </div>
+    <div class="label">วันที่จัดทำข้อมูล</div>
+    <div class="value">
+      <!-- <mat-form-field class="form-field" appearance="outline">
+        <input
+          type="date"
+          matInput
+          formControlName="createInfoDate"
+          placeholder="วันที่จัดทำข้อมูล"
+        />
+      </mat-form-field> -->
+
+      <mat-form-field appearance="fill" class="example-form-field">
+        <input
+          matInput
+          [matDatepicker]="datepicker"
+          formControlName="createInfoDate"
+        />
+        <mat-hint>วว/ดด/ปปปป</mat-hint>
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="datepicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #datepicker> </mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="label">รูปภาพประกอบ</div>
+    <div class="value">
+      <input
+        type="file"
+        accept="image/png,image/jpg,image/jpeg"
+        formControlName="tempPicture"
+        placeholder="รูปภาพประกอบ"
+        (change)="onFileChange($event)"
+      />
+    </div>
 
     <div class="label">รายละเอียด</div>
     <div class="value">

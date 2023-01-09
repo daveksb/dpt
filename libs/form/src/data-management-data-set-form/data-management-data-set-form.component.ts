@@ -55,6 +55,9 @@ export class DataManagementDataSetFormComponent implements OnInit {
     formatType: new FormControl<any>('FILE', Validators.required),
     jsonField: new FormControl<any>(null, Validators.required),
     provinceCode: new FormControl<any>(null, Validators.required),
+    createInfoDate: new FormControl<Date>(new Date(), Validators.required),
+    picture: new FormControl<any>(null, Validators.required),
+    tempPicture: new FormControl<any>(null, Validators.required),
   });
   dataTypeList: DataType[] = [];
   jsonForm = new FormGroup({
@@ -85,6 +88,7 @@ export class DataManagementDataSetFormComponent implements OnInit {
   ];
   cancelSubject$ = new Subject();
   hasFile = false;
+  tempFile: any;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<any>,
@@ -178,9 +182,31 @@ export class DataManagementDataSetFormComponent implements OnInit {
       ?.setValue(
         this.formGroup.get('typeId')?.value?.toString() === '1' ? 'API' : 'FILE'
       );
-
-    this.data.onConfirm(this.formGroup.getRawValue());
+    this.formGroup.get('picture')?.setValue(this.tempFile);
+    this.formGroup
+      .get('createinfodate')
+      ?.setValue(
+        DateTime.fromJSDate(this.formGroup.get('createInfoDate')?.value)
+          .toISODate()
+          .toString()
+      );
+    console.log(this.formGroup);
+    const { tempPicture, ...res } = this.formGroup.getRawValue();
+    this.data.onConfirm(res);
     this.onDismiss();
+  }
+  onFileChange(a: any) {
+    const file = a.target?.files[0] as File;
+    if (file && file.size > 0) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.tempFile = btoa(reader.result as string);
+      };
+      reader.onerror = (error) => {
+        console.log('Error: ', error);
+      };
+    }
   }
   get isAPI() {
     return this.formGroup.get('typeId')?.value === '1';

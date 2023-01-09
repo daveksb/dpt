@@ -115,8 +115,22 @@ export class MainApiService {
       body
     );
   }
+  updateAdminDataSet(body: any) {
+    const url = `dptuser/updatemanageapiservice`;
+    return this.http.post<DefaultResponse>(
+      `${environment.apiPrefix}/${url}`,
+      body
+    );
+  }
   deleteAdminDepartment(body: any) {
     const url = `dptuser/deletedepartment`;
+    return this.http.post<DefaultResponse>(
+      `${environment.apiPrefix}/${url}`,
+      body
+    );
+  }
+  deleteAdminDataSet(body: any) {
+    const url = `dptuser/deletemanageapiservice`;
     return this.http.post<DefaultResponse>(
       `${environment.apiPrefix}/${url}`,
       body

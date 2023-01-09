@@ -98,6 +98,11 @@ export interface DataReturn {
   provinceCode: string;
   provinceName: string;
   zoneName: string;
+  createInfoDate: string;
+  createDate: string;
+  updateDate: string;
+  picture: any;
+  tempPicture?: any;
 }
 export interface Category {
   catId: number;
@@ -139,6 +144,11 @@ export interface DataServiceDetailResponse extends DefaultResponse {
   countview: string;
   zone: string;
   jsonField: string;
+  createInfoDate: string;
+  createDate: string;
+  updateDate: string;
+  picture: any;
+  tempPicture?: any;
 }
 export interface DataServiceDetail {
   apiId: string;
@@ -152,6 +162,11 @@ export interface DataServiceDetail {
   groupsName: string;
   countview: string;
   zone: string;
+  createInfoDate: string;
+  createDate: string;
+  updateDate: string;
+  picture: any;
+  tempPicture?: any;
   jsonField: string;
 }
 

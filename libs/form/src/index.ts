@@ -14,3 +14,5 @@ export * from './admin-sao-form/admin-sao-form.component';
 export * from './approve-department-form/approve-department-form.component';
 export * from './data-service-dialog/data-service-dialog.component';
 export * from './file-list-form/file-list-form.component';
+export * from './decline-department-form/decline-department-form.component';
+export * from './admin-data-set-form/admin-data-set-form.component';

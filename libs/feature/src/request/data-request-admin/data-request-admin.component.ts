@@ -138,6 +138,7 @@ export class DataRequestAdminComponent implements OnInit, AfterViewInit {
         roleId: this.userService.getUser()?.role.roleId,
         reqUserId: userId,
         depId: this.userService.getUser()?.department.departmentId,
+        reason: null,
       },
       maxHeight: '800px',
       width: '1000px',
