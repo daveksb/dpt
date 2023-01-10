@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MainApiService, UserService } from '@dpt/shared';
 import { DataServiceDialogComponent, DefaultDialogComponent } from '@dpt/form';
 import { DomSanitizer } from '@angular/platform-browser';
-import { DataServiceDetail } from 'libs/shared/src/lib/share.model';
+import { DataServiceDetail } from '@dpt/shared';
 import { atob, Base64 } from 'js-base64';
 
 export interface DataService {
@@ -388,6 +388,13 @@ export class DataServiceDetailComponent implements OnInit {
   onClickFile(fileType: string) {
     if (!this.apiList.some((a) => a === fileType) && this.apiDetail?.tokenKey) {
       window.open(this.mainUrl + this.apiDetail.tokenKey, '_blank');
+      // this.mainApiService.getFile(this.apiDetail.tokenKey).subscribe();
     }
+  }
+  isShowDownload() {
+    return (
+      !this.apiList.some((a) => a === this.apiDetail?.tType) &&
+      this.apiDetail?.tokenKey
+    );
   }
 }

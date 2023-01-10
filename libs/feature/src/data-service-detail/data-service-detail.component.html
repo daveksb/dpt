@@ -54,7 +54,18 @@
                   (click)="onClickFile(apiDetail?.tType ?? '')"
                   [formatType]="apiDetail?.tType ?? ''"
                 ></dpt-file-button>
+                <div class="download" *ngIf="isShowDownload()">
+                  <button
+                    mat-button
+                    class="default-button"
+                    color="primary"
+                    (click)="onClickFile(apiDetail?.tType ?? '')"
+                  >
+                    ดาวน์โหลดไฟล์
+                  </button>
+                </div>
               </div>
+
               <div class="view-container">
                 <div class="icon-container">
                   <mat-icon>visibility</mat-icon>

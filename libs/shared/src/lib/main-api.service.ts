@@ -399,4 +399,10 @@ export class MainApiService {
       ...body,
     });
   }
+
+  getFile(token: string) {
+    return this.http.get<any>(
+      `${'http://38.242.138.3/dpt/dptapiaccess.php?filetokenkey='}${token}`
+    );
+  }
 }

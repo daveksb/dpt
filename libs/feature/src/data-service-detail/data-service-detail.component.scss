@@ -70,6 +70,19 @@
   padding: 40px;
   .file-type-container {
     margin-top: 1rem;
+    display: flex;
+  }
+  .default-button {
+    margin-right: 8px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 38px;
+    color: #270108;
+    border: 3px #270108 solid;
+  }
+  .download {
+    margin-left: 1rem;
   }
   .image-container {
     padding-right: 28px;
