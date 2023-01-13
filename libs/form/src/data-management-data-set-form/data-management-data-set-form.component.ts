@@ -18,7 +18,7 @@ import {
   Province,
 } from '@dpt/shared';
 import { DateTime } from 'luxon';
-import { interval, Observable, takeUntil } from 'rxjs';
+import { interval, takeUntil } from 'rxjs';
 import { Subject } from 'rxjs';
 export interface TableParam {
   name?: string;
@@ -37,6 +37,7 @@ export class DataManagementDataSetFormComponent implements OnInit {
     apiId: new FormControl<any>(null, Validators.required),
     apiName: new FormControl<any>(null, Validators.required),
     attribute: new FormControl<any>(null, Validators.required),
+    status: new FormControl<any>('N', Validators.required),
     active: new FormControl<any>('N', Validators.required),
     createBy: new FormControl<any>(
       this.userService.getUser()?.userId,
@@ -96,7 +97,7 @@ export class DataManagementDataSetFormComponent implements OnInit {
     private userService: UserService,
     private mainApiService: MainApiService
   ) {
-    this.formGroup.get('active')?.disable(); // ToDo enable if admin department
+    this.formGroup.get('status')?.disable(); // ToDo enable if admin department
     this.formGroup.patchValue(data);
     this.formGroup.get('typeId')?.setValue(data.tId);
     this.categoryList = data.categoryList;
@@ -104,14 +105,18 @@ export class DataManagementDataSetFormComponent implements OnInit {
     this.provinceList = data.provinceList;
     this.dataTypeList = data.dataTypeList;
     this.categoryGroupList = data.categoryGroupList;
+    // if (!this.data.apiDetail) {
+    //   this.formGroup
+    //     .get('apiDetail')
+    //     ?.setValue(Base64.decode(JSON.parse(this.data.apiDetail).data));
+    // }
     if (this.data.isEdit) {
       this.formGroup.get('typeId')?.disable();
     }
     if (this.data.jsonField) {
       if (this.data.tType !== 'zip') {
         const form = JSON.parse(
-          Base64.decode((JSON.parse(atob(this.data.jsonField)) as any).data) ??
-            '[]'
+          Base64.decode(this.data.jsonField) ?? '[]'
         ) as TableParam[];
         form.forEach((g) => {
           const newGroup = new FormGroup({
@@ -163,7 +168,7 @@ export class DataManagementDataSetFormComponent implements OnInit {
     });
     const role = this.userService.getUser()?.role.roleId;
     if (role === '6' || role === '1') {
-      this.formGroup.get('active')?.enable();
+      this.formGroup.get('status')?.enable();
     }
   }
 
@@ -177,20 +182,24 @@ export class DataManagementDataSetFormComponent implements OnInit {
       this.jsonForm.get('form')?.value &&
       this.formGroup.get('typeId')?.value?.toString() !== '10'
     ) {
-      this.formGroup.get('jsonField')?.setValue(
-        JSON.stringify({
-          data: Base64.encode(JSON.stringify(this.jsonForm.get('form')?.value)),
-        })
-      );
+      this.formGroup
+        .get('jsonField')
+        ?.setValue(
+          Base64.encode(JSON.stringify(this.jsonForm.get('form')?.value))
+        );
     }
     if (this.formGroup.get('typeId')?.value?.toString() === '10') {
-      this.formGroup.get('jsonField')?.setValue(
-        JSON.stringify({
-          data: Base64.encode(
-            JSON.stringify(this.formGroup.get('jsonField')?.value)
-          ),
-        })
-      );
+      // JSON THAI
+      if (!this.hasFile) {
+        this.formGroup
+          .get('jsonField')
+          ?.setValue(JSON.stringify(this.formGroup.get('jsonField')?.value));
+      } else {
+        // JSON ENCODE
+        this.formGroup
+          .get('jsonField')
+          ?.setValue(this.formGroup.get('jsonField')?.value);
+      }
     }
 
     this.formGroup
@@ -203,14 +212,25 @@ export class DataManagementDataSetFormComponent implements OnInit {
           : 'FILE'
       );
     this.formGroup.get('picture')?.setValue(this.tempFile);
-    this.formGroup
-      .get('createinfodate')
-      ?.setValue(
-        DateTime.fromJSDate(this.formGroup.get('createInfoDate')?.value)
-          .toISODate()
-          .toString()
-      );
-    const { tempPicture, ...res } = this.formGroup.getRawValue();
+    const date = DateTime.fromJSDate(
+      this.formGroup.get('createInfoDate')?.value
+    ).toISODate({ format: 'basic' });
+
+    // 2023-01-12T02:04:01.634Z
+    // this.formGroup
+    //   .get('apiDetail')
+    //   ?.setValue(JSON.stringify({ data: Base64.encode(this.data.apiDetail) }));
+    this.formGroup.get('createInfoDate')?.setValue(date);
+    this.formGroup.get('active')?.setValue(this.formGroup.get('status')?.value);
+    // this.formGroup
+    //   .get('createinfodate')
+    //   ?.setValue(
+    //     DateTime.fromJSDate(this.formGroup.get('createInfoDate')?.value)
+    //       .toISODate()
+    //       .toString()
+    //   );
+
+    const { tempPicture, status, ...res } = this.formGroup.getRawValue();
     this.data.onConfirm(res);
     this.onDismiss();
   }
@@ -251,53 +271,52 @@ export class DataManagementDataSetFormComponent implements OnInit {
     const temp = this.data.apiLink ?? '';
     const hasPrefix = (temp as string).includes('TA');
     if (hasPrefix) {
-      this.generateRefId = (this.data.apiLink as string).split('.')[0];
+      this.generateRefId = (this.data.apiLink as string)
+        ? (this.data.apiLink as string)?.split('.')[0]
+        : '';
     }
-    if (!this.data.apiLink) {
-      this.mainApiService
-        .insertFileTemp({
-          refId: this.generateRefId,
-        })
-        .subscribe((res) => {
-          if (res.returnCode === '00') {
-            const temp = interval(10000);
-            temp.pipe(takeUntil(this.cancelSubject$)).subscribe(() => {
-              this.mainApiService.selectFileTemp(this.generateRefId).subscribe({
-                next: (select) => {
-                  if (
-                    select.returnCode === '99' ||
-                    select.returnCode === '98'
-                  ) {
-                    this.hasFile = false;
-                    this.cancelSubject$.next(true);
-                  } else {
-                    if (select.returnCode === '00') {
-                      if (select.tfFileName) {
-                        this.formGroup
-                          .get('apiLink')
-                          ?.setValue(select.tfFileName);
-                        this.hasFile = true;
-                        const name = select.tfFileName.split('.');
-                        if (name[name.length - 1] === 'zip') {
-                          select.tfZipB64 = select.tfZipB64.replace(/\n/g, '');
-                          const base64 = Base64.decode(select.tfZipB64 ?? '');
-                          this.formGroup.get('jsonField')?.setValue(base64);
-                        }
-
-                        this.cancelSubject$.next(true);
-                      }
+    // if (!this.data.apiLink) {
+    this.mainApiService
+      .insertFileTemp({
+        refId: this.generateRefId,
+      })
+      .subscribe((res) => {
+        // if (res.returnCode === '00') {
+        const temp = interval(10000);
+        temp.pipe(takeUntil(this.cancelSubject$)).subscribe(() => {
+          this.mainApiService.selectFileTemp(this.generateRefId).subscribe({
+            next: (select) => {
+              if (select.returnCode === '99' || select.returnCode === '98') {
+                this.hasFile = false;
+                this.cancelSubject$.next(true);
+              } else {
+                if (select.returnCode === '00') {
+                  if (select.tfFileName) {
+                    this.formGroup.get('apiLink')?.setValue(select.tfFileName);
+                    this.hasFile = true;
+                    const name = select.tfFileName.split('.');
+                    if (name[name.length - 1] === 'zip') {
+                      select.tfZipB64 = select.tfZipB64.replace(/\n/g, '');
+                      // const base64 = Base64.decode(select.tfZipB64 ?? '');
+                      this.formGroup
+                        .get('jsonField')
+                        ?.setValue(select.tfZipB64);
                     }
+
+                    this.cancelSubject$.next(true);
                   }
-                },
-                error: () => {
-                  this.cancelSubject$.next(true);
-                },
-              });
-            });
-            //
-          } else console.log(res);
+                }
+              }
+            },
+            error: () => {
+              this.cancelSubject$.next(true);
+            },
+          });
         });
-    }
+        //
+        // } else console.log(res);
+      });
+    // }
 
     window.open(
       'http://38.242.138.3/9A5387D3066CAD4D72E2B730A7456639E97E5C6D/uploadfiledata.php?refId=' +

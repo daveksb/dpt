@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from '@dpt/shared';
@@ -10,7 +10,7 @@ interface MapString {
   templateUrl: './top-nav.component.html',
   styleUrls: ['./top-nav.component.scss'],
 })
-export class TopNavComponent {
+export class TopNavComponent implements OnInit {
   @Input() isSecondary = false;
   @Output() clickToggle = new EventEmitter();
   isActive = true;
@@ -74,6 +74,9 @@ export class TopNavComponent {
         this.isAdmin = !!(this.userService.getUser()?.role?.roleId === '1');
       }
     });
+    this.userName = this.userService.getUser()?.name ?? '';
+  }
+  ngOnInit(): void {
     this.userName = this.userService.getUser()?.name ?? '';
   }
   isContainUrl(data: string) {
