@@ -30,6 +30,7 @@ import { SharedModule } from '@dpt/shared';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatProgressSpinnerModule,
     NgxChartsModule,
     MatDatepickerModule,
+    QuillModule,
   ],
   exports: [
     DataServiceDetailComponent,

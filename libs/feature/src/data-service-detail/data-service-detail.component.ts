@@ -166,6 +166,7 @@ export class DataServiceDetailComponent implements OnInit {
   displayedZipColumns: string[] = ['name', 'size'];
   dataSourceZip = new MatTableDataSource<any>();
   mainUrl = 'http://38.242.138.3/dpt/dptapiaccess.php?filetokenkey=';
+  tempDetail = '';
   constructor(
     public dialog: MatDialog,
     private route: ActivatedRoute,
@@ -191,7 +192,9 @@ export class DataServiceDetailComponent implements OnInit {
 
           if (this.apiDetail.tType === 'zip') {
             try {
-              const a = this.apiDetail.jsonField;
+              const a = JSON.parse(
+                Base64.decode(this.apiDetail.jsonField)
+              )?.data;
               // const a =
               //   'eyJkYXRhIjoiSWxwWWJFdGhNV3haVlcxb1NtRnRPWEJWTVdRMFlXMVdkRlJZYkdobGEwcFdWV3BL\nTkZSV1VuSldhbEpxVWxSRk1sWlhjM2hoVmxwWVl6TmtWMUpYVW5wVVZWVXhVbTFXU1ZWc1RsZFNh\nM0JQVjFaYWExZHJNVWRWYTJocFUwVTFVRlZzYUc5TlFYQlhVbXhhZWxreFpFcGxWMHBJWkVaT1Rs\nWnRPSGxXTW5SWFZERkdkRlZyV21sU1ZuQldXVzE0ZDJOV1ZYZGFSRUpwWWtVeE0xWlhjekZoYkVw\nWllVUkdWbFo2VmxoWFZtUlhWbTFLU1dOR1VsaFNiSEJHVmtkMGEyRXdNVmRTYWxwV1lteEthRU5z\nV2xaTlNHUmFaV3MxV0ZWclZURlRSMVpIVVd4S2JHSkdjREpXYTFKRFZHc3hTRk51UW10U1ZrcFFW\nVEJXUzJNeFZsbGpSbVJxVm10V00xbFljRXRXUmxsNlVXczVZVlpzVlhoVWJYaHJWbFpHY2s1WGFG\nZFdXRUl6VmpKNFlXSXhWWGxUYTJkTFZrZHdWMVpIUm5SbFJUVldUVWRvVUZrd1ZURlNiVlpKVVd4\nU2JHSkZjRTlYVmxwVFZHc3hSMVZyYUU1V1dFSlFWV3hvYjJReGNFWlZiRTVWVmpCd1YxWnNVa05X\nVmtsNVpVaFNWV0V4V1RCWk1HUkxVbFpXY2sxWGJGZFdSVnBNVjFaamQwNVJjR3BTYmtKSFYydGFh\nMkpIU2xkVGExWldWbTFvVkZVeWVFdFdhelZWVTJ4d1RsSXlhRFZYYTFwclZERk9SazVXYUU5V1dF\nSnZWakJrVTJReFVuSldhbEpxVW10Wk1sWlhjM2hoUmxwMFQwaGtWMUpYVW5wVWJGVXhVbTFXU1ZG\nc1pGZFNhM0JQUTJ4c2MxWnNXazVTYkVwSldXdGplRlF4U2xsaFNHUmFZVEZLVkZaR1pFdFdhekZX\nWTBkb2FWWkhlRE5XYTFwdlpERk9jazFJWkU5WFJWcFhWakJrTkZNeFZuRlJibHBPVm01Q1IxZHJX\nbXRpUjBWNVpVUkdWVlpYYUZCWmEyUlhWbTFXU0U1WGMwdFdiR1EwVGxaa2NWUnNaRlZXYmtJd1Yy\ndFNSMWRHV1hwUmJsWmhVbXhhTmxwWGVIWmxiRnB6WTBaa1UwMXNSalJXVkVweVRsZEtkRlZzV210\nU2JYaG9WRlJHWVZsV2NFVlRiazVXVWpCYVYxbHFUbXRYUjBwSVlVWkNWVlpXV1RCYVJscEhaRkZ3\nVjJKVlduTldiR1EwVG14VmVHRkdaRk5TVkZaSlYydFNSMVZ0Vm5OVGFrSllZa1phVDFSVlpFNWxi\nRnB5VldzNVUwMHlhRkpXVm1oM1ZqSkplRlZZWkZWV1JVcHdXVlpvVTFKV1VuSmhSVTVwVW10Wk1s\nWnROVWRWYXpGSVl6TnNWazFYVWpORGJGSjBWbXhhVDFaR2NGbFdhMVpMVkRGc1YxWnJkR3BTYmtK\nWVdWVmFUMkZXU1hkT1JFWldUVzVDZWxZeFdsZFdWVEZGWWtWd1lXVnFRVFZUVnpSM1VGRTlQU0k9\nIn0="                ';
               // const a =
@@ -219,7 +222,10 @@ export class DataServiceDetailComponent implements OnInit {
             // console.log(Base64.decode(data).replace(/\n/g, ''));
           } else {
             try {
-              const data = JSON.parse(Base64.decode(res.jsonField));
+              const data = JSON.parse(Base64.decode(res.jsonField))?.data;
+              this.tempDetail = JSON.parse(
+                Base64.decode(res.jsonField)
+              )?.detail;
               this.dataSource = new MatTableDataSource(data);
             } catch {
               this.dataSource.data = [];

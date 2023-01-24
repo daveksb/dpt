@@ -24,10 +24,11 @@
         "styles": [
           "apps/dpt-ui/src/dpt-theme.scss",
           "apps/dpt-ui/src/styles.scss",
-          "node_modules/bootstrap/dist/css/bootstrap.css"
+          "node_modules/bootstrap/dist/css/bootstrap.css",
+          "node_modules/quill/dist/quill.snow.css"
         ],
         "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"],
-        "allowedCommonJsDependencies": ["crypto-js", "md5"]
+        "allowedCommonJsDependencies": ["crypto-js", "md5", "quill"]
       },
       "configurations": {
         "production": {
@@ -35,7 +36,7 @@
             {
               "type": "initial",
               "maximumWarning": "500kb",
-              "maximumError": "2mb"
+              "maximumError": "3mb"
             },
             {
               "type": "anyComponentStyle",

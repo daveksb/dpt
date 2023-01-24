@@ -7,20 +7,34 @@
   display: grid;
   gap: 1rem;
   grid-template-columns: 80px 1fr;
-  grid-template-rows: auto;
+  grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto;
   grid-template-areas:
-    'label value'
-    'label value'
-    'label value'
-    'label value'
-    'label value'
-    'label value';
+    'label-1 value-1'
+    'label-2 value-2'
+    'label-3 value-3'
+    'label-4 value-4'
+    'label-5 value-5'
+    'label-6 value-6'
+    'label-7 value-7'
+    'label-8 value-8'
+    'label-9 value-9'
+    'label-10 value-10'
+    'label-11 value-11';
 }
-.label {
-  grid-area: 'label';
+@for $i from 1 through 11 {
+  .label-#{$i} {
+    grid-area: label-#{$i};
+  }
+  .value-#{$i} {
+    grid-area: value-#{$i};
+  }
 }
-.value {
-  grid-area: 'value';
+
+.label-7 {
+  margin-top: 40px;
+}
+.value-7 {
+  margin-top: 40px;
 }
 .department-container {
   display: flex;

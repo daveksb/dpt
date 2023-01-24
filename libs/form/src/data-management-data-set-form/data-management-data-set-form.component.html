@@ -7,8 +7,8 @@
 
 <div mat-dialog-content>
   <div class="request-form-container" [formGroup]="formGroup">
-    <div class="label">รูปแบบข้อมูล</div>
-    <div class="value">
+    <div class="label-1">รูปแบบข้อมูล</div>
+    <div class="value-1">
       <mat-form-field appearance="outline">
         <mat-select placeholder="รูปแบบข้อมูล" formControlName="typeId">
           <mat-option
@@ -20,8 +20,8 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <div class="label">ชื่อชุดข้อมูล</div>
-    <div class="value">
+    <div class="label-2">ชื่อชุดข้อมูล</div>
+    <div class="value-2">
       <mat-form-field class="form-field" appearance="outline">
         <input
           type="text"
@@ -31,8 +31,8 @@
         />
       </mat-form-field>
     </div>
-    <div *ngIf="!isEdit" class="label">วันที่จัดทำข้อมูล</div>
-    <div *ngIf="!isEdit" class="value">
+    <div *ngIf="!isEdit" class="label-3">วันที่จัดทำข้อมูล</div>
+    <div *ngIf="!isEdit" class="value-3">
       <!-- <mat-form-field class="form-field" appearance="outline">
         <input
           type="date"
@@ -56,8 +56,8 @@
         <mat-datepicker #datepicker> </mat-datepicker>
       </mat-form-field>
     </div>
-    <div class="label">รูปภาพประกอบ</div>
-    <div class="value">
+    <div class="label-4">รูปภาพประกอบ</div>
+    <div class="value-4">
       <input
         type="file"
         accept="image/png,image/jpg,image/jpeg"
@@ -67,8 +67,8 @@
       />
     </div>
 
-    <div class="label">รายละเอียด</div>
-    <div class="value">
+    <div class="label-5">รายละเอียด</div>
+    <div class="value-5">
       <mat-form-field class="form-field" appearance="outline">
         <textarea
           type="text"
@@ -78,9 +78,13 @@
         ></textarea>
       </mat-form-field>
     </div>
+    <div class="label-6">รายละเอียด</div>
+    <div class="value-6">
+      <quill-editor formControlName="tempDetail"> </quill-editor>
+    </div>
 
-    <div class="label">{{ isAPI ? 'Link' : 'ซื่อไฟล์' }}</div>
-    <div class="value">
+    <div class="label-7">{{ isAPI ? 'Link' : 'ซื่อไฟล์' }}</div>
+    <div class="value-7">
       <mat-form-field class="form-field" appearance="outline">
         <input
           type="text"
@@ -92,8 +96,8 @@
     </div>
 
     <ng-container *ngIf="isAPI">
-      <div class="label">ตารางข้อมูล</div>
-      <div class="value">
+      <div class="label-8">ตารางข้อมูล</div>
+      <div class="value-8">
         <button
           class="float-left"
           mat-icon-button
@@ -163,8 +167,8 @@
       </div>
     </ng-container>
 
-    <div class="label">หมวดหมู่</div>
-    <div class="value double-column">
+    <div class="label-9">หมวดหมู่</div>
+    <div class="value-9 double-column">
       <mat-form-field appearance="outline">
         <mat-select placeholder="หมวดหมู่" formControlName="catId">
           <mat-option
@@ -186,8 +190,8 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <div class="label">การเผยแพร่</div>
-    <div class="value double-column">
+    <div class="label-10">การเผยแพร่</div>
+    <div class="value-10 double-column">
       <mat-form-field appearance="outline">
         <mat-select placeholder="การเผยแพร่" formControlName="privacyId">
           <mat-option
@@ -209,8 +213,8 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <div class="label">จังหวัด</div>
-    <div class="value">
+    <div class="label-11">จังหวัด</div>
+    <div class="value-11">
       <mat-form-field class="form-field" appearance="outline">
         <mat-select placeholder="จังหวัด" formControlName="provinceCode">
           <mat-option

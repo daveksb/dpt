@@ -59,6 +59,8 @@ export class DataManagementDataSetFormComponent implements OnInit {
     createInfoDate: new FormControl<Date>(new Date(), Validators.required),
     picture: new FormControl<any>(null, Validators.required),
     tempPicture: new FormControl<any>(null, Validators.required),
+    tempDetail: new FormControl<any>(null, Validators.required),
+    tempFile: new FormControl<any>(null, Validators.required),
   });
   dataTypeList: DataType[] = [];
   jsonForm = new FormGroup({
@@ -115,9 +117,8 @@ export class DataManagementDataSetFormComponent implements OnInit {
     }
     if (this.data.jsonField) {
       if (this.data.tType !== 'zip') {
-        const form = JSON.parse(
-          Base64.decode(this.data.jsonField) ?? '[]'
-        ) as TableParam[];
+        const form = JSON.parse(Base64.decode(this.data.jsonField) ?? '[]')
+          ?.data as TableParam[];
         form.forEach((g) => {
           const newGroup = new FormGroup({
             name: new FormControl<any>(g.name),
@@ -127,6 +128,12 @@ export class DataManagementDataSetFormComponent implements OnInit {
           });
           this.formArray.push(newGroup);
         });
+      }
+      if (this.apiList.some((a) => a === this.data.tId)) {
+        const form = JSON.parse(
+          Base64.decode(this.data.jsonField) ?? '[]'
+        ).detail;
+        this.formGroup.get('tempDetail')?.setValue(form);
       }
 
       if (!this.isAPI) {
@@ -182,23 +189,36 @@ export class DataManagementDataSetFormComponent implements OnInit {
       this.jsonForm.get('form')?.value &&
       this.formGroup.get('typeId')?.value?.toString() !== '10'
     ) {
-      this.formGroup
-        .get('jsonField')
-        ?.setValue(
-          Base64.encode(JSON.stringify(this.jsonForm.get('form')?.value))
-        );
+      this.formGroup.get('jsonField')?.setValue(
+        Base64.encode(
+          JSON.stringify({
+            data: this.jsonForm.get('form')?.value,
+            detail: this.formGroup.get('tempDetail')?.value,
+          })
+        )
+      );
     }
     if (this.formGroup.get('typeId')?.value?.toString() === '10') {
       // JSON THAI
       if (!this.hasFile) {
-        this.formGroup
-          .get('jsonField')
-          ?.setValue(JSON.stringify(this.formGroup.get('jsonField')?.value));
+        this.formGroup.get('jsonField')?.setValue(
+          Base64.encode(
+            JSON.stringify({
+              data: this.formGroup.get('tempFile')?.value,
+              detail: this.formGroup.get('tempDetail')?.value,
+            })
+          )
+        );
       } else {
         // JSON ENCODE
-        this.formGroup
-          .get('jsonField')
-          ?.setValue(this.formGroup.get('jsonField')?.value);
+        this.formGroup.get('jsonField')?.setValue(
+          Base64.encode(
+            JSON.stringify({
+              data: this.formGroup.get('tempFile')?.value,
+              detail: this.formGroup.get('tempDetail')?.value,
+            })
+          )
+        );
       }
     }
 
@@ -230,7 +250,8 @@ export class DataManagementDataSetFormComponent implements OnInit {
     //       .toString()
     //   );
 
-    const { tempPicture, status, ...res } = this.formGroup.getRawValue();
+    const { tempPicture, status, tempFile, tempDetail, ...res } =
+      this.formGroup.getRawValue();
     this.data.onConfirm(res);
     this.onDismiss();
   }
@@ -298,9 +319,7 @@ export class DataManagementDataSetFormComponent implements OnInit {
                     if (name[name.length - 1] === 'zip') {
                       select.tfZipB64 = select.tfZipB64.replace(/\n/g, '');
                       // const base64 = Base64.decode(select.tfZipB64 ?? '');
-                      this.formGroup
-                        .get('jsonField')
-                        ?.setValue(select.tfZipB64);
+                      this.formGroup.get('tempFile')?.setValue(select.tfZipB64);
                     }
 
                     this.cancelSubject$.next(true);

@@ -39,6 +39,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { DeclineDepartmentFormComponent } from './decline-department-form/decline-department-form.component';
 import { AdminDataSetFormComponent } from './admin-data-set-form/admin-data-set-form.component';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,23 @@ import { AdminDataSetFormComponent } from './admin-data-set-form/admin-data-set-
     MatSelectModule,
     MatNativeDateModule,
     MatRippleModule,
+    QuillModule.forRoot({
+      modules: {
+        toolbar: [
+          ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+          ['blockquote', 'code-block'],
+          [{ list: 'ordered' }, { list: 'bullet' }],
+          [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
+          [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
+          [{ direction: 'rtl' }], // text direction
+          [{ size: ['small', 'medium', 'large', 'huge'] }], // custom dropdown
+          [{ header: [1, 2, 3, 4, 5, 6] }],
+          [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+          [{ align: [] }],
+          ['clean'], // remove formatting button
+        ],
+      },
+    }),
   ],
   exports: [
     FormForgotPasswordComponent,

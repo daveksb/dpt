@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
+@import '~quill/dist/quill.snow.css';
 
 @font-face {
   font-family: 'Poppins';
@@ -70,7 +71,10 @@ $enable-cssgrid: true;
 //$font-sizes: map-merge($font-sizes, $customFs);
 
 @import './node_modules/bootstrap/scss/bootstrap';
-
+//quill
+.ql-editor {
+  padding: unset !important;
+}
 .is-invisible {
   visibility: hidden;
   height: 0px;
