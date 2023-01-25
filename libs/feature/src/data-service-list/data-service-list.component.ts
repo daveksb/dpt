@@ -7,12 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { DataRequestFormComponent } from '@dpt/form';
 import { MainApiService, UserService } from '@dpt/shared';
-import {
-  DataReturn,
-  Department,
-  Province,
-  Zone,
-} from 'libs/shared/src/lib/share.model';
+import { DataReturn, DataType, Department, Province, Zone } from '@dpt/shared';
 export interface Category {
   value: string;
   count: 10;
@@ -30,6 +25,7 @@ export class DataServiceListComponent implements OnInit {
   formGroup = new FormGroup({
     province: new FormControl<string[]>([]),
     zoneName: new FormControl<string[]>([]),
+    dataType: new FormControl<string[]>([]),
   });
   sideBarList: Category[] = [];
   displayedColumns: string[] = [
@@ -55,7 +51,7 @@ export class DataServiceListComponent implements OnInit {
   provinceList: Province[] = [];
   zones: Zone[] = [];
   currentProvinceList: Province[] = [];
-
+  dataTypeList: DataType[] = [];
   constructor(
     private dialog: MatDialog,
     private route: Router,
@@ -76,6 +72,12 @@ export class DataServiceListComponent implements OnInit {
 
   onOpenFile(a: any) {}
   ngOnInit(): void {
+    this.mainApiService.getDataType().subscribe((res) => {
+      this.dataTypeList = res.TypeData;
+    });
+    this.formGroup.get('dataType')?.valueChanges.subscribe((v) => {
+      this.onSearch();
+    });
     this.formGroup.get('zoneName')?.valueChanges.subscribe((v) => {
       this.formGroup.get('province')?.reset();
       if (v && v?.length > 0) {
@@ -201,6 +203,9 @@ export class DataServiceListComponent implements OnInit {
           ? this.formGroup
               .get('province')
               ?.value?.some((r) => r === a.provinceCode)
+          : true) &&
+        ((this.formGroup.get('dataType')?.value?.length ?? 0) > 0
+          ? this.formGroup.get('dataType')?.value?.some((r) => r === a.tType)
           : true) &&
         (this.currentCategory ? a.catName === this.currentCategory : true)
       );

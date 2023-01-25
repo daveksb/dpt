@@ -99,6 +99,18 @@
                 </mat-select>
               </mat-form-field>
             </div>
+            <div class="side-bar-item-form">
+              <mat-form-field appearance="fill">
+                <mat-label>รูปแบบข้อมูล</mat-label>
+                <mat-select formControlName="dataType" multiple>
+                  <mat-option
+                    *ngFor="let dataType of dataTypeList"
+                    [value]="dataType.tType"
+                    >{{ dataType.tType | uppercase }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
           </ng-container>
         </div>
         <div class="data-service-content">

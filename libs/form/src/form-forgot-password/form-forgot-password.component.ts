@@ -28,8 +28,9 @@ export class FormForgotPasswordComponent implements OnInit {
               width: '500px',
               data: {
                 status: 'ดำเนินการสำเร็จ',
-                message:
-                  'ระบบได้ดำเนินการอนุมัติคำร้องขอชุดข้อมูลของท่านเรียบร้อยแล้ว',
+                message: `ระบบได้ดำเนินการส่งลิงค์สำหรับเปลี่ยนรหัสผ่านไปที่อีเมล ${
+                  this.formGroup.get('email')?.value
+                } แล้ว`,
               },
             });
           } else {
