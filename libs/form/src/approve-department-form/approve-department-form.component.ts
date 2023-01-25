@@ -21,7 +21,9 @@ import { DefaultDialogComponent } from '../default-dialog/default-dialog.compone
 export class ApproveDepartmentFormComponent implements OnInit {
   formGroup = new FormGroup({
     department: new FormControl(),
-    reason: new FormControl(),
+    reason: new FormControl(
+      'ไม่อนุมัติคำร้องขอเนื่องจาก ....{{เหตุผลในการไม่อนุมัติ}}....'
+    ),
     apiId: new FormControl(),
   });
   departments: Department[] = [];

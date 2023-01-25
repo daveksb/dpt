@@ -15,7 +15,9 @@ import { DefaultDialogComponent } from '../default-dialog/default-dialog.compone
 })
 export class DeclineDepartmentFormComponent implements OnInit {
   formGroup = new FormGroup({
-    reason: new FormControl(),
+    reason: new FormControl(
+      'ไม่อนุมัติคำร้องขอเนื่องจาก ....{{เหตุผลในการไม่อนุมัติ}}....'
+    ),
   });
   userName = '';
   constructor(
