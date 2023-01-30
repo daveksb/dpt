@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [PdpaComponent, SideNavComponent, TopNavComponent],
@@ -20,6 +22,8 @@ import { MatListModule } from '@angular/material/list';
     MatSidenavModule,
     MatCheckboxModule,
     MatListModule,
+    MatMenuModule,
+    MatIconModule,
   ],
   exports: [PdpaComponent, SideNavComponent, TopNavComponent],
 })

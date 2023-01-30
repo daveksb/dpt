@@ -35,7 +35,7 @@ import {
   TokenHandleInterceptor,
 } from '@dpt/feature';
 import { SharedModule } from '@dpt/shared';
-import { FormModule } from '@dpt/form';
+import { EditUserComponent, FormModule } from '@dpt/form';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
@@ -104,6 +104,7 @@ const routes: Routes = [
       permission: ['accSetApi', 'accSetAccess', 'accManageUser'],
     },
   },
+  { path: 'user', component: EditUserComponent, canActivate: [AuthGuard] },
   { path: '**', component: LandingComponent },
 ];
 @NgModule({

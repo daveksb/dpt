@@ -215,7 +215,6 @@ export class DataServiceListComponent implements OnInit {
     this.route.navigate(['data-service-request']);
   }
   onView(id: number) {
-    console.log('onView', id);
     const data = {
       departmentType: 1,
       department: 'test',

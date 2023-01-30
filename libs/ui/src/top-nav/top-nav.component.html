@@ -78,6 +78,36 @@
       >
         ผู้ดูแลระบบ
       </button>
+
+      <button
+        *ngIf="hasAuth"
+        class="user-icon"
+        mat-mini-fab
+        [matMenuTriggerFor]="menu"
+      >
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <div *ngIf="userName && hasAuth" mat-menu-item>
+          <span>{{ userName }}</span>
+        </div>
+        <button
+          *ngIf="userName && hasAuth"
+          mat-menu-item
+          [routerLink]="['/user']"
+        >
+          <span>แก้ไขข้อมูลส่วนตัว</span>
+        </button>
+        <button
+          *ngIf="hasAuth"
+          mat-menu-item
+          (click)="logout()"
+          [routerLink]="['/login']"
+        >
+          <img class="log-out-button" src="assets/icon/log-out.png" />
+          <span> ออกจากระบบ </span>
+        </button>
+      </mat-menu>
       <button
         *ngIf="!hasAuth"
         mat-flat-button
@@ -85,19 +115,6 @@
         [routerLink]="['/login']"
       >
         เข้าสู่ระบบ
-      </button>
-      <div *ngIf="userName && hasAuth" class="user-name">
-        {{ userName }}
-      </div>
-      <button
-        *ngIf="hasAuth"
-        class="logout-button medium-button"
-        mat-flat-button
-        (click)="logout()"
-        [routerLink]="['/login']"
-      >
-        <img class="log-out-button" src="assets/icon/log-out.png" />
-        ออกจากระบบ
       </button>
     </div>
   </div>

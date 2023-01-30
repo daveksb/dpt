@@ -1,0 +1,41 @@
+.edit-user-container {
+  width: 100%;
+
+  .edit-user-footer {
+    display: flex;
+    margin-top: 1rem;
+    .confirm-button {
+      margin: auto;
+      width: 400px;
+      height: 55px;
+      background: #fccc30;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 20px;
+    }
+  }
+}
+.edit-user-body {
+  margin-top: 2rem;
+  display: grid;
+  grid-row: auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+  grid-template-areas:
+    'email email email email'
+    'password password confirmPassword confirmPassword';
+  .email-container {
+    grid-area: email;
+  }
+  .confirm-password-container {
+    grid-area: confirmPassword;
+  }
+  .password-container {
+    grid-area: password;
+  }
+}
+
+.confirm-button {
+  color: white;
+  background-color: #270108;
+}

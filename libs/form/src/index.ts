@@ -16,3 +16,4 @@ export * from './data-service-dialog/data-service-dialog.component';
 export * from './file-list-form/file-list-form.component';
 export * from './decline-department-form/decline-department-form.component';
 export * from './admin-data-set-form/admin-data-set-form.component';
+export * from './edit-user/edit-user.component';

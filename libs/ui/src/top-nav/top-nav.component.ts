@@ -74,11 +74,13 @@ export class TopNavComponent implements OnInit {
         this.isAdmin = !!(this.userService.getUser()?.role?.roleId === '1');
       }
     });
-    this.userName = this.userService.getUser()?.name ?? '';
+    this.userService.user$.subscribe((res) => {
+      if (res?.name && res?.lname) {
+        this.userName = `${res?.name ?? ''} ${res?.lname ?? ''}`;
+      }
+    });
   }
-  ngOnInit(): void {
-    this.userName = this.userService.getUser()?.name ?? '';
-  }
+  ngOnInit(): void {}
   isContainUrl(data: string) {
     return this.currentUrl.includes(data);
   }

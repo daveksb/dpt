@@ -13,7 +13,9 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class TokenHandleInterceptor implements HttpInterceptor {
   private bypassUrl: string[] = [
-    'ksp/dptlogin',
+    'dptlogin/login',
+    'dptlogin/selectdepartment',
+    'dptlogin/register',
     'dptrequest/selectcategory',
     'dptrequest/servicedataprivate',
     'dptrequest/selectprivacy',

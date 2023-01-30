@@ -1,0 +1,58 @@
+<div class="page-content">
+  <div class="edit-user-header">
+    <div class="header-1">แก้ไขข้อมูลส่วนตัว</div>
+    <div class="edit-user-body" [formGroup]="formGroup">
+      <div class="email-container">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>อีเมล</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="email"
+            placeholder="อีเมล"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="password-container">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>รหัสผ่าน</mat-label>
+          <input
+            type="password"
+            matInput
+            formControlName="password"
+            placeholder="รหัสผ่าน"
+          />
+          <mat-error *ngIf="formGroup.get('password')?.invalid"
+            >รหัสผ่านต้องมีความยาวไม่น้อยกว่า 8 ตัวอักษร</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="confirm-password-container">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>ยืนยันรหัสผ่าน</mat-label>
+          <input
+            type="password"
+            matInput
+            formControlName="confirmPassword"
+            placeholder="ยืนยันรหัสผ่าน"
+          />
+          <mat-error *ngIf="formGroup.get('confirmPassword')?.invalid">
+            รหัสผ่านไม่ตรงกัน</mat-error
+          >
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="edit-user-footer">
+      <button
+        mat-flat-button
+        class="confirm-button"
+        [disabled]="formGroup.invalid"
+        (click)="onSubmit()"
+      >
+        ยืนยัน
+      </button>
+    </div>
+  </div>
+</div>

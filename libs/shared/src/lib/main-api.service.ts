@@ -407,4 +407,10 @@ export class MainApiService {
       `${'http://38.242.138.3/dpt/dptapiaccess.php?filetokenkey='}${token}`
     );
   }
+  editUserInfo(body: any) {
+    const url = `dptlogin/changepasswordandemail`;
+    return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
+      ...body,
+    });
+  }
 }

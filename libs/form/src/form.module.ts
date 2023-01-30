@@ -40,6 +40,7 @@ import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { DeclineDepartmentFormComponent } from './decline-department-form/decline-department-form.component';
 import { AdminDataSetFormComponent } from './admin-data-set-form/admin-data-set-form.component';
 import { QuillModule } from 'ngx-quill';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { QuillModule } from 'ngx-quill';
     DataServiceDialogComponent,
     DeclineDepartmentFormComponent,
     AdminDataSetFormComponent,
+    EditUserComponent,
   ],
 
   imports: [
@@ -126,6 +128,7 @@ import { QuillModule } from 'ngx-quill';
     AdminSaoFormComponent,
     FileListFormComponent,
     DeclineDepartmentFormComponent,
+    EditUserComponent,
     AdminDataSetFormComponent,
   ],
   providers: [MatDatepickerModule],

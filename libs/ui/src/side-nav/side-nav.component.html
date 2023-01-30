@@ -66,6 +66,14 @@
       >
       <a
         class="nav-link menu-header"
+        [routerLink]="['/user']"
+        mat-list-item
+        *ngIf="hasAuth"
+      >
+        แก้ไขข้อมูลส่วนตัว</a
+      >
+      <a
+        class="nav-link menu-header"
         [routerLink]="['/login']"
         mat-list-item
         (click)="logout()"
