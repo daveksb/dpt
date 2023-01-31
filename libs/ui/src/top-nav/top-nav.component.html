@@ -143,8 +143,17 @@
         mat-flat-button
         class="login-button medium-button"
         [routerLink]="['/login']"
+        *ngIf="!isShowRegister"
       >
         เข้าสู่ระบบ
+      </button>
+      <button
+        mat-flat-button
+        *ngIf="isShowRegister"
+        class="login-button medium-button"
+        [routerLink]="['/register']"
+      >
+        ลงทะเบียน
       </button>
     </div>
   </div>

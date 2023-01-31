@@ -62,6 +62,7 @@ export class TopNavComponent implements OnInit {
     ],
   };
   userName = '';
+  isShowRegister = false;
   constructor(
     private route: Router,
     private cookieService: CookieService,
@@ -72,6 +73,7 @@ export class TopNavComponent implements OnInit {
         this.currentUrl = val.url;
         this.hasAuth = !!this.cookieService.get('dptToken');
         this.isAdmin = !!(this.userService.getUser()?.role?.roleId === '1');
+        this.isShowRegister = val.url === '/login';
       }
     });
     this.userService.user$.subscribe((res) => {
