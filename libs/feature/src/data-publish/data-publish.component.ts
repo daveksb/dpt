@@ -6,7 +6,7 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DataRequestFormComponent, DefaultDialogComponent } from '@dpt/form';
 import { MainApiService } from '@dpt/shared';
-import { DataReturn } from 'libs/shared/src/lib/share.model';
+import { DataReturn } from '@dpt/shared';
 import { Router } from '@angular/router';
 @Component({
   selector: 'dpt-data-publish',
@@ -95,21 +95,6 @@ export class DataPublishComponent implements OnInit, AfterViewInit {
   }
   onView(row: DataReturn) {
     this.router.navigate(['/data-service-detail/' + row.apiId]);
-    // console.log('onView', row);
-    // const data = {
-    //   departmentType: row.privacyName,
-    //   department: row.departmentName,
-    //   requestFullName: row.catName,
-    //   category: row.catName,
-    //   userName: row.catName,
-    //   detail: row.apiDetail,
-    //   formatType: row.formatType,
-    // };
-    // const dialogRef = this.dialog.open(DataRequestFormComponent, {
-    //   data,
-    //   maxHeight: '800px',
-    //   width: '1000px',
-    // });
   }
   onSearch() {
     this.dataSource.data = (

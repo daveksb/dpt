@@ -8,10 +8,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { DefaultDialogComponent } from '@dpt/form';
 import { MainApiService, UserService } from '@dpt/shared';
 import * as md5 from 'md5';
 import { SHA1 } from 'crypto-js';
+import { DefaultDialogComponent } from '../default-dialog/default-dialog.component';
 
 function SamePasswordValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -37,9 +37,7 @@ export class EditUserComponent implements OnInit {
     private apiService: MainApiService,
     private dialog: MatDialog,
     private userService: UserService
-  ) {
-    //
-  }
+  ) {}
 
   ngOnInit(): void {}
 

@@ -35,7 +35,6 @@ const routes: Routes = [
       { path: 'log', component: AdminLogApiComponent },
       { path: 'data-set', component: AdminDataSetComponent },
       { path: 'department', component: AdminDepartmentComponent },
-      // { path: 'page-setting', component: AdminPageSettingComponent },
       { path: 'soa', component: AdminSoaComponent },
     ],
   },

@@ -71,15 +71,21 @@ export class FormRegisterComponent {
         this.formGroup
           .get('departmentCategory')
           ?.addValidators(Validators.required);
+        this.formGroup.get('departmentCategory')?.updateValueAndValidity();
+        this.formGroup.get('departmentName')?.updateValueAndValidity();
         this.formGroup.updateValueAndValidity();
       } else {
         this.formGroup.get('departmentCategory')?.clearValidators();
         this.formGroup
           .get('departmentName')
           ?.addValidators(Validators.required);
+        this.formGroup.get('departmentCategory')?.updateValueAndValidity();
+        this.formGroup.get('departmentName')?.updateValueAndValidity();
         this.formGroup.updateValueAndValidity();
       }
     });
+    this.formGroup.get('departmentCategory')?.updateValueAndValidity();
+    this.formGroup.get('departmentName')?.updateValueAndValidity();
     this.formGroup.updateValueAndValidity();
   }
   onConfirm() {

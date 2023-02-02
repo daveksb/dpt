@@ -20,7 +20,7 @@ import {
   Privacy,
   Province,
   UpdateApiRequest,
-} from 'libs/shared/src/lib/share.model';
+} from '@dpt/shared';
 
 @Component({
   selector: 'dpt-data-management-data-set',
@@ -88,7 +88,6 @@ export class DataManagementDataSetComponent implements AfterViewInit {
       .subscribe((data) => {
         this.dataSource.data = data.datareturn;
         this.defaultData = data.datareturn;
-        // this.onSearch();
       });
   }
   sortChange(sortState: Sort | any) {}

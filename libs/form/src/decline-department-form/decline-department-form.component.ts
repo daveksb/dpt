@@ -37,32 +37,6 @@ export class DeclineDepartmentFormComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  // onConfirm() {
-  //   this.mainApiService
-  //     .updateApprovalDepartment({
-  //       apiId: this.formGroup.get('apiId')?.value,
-  //       depId: this.formGroup.get('department')?.value,
-  //       reason: this.formGroup.get('reason')?.value,
-  //       userId: this.data.reqUserId,
-  //       depUserId: this.data.userId,
-  //       approve: this.data.approve,
-  //       reqId: this.data.reqId,
-  //       countdatetemp: '365',
-  //       countdate: '365',
-  //     })
-  //     .subscribe({
-  //       next: (res) => {
-  //         if (res.returnCode === '00') {
-  //           this.onDismiss();
-  //         } else {
-  //           alert(res.returnMessage);
-  //         }
-  //       },
-  //       error: () => {
-  //         this.onDismiss();
-  //       },
-  //     });
-  // }
   onConfirm() {
     this.mainApiService
       .updateApprovalDepartmentPrivate({

@@ -21,7 +21,6 @@ export class FormForgotPasswordComponent implements OnInit {
     if (this.formGroup.valid && email) {
       this.apiService.forgotPassword({ email }).subscribe({
         next: (res) => {
-          //
           if (res.returnCode === '00') {
             this.dialog.open(DefaultDialogComponent, {
               maxHeight: '800px',

@@ -64,14 +64,7 @@ export class DataManagementDataSetFormComponent implements OnInit {
   });
   dataTypeList: DataType[] = [];
   jsonForm = new FormGroup({
-    form: new FormArray([
-      // new FormGroup({
-      //   name: new FormControl<any>(null, Validators.required),
-      //   type: new FormControl<any>(null, Validators.required),
-      //   description: new FormControl<any>(null, Validators.required),
-      //   default: new FormControl<any>(null, Validators.required),
-      // }),
-    ]),
+    form: new FormArray([]),
   });
   generateRefId = '';
   privacyList: Privacy[] = [];
@@ -107,11 +100,7 @@ export class DataManagementDataSetFormComponent implements OnInit {
     this.provinceList = data.provinceList;
     this.dataTypeList = data.dataTypeList;
     this.categoryGroupList = data.categoryGroupList;
-    // if (!this.data.apiDetail) {
-    //   this.formGroup
-    //     .get('apiDetail')
-    //     ?.setValue(Base64.decode(JSON.parse(this.data.apiDetail).data));
-    // }
+
     if (this.data.isEdit) {
       this.formGroup.get('typeId')?.disable();
     }
@@ -141,9 +130,6 @@ export class DataManagementDataSetFormComponent implements OnInit {
       } else {
         this.formGroup.get('link')?.enable();
       }
-      // this.jsonForm
-      //   .get('form')(this.jsonForm.get('form') as FormArray)
-      //   .patchValue(JSON.parse(atob(this.data.jsonField) ?? '[]'));
     }
     const temp = this.data.apiLink ?? '';
     const hasPrefix = (temp as string).includes('TA');
@@ -151,12 +137,7 @@ export class DataManagementDataSetFormComponent implements OnInit {
       this.generateRefId = (this.data.apiLink as string).split('.')[0];
     }
     this.hasFile = !!this.generateRefId;
-
-    // this.dataSource.data = this.jsonForm.controls;
   }
-  // getForm(index: number, form: string) {
-  // return this.jsonForm.at(index).get(form) as FormControl;
-  // }
 
   get formArray() {
     return (this.jsonForm.get('form') as FormArray)
@@ -184,7 +165,6 @@ export class DataManagementDataSetFormComponent implements OnInit {
     this.dialogRef.close();
   }
   onConfirm() {
-    // this.formGroup.get('jsonField')?.setValue(null);
     if (
       this.jsonForm.get('form')?.value &&
       this.formGroup.get('typeId')?.value?.toString() !== '10'
@@ -236,19 +216,8 @@ export class DataManagementDataSetFormComponent implements OnInit {
       this.formGroup.get('createInfoDate')?.value
     ).toISODate({ format: 'basic' });
 
-    // 2023-01-12T02:04:01.634Z
-    // this.formGroup
-    //   .get('apiDetail')
-    //   ?.setValue(JSON.stringify({ data: Base64.encode(this.data.apiDetail) }));
     this.formGroup.get('createInfoDate')?.setValue(date);
     this.formGroup.get('active')?.setValue(this.formGroup.get('status')?.value);
-    // this.formGroup
-    //   .get('createinfodate')
-    //   ?.setValue(
-    //     DateTime.fromJSDate(this.formGroup.get('createInfoDate')?.value)
-    //       .toISODate()
-    //       .toString()
-    //   );
 
     const { tempPicture, status, tempFile, tempDetail, ...res } =
       this.formGroup.getRawValue();
@@ -296,13 +265,11 @@ export class DataManagementDataSetFormComponent implements OnInit {
         ? (this.data.apiLink as string)?.split('.')[0]
         : '';
     }
-    // if (!this.data.apiLink) {
     this.mainApiService
       .insertFileTemp({
         refId: this.generateRefId,
       })
       .subscribe((res) => {
-        // if (res.returnCode === '00') {
         const temp = interval(10000);
         temp.pipe(takeUntil(this.cancelSubject$)).subscribe(() => {
           this.mainApiService.selectFileTemp(this.generateRefId).subscribe({
@@ -332,13 +299,10 @@ export class DataManagementDataSetFormComponent implements OnInit {
             },
           });
         });
-        //
-        // } else console.log(res);
       });
-    // }
 
     window.open(
-      'http://38.242.138.3/9A5387D3066CAD4D72E2B730A7456639E97E5C6D/uploadfiledata.php?refId=' +
+      'https://cockpit.dpt.go.th/9A5387D3066CAD4D72E2B730A7456639E97E5C6D/uploadfiledata.php?refId=' +
         this.generateRefId,
       '_blank'
     );

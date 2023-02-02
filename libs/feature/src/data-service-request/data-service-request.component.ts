@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DefaultDialogComponent } from '@dpt/form';
 import { MainApiService, UserService } from '@dpt/shared';
-import { Category } from 'libs/shared/src/lib/share.model';
+import { Category } from '@dpt/shared';
 import { DateTime } from 'luxon';
 export interface TempFile {
   file: File;
@@ -182,16 +182,7 @@ export class DataServiceRequestComponent implements OnInit {
         });
     }
   }
-  // getBase64(
-  //   file: File
-  // ): Promise<FileReader['result'] | ProgressEvent<FileReader>> {
-  //   return new Promise((res, rej) => {
-  //     const reader = new FileReader();
-  //     reader.readAsDataURL(file);
-  //     reader.onload = () => res(reader.result);
-  //     reader.onerror = (error) => rej(error);
-  //   });
-  // }
+
   back() {
     window.history.back();
   }

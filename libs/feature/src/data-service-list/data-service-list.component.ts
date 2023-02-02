@@ -118,7 +118,6 @@ export class DataServiceListComponent implements OnInit {
       this.mainApiService.getPrivateDataList().subscribe({
         next: (res) => {
           if (res.returnCode === '00') {
-            // to do
             res.datareturn.forEach((res) => {
               if (res.picture) {
                 const base64String = atob(res.picture);

@@ -24,7 +24,6 @@ body {
 .mat-dialog-title {
   font-family: 'Sukhumvit', sans-serif !important;
 }
-// @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 ::-webkit-scrollbar {
   width: 10px;
   height: 5px;
@@ -60,15 +59,10 @@ $my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
   @include mat.all-component-themes($dpt-theme);
 }
 
-//$font-family-base: 'ksp bold';
 $enable-cssgrid: true;
 
 @import './node_modules/bootstrap/scss/functions';
 @import './node_modules/bootstrap/scss/variables';
-//@import './node_modules/bootstrap/scss/maps';
-//@import './node_modules/bootstrap/scss/mixins';
-//$theme-colors: map-merge($theme-colors, $customTheme);
-//$font-sizes: map-merge($font-sizes, $customFs);
 
 @import './node_modules/bootstrap/scss/bootstrap';
 //quill
@@ -201,7 +195,6 @@ $enable-cssgrid: true;
 }
 .mat-sidenav-content {
   background-color: white;
-  // background-color: #f5ecec;
 }
 .status-list .mat-form-field-wrapper {
   padding: 0px;
@@ -261,17 +254,6 @@ $enable-cssgrid: true;
     cursor: default;
   }
   .file-button {
-    // &.mat-stroked-button {
-    //   font-style: normal;
-    //   font-weight: 700;
-    //   font-size: 16px;
-    //   line-height: 24px;
-    //   color: #270108;
-    //   align-items: center;
-    //   padding: 16px;
-    //   border: 2px solid #270108;
-    //   border-radius: 12px;
-    // }
     cursor: default;
     padding: 8px 12px;
     gap: 8px;
