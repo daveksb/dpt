@@ -1,11 +1,9 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Route, Router, RouterModule } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   AbstractControl,
   FormControl,
   FormGroup,
-  ReactiveFormsModule,
   ValidationErrors,
   ValidatorFn,
   Validators,
@@ -29,7 +27,7 @@ export function SamePasswordValidator(): ValidatorFn {
   templateUrl: './form-register.component.html',
   styleUrls: ['./form-register.component.scss'],
 })
-export class FormRegisterComponent {
+export class FormRegisterComponent implements OnInit {
   formGroup = new FormGroup({
     departmentType: new FormControl('3', Validators.required),
     email: new FormControl(null, Validators.required),
