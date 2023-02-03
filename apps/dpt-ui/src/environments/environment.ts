@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiPrefix: 'https://kspapi.oceanicnetwork.net/ksp',
+  apiPrefix: ' https://cockpit.dpt.go.th/dpt',
 };
 
 /*

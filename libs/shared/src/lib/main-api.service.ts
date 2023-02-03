@@ -58,7 +58,7 @@ export class MainApiService {
   }
   forgotPassword(body: any) {
     return this.http.post<any>(
-      `https://kspapi.oceanicnetwork.net/mail/dptsendemail.php`,
+      `https://cockpit.dpt.go.th/mail/dptsendemail.php`,
       body
     );
   }
