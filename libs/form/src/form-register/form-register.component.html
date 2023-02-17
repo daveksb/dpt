@@ -118,6 +118,9 @@
           formControlName="mobile"
           placeholder="เบอร์ติดต่อ"
         />
+        <mat-error *ngIf="formGroup.get('mobile')?.invalid"
+          >รูปแบบเบอร์ติดต่อไม่ถูกต้อง</mat-error
+        >
       </mat-form-field>
     </div>
 
@@ -130,6 +133,9 @@
           formControlName="email"
           placeholder="อีเมล"
         />
+        <mat-error *ngIf="formGroup.get('email')?.invalid"
+          >รูปแบบอีเมลไม่ถูกต้อง</mat-error
+        >
       </mat-form-field>
     </div>
 

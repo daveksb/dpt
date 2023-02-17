@@ -133,7 +133,7 @@ export class DataServiceRequestComponent implements OnInit {
 
   onConfirm() {
     const user = this.userService.getUser();
-    if (user) {
+    if (user && this.formGroup.valid) {
       this.apiService
         .addRequestApi({
           userId: user?.userId,

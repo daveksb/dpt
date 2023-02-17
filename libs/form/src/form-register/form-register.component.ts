@@ -14,11 +14,27 @@ import { MatDialog } from '@angular/material/dialog';
 import { DefaultDialogComponent } from '../default-dialog/default-dialog.component';
 import * as md5 from 'md5';
 import { SHA1 } from 'crypto-js';
-
+const emailRegex =
+  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const phoneRegex = /((\+66|0)(\d{1,2}\-?\d{3}\-?\d{3,4}))/gm;
 export function SamePasswordValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const password = control?.parent?.get('password')?.value;
     return password !== control?.value ? { invalidPassword: true } : null;
+  };
+}
+export function EmailValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    return !((control?.value ?? '') as string).match(emailRegex)
+      ? { invalidEmail: true }
+      : null;
+  };
+}
+export function PhoneValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    return !((control?.value ?? '') as string).match(phoneRegex)
+      ? { invalidPhone: true }
+      : null;
   };
 }
 
@@ -30,16 +46,20 @@ export function SamePasswordValidator(): ValidatorFn {
 export class FormRegisterComponent implements OnInit {
   formGroup = new FormGroup({
     departmentType: new FormControl('3', Validators.required),
-    email: new FormControl(null, Validators.required),
+    email: new FormControl(null, [Validators.required, EmailValidator()]),
     departmentCategory: new FormControl(null, Validators.required),
     departmentName: new FormControl(null),
     userNameTh: new FormControl(null, Validators.required),
     userNameEn: new FormControl(null, Validators.required),
     userLastNameTh: new FormControl(null, Validators.required),
     userLastNameEn: new FormControl(null, Validators.required),
-    idNumber: new FormControl(null, Validators.required),
+    idNumber: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(13),
+      Validators.maxLength(13),
+    ]),
     position: new FormControl(null, Validators.required),
-    mobile: new FormControl(null, Validators.required),
+    mobile: new FormControl(null, [Validators.required, PhoneValidator()]),
     userName: new FormControl(null, Validators.required),
     password: new FormControl(null, [
       Validators.required,

@@ -49,6 +49,8 @@
   </div>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onConfirm()">ตกลง</button>
+  <button mat-button [disabled]="formGroup.invalid" (click)="onConfirm()">
+    ตกลง
+  </button>
   <button mat-button (click)="onDismiss()">ยกเลิก</button>
 </div>

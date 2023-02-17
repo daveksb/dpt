@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   MatDialog,
   MatDialogRef,
@@ -20,11 +20,11 @@ import { DefaultDialogComponent } from '../default-dialog/default-dialog.compone
 })
 export class ApproveDepartmentFormComponent implements OnInit {
   formGroup = new FormGroup({
-    department: new FormControl(),
+    department: new FormControl(null, Validators.required),
     reason: new FormControl(
       'ไม่อนุมัติคำร้องขอเนื่องจาก ....{{เหตุผลในการไม่อนุมัติ}}....'
     ),
-    apiId: new FormControl(),
+    apiId: new FormControl(null, Validators.required),
   });
   departments: Department[] = [];
   apiList: DataReturn[] = [];

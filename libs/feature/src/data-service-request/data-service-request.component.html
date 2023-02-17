@@ -83,7 +83,12 @@
       </div>
     </div>
     <div class="data-request-form-footer">
-      <button mat-flat-button class="data-request-button" (click)="onConfirm()">
+      <button
+        mat-flat-button
+        class="data-request-button"
+        [disabled]="formGroup.invalid"
+        (click)="onConfirm()"
+      >
         ยืนยัน
       </button>
       <button
