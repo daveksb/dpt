@@ -50,9 +50,13 @@
     flex-wrap: wrap;
     gap: 60px;
     justify-content: center;
+    .category-item--active {
+      border: 3px solid #270108;
+    }
     .category-item {
       padding: 24px;
       width: 150px;
+      cursor: pointer;
       box-shadow: rgba(0, 0, 0, 0.18) 0px 5px 15px;
       height: 150px;
       background-color: white;
@@ -119,7 +123,6 @@
           width: 40px;
           height: 40px;
           border-radius: 24px;
-          background-color: rgba(216, 113, 53, 0.699);
         }
       }
       .item-content {
@@ -202,4 +205,9 @@
   margin-top: 36px;
   display: flex;
   gap: 24px;
+}
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 24px;
 }

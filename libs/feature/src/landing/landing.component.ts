@@ -26,6 +26,7 @@ export class LandingComponent implements OnInit {
     '4': '0',
   };
   currentData: DataReturn[] = [];
+  currentCategory = '';
   defaultData: DataReturn[] = [];
   constructor(private mainApiService: MainApiService, private route: Router) {}
 
@@ -54,13 +55,24 @@ export class LandingComponent implements OnInit {
     });
   }
   search() {
-    this.currentData = (
-      JSON.parse(JSON.stringify(this.defaultData)) as DataReturn[]
-    ).filter((a) => {
-      return (this.form.value as string)?.trim()
-        ? a.apiName.includes(this.form.value)
-        : true;
+    this.currentData = (this.defaultData as DataReturn[]).filter((a) => {
+      return (
+        ((this.form.value as string)?.trim()
+          ? a.apiName.includes(this.form.value)
+          : true) &&
+        (this.currentCategory ? a.catName === this.currentCategory : true)
+      );
     });
+  }
+
+  onClickFilterCategory(value: string) {
+    if (value === this.currentCategory) {
+      this.currentCategory = '';
+      this.search();
+    } else {
+      this.currentCategory = value;
+      this.search();
+    }
   }
   onClick(data: DataReturn) {
     this.route.navigate(['/data-service-detail/' + data.apiId]);

@@ -71,6 +71,7 @@ export class DataServiceListComponent implements OnInit {
   }
 
   onOpenFile(a: any) {}
+
   ngOnInit(): void {
     this.mainApiService.getDataType().subscribe((res) => {
       this.dataTypeList = res.TypeData;
@@ -188,9 +189,7 @@ export class DataServiceListComponent implements OnInit {
   }
   sortChange(sortState: Sort | any) {}
   onSearch() {
-    this.currentData = (
-      JSON.parse(JSON.stringify(this.defaultData)) as DataReturn[]
-    ).filter((a) => {
+    this.currentData = (this.defaultData as DataReturn[]).filter((a) => {
       return (
         ((this.form.value as string)?.trim()
           ? a.apiName.includes(this.form.value)

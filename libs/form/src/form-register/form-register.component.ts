@@ -14,9 +14,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { DefaultDialogComponent } from '../default-dialog/default-dialog.component';
 import * as md5 from 'md5';
 import { SHA1 } from 'crypto-js';
-const emailRegex =
-  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-const phoneRegex = /((\+66|0)(\d{1,2}\-?\d{3}\-?\d{3,4}))/gm;
+import { environment } from 'apps/dpt-ui/src/environments/environment';
+const emailRegex = environment.emailValidator;
+const phoneRegex = environment.phoneValidator;
 export function SamePasswordValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const password = control?.parent?.get('password')?.value;
