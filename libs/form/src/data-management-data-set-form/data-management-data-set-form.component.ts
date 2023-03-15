@@ -86,6 +86,7 @@ export class DataManagementDataSetFormComponent implements OnInit {
   cancelSubject$ = new Subject();
   hasFile = false;
   tempFile: any;
+  fileSize = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<any>,
@@ -105,6 +106,11 @@ export class DataManagementDataSetFormComponent implements OnInit {
       this.formGroup.get('typeId')?.disable();
     }
     if (this.data.jsonField) {
+      const form = JSON.parse(
+        Base64.decode(this.data.jsonField) ?? '[]'
+      ).detail;
+      this.formGroup.get('tempDetail')?.setValue(form);
+
       if (this.data.tType !== 'zip') {
         const form = JSON.parse(Base64.decode(this.data.jsonField) ?? '[]')
           ?.data as TableParam[];
@@ -287,6 +293,10 @@ export class DataManagementDataSetFormComponent implements OnInit {
                       select.tfZipB64 = select.tfZipB64.replace(/\n/g, '');
                       // const base64 = Base64.decode(select.tfZipB64 ?? '');
                       this.formGroup.get('tempFile')?.setValue(select.tfZipB64);
+                      const file = JSON.parse(atob(select.tfZipB64)) as any[];
+                      if (file) {
+                        this.fileSize = file[0]?.total ?? '';
+                      }
                     }
 
                     this.cancelSubject$.next(true);

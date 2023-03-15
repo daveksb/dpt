@@ -104,6 +104,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
           [{ header: [1, 2, 3, 4, 5, 6] }],
           [{ color: [] }, { background: [] }], // dropdown with defaults from theme
           [{ align: [] }],
+          ['image'], // add's image support
           ['clean'], // remove formatting button
         ],
       },

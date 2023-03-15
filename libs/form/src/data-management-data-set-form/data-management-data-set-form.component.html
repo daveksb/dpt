@@ -93,6 +93,7 @@
           [placeholder]="isAPI ? 'Link' : 'ซื่อไฟล์'"
         />
       </mat-form-field>
+      <div class="file-size" *ngIf="fileSize">ขนาดไฟล์ : {{ fileSize }}</div>
     </div>
 
     <ng-container *ngIf="isAPI">

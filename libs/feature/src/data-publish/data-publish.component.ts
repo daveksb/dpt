@@ -29,13 +29,13 @@ export class DataPublishComponent implements OnInit, AfterViewInit {
 
   statusList = [
     {
-      label: 'เผยแพร่',
+      label: 'เปิดใช้งาน',
       value: 'Y',
       icon: 'activate',
     },
 
     {
-      label: 'ไม่เผยเเพร่',
+      label: 'ไม่เปิดใช้งาน',
       value: 'N',
       icon: 'archive',
     },

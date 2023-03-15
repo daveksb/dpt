@@ -72,8 +72,8 @@ export class DataServiceDetailComponent implements OnInit {
             rest.tempPicture =
               this.sanitizer.bypassSecurityTrustResourceUrl(base64String);
           }
-          this.apiDetail = rest;
 
+          this.apiDetail = rest;
           if (this.apiDetail.tType === 'zip') {
             try {
               const a = JSON.parse(
@@ -81,7 +81,6 @@ export class DataServiceDetailComponent implements OnInit {
               )?.data;
               const b = a.replace(/\n/g, '');
               const c = JSON.parse(Base64.decode(b));
-
               const newList = (c as any[])?.map((data) => {
                 return {
                   name: data['ชื่อไฟล์'],
@@ -92,13 +91,22 @@ export class DataServiceDetailComponent implements OnInit {
             } catch {
               this.dataSourceZip.data = [];
             }
+            try {
+              this.tempDetail =
+                JSON.parse(Base64.decode(res.jsonField))?.detail ?? '';
+            } catch {
+              this.tempDetail = '';
+            }
           } else {
             try {
               const data = JSON.parse(Base64.decode(res.jsonField))?.data;
-              this.tempDetail = JSON.parse(
-                Base64.decode(res.jsonField)
-              )?.detail;
               this.dataSource = new MatTableDataSource(data);
+              try {
+                this.tempDetail =
+                  JSON.parse(Base64.decode(res.jsonField))?.detail ?? '';
+              } catch {
+                this.tempDetail = '';
+              }
             } catch {
               this.dataSource.data = [];
             }
