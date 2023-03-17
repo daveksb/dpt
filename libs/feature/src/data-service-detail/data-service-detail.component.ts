@@ -52,6 +52,7 @@ export class DataServiceDetailComponent implements OnInit {
   mainUrl =
     'https://cockpit.dpt.go.th/dptservice/dptapiaccess.php?filetokenkey=';
   tempDetail = '';
+  fileSize = '';
   constructor(
     public dialog: MatDialog,
     private route: ActivatedRoute,
@@ -87,6 +88,7 @@ export class DataServiceDetailComponent implements OnInit {
                   size: data['ขนาดไฟล์'],
                 };
               });
+              this.fileSize = newList.shift()?.size;
               this.dataSourceZip.data = newList;
             } catch {
               this.dataSourceZip.data = [];
