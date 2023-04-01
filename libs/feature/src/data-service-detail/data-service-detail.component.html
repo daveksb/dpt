@@ -68,6 +68,9 @@
                     ดาวน์โหลดไฟล์
                   </button>
                 </div>
+                <div class="file-size-container" *ngIf="fileSize">
+                  ขนาดไฟล์ {{ fileSize }}
+                </div>
               </div>
 
               <div class="view-container">
@@ -172,7 +175,6 @@
               <div class="api-link-label">
                 {{ apiDetail?.apiLink }}
               </div>
-              <div *ngIf="fileSize">ขนาดไฟล์ {{ fileSize }}</div>
             </div>
             <div class="api-param-table">
               <table mat-table [dataSource]="dataSourceZip">

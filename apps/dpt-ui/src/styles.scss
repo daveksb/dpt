@@ -156,6 +156,9 @@ $enable-cssgrid: true;
   font-size: 18px;
   color: rgb(118, 126, 129);
 }
+dpt-form-register mat-label {
+  line-height: 21px !important;
+}
 
 .mat-ink-bar {
   display: none;
@@ -199,7 +202,9 @@ $enable-cssgrid: true;
 .status-list .mat-form-field-wrapper {
   padding: 0px;
 }
-
+.mat-option-text {
+  font-family: 'Sukhumvit', sans-serif;
+}
 .dpt-theme {
   font-family: 'Sukhumvit', sans-serif;
   .mat-drawer-side {
