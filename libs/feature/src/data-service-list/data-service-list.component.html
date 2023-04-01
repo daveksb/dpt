@@ -191,7 +191,7 @@
           </ng-container>
           <div class="data-service-pagination">
             <mat-paginator
-              [length]="defaultData.length"
+              [length]="totalSize"
               [pageSize]="10"
               [pageSizeOptions]="[10, 50, 100]"
               (page)="onPaginationChange($event)"

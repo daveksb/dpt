@@ -20,6 +20,7 @@ export interface Category {
 export class DataServiceListComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  totalSize = 0;
   form = new FormControl();
   selectForm = new FormControl();
   formGroup = new FormGroup({
@@ -203,7 +204,7 @@ export class DataServiceListComponent implements OnInit {
   }
   sortChange(sortState: Sort | any) {}
   onSearch() {
-    this.currentData = (this.defaultData as DataReturn[]).filter((a, i) => {
+    this.currentData = (this.defaultData as DataReturn[]).filter((a) => {
       return (
         ((this.form.value as string)?.trim()
           ? a.apiName.includes(this.form.value)
@@ -219,11 +220,15 @@ export class DataServiceListComponent implements OnInit {
         ((this.formGroup.get('dataType')?.value?.length ?? 0) > 0
           ? this.formGroup.get('dataType')?.value?.some((r) => r === a.tType)
           : true) &&
-        (this.currentCategory ? a.catName === this.currentCategory : true) &&
-        i < this.paginator.pageSize * (this.paginator.pageIndex + 1) &&
-        i >= this.paginator.pageSize * this.paginator.pageIndex
+        (this.currentCategory ? a.catName === this.currentCategory : true)
       );
     });
+    this.totalSize = this.currentData.length;
+    this.currentData = this.currentData.filter(
+      (a, i) =>
+        i < this.paginator.pageSize * (this.paginator.pageIndex + 1) &&
+        i >= this.paginator.pageSize * this.paginator.pageIndex
+    );
   }
   onRequest() {
     this.route.navigate(['data-service-request']);
