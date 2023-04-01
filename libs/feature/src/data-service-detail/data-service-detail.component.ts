@@ -7,6 +7,7 @@ import { DataServiceDialogComponent, DefaultDialogComponent } from '@dpt/form';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DataServiceDetail } from '@dpt/shared';
 import { atob, Base64 } from 'js-base64';
+import { ConfirmDialogComponent } from 'libs/form/src/confirm-dialog/confirm-dialog.component';
 
 export interface DataService {
   topic: string;
@@ -186,6 +187,19 @@ export class DataServiceDetailComponent implements OnInit {
     });
   }
   onRequestData() {
+    const data = {
+      onConfirm: this.onConfirm.bind(this),
+      title: 'ยืนยันการขอใช้ข้อมูล',
+      message: 'ยืนยันการขอใช้ข้อมูล' + this.apiDetail?.apiDetail,
+    };
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data,
+      maxHeight: '800px',
+      width: '500px',
+    });
+  }
+
+  onConfirm() {
     const body = {
       userId: this.userService.getUser()?.userId,
       apiId: this.apiDetail?.apiId,

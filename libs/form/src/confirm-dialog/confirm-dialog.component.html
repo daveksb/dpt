@@ -1,0 +1,22 @@
+<div mat-dialog-title class="default-dialog-title" *ngIf="data.title">
+  <div class="default-dialog-title-label">
+    {{ data.title }}
+  </div>
+</div>
+
+<div mat-dialog-content class="default-dialog-content">
+  <div class="default-dialog-status-container">
+    {{ data.status }}
+  </div>
+  <div class="default-dialog-message-container">
+    {{ data.message }}
+  </div>
+</div>
+<mat-dialog-actions>
+  <div class="button-container">
+    <button mat-flat-button (click)="dialogRef.close()">ยกเลิก</button>
+    <button mat-flat-button class="confirm-button" (click)="onConfirm()">
+      ตกลง
+    </button>
+  </div>
+</mat-dialog-actions>

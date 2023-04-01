@@ -81,6 +81,7 @@
   .data-service-content {
     display: flex;
     width: 100%;
+    flex-direction: column;
     .data-service-list {
       width: 100%;
       overflow: auto;

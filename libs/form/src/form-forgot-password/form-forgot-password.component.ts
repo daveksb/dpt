@@ -1,9 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  ValidatorFn,
+  ValidationErrors,
+  AbstractControl,
+} from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MainApiService } from '@dpt/shared';
+import { environment } from 'apps/dpt-ui/src/environments/environment';
 import { DefaultDialogComponent } from '../default-dialog/default-dialog.component';
-
+const emailRegex = environment.emailValidator;
+function EmailValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    return !((control?.value ?? '') as string).match(emailRegex)
+      ? { invalidEmail: true }
+      : null;
+  };
+}
 @Component({
   selector: 'dpt-form-forgot-password',
   templateUrl: './form-forgot-password.component.html',
@@ -11,7 +26,7 @@ import { DefaultDialogComponent } from '../default-dialog/default-dialog.compone
 })
 export class FormForgotPasswordComponent implements OnInit {
   formGroup = new FormGroup({
-    email: new FormControl(null, Validators.required),
+    email: new FormControl(null, [Validators.required, EmailValidator()]),
   });
   constructor(private apiService: MainApiService, private dialog: MatDialog) {}
 
@@ -39,6 +54,7 @@ export class FormForgotPasswordComponent implements OnInit {
               data: {
                 isError: true,
                 status: 'ดำเนินการไม่สำเร็จ',
+                message: res.returnMessage,
               },
             });
           }

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -71,7 +71,9 @@ export class DataServiceListComponent implements OnInit {
   }
 
   onOpenFile(a: any) {}
-
+  onPaginationChange(change: PageEvent) {
+    this.onSearch();
+  }
   ngOnInit(): void {
     this.mainApiService.getDataType().subscribe((res) => {
       this.dataTypeList = res.TypeData;
@@ -119,6 +121,11 @@ export class DataServiceListComponent implements OnInit {
       this.mainApiService.getPrivateDataList().subscribe({
         next: (res) => {
           if (res.returnCode === '00') {
+            res.datareturn.sort(
+              (a, b) =>
+                new Date(b.createDate).getTime() -
+                new Date(a.createDate).getTime()
+            );
             res.datareturn.forEach((res) => {
               if (res.picture) {
                 const base64String = atob(res.picture);
@@ -145,6 +152,7 @@ export class DataServiceListComponent implements OnInit {
                 });
               }
             }
+            this.onSearch();
           } else {
           }
         },
@@ -154,6 +162,11 @@ export class DataServiceListComponent implements OnInit {
       this.mainApiService.getPublicDataList().subscribe({
         next: (res) => {
           if (res.returnCode === '00') {
+            res.datareturn.sort(
+              (a, b) =>
+                new Date(b.createDate).getTime() -
+                new Date(a.createDate).getTime()
+            );
             res.datareturn.forEach((res) => {
               if (res.picture) {
                 const base64String = atob(res.picture);
@@ -180,6 +193,7 @@ export class DataServiceListComponent implements OnInit {
                 });
               }
             }
+            this.onSearch();
           } else {
           }
         },
@@ -189,7 +203,7 @@ export class DataServiceListComponent implements OnInit {
   }
   sortChange(sortState: Sort | any) {}
   onSearch() {
-    this.currentData = (this.defaultData as DataReturn[]).filter((a) => {
+    this.currentData = (this.defaultData as DataReturn[]).filter((a, i) => {
       return (
         ((this.form.value as string)?.trim()
           ? a.apiName.includes(this.form.value)
@@ -205,7 +219,9 @@ export class DataServiceListComponent implements OnInit {
         ((this.formGroup.get('dataType')?.value?.length ?? 0) > 0
           ? this.formGroup.get('dataType')?.value?.some((r) => r === a.tType)
           : true) &&
-        (this.currentCategory ? a.catName === this.currentCategory : true)
+        (this.currentCategory ? a.catName === this.currentCategory : true) &&
+        i < this.paginator.pageSize * (this.paginator.pageIndex + 1) &&
+        i >= this.paginator.pageSize * this.paginator.pageIndex
       );
     });
   }

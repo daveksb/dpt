@@ -28,7 +28,12 @@
     </div>
     <div class="login-form-footer">
       <form class="p-3 d-flex flex-column align-items-center">
-        <button class="login-button mb-3" mat-flat-button (click)="login()">
+        <button
+          class="login-button mb-3"
+          mat-flat-button
+          [disabled]="formGroup.invalid"
+          (click)="login()"
+        >
           เข้าสู่ระบบ
         </button>
 
