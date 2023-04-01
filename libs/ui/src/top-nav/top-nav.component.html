@@ -116,6 +116,14 @@
       >
         เข้าสู่ระบบ
       </button>
+      <button
+        *ngIf="!hasAuth"
+        mat-flat-button
+        class="login-button medium-button"
+        [routerLink]="['/register']"
+      >
+        ลงทะเบียน
+      </button>
     </div>
   </div>
 </ng-container>

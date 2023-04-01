@@ -89,10 +89,12 @@
       margin: auto;
       width: 400px;
       height: 55px;
-      background: #fccc30;
       border-radius: 10px;
       font-weight: 600;
       font-size: 20px;
+      &:not(:disabled) {
+        background: #fccc30;
+      }
     }
   }
 }

@@ -15,6 +15,7 @@ import { DefaultDialogComponent } from '../default-dialog/default-dialog.compone
 import * as md5 from 'md5';
 import { SHA1 } from 'crypto-js';
 import { environment } from 'apps/dpt-ui/src/environments/environment';
+import { PdpaComponent } from '@dpt/ui';
 const emailRegex = environment.emailValidator;
 const phoneRegex = environment.phoneValidator;
 export function SamePasswordValidator(): ValidatorFn {
@@ -178,5 +179,10 @@ export class FormRegisterComponent implements OnInit {
       pid: form.idNumber,
       tel: form.mobile,
     };
+  }
+  openPdpa() {
+    this.dialog.open(PdpaComponent, {
+      maxHeight: '800px',
+    });
   }
 }
