@@ -25,6 +25,8 @@ function SamePasswordValidator(): ValidatorFn {
   styleUrls: ['./edit-user.component.scss'],
 })
 export class EditUserComponent implements OnInit {
+  isShowPassword = false;
+  isShowConfirmPassword = false;
   formGroup = new FormGroup({
     email: new FormControl(null, Validators.required),
     password: new FormControl(null, [Validators.minLength(8)]),

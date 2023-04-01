@@ -44,6 +44,8 @@ export function PhoneValidator(): ValidatorFn {
   styleUrls: ['./form-register.component.scss'],
 })
 export class FormRegisterComponent implements OnInit {
+  isShowPassword = false;
+  isShowConfirmPassword = false;
   formGroup = new FormGroup({
     departmentType: new FormControl('3', Validators.required),
     email: new FormControl(null, [Validators.required, EmailValidator()]),
