@@ -16,10 +16,10 @@
     <div class="department-name-container">
       <ng-container *ngIf="isInsider; else departmentName">
         <mat-form-field class="form-field" appearance="outline">
-          <mat-label>หน่วยงาน / บริษัท / อื่นๆ</mat-label>
+          <mat-label>ชื่อหน่วยงาน</mat-label>
           <mat-select
             formControlName="departmentCategory"
-            placeholder="กรุณาเลือก หน่วยงาน / บริษัท / อื่นๆ"
+            placeholder="กรุณาเลือกหน่วยงาน"
           >
             <mat-option
               *ngFor="let item of departmentList"
@@ -32,12 +32,12 @@
       >
       <ng-template #departmentName>
         <mat-form-field class="form-field" appearance="outline">
-          <mat-label>ชื่อหน่วยงาน</mat-label>
+          <mat-label>หน่วยงาน / บริษัท / อื่นๆ</mat-label>
           <input
             type="text"
             matInput
             formControlName="departmentName"
-            placeholder="กรุณากรอกชื่อหน่วยงาน"
+            placeholder="กรุณาเลือก หน่วยงาน / บริษัท / อื่นๆ"
           />
         </mat-form-field>
       </ng-template>

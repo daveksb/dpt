@@ -24,7 +24,7 @@ export class ApproveDepartmentFormComponent implements OnInit {
     reason: new FormControl(
       'ไม่อนุมัติคำร้องขอเนื่องจาก ....{{เหตุผลในการไม่อนุมัติ}}....'
     ),
-    apiId: new FormControl(null, Validators.required),
+    apiId: new FormControl(null),
   });
   departments: Department[] = [];
   apiList: DataReturn[] = [];

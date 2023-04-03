@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { DefaultDialogComponent } from '@dpt/form';
 import { MainApiService, UserService } from '@dpt/shared';
 import { Category } from '@dpt/shared';
@@ -30,7 +31,8 @@ export class DataServiceRequestComponent implements OnInit {
   constructor(
     private apiService: MainApiService,
     private userService: UserService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {}
   get rfdata() {
     return this.formGroup.get('rfdata')?.getRawValue() as FileList;
@@ -151,12 +153,17 @@ export class DataServiceRequestComponent implements OnInit {
         .subscribe({
           next: (res) => {
             if (res.returnCode === '00') {
-              this.dialog.open(DefaultDialogComponent, {
+              const dialogRef = this.dialog.open(DefaultDialogComponent, {
                 maxHeight: '800px',
                 width: '500px',
                 data: {
                   status: 'ดำเนินการสำเร็จ',
+                  message:
+                    'ได้ส่งข้อมูลของท่านไปยังหน่วยงานที่เกี่ยวข้องเรียบร้อยแล้ว',
                 },
+              });
+              dialogRef.afterClosed().subscribe(() => {
+                this.router.navigate(['/data-request/request-list']);
               });
             } else {
               this.dialog.open(DefaultDialogComponent, {
