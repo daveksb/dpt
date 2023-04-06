@@ -54,6 +54,41 @@
             </button>
           </div>
         </div>
+        <div class="sort-container">
+          <div class="sort-list">
+            <mat-form-field appearance="outline">
+              <mat-label>เรียงลำดับจาก:</mat-label>
+
+              <mat-select
+                placeholder="เลือกการจัดเรียง"
+                [formControl]="sortListForm"
+              >
+                <mat-select-trigger>
+                  <div class="option-label">
+                    <div class="option-text">
+                      {{ sortListForm.value?.label }}
+                    </div>
+                    <div class="option-icon">
+                      <mat-icon>{{
+                        sortListForm.value?.direction === 'asc'
+                          ? 'keyboard_arrow_up'
+                          : 'keyboard_arrow_down'
+                      }}</mat-icon>
+                    </div>
+                  </div>
+                </mat-select-trigger>
+                <mat-option *ngFor="let item of sortList" [value]="item">
+                  {{ item.label }}
+                  <mat-icon>{{
+                    item.direction === 'asc'
+                      ? 'keyboard_arrow_up'
+                      : 'keyboard_arrow_down'
+                  }}</mat-icon>
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
       </div>
       <div class="data-service-body">
         <div class="data-service-side-bar">

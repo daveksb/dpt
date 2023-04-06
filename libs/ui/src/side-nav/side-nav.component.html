@@ -81,6 +81,24 @@
         ><img class="log-out-button" src="assets/icon/log-out.png" />
         ออกจากระบบ</a
       >
+      <div class="button-list">
+        <button
+          mat-flat-button
+          *ngIf="!hasAuth"
+          class="login-button medium-button"
+          [routerLink]="['/login']"
+        >
+          เข้าสู่ระบบ
+        </button>
+        <button
+          *ngIf="!hasAuth"
+          mat-flat-button
+          class="login-button medium-button"
+          [routerLink]="['/register']"
+        >
+          ลงทะเบียน
+        </button>
+      </div>
     </mat-nav-list>
   </div>
 </ng-container>

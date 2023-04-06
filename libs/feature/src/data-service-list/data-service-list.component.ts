@@ -12,6 +12,11 @@ export interface Category {
   value: string;
   count: 10;
 }
+export interface SortParam {
+  value: string;
+  label: string;
+  direction: string;
+}
 @Component({
   selector: 'dpt-data-service-list',
   templateUrl: './data-service-list.component.html',
@@ -23,6 +28,40 @@ export class DataServiceListComponent implements OnInit {
   totalSize = 0;
   form = new FormControl();
   selectForm = new FormControl();
+  sortList: SortParam[] = [
+    {
+      value: 'name',
+      label: 'ชื่อ',
+      direction: 'asc',
+    },
+    {
+      value: 'name',
+      label: 'ชื่อ',
+      direction: 'desc',
+    },
+    {
+      value: 'date',
+      label: 'วันที่',
+      direction: 'asc',
+    },
+    {
+      value: 'date',
+      label: 'วันที่',
+      direction: 'desc',
+    },
+    {
+      value: 'view',
+      label: 'จำนวนเข้าชม',
+      direction: 'asc',
+    },
+    {
+      value: 'view',
+      label: 'จำนวนเข้าชม',
+      direction: 'desc',
+    },
+  ];
+  sortListForm = new FormControl<SortParam>(this.sortList[3]);
+
   formGroup = new FormGroup({
     province: new FormControl<string[]>([]),
     zoneName: new FormControl<string[]>([]),
@@ -116,6 +155,9 @@ export class DataServiceListComponent implements OnInit {
     this.mainApiService.getZones().subscribe((a) => {
       this.zones = a.dbZoneNameOutput;
     });
+    this.sortListForm.valueChanges.subscribe((res) => {
+      this.onSearch();
+    });
     this.canRequest =
       this.userService.getUser()?.role.accessControl.accReq === 'T';
     if (this.userService.isUserInternal()) {
@@ -202,7 +244,7 @@ export class DataServiceListComponent implements OnInit {
       });
     }
   }
-  sortChange(sortState: Sort | any) {}
+
   onSearch() {
     this.currentData = (this.defaultData as DataReturn[]).filter((a) => {
       return (
@@ -224,6 +266,28 @@ export class DataServiceListComponent implements OnInit {
       );
     });
     this.totalSize = this.currentData.length;
+    this.currentData = this.currentData.sort((a, b) => {
+      if (this.sortListForm?.value?.value === 'name') {
+        if (a.apiName > b.apiName) {
+          return this.sortListForm?.value?.direction === 'asc' ? 1 : -1;
+        } else {
+          return this.sortListForm?.value?.direction === 'asc' ? -1 : 1;
+        }
+      }
+      if (this.sortListForm?.value?.value === 'date') {
+        return this.sortListForm?.value?.direction === 'asc'
+          ? new Date(a.createDate).getTime() - new Date(b.createDate).getTime()
+          : new Date(b.createDate).getTime() - new Date(a.createDate).getTime();
+      }
+      if (this.sortListForm?.value?.value === 'view') {
+        if (a.countView > b.countView) {
+          return this.sortListForm?.value?.direction === 'asc' ? -1 : 1;
+        } else {
+          return this.sortListForm?.value?.direction === 'asc' ? 1 : -1;
+        }
+      }
+      return 0;
+    });
     this.currentData = this.currentData.filter(
       (a, i) =>
         i < this.paginator.pageSize * (this.paginator.pageIndex + 1) &&

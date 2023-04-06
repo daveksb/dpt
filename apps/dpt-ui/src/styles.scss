@@ -141,7 +141,9 @@ $enable-cssgrid: true;
     background: #f2f4f8;
   }
 }
-
+dpt-register .mat-checkbox-layout {
+  white-space: unset !important;
+}
 .mat-tab-label-active {
   background: #f5ecec;
   border-radius: 12px 12px 0px 0px;

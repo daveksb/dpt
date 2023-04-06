@@ -233,3 +233,20 @@
 .activate-button {
   height: 40px;
 }
+.option-label {
+  display: flex;
+}
+.option-text {
+  line-height: 28px;
+}
+.option-icon {
+  margin: auto 0 auto 4px;
+}
+.sort-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.sort-list {
+  width: 136px;
+}

@@ -162,3 +162,24 @@
   width: 70px;
   height: 70px;
 }
+.login-button {
+  background-color: white;
+  font-weight: 700;
+  color: #270108;
+  height: 40px;
+  margin: auto;
+  line-height: 24px;
+  border: #270108 1px solid;
+  &:not(:first-child) {
+    margin-top: 16px;
+  }
+}
+
+.button-list {
+  display: flex;
+  flex-direction: column;
+}
+
+:host::ng-deep.mat-checkbox-layout {
+  white-space: unset;
+}
