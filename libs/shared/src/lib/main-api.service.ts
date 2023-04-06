@@ -413,4 +413,10 @@ export class MainApiService {
       ...body,
     });
   }
+  editRoleAccess(body: any) {
+    const url = `dptuser/changeaccesscontrol`;
+    return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
+      ...body,
+    });
+  }
 }

@@ -29,6 +29,9 @@ export class UserRequestFormComponent implements OnInit {
           .find((res: Role) => res.roleName === data.userDetail?.roleName)
           ?.roleId?.toString() ?? ''
       );
+    if (data.approve !== 'Y') {
+      this.form.get('roleId')?.disable();
+    }
     this.form.get('status')?.setValue(data.userDetail?.approve ?? 'N');
     this.form.get('userId')?.setValue(data.userId ?? '');
   }

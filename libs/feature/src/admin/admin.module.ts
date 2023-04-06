@@ -58,7 +58,6 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule,
-    MatDialogModule,
     UiModule,
     FormModule,
     MatSidenavModule,
@@ -71,6 +70,7 @@ const routes: Routes = [
     MatSortModule,
     MatIconModule,
     MatDatepickerModule,
+    MatDialogModule,
   ],
   exports: [
     AdminMainComponent,
