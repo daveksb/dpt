@@ -419,4 +419,8 @@ export class MainApiService {
       ...body,
     });
   }
+  getRssNew() {
+    const url = `https://www.dpt.go.th/th/press-release/rss`;
+    return this.http.get<DefaultResponse>(`${url}`);
+  }
 }

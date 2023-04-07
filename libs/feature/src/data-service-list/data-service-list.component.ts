@@ -269,9 +269,9 @@ export class DataServiceListComponent implements OnInit {
     this.currentData = this.currentData.sort((a, b) => {
       if (this.sortListForm?.value?.value === 'name') {
         if (a.apiName > b.apiName) {
-          return this.sortListForm?.value?.direction === 'asc' ? 1 : -1;
-        } else {
           return this.sortListForm?.value?.direction === 'asc' ? -1 : 1;
+        } else {
+          return this.sortListForm?.value?.direction === 'asc' ? 1 : -1;
         }
       }
       if (this.sortListForm?.value?.value === 'date') {
@@ -280,10 +280,10 @@ export class DataServiceListComponent implements OnInit {
           : new Date(b.createDate).getTime() - new Date(a.createDate).getTime();
       }
       if (this.sortListForm?.value?.value === 'view') {
-        if (a.countView > b.countView) {
-          return this.sortListForm?.value?.direction === 'asc' ? -1 : 1;
-        } else {
+        if (Number(a.countView) > Number(b.countView)) {
           return this.sortListForm?.value?.direction === 'asc' ? 1 : -1;
+        } else {
+          return this.sortListForm?.value?.direction === 'asc' ? -1 : 1;
         }
       }
       return 0;

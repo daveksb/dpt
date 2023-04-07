@@ -53,6 +53,9 @@ export class LandingComponent implements OnInit {
         error: (err) => {},
       });
     });
+    // this.mainApiService.getRssNew().subscribe((res) => {
+    //   console.log(res);
+    // });
   }
   search() {
     this.currentData = (this.defaultData as DataReturn[]).filter((a) => {

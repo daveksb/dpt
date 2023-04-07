@@ -78,7 +78,7 @@
         ></textarea>
       </mat-form-field>
     </div>
-    <div class="label-6">รายละเอียด</div>
+    <div class="label-6">{{ isAPI ? 'รายละเอียดAPI' : 'รายละเอียดไฟล์' }}</div>
     <div class="value-6">
       <quill-editor formControlName="tempDetail"> </quill-editor>
     </div>
