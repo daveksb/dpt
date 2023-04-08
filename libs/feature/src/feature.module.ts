@@ -31,6 +31,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { QuillModule } from 'ngx-quill';
+import { NewsComponent } from './news/news.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { QuillModule } from 'ngx-quill';
     LoginComponent,
     DataPublishComponent,
     DataReportComponent,
+    NewsComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,33 @@
+<div class="news-container">
+  <div class="news-label">ข้อมูลข่าวสาร</div>
+  <div class="news-catergory-list">
+    <div
+      *ngFor="let item of newsCategoryList; index as i"
+      class="news-catergory"
+      (click)="selectedIndex = i"
+    >
+      {{ item.label }}
+    </div>
+  </div>
+  <ng-container *ngIf="newsList[selectedIndex]">
+    <div class="news-list">
+      <div
+        class="news-item"
+        *ngFor="let item of newsList[selectedIndex]?.item"
+        (click)="onClick(item.link)"
+      >
+        <div class="image-container">
+          <img class="news-image" src="assets/image/news.png" />
+        </div>
+        <div class="news-detail">
+          <div class="news-title">
+            {{ newsList[selectedIndex].title }} : {{ item.title }}
+          </div>
+          <div class="news-description">
+            {{ item.description }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

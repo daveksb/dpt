@@ -477,3 +477,19 @@ export interface RequestApiData {
 export interface RequestApiDataResponse extends DefaultResponse {
   datareturn: RequestApiData[];
 }
+export interface NewsCategory {
+  link: string;
+  title: string;
+  description: string;
+  category: string;
+  lastBuildDate: string;
+  language: string;
+  item: News[];
+}
+export interface News {
+  title: string;
+  description: string;
+  link: string;
+  category: string;
+  pubDate: string;
+}
