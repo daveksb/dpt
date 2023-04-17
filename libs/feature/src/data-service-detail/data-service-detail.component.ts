@@ -50,6 +50,8 @@ export class DataServiceDetailComponent implements OnInit {
   dataSource = new MatTableDataSource();
   displayedZipColumns: string[] = ['name', 'size'];
   dataSourceZip = new MatTableDataSource<any>();
+  mapLink =
+    'https://dptgis.dpt.go.th/arcgis/rest/services/dds2/PLLU16/MapServer?f=jsapi';
   mainUrl =
     'https://cockpit.dpt.go.th/dptservice/dptapiaccess.php?filetokenkey=';
   tempDetail = '';
@@ -138,11 +140,9 @@ export class DataServiceDetailComponent implements OnInit {
     });
   }
   get getLink() {
-    return this.apiDetail?.apiLink
-      ? this.sanitizer.bypassSecurityTrustResourceUrl(
-          this.apiDetail.apiLink ?? ''
-        )
-      : '';
+    return this.sanitizer.bypassSecurityTrustResourceUrl(
+      this.mapLink + '&filetokenkey=' + (this.apiDetail?.tokenKey ?? '')
+    );
   }
   onShowExampleData() {
     const body = {

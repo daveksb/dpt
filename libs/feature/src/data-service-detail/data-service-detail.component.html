@@ -105,7 +105,7 @@
                 (click)="copy()"
                 src="assets/icon/copy.svg"
               />
-              <div class="api-link-label">
+              <div *ngIf="apiDetail?.tType === 'api'" class="api-link-label">
                 {{ apiDetail?.apiLink }}
               </div>
             </div>
@@ -232,7 +232,7 @@
           <div class="data-detail-api">
             <iframe
               class="iframe-container"
-              *ngIf="apiDetail?.apiLink"
+              *ngIf="apiDetail?.tokenKey"
               [src]="getLink"
             ></iframe>
           </div>
