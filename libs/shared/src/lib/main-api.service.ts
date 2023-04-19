@@ -9,8 +9,12 @@ import {
   AdminReportByUserResponse,
   AdminRoleListResponse,
   AdminUserListResponse,
+  ApiStatisticResponse,
   ApiTypeResponse,
+  ArticleDetailResponse,
+  ArticleResponse,
   CategoryGroupResponse,
+  CategoryStatisticResponse,
   CheckFileResponse,
   DataRequest,
   DataRequestResponse,
@@ -19,8 +23,10 @@ import {
   DataServiceResponse,
   DataTypeResponse,
   DefaultResponse,
+  DepartmentStatisticResponse,
   PrivacyResponse,
   ProvinceResponse,
+  ProvinceStatisticResponse,
   PublishDataResponse,
   RequestApiDataResponse,
   RequestApiFileResponse,
@@ -419,8 +425,57 @@ export class MainApiService {
       ...body,
     });
   }
-  getRssNew() {
-    const url = `https://www.dpt.go.th/th/press-release/rss`;
-    return this.http.get<DefaultResponse>(`${url}`);
+
+  getArticle() {
+    const url = `dptreport/listtopic`;
+    return this.http.get<ArticleResponse>(`${environment.apiPrefix}/${url}`);
+  }
+  getArticleDetail(tid: string) {
+    const url = `dptreport/listdetailtopic?tid=${tid}`;
+    return this.http.get<ArticleDetailResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+  editArticle(body: any) {
+    const url = `dptreport/updatetopic`;
+    return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
+      ...body,
+    });
+  }
+  deleteArticle(body: any) {
+    const url = `dptreport/deletetopic`;
+    return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
+      ...body,
+    });
+  }
+  addArticle(body: any) {
+    const url = `dptreport/inserttopic`;
+    return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
+      ...body,
+    });
+  }
+  getApiStatistic() {
+    const url = `dptreport/apiStatistic`;
+    return this.http.get<ApiStatisticResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+  getCategoryStatistic() {
+    const url = `dptreport/categoryStatistic`;
+    return this.http.get<CategoryStatisticResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+  getDepartmentStatistic() {
+    const url = `dptreport/departmentStatistic`;
+    return this.http.get<DepartmentStatisticResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+  getProvinceStatistic() {
+    const url = `dptreport/provinceStatistic`;
+    return this.http.get<ProvinceStatisticResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
   }
 }

@@ -24,6 +24,11 @@ export class TokenHandleInterceptor implements HttpInterceptor {
     'dptrequest/selectprovince',
     'dptrequest/zonename',
     'dptrequest/selecttempfile',
+    'dptreport/listtopic',
+    'dptreport/apiStatistic',
+    'dptreport/categoryStatistic',
+    'dptreport/departmentStatistic',
+    'dptreport/provinceStatistic',
     'www.dpt.go.th',
   ];
   constructor(private cookieService: CookieService) {}

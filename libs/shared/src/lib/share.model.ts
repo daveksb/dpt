@@ -39,6 +39,7 @@ export interface AccessControl {
   accSetAccess: string;
   accManageUser: string;
   accApproveService: string;
+  accArticle: string;
 }
 export interface DefaultResponse {
   returnCode: string;
@@ -492,4 +493,59 @@ export interface News {
   link: string;
   category: string;
   pubDate: string;
+}
+
+export interface ApiStatisticResponse extends DefaultResponse {
+  dbAPIStaticOutput: ApiStatistic[];
+}
+export interface ApiStatistic {
+  API_NAME: string;
+  COUNTDATA: number;
+}
+export interface ArticleResponse extends DefaultResponse {
+  datareturn: Article[];
+}
+export interface ArticleDetailResponse {
+  tid: string;
+  topic: string;
+  thumbnail: string;
+  tempThumbnail?: any;
+  description: string;
+  countview: number;
+  createby: string;
+  createdate: string;
+  returnCode?: string;
+  returnMessage?: string;
+}
+export interface Article {
+  tid: string;
+  topic: string;
+  thumbnail: string;
+  countview: number;
+  description: string;
+  createby: string;
+  createdate: string;
+  tempThumbnail?: string;
+}
+
+export interface CategoryStatisticResponse extends DefaultResponse {
+  dbCATStaticOutput: CategoryStatistic[];
+}
+export interface CategoryStatistic {
+  CAT_NAME: string;
+  COUNTDATA: number;
+}
+export interface DepartmentStatisticResponse extends DefaultResponse {
+  dbDEPStaticOutput: DepartmentStatistic[];
+}
+export interface DepartmentStatistic {
+  DEPARTMENT_NAME: string;
+  COUNTDATA: number;
+}
+export interface ProvinceStatisticResponse extends DefaultResponse {
+  dbPROVStaticOutput: ProvinceStatistic[];
+}
+export interface ProvinceStatistic {
+  PROVINCE_NAME: string;
+  COUNTDATA: number;
 }

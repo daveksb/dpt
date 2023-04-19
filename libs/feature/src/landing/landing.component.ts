@@ -4,6 +4,12 @@ import { MainApiService, UserService } from '@dpt/shared';
 import { Category, DataReturn } from 'libs/shared/src/lib/share.model';
 import { DataService } from '../data-service-detail/data-service-detail.component';
 import { Router } from '@angular/router';
+import { LegendPosition } from '@swimlane/ngx-charts';
+
+interface GraphData {
+  name: string;
+  value: number;
+}
 
 @Component({
   selector: 'dpt-landing',
@@ -28,6 +34,37 @@ export class LandingComponent implements OnInit {
   currentData: DataReturn[] = [];
   currentCategory = '';
   defaultData: DataReturn[] = [];
+
+  single = [
+    {
+      name: 'Germany',
+      value: 8940000,
+    },
+    {
+      name: 'USA',
+      value: 5000000,
+    },
+    {
+      name: 'France',
+      value: 7200000,
+    },
+    {
+      name: 'UK',
+      value: 6200000,
+    },
+  ];
+  view: any[] = [700, 400];
+
+  // options
+  gradient = true;
+  showLegend = true;
+  showLabels = true;
+  isDoughnut = false;
+  legendPosition = LegendPosition.Below;
+  categoryStatistics: GraphData[] = [];
+  apiStatistics: GraphData[] = [];
+  departmentStatistics: GraphData[] = [];
+  provinceStatistics: GraphData[] = [];
   constructor(private mainApiService: MainApiService, private route: Router) {}
 
   onOpenFile(a: any) {}
@@ -53,9 +90,38 @@ export class LandingComponent implements OnInit {
         error: (err) => {},
       });
     });
-    // this.mainApiService.getRssNew().subscribe((res) => {
-    //   console.log(res);
-    // });
+    this.mainApiService.getCategoryStatistic().subscribe((a) => {
+      this.categoryStatistics = a.dbCATStaticOutput.map((res) => {
+        return {
+          value: res.COUNTDATA,
+          name: res.CAT_NAME ?? '',
+        };
+      });
+    });
+    this.mainApiService.getApiStatistic().subscribe((a) => {
+      this.apiStatistics = a.dbAPIStaticOutput.map((res) => {
+        return {
+          value: res.COUNTDATA,
+          name: res.API_NAME ?? '',
+        };
+      });
+    });
+    this.mainApiService.getDepartmentStatistic().subscribe((a) => {
+      this.departmentStatistics = a.dbDEPStaticOutput.map((res) => {
+        return {
+          value: res.COUNTDATA,
+          name: res.DEPARTMENT_NAME ?? '',
+        };
+      });
+    });
+    this.mainApiService.getProvinceStatistic().subscribe((a) => {
+      this.provinceStatistics = a.dbPROVStaticOutput.map((res) => {
+        return {
+          value: res.COUNTDATA,
+          name: res.PROVINCE_NAME ?? '',
+        };
+      });
+    });
   }
   search() {
     this.currentData = (this.defaultData as DataReturn[]).filter((a) => {

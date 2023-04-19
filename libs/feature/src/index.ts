@@ -20,3 +20,7 @@ export * from './data-publish/data-publish.component';
 export * from './interceptor/api-interceptor';
 export * from './guard/auth.guard';
 export * from './guard/role.guard';
+
+export * from './article/article.component';
+export * from './news/news.component';
+export * from './article-all/article-all.component';

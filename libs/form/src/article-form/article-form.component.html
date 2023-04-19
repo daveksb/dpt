@@ -1,0 +1,40 @@
+<div class="page-content">
+  <div class="article-header">
+    <div class="header-1">
+      {{ tid ? 'แก้ไขข้อมูลข่าวสาร' : 'เพิ่มข้อมูลข่าวสาร' }}
+    </div>
+  </div>
+  <div class="article-body" [formGroup]="formGroup">
+    <div class="topic-label">ชื่อหัวข้อข่าวสาร</div>
+
+    <div class="topic-container">
+      <mat-form-field class="form-field" appearance="outline">
+        <input
+          type="text"
+          matInput
+          formControlName="topic"
+          placeholder="ชื่อหัวข้อข่าวสาร"
+        />
+      </mat-form-field>
+    </div>
+    <div class="description-label">รายละเอียด</div>
+    <div class="description-container">
+      <quill-editor formControlName="description"> </quill-editor>
+    </div>
+    <div class="thumbnail-label">ไฟล์ Thumbnail</div>
+    <div class="thumbnail-container">
+      <input type="file" (change)="onFileChange($event)" #fileRef />
+    </div>
+  </div>
+
+  <div class="article-footer">
+    <button
+      mat-flat-button
+      class="confirm-button"
+      [disabled]="formGroup.invalid"
+      (click)="onSubmit()"
+    >
+      ยืนยัน
+    </button>
+  </div>
+</div>

@@ -211,6 +211,33 @@
           ></div>
         </td>
       </ng-container>
+      <ng-container matColumnDef="accArticle">
+        <th mat-header-cell *matHeaderCellDef>
+          การกำหนดสิทธิ์ผู้ใช้งานในการเขียนบทความ
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <img
+            class="tick-icon"
+            *ngIf="row.accessControl.accArticle === 'T' && !row.isEdit"
+            src="assets/icon/tick-icon.png"
+          />
+          <img
+            class="tick-icon--edit"
+            *ngIf="row.accessControl.accArticle === 'T' && row.isEdit"
+            src="assets/icon/tick-icon.png"
+            (click)="
+              row.accessControl.accArticle === 'T'
+                ? (row.accessControl.accArticle = 'N')
+                : (row.accessControl.accArticle = 'T')
+            "
+          />
+          <div
+            class="empty-square"
+            *ngIf="row.accessControl.accArticle === 'N' && row.isEdit"
+            (click)="row.accessControl.accArticle = 'T'"
+          ></div>
+        </td>
+      </ng-container>
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let row">

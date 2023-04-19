@@ -31,7 +31,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { QuillModule } from 'ngx-quill';
+import { ArticleComponent } from './article/article.component';
 import { NewsComponent } from './news/news.component';
+import { ArticleDetailComponent } from './article-detail/article-detail.component';
+import { ArticleAllComponent } from './article-all/article-all.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,10 @@ import { NewsComponent } from './news/news.component';
     LoginComponent,
     DataPublishComponent,
     DataReportComponent,
+    ArticleDetailComponent,
     NewsComponent,
+    ArticleComponent,
+    ArticleAllComponent,
   ],
   imports: [
     CommonModule,
@@ -80,6 +86,10 @@ import { NewsComponent } from './news/news.component';
     LoginComponent,
     MatTabsModule,
     MatIconModule,
+    NewsComponent,
+    ArticleComponent,
+    ArticleAllComponent,
+    ArticleDetailComponent,
   ],
 })
 export class FeatureModule {}

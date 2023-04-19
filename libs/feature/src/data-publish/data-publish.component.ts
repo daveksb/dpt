@@ -71,7 +71,7 @@ export class DataPublishComponent implements OnInit, AfterViewInit {
   }
   sortChange(sortState: Sort | any) {}
   onDownload(a: any) {
-    console.log(a);
+    // console.log(a);
   }
 
   onChange(value: DataReturn) {

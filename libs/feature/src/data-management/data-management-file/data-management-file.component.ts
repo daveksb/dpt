@@ -204,14 +204,14 @@ export class DataManagementFileComponent implements AfterViewInit {
 
   sortChange(sortState: Sort | any) {}
   onDownload(a: any) {
-    console.log(a);
+    // console.log(a);
   }
   onDelete(id: number) {
-    console.log('onDelete', id);
+    // console.log('onDelete', id);
   }
 
   onEdit(id: number) {
-    console.log('onView', id);
+    // console.log('onView', id);
     const data = {
       dataName: 'dataName',
       dataDate: '20/2/2022',
@@ -243,7 +243,7 @@ export class DataManagementFileComponent implements AfterViewInit {
   }
 
   onView(id: number) {
-    console.log('onView', id);
+    // console.log('onView', id);
     const data = {
       dataName: 'dataName',
       dataDate: '20/2/2022',
@@ -275,11 +275,11 @@ export class DataManagementFileComponent implements AfterViewInit {
   }
 
   onApprove(id: number) {
-    console.log('onApprove', id);
+    // console.log('onApprove', id);
   }
 
   onCancel(id: number) {
-    console.log('onCancel', id);
+    // console.log('onCancel', id);
   }
 
   onAddItem() {
@@ -292,6 +292,6 @@ export class DataManagementFileComponent implements AfterViewInit {
     });
   }
   onAddDataConfirm(form: any) {
-    console.log(form);
+    // console.log(form);
   }
 }

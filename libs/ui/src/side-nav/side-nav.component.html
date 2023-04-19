@@ -46,6 +46,13 @@
         [routerLink]="['/data-management/data-set']"
         >จัดการชุดข้อมูล</a
       >
+      <a
+        class="nav-link menu-header"
+        [routerLinkActive]="'nav-item-active'"
+        mat-list-item
+        [routerLink]="['/article']"
+        >ข้อมูลข่าวสาร</a
+      >
 
       <a
         *ngIf="hasPermission('report')"

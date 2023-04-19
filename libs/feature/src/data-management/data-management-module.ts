@@ -26,10 +26,7 @@ const routes: Routes = [
   {
     path: '',
     component: DataManagementMainComponent,
-    children: [
-      { path: 'file', component: DataManagementFileComponent },
-      { path: 'data-set', component: DataManagementDataSetComponent },
-    ],
+    children: [{ path: 'data-set', component: DataManagementDataSetComponent }],
   },
   {
     path: '**',

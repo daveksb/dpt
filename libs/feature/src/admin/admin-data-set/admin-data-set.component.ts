@@ -48,10 +48,10 @@ export class AdminDataSetComponent implements OnInit {
   }
   sortChange(sortState: Sort | any) {}
   onApprove(id: number) {
-    console.log('onApprove', id);
+    // console.log('onApprove', id);
   }
   onCancel(id: number) {
-    console.log('onApprove', id);
+    // console.log('onApprove', id);
   }
   onDelete(id: string) {
     this.apiService

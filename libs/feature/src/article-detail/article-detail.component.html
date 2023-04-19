@@ -1,0 +1,20 @@
+<div class="page-content">
+  <div class="article-header">
+    <div class="header-1">
+      {{ article?.topic }}
+    </div>
+  </div>
+  <div class="article-body">
+    <quill-view-html
+      [content]="article?.description ?? ''"
+      theme="snow"
+    ></quill-view-html>
+  </div>
+  <div class="article-footer">
+    <div class="view">จำนวนการเข้าชม : {{ article?.countview }}</div>
+
+    <div class="create-date">
+      วันที่สร้าง: {{ article?.createdate | date: 'dd/MMM/yyyy' }}
+    </div>
+  </div>
+</div>

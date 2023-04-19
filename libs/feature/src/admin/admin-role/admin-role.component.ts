@@ -58,6 +58,7 @@ export class AdminRoleComponent implements OnInit {
         accSetAccess: row.accessControl.accSetAccess,
         accManageUser: row.accessControl.accManageUser,
         accApproveService: row.accessControl.accApproveService,
+        accArticle: row.accessControl.accArticle,
       };
       this.apiService.editRoleAccess(role).subscribe({
         next: (res) => {

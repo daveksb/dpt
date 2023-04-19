@@ -36,6 +36,8 @@
     flex-wrap: wrap;
     gap: 16px;
     justify-content: center;
+    padding-left: 32px;
+    padding-right: 32px;
     .news-item {
       width: 400px;
       cursor: pointer;
@@ -63,4 +65,16 @@
       }
     }
   }
+}
+.news-footer {
+  text-align: center;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 60px;
+  color: #270108;
+  cursor: pointer;
+  padding-left: 32px;
+  padding-right: 32px;
+  margin-top: 16px;
 }

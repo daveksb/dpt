@@ -42,6 +42,7 @@ import { AdminDataSetFormComponent } from './admin-data-set-form/admin-data-set-
 import { QuillModule } from 'ngx-quill';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { ArticleFormComponent } from './article-form/article-form.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     AdminDataSetFormComponent,
     EditUserComponent,
     ConfirmDialogComponent,
+    ArticleFormComponent,
   ],
 
   imports: [
@@ -134,6 +136,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     EditUserComponent,
     AdminDataSetFormComponent,
     ConfirmDialogComponent,
+    ArticleFormComponent,
   ],
   providers: [MatDatepickerModule],
 })

@@ -391,3 +391,28 @@ img.default-icon {
 .disabled-button {
   cursor: default;
 }
+.legend-title-text {
+  display: none !important;
+}
+.chart-legend .legend-labels {
+  white-space: normal !important;
+}
+
+.legend-label-text {
+  font-family: 'Sukhumvit', sans-serif !important;
+  color: black;
+}
+.ngx-charts-outer[style] {
+  width: unset !important;
+  height: unset !important;
+}
+.tooltip-label {
+  font-family: 'Sukhumvit', sans-serif !important;
+}
+.tooltip-value {
+  font-family: 'Sukhumvit', sans-serif !important;
+}
+
+.ql-editor {
+  font-family: 'Sukhumvit', sans-serif !important;
+}

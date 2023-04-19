@@ -1,0 +1,56 @@
+.page-content {
+  width: 100%;
+  display: block;
+  padding-top: 3rem;
+}
+
+.data-content {
+  height: unset;
+}
+
+.article-footer {
+  display: flex;
+  margin-top: 56px;
+  .confirm-button {
+    margin: auto;
+    width: 400px;
+    height: 55px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 20px;
+  }
+}
+.article-body {
+  margin-top: 2rem;
+  display: grid;
+  grid-row: auto;
+  grid-template-columns: 100px 1fr;
+  gap: 1rem;
+  grid-template-areas:
+    'topicLabel topic'
+    'thumbnailLabel thumbnail'
+    'descriptionLabel description';
+  .topic-container {
+    grid-area: topic;
+  }
+  .thumbnail-container {
+    grid-area: thumbnail;
+  }
+  .description-container {
+    grid-area: description;
+  }
+  .topic-label {
+    grid-area: topicLabel;
+  }
+  .thumbnail-label {
+    grid-area: thumbnailLabel;
+  }
+  .description-label {
+    grid-area: descriptionLabel;
+  }
+}
+
+.confirm-button {
+  color: white;
+  background-color: #270108;
+}

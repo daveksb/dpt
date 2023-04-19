@@ -20,6 +20,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {
+  ArticleAllComponent,
+  ArticleComponent,
   AuthGuard,
   DataPublishComponent,
   DataReportComponent,
@@ -37,6 +39,9 @@ import {
 import { SharedModule } from '@dpt/shared';
 import { EditUserComponent, FormModule } from '@dpt/form';
 import { RouterModule, Routes } from '@angular/router';
+import { ArticleFormComponent } from 'libs/form/src/article-form/article-form.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ArticleDetailComponent } from 'libs/feature/src/article-detail/article-detail.component';
 
 const routes: Routes = [
   { path: 'landing', component: LandingComponent },
@@ -105,6 +110,40 @@ const routes: Routes = [
     },
   },
   { path: 'user', component: EditUserComponent, canActivate: [AuthGuard] },
+  {
+    path: 'article',
+    children: [
+      {
+        path: 'list',
+        component: ArticleComponent,
+      },
+      {
+        path: 'all',
+        component: ArticleAllComponent,
+      },
+      {
+        path: 'edit/:tid',
+        component: ArticleFormComponent,
+      },
+      {
+        path: 'add',
+        component: ArticleFormComponent,
+      },
+      {
+        path: ':id',
+        component: ArticleDetailComponent,
+      },
+      {
+        path: '**',
+        redirectTo: 'all',
+      },
+    ],
+    canActivate: [AuthGuard, RoleGuard],
+    data: {
+      permission: ['accArticle'],
+    },
+  },
+
   { path: '**', component: LandingComponent },
 ];
 @NgModule({
@@ -129,6 +168,7 @@ const routes: Routes = [
     HttpClientModule,
     MatDialogModule,
     MatNativeDateModule,
+    NgxChartsModule,
   ],
   providers: [
     CookieService,
@@ -140,5 +180,6 @@ const routes: Routes = [
     AuthGuard,
   ],
   bootstrap: [AppComponent],
+  exports: [ArticleDetailComponent],
 })
 export class AppModule {}
