@@ -1,82 +1,54 @@
 <div class="landing-main">
   <div class="header-container">
-    <div
-      class="search-container"
-      [style.background-image]="'url(assets/image/landing_1.png)'"
-    >
-      <div class="search-label">ค้นหาชุดข้อมูล</div>
-      <div class="search-input-container">
-        <mat-form-field class="form-field" appearance="outline">
-          <input
-            type="text"
-            matInput
-            placeholder="ค้นหา"
-            [formControl]="form"
-          />
-          <span matPrefix>
-            <mat-icon>search</mat-icon>
-          </span>
-        </mat-form-field>
-        <div class="search-button-container">
-          <button
-            mat-flat-button
-            class="default-button big-button"
-            color="primary"
-            (click)="search()"
-          >
-            ค้นหา
-          </button>
-        </div>
-      </div>
-    </div>
-    <!-- <div class="image-container">
+    <!-- <div class="search-container" [style.background-image]="'url()'"> -->
+    <div class="image-container">
       <img class="image-landing" src="assets/image/landing_1.png" />
-    </div> -->
-  </div>
-  <div class="body-container">
-    <div class="category-container">
-      <div class="category-header">หมวดหมู่ชุดข้อมูล</div>
-      <div class="category-list">
-        <ng-container *ngFor="let item of category">
-          <div
-            class="category-item"
-            [class.category-item--active]="item.catName === currentCategory"
-          >
-            <div class="category-icon">
-              <img
-                class="category-image"
-                [src]="'assets/icon/' + mapCategory[item.catId]"
-              />
+      <!-- </div> -->
+    </div>
+    <div class="body-container">
+      <div class="category-container">
+        <div class="category-header">หมวดหมู่ชุดข้อมูล</div>
+        <div class="category-list">
+          <ng-container *ngFor="let item of category">
+            <div
+              class="category-item"
+              [class.category-item--active]="item.catName === currentCategory"
+            >
+              <div class="category-icon">
+                <img
+                  class="category-image"
+                  [src]="'assets/icon/' + mapCategory[item.catId]"
+                />
+              </div>
+              <div class="category-label">
+                {{ item.catName }}
+              </div>
+              <div class="category-view">({{ mapCount[item.catId] ?? 0 }})</div>
             </div>
-            <div class="category-label">
-              {{ item.catName }}
-            </div>
-            <div class="category-view">({{ mapCount[item.catId] ?? 0 }})</div>
-          </div>
-        </ng-container>
+          </ng-container>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="news-container">
-    <dpt-news></dpt-news>
-  </div>
-  <div class="statistic-header">สถิติการใช้งาน</div>
+    <div class="news-container">
+      <dpt-news></dpt-news>
+    </div>
+    <div class="statistic-header">สถิติการใช้งาน</div>
 
-  <div class="statistic-container">
-    <div class="statistic-item">
-      <div class="statistic-label">สถิติการเข้าดูข้อมูลสูงสุด 10 อันดับ</div>
-      <div class="statistic-chart">
-        <div class="api-table">
-          <table class="table">
-            <tbody>
-              <tr *ngFor="let item of apiStatistics">
-                <td class="table-link">{{ item.name }}</td>
-                <td>{{ item.value }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- <ngx-charts-pie-chart
+    <div class="statistic-container">
+      <div class="statistic-item">
+        <div class="statistic-label">สถิติการเข้าดูข้อมูลสูงสุด 10 อันดับ</div>
+        <div class="statistic-chart">
+          <div class="api-table">
+            <table class="table">
+              <tbody>
+                <tr *ngFor="let item of apiStatistics">
+                  <td class="table-link">{{ item.name }}</td>
+                  <td>{{ item.value }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- <ngx-charts-pie-chart
           [results]="categoryStatistics"
           [legend]="showLegend"
           [legendPosition]="legendPosition"
@@ -85,48 +57,49 @@
           [doughnut]="true"
         >
         </ngx-charts-pie-chart> -->
+        </div>
       </div>
-    </div>
-    <div class="statistic-item">
-      <div class="statistic-label">สถิติข้อมูลแต่ละประเภท</div>
-      <div class="statistic-chart">
-        <ngx-charts-pie-chart
-          [results]="categoryStatistics"
-          [legend]="showLegend"
-          [legendPosition]="legendPosition"
-          [labels]="false"
-          [view]="[375, 375]"
-          [doughnut]="false"
-        >
-        </ngx-charts-pie-chart>
+      <div class="statistic-item">
+        <div class="statistic-label">สถิติข้อมูลแต่ละประเภท</div>
+        <div class="statistic-chart">
+          <ngx-charts-pie-chart
+            [results]="categoryStatistics"
+            [legend]="showLegend"
+            [legendPosition]="legendPosition"
+            [labels]="false"
+            [view]="[375, 375]"
+            [doughnut]="false"
+          >
+          </ngx-charts-pie-chart>
+        </div>
       </div>
-    </div>
-    <div class="statistic-item">
-      <div class="statistic-label">สถิติข้อมูลแต่ละหน่วยงาน</div>
-      <div class="statistic-chart">
-        <ngx-charts-pie-chart
-          [results]="departmentStatistics"
-          [legend]="showLegend"
-          [legendPosition]="legendPosition"
-          [labels]="false"
-          [view]="[375, 375]"
-          [doughnut]="true"
-        >
-        </ngx-charts-pie-chart>
+      <div class="statistic-item">
+        <div class="statistic-label">สถิติข้อมูลแต่ละหน่วยงาน</div>
+        <div class="statistic-chart">
+          <ngx-charts-pie-chart
+            [results]="departmentStatistics"
+            [legend]="showLegend"
+            [legendPosition]="legendPosition"
+            [labels]="false"
+            [view]="[375, 375]"
+            [doughnut]="true"
+          >
+          </ngx-charts-pie-chart>
+        </div>
       </div>
-    </div>
-    <div class="statistic-item">
-      <div class="statistic-label">สถิติข้อมูลแต่ละจังหวัด</div>
-      <div class="statistic-chart">
-        <ngx-charts-pie-chart
-          [results]="provinceStatistics"
-          [legend]="showLegend"
-          [legendPosition]="legendPosition"
-          [labels]="false"
-          [doughnut]="true"
-          [view]="[375, 375]"
-        >
-        </ngx-charts-pie-chart>
+      <div class="statistic-item">
+        <div class="statistic-label">สถิติข้อมูลแต่ละจังหวัด</div>
+        <div class="statistic-chart">
+          <ngx-charts-pie-chart
+            [results]="provinceStatistics"
+            [legend]="showLegend"
+            [legendPosition]="legendPosition"
+            [labels]="false"
+            [doughnut]="true"
+            [view]="[375, 375]"
+          >
+          </ngx-charts-pie-chart>
+        </div>
       </div>
     </div>
   </div>
