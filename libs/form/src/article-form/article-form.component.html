@@ -24,6 +24,9 @@
     <div class="thumbnail-label">ไฟล์ Thumbnail</div>
     <div class="thumbnail-container">
       <input type="file" (change)="onFileChange($event)" #fileRef />
+      <div class="thumbnail-image-container" *ngIf="tempImage">
+        <img class="thumbnail-image" [src]="tempImage" />
+      </div>
     </div>
   </div>
 

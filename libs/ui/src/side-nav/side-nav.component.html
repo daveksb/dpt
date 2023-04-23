@@ -47,6 +47,7 @@
         >จัดการชุดข้อมูล</a
       >
       <a
+        *ngIf="hasArticlePermission()"
         class="nav-link menu-header"
         [routerLinkActive]="'nav-item-active'"
         mat-list-item

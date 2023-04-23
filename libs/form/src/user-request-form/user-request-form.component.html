@@ -23,7 +23,7 @@
     <div class="value">
       {{ userDetail?.position }}
     </div>
-    <div class="label">อีเมล์</div>
+    <div class="label">อีเมล</div>
     <div class="value">
       {{ userDetail?.email }}
     </div>
@@ -46,6 +46,17 @@
             [value]="item.roleId.toString()"
           >
             {{ item.roleName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="label">ผู้ดูแลบทความข่าวสาร</div>
+    <div class="value">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>ผู้ดูแลบทความข่าวสาร</mat-label>
+        <mat-select formControlName="roleArc" placeholder="กรุณาเลือก">
+          <mat-option *ngFor="let item of roleArticleList" [value]="item.value">
+            {{ item.label }}
           </mat-option>
         </mat-select>
       </mat-form-field>

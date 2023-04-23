@@ -21,6 +21,7 @@ export class ArticleFormComponent implements OnInit {
     description: new FormControl(),
   });
   tempFile?: any;
+  tempImage?: any;
   statusList = [
     {
       label: 'เปิด',
@@ -51,6 +52,7 @@ export class ArticleFormComponent implements OnInit {
             const newFile = new File([file?.data], file.fileName);
             res.tempThumbnail = newFile;
             this.tempFile = Base64.decode(res.thumbnail);
+            this.tempImage = file?.data;
           }
         }
         const dataTransfer = new DataTransfer();
@@ -147,6 +149,7 @@ export class ArticleFormComponent implements OnInit {
           fileName: file.name,
           data: reader.result,
         });
+        this.tempImage = reader.result;
       };
       reader.onerror = (error) => {
         console.log('Error: ', error);

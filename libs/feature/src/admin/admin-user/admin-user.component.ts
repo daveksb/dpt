@@ -87,6 +87,7 @@ export class AdminUserComponent implements OnInit {
       userDetail: row,
       roleList: this.roleList,
       userId: row.userId,
+      roleArc: row.roleArc,
       onConfirm: this.onConfirm.bind(this),
     };
     const dialogRef = this.dialog.open(UserRequestFormComponent, {

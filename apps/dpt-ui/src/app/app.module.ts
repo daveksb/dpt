@@ -3,11 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  MatDialogModule,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { PdpaComponent, UiModule } from '@dpt/ui';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
@@ -34,7 +30,9 @@ import {
   LoginComponent,
   RegisterComponent,
   RoleGuard,
+  ArticleRoleGuard,
   TokenHandleInterceptor,
+  AddArticleRoleGuard,
 } from '@dpt/feature';
 import { SharedModule } from '@dpt/shared';
 import { EditUserComponent, FormModule } from '@dpt/form';
@@ -116,6 +114,7 @@ const routes: Routes = [
       {
         path: 'list',
         component: ArticleComponent,
+        canActivate: [AuthGuard, ArticleRoleGuard],
       },
       {
         path: 'all',
@@ -124,10 +123,12 @@ const routes: Routes = [
       {
         path: 'edit/:tid',
         component: ArticleFormComponent,
+        canActivate: [AuthGuard, AddArticleRoleGuard],
       },
       {
         path: 'add',
         component: ArticleFormComponent,
+        canActivate: [AuthGuard, AddArticleRoleGuard],
       },
       {
         path: ':id',
@@ -138,10 +139,7 @@ const routes: Routes = [
         redirectTo: 'all',
       },
     ],
-    canActivate: [AuthGuard, RoleGuard],
-    data: {
-      permission: ['accArticle'],
-    },
+    canActivate: [AuthGuard],
   },
 
   { path: '**', component: LandingComponent },

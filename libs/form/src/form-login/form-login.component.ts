@@ -15,6 +15,7 @@ import * as md5 from 'md5';
   styleUrls: ['./form-login.component.scss'],
 })
 export class FormLoginComponent implements OnInit {
+  isShowConfirmPassword = false;
   formGroup = new FormGroup({
     email: new FormControl(null, Validators.required),
     password: new FormControl(null, Validators.required),

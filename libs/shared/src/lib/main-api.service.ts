@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'apps/dpt-ui/src/environments/environment';
 import {
+  AdminArticleRoleListResponse,
   AdminDataResponse,
   AdminDepartmentResponse,
   AdminLogResponse,
@@ -153,6 +154,12 @@ export class MainApiService {
   getAdminRoleList() {
     const url = `dptuser/roleuser?`;
     return this.http.get<AdminRoleListResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+  getAdminArticleRoleList() {
+    const url = `dptuser/rolearticle?`;
+    return this.http.get<AdminArticleRoleListResponse>(
       `${environment.apiPrefix}/${url}`
     );
   }
@@ -421,6 +428,12 @@ export class MainApiService {
   }
   editRoleAccess(body: any) {
     const url = `dptuser/changeaccesscontrol`;
+    return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
+      ...body,
+    });
+  }
+  editArticleRoleAccess(body: any) {
+    const url = `dptuser/changerolearticle`;
     return this.http.post<DefaultResponse>(`${environment.apiPrefix}/${url}`, {
       ...body,
     });

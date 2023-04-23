@@ -56,7 +56,8 @@ export class ArticleComponent implements AfterViewInit {
   constructor(
     private dialog: MatDialog,
     private mainApiService: MainApiService,
-    private route: Router
+    private route: Router,
+    private userService: UserService
   ) {}
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
@@ -104,57 +105,17 @@ export class ArticleComponent implements AfterViewInit {
 
   onAddItem() {
     this.route.navigate(['article/add']);
-    // this.mainApiService.addApiData(form).subscribe({
-    //   next: (res) => {
-    //     if (res.returnCode === '00') {
-    //       this.dialog.open(DefaultDialogComponent, {
-    //         maxHeight: '800px',
-    //         width: '500px',
-    //         data: {
-    //           status: 'ดำเนินการสำเร็จ',
-    //         },
-    //       });
-    //       this.refresh();
-    //     }
-    //   },
-    //   error: () => {
-    //     this.dialog.open(DefaultDialogComponent, {
-    //       maxHeight: '800px',
-    //       width: '500px',
-    //       data: {
-    //         isError: true,
-    //         status: 'ดำเนินการไม่สำเร็จ',
-    //       },
-    //     });
-    //   },
-    // });
   }
   onEdit(article: Article) {
     this.route.navigate([`article/edit/${article.tid}`]);
-
-    // this.mainApiService.updateApiData(form).subscribe({
-    //   next: (res) => {
-    //     if (res.returnCode === '00') {
-    //       this.dialog.open(DefaultDialogComponent, {
-    //         maxHeight: '800px',
-    //         width: '500px',
-    //         data: {
-    //           status: 'ดำเนินการสำเร็จ',
-    //         },
-    //       });
-    //       this.refresh();
-    //     }
-    //   },
-    //   error: () => {
-    //     this.dialog.open(DefaultDialogComponent, {
-    //       maxHeight: '800px',
-    //       width: '500px',
-    //       data: {
-    //         isError: true,
-    //         status: 'ดำเนินการไม่สำเร็จ',
-    //       },
-    //     });
-    //   },
-    // });
+  }
+  get canEdit() {
+    return this.userService.getUser()?.roleArticle.rolearcAddUpdate === 'T';
+  }
+  get canDelete() {
+    return this.userService.getUser()?.roleArticle.rolearcDelete === 'T';
+  }
+  get isArticleAdmin() {
+    return this.userService.getUser()?.roleArticle.rolearcId === '1';
   }
 }

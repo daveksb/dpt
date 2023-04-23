@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { UserService } from '@dpt/shared';
+import { Role, UserService } from '@dpt/shared';
 interface MapString {
   [index: string]: string[];
 }
@@ -12,6 +12,7 @@ interface MapString {
 })
 export class TopNavComponent implements OnInit {
   @Input() isSecondary = false;
+
   @Output() clickToggle = new EventEmitter();
   isActive = true;
   currentUrl = '';
@@ -81,6 +82,7 @@ export class TopNavComponent implements OnInit {
         this.userName = `${res?.name ?? ''} ${res?.lname ?? ''}`;
       }
     });
+    console.log(this.userService.getUser());
   }
   ngOnInit(): void {}
   isContainUrl(data: string) {
@@ -88,6 +90,14 @@ export class TopNavComponent implements OnInit {
   }
   logout() {
     this.userService.clearUser();
+  }
+  hasArticlePermission() {
+    const art = this.userService.getUser()?.roleArticle;
+    return (
+      art?.rolearcAddUpdate === 'T' ||
+      art?.rolearcDelete === 'T' ||
+      art?.rolearcId === '1'
+    );
   }
   hasPermission(page: string) {
     const roleId = this.userService.getUser()?.role?.roleId;

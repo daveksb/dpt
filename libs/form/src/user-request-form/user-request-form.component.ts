@@ -11,8 +11,19 @@ import { AdminUserList, Role } from '@dpt/shared';
 export class UserRequestFormComponent implements OnInit {
   userDetail?: AdminUserList;
   roleList: Role[] = [];
+  roleArticleList = [
+    {
+      label: 'ผู้ดูแลบทความข่าวสาร',
+      value: '1',
+    },
+    {
+      label: 'ไม่มี',
+      value: '0',
+    },
+  ];
   form = new FormGroup({
     roleId: new FormControl(null, Validators.required),
+    roleArc: new FormControl(null, Validators.required),
     status: new FormControl(null, Validators.required),
     userId: new FormControl(null, Validators.required),
   });
@@ -34,6 +45,7 @@ export class UserRequestFormComponent implements OnInit {
     }
     this.form.get('status')?.setValue(data.userDetail?.approve ?? 'N');
     this.form.get('userId')?.setValue(data.userId ?? '');
+    this.form.get('roleArc')?.setValue(data.roleArc ?? '');
   }
 
   ngOnInit(): void {}

@@ -9,6 +9,7 @@
             mat-flat-button
             class="default-button big-button add-button"
             (click)="onAddItem()"
+            *ngIf="isArticleAdmin && canEdit"
           >
             + เพิ่มข่าวสาร
           </button>
@@ -59,11 +60,13 @@
                   src="assets/icon/edit.svg"
                   class="default-icon"
                   (click)="onEdit(row)"
+                  *ngIf="isArticleAdmin && canEdit"
                 />
                 <img
                   src="assets/icon/delete.svg"
                   class="default-icon"
                   (click)="onDelete(row.tid)"
+                  *ngIf="isArticleAdmin && canDelete"
                 />
               </div>
             </td>

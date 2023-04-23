@@ -18,11 +18,20 @@
         <mat-form-field class="form-field" appearance="outline">
           <mat-label>รหัสผ่าน</mat-label>
           <input
-            type="password"
+            [type]="isShowConfirmPassword ? 'text' : 'password'"
             matInput
             formControlName="password"
             placeholder="กรุณากรอกรหัสผ่าน"
           />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="isShowConfirmPassword = !isShowConfirmPassword"
+          >
+            <mat-icon>{{
+              isShowConfirmPassword ? 'visibility_off' : 'visibility'
+            }}</mat-icon>
+          </button>
         </mat-form-field>
       </div>
     </div>

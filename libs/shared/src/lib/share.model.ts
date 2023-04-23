@@ -9,6 +9,7 @@ export interface User {
   personalNumber: string;
   department: Department;
   role: Role;
+  roleArticle: RoleArticle;
   tokenKey: string;
   departmentExternal: string;
   nameEn: string;
@@ -23,6 +24,13 @@ export interface Role {
   roleId: string;
   roleName: string;
   accessControl: AccessControl;
+  roleArticle: RoleArticle;
+}
+export interface RoleArticle {
+  rolearcId: string;
+  rolearcName: string;
+  rolearcAddUpdate: string;
+  rolearcDelete: string;
 }
 export interface AccessControl {
   accId: string;
@@ -55,6 +63,7 @@ export interface UserResponse extends DefaultResponse {
   personalNumber: string;
   department: Department;
   role: Role;
+  roleArticle: RoleArticle;
   tokenKey: string;
   departmentExternal: string;
   nameEn: string;
@@ -114,6 +123,7 @@ export interface AdminUserListResponse extends DefaultResponse {
 }
 export interface AdminUserList {
   userId: string;
+  roleArc: string;
   username: string;
   email: string;
   name: string;
@@ -128,6 +138,9 @@ export interface AdminUserList {
   departmentNamePublic: string;
   departmentName: string;
   roleName: string;
+}
+export interface AdminArticleRoleListResponse extends DefaultResponse {
+  RoleArticle: RoleArticle[];
 }
 export interface AdminRoleListResponse extends DefaultResponse {
   Role: Role[];

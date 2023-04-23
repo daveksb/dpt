@@ -75,6 +75,7 @@ import { ArticleAllComponent } from './article-all/article-all.component';
     NgxChartsModule,
     MatDatepickerModule,
     QuillModule,
+    MatTabsModule,
   ],
   exports: [
     DataServiceDetailComponent,

@@ -1,11 +1,10 @@
-import { Dialog } from '@angular/cdk/dialog';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DefaultDialogComponent } from '@dpt/form';
-import { AdminRoleListResponse, MainApiService, Role } from '@dpt/shared';
+import { MainApiService, Role, RoleArticle } from '@dpt/shared';
 
 @Component({
   selector: 'dpt-admin-role',
@@ -26,17 +25,37 @@ export class AdminRoleComponent implements OnInit {
     'accSetAccess',
     'accManageUser',
     'accApproveService',
+    'accArticle',
+    'action',
+  ];
+  displayedArticleColumns: string[] = [
+    'rolearcName',
+    'rolearcAddUpdate',
+    'rolearcDelete',
     'action',
   ];
 
   dataSource = new MatTableDataSource();
+  articleRoles = new MatTableDataSource();
   constructor(private apiService: MainApiService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.apiService.getAdminRoleList().subscribe((res) => {
       if (res) {
         this.dataSource = new MatTableDataSource<any>(
-          res.Role.map((role) => {
+          res.Role.map((role: Role) => {
+            return {
+              ...role,
+              isEdit: false,
+            };
+          })
+        );
+      }
+    });
+    this.apiService.getAdminArticleRoleList().subscribe((res) => {
+      if (res) {
+        this.articleRoles = new MatTableDataSource<any>(
+          res.RoleArticle.map((role: RoleArticle) => {
             return {
               ...role,
               isEdit: false,
@@ -61,6 +80,49 @@ export class AdminRoleComponent implements OnInit {
         accArticle: row.accessControl.accArticle,
       };
       this.apiService.editRoleAccess(role).subscribe({
+        next: (res) => {
+          if (res.returnCode === '00') {
+            this.dialog.open(DefaultDialogComponent, {
+              maxHeight: '800px',
+              width: '500px',
+              data: {
+                status: 'ดำเนินการสำเร็จ',
+              },
+            });
+            this.isEdit = !this.isEdit;
+          } else {
+            this.dialog.open(DefaultDialogComponent, {
+              maxHeight: '800px',
+              width: '500px',
+              data: {
+                isError: true,
+                status: 'ดำเนินการไม่สำเร็จ',
+              },
+            });
+          }
+        },
+        error: () => {
+          this.dialog.open(DefaultDialogComponent, {
+            maxHeight: '800px',
+            width: '500px',
+            data: {
+              isError: true,
+              status: 'ดำเนินการไม่สำเร็จ',
+            },
+          });
+        },
+      });
+    }
+    row.isEdit = !row.isEdit;
+  }
+  onArticleEdit(row: any) {
+    if (row.isEdit) {
+      const role = {
+        rolearcId: row.rolearcId?.toString(),
+        rolearcAddUpdate: row.rolearcAddUpdate,
+        rolearcDelete: row.rolearcDelete,
+      };
+      this.apiService.editArticleRoleAccess(role).subscribe({
         next: (res) => {
           if (res.returnCode === '00') {
             this.dialog.open(DefaultDialogComponent, {

@@ -24,6 +24,7 @@ import { TokenHandleInterceptor } from '../interceptor/api-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatTabsModule } from '@angular/material/tabs';
 
 const routes: Routes = [
   {
@@ -71,6 +72,7 @@ const routes: Routes = [
     MatIconModule,
     MatDatepickerModule,
     MatDialogModule,
+    MatTabsModule,
   ],
   exports: [
     AdminMainComponent,

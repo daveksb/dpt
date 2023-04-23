@@ -59,20 +59,24 @@
           >จัดการชุดข้อมูล</a
         >
       </div>
-      <a
-        class="nav-link menu-header"
-        [routerLinkActive]="'nav-item-active'"
-        mat-list-item
-        [routerLink]="['/article/list']"
-        >จัดการข้อมูลข่าวสาร</a
-      >
-      <a
-        class="nav-link menu-header"
-        [routerLinkActive]="'nav-item-active'"
-        mat-list-item
-        [routerLink]="['/article/all']"
-        >ข้อมูลข่าวสาร</a
-      >
+      <div class="nav-link-item" *ngIf="hasArticlePermission()">
+        <a
+          class="nav-link menu-header"
+          [routerLinkActive]="'nav-item-active'"
+          mat-list-item
+          [routerLink]="['/article/list']"
+          >จัดการข้อมูลข่าวสาร</a
+        >
+      </div>
+      <div class="nav-link-item">
+        <a
+          class="nav-link menu-header"
+          [routerLinkActive]="'nav-item-active'"
+          mat-list-item
+          [routerLink]="['/article/all']"
+          >ข้อมูลข่าวสาร</a
+        >
+      </div>
 
       <div class="nav-link-item" *ngIf="hasPermission('report')">
         <a

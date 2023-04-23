@@ -14,3 +14,13 @@
   margin: auto;
   cursor: pointer;
 }
+:host {
+  width: 100%;
+}
+
+.mat-column-rolearcAddUpdate {
+  text-align: center;
+}
+.mat-column-rolearcDelete {
+  text-align: center;
+}

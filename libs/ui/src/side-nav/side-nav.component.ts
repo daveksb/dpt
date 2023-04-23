@@ -67,6 +67,14 @@ export class SideNavComponent implements OnInit {
     private userService: UserService,
     private ref: ChangeDetectorRef
   ) {}
+  hasArticlePermission() {
+    const art = this.userService.getUser()?.roleArticle;
+    return (
+      art?.rolearcAddUpdate === 'T' ||
+      art?.rolearcDelete === 'T' ||
+      art?.rolearcId === '1'
+    );
+  }
   ngOnInit(): void {
     this.route.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
