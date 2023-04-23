@@ -23,7 +23,7 @@
             {{ item.topic }}
           </div>
           <div class="news-description">
-            {{ item.createdate }}
+            {{ item.createdate | date: 'dd/MMM/yyyy' }}
           </div>
         </div>
       </div>
