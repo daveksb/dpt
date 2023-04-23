@@ -12,6 +12,7 @@ import { Base64 } from 'js-base64';
 export class NewsComponent implements OnInit {
   selectedIndex = 0;
   articleList: Article[] = [];
+  isLoaded = false;
   constructor(private route: Router, private mainApiService: MainApiService) {}
 
   onOpenFile(a: any) {}
@@ -35,6 +36,7 @@ export class NewsComponent implements OnInit {
         })
       )
       .subscribe((res) => {
+        this.isLoaded = true;
         this.articleList = res;
       });
   }

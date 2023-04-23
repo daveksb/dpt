@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MainApiService, UserService } from '@dpt/shared';
+import { MainApiService } from '@dpt/shared';
 import { Category, DataReturn } from 'libs/shared/src/lib/share.model';
-import { DataService } from '../data-service-detail/data-service-detail.component';
 import { Router } from '@angular/router';
 import { LegendPosition } from '@swimlane/ngx-charts';
 
@@ -10,7 +9,6 @@ interface GraphData {
   name: string;
   value: number;
 }
-
 @Component({
   selector: 'dpt-landing',
   templateUrl: './landing.component.html',

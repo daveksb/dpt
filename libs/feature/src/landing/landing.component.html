@@ -43,24 +43,15 @@
               <tbody>
                 <tr *ngFor="let item of apiStatistics">
                   <td class="table-link">{{ item.name }}</td>
-                  <td>{{ item.value }}</td>
+                  <td class="no-wrap">{{ item.value }} ครั้ง</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <!-- <ngx-charts-pie-chart
-          [results]="categoryStatistics"
-          [legend]="showLegend"
-          [legendPosition]="legendPosition"
-          [labels]="false"
-          [view]="[375, 375]"
-          [doughnut]="true"
-        >
-        </ngx-charts-pie-chart> -->
         </div>
       </div>
       <div class="statistic-item">
-        <div class="statistic-label">สถิติข้อมูลแต่ละประเภท</div>
+        <div class="statistic-label">สถิติข้อมูลแต่ละประเภท (ชุด)</div>
         <div class="statistic-chart">
           <ngx-charts-pie-chart
             [results]="categoryStatistics"
@@ -70,11 +61,12 @@
             [view]="[375, 375]"
             [doughnut]="false"
           >
+            >
           </ngx-charts-pie-chart>
         </div>
       </div>
       <div class="statistic-item">
-        <div class="statistic-label">สถิติข้อมูลแต่ละหน่วยงาน</div>
+        <div class="statistic-label">สถิติข้อมูลแต่ละหน่วยงาน (ชุด)</div>
         <div class="statistic-chart">
           <ngx-charts-pie-chart
             [results]="departmentStatistics"
@@ -88,7 +80,7 @@
         </div>
       </div>
       <div class="statistic-item">
-        <div class="statistic-label">สถิติข้อมูลแต่ละจังหวัด</div>
+        <div class="statistic-label">สถิติข้อมูลแต่ละจังหวัด (ชุด)</div>
         <div class="statistic-chart">
           <ngx-charts-pie-chart
             [results]="provinceStatistics"

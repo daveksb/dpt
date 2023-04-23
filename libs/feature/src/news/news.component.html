@@ -1,32 +1,39 @@
 <div class="news-container">
   <div class="news-label">ข้อมูลข่าวสาร</div>
-  <div class="news-list">
-    <div
-      class="news-item"
-      *ngFor="let item of articleList"
-      (click)="onClick(item.tid)"
-    >
-      <div class="image-container">
-        <img
-          class="news-image"
-          [src]="
-            item.tempThumbnail
-              ? item.tempThumbnail
-              : 'https://www.dpt.go.th/assets/app/images/logo.png'
-          "
-          (error)="onError($event, item)"
-        />
-      </div>
-      <div class="news-detail">
-        <div class="news-title">
-          {{ item.topic }}
+  <ng-container *ngIf="isLoaded; else spinner">
+    <div class="news-list">
+      <div
+        class="news-item"
+        *ngFor="let item of articleList"
+        (click)="onClick(item.tid)"
+      >
+        <div class="image-container">
+          <img
+            class="news-image"
+            [src]="
+              item.tempThumbnail
+                ? item.tempThumbnail
+                : 'https://www.dpt.go.th/assets/app/images/logo.png'
+            "
+            (error)="onError($event, item)"
+          />
         </div>
-        <div class="news-description">
-          {{ item.createdate }}
+        <div class="news-detail">
+          <div class="news-title">
+            {{ item.topic }}
+          </div>
+          <div class="news-description">
+            {{ item.createdate }}
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </ng-container>
+  <ng-template #spinner>
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
 
   <div class="news-footer">
     <button
