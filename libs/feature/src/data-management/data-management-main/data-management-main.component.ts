@@ -4,9 +4,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import {
   DefaultDialogComponent,
   DataManagementDataSetFormComponent,
+  FileHistoryComponent,
 } from '@dpt/form';
 import {
   Category,
@@ -54,7 +56,8 @@ export class DataManagementMainComponent implements AfterViewInit {
   constructor(
     private dialog: MatDialog,
     private mainApiService: MainApiService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
@@ -92,6 +95,9 @@ export class DataManagementMainComponent implements AfterViewInit {
   }
   sortChange(sortState: Sort | any) {}
   onDownload(a: any) {}
+  onEditHistory(row: DataReturn) {
+    this.router.navigate(['data-management', row.apiId]);
+  }
   onDelete(apiId: number) {
     this.mainApiService
       .deleteApiData({

@@ -14,7 +14,7 @@
     <div class="view">จำนวนการเข้าชม : {{ article?.countview }}</div>
 
     <div class="create-date">
-      วันที่สร้าง: {{ article?.createdate | date: 'dd/MMM/yyyy' }}
+      วันที่สร้าง: {{ article?.createdate | date: 'dd/MMM/yyyy':'th-TH' }}
     </div>
   </div>
 </div>

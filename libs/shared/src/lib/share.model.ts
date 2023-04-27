@@ -562,3 +562,13 @@ export interface ProvinceStatistic {
   PROVINCE_NAME: string;
   COUNTDATA: number;
 }
+export interface FileHistoryResponse extends DefaultResponse {
+  datareturn: FileHistory[];
+}
+export interface FileHistory {
+  hid: string;
+  apiId: string;
+  fileName: string;
+  originalFileName: string;
+  timestamp: string;
+}

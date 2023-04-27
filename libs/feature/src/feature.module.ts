@@ -35,6 +35,11 @@ import { ArticleComponent } from './article/article.component';
 import { NewsComponent } from './news/news.component';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
 import { ArticleAllComponent } from './article-all/article-all.component';
+import {
+  MatLuxonDateModule,
+  LuxonDateModule,
+  MAT_LUXON_DATE_ADAPTER_OPTIONS,
+} from '@angular/material-luxon-adapter';
 
 @NgModule({
   declarations: [
@@ -76,6 +81,8 @@ import { ArticleAllComponent } from './article-all/article-all.component';
     MatDatepickerModule,
     QuillModule,
     MatTabsModule,
+    LuxonDateModule,
+    MatLuxonDateModule,
   ],
   exports: [
     DataServiceDetailComponent,
@@ -91,6 +98,9 @@ import { ArticleAllComponent } from './article-all/article-all.component';
     ArticleComponent,
     ArticleAllComponent,
     ArticleDetailComponent,
+  ],
+  providers: [
+    { provide: MAT_LUXON_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
   ],
 })
 export class FeatureModule {}

@@ -18,3 +18,4 @@ export * from './decline-department-form/decline-department-form.component';
 export * from './admin-data-set-form/admin-data-set-form.component';
 export * from './edit-user/edit-user.component';
 export * from './article-form/article-form.component';
+export * from './file-history/file-history.component';

@@ -43,6 +43,7 @@ import { QuillModule } from 'ngx-quill';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { ArticleFormComponent } from './article-form/article-form.component';
+import { FileHistoryComponent } from './file-history/file-history.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { ArticleFormComponent } from './article-form/article-form.component';
     EditUserComponent,
     ConfirmDialogComponent,
     ArticleFormComponent,
+    FileHistoryComponent,
   ],
 
   imports: [
@@ -136,6 +138,7 @@ import { ArticleFormComponent } from './article-form/article-form.component';
     EditUserComponent,
     AdminDataSetFormComponent,
     ConfirmDialogComponent,
+    FileHistoryComponent,
     ArticleFormComponent,
   ],
   providers: [MatDatepickerModule],

@@ -28,6 +28,7 @@ export class TokenHandleInterceptor implements HttpInterceptor {
     'dptreport/apiStatistic',
     'dptreport/categoryStatistic',
     'dptreport/departmentStatistic',
+    'dptservice/selecthistoryfile',
     'dptreport/provinceStatistic',
     'www.dpt.go.th',
   ];

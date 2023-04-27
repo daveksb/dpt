@@ -8,9 +8,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 
 import { UiModule } from '@dpt/ui';
-import { FormModule } from '@dpt/form';
-import { DataManagementDataSetComponent } from './data-management-data-set/data-management-data-set.component';
-import { DataManagementFileComponent } from './data-management-file/data-management-file.component';
+import { FileHistoryComponent, FormModule } from '@dpt/form';
 import { DataManagementMainComponent } from './data-management-main/data-management-main.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -26,20 +24,19 @@ const routes: Routes = [
   {
     path: '',
     component: DataManagementMainComponent,
-    children: [{ path: 'data-set', component: DataManagementDataSetComponent }],
+  },
+  {
+    path: ':id',
+    component: FileHistoryComponent,
   },
   {
     path: '**',
-    redirectTo: 'data-set',
+    redirectTo: '',
   },
 ];
 
 @NgModule({
-  declarations: [
-    DataManagementDataSetComponent,
-    DataManagementFileComponent,
-    DataManagementMainComponent,
-  ],
+  declarations: [DataManagementMainComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -59,11 +56,7 @@ const routes: Routes = [
     MatSortModule,
     MatIconModule,
   ],
-  exports: [
-    DataManagementDataSetComponent,
-    DataManagementFileComponent,
-    DataManagementMainComponent,
-  ],
+  exports: [DataManagementMainComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

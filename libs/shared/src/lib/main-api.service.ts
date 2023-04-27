@@ -25,6 +25,7 @@ import {
   DataTypeResponse,
   DefaultResponse,
   DepartmentStatisticResponse,
+  FileHistoryResponse,
   PrivacyResponse,
   ProvinceResponse,
   ProvinceStatisticResponse,
@@ -490,5 +491,17 @@ export class MainApiService {
     return this.http.get<ProvinceStatisticResponse>(
       `${environment.apiPrefix}/${url}`
     );
+  }
+  getSelectHistoryfile(apiId: string) {
+    const url = `dptservice/selecthistoryfile?apiId=${apiId}`;
+    return this.http.get<FileHistoryResponse>(
+      `${environment.apiPrefix}/${url}`
+    );
+  }
+  deleteSelectHistoryfile(body: any) {
+    const url = `https://cockpit.dpt.go.th/9A5387D3066CAD4D72E2B730A7456639E97E5C6D/dptdeletehistoryfile.php`;
+    return this.http.post<DefaultResponse>(`${url}`, {
+      ...body,
+    });
   }
 }

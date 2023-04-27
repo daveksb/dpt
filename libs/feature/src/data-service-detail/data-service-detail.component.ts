@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { MainApiService, UserService } from '@dpt/shared';
+import { FileHistory, MainApiService, UserService } from '@dpt/shared';
 import { DataServiceDialogComponent, DefaultDialogComponent } from '@dpt/form';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DataServiceDetail } from '@dpt/shared';
@@ -48,6 +48,8 @@ export class DataServiceDetailComponent implements OnInit {
   apiDetail: DataServiceDetail | null = null;
   displayedColumns: string[] = ['name', 'type', 'description', 'default'];
   dataSource = new MatTableDataSource();
+  displayedHistoryColumns = ['order', 'fileName', 'timestamp', 'action'];
+  dataSourceHistory = new MatTableDataSource<FileHistory>();
   displayedZipColumns: string[] = ['name', 'size'];
   dataSourceZip = new MatTableDataSource<any>();
   mainUrl =
@@ -65,6 +67,9 @@ export class DataServiceDetailComponent implements OnInit {
   ngOnInit(): void {
     const apiId = this.route.snapshot.params['id'];
     const userId = this.userService.getUser()?.userId ?? '';
+    this.mainApiService.getSelectHistoryfile(apiId).subscribe((res) => {
+      this.dataSourceHistory = new MatTableDataSource(res.datareturn);
+    });
     this.mainApiService.getDataServiceDetail(apiId, userId).subscribe({
       next: (res) => {
         if (res.returnCode === '00' || res.returnCode === '01') {
@@ -139,6 +144,13 @@ export class DataServiceDetailComponent implements OnInit {
         });
       },
     });
+  }
+  onDownload(apiId: string, fileName: string) {
+    window.open(
+      'https://cockpit.dpt.go.th/dptservice/dptgethistoryfile.php?filename=' +
+        fileName,
+      '_blank'
+    );
   }
   toApiList() {
     this.router.navigate(['/data-service-list']);

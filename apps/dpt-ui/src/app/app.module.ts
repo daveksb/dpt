@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PdpaComponent, UiModule } from '@dpt/ui';
@@ -40,6 +40,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ArticleFormComponent } from 'libs/form/src/article-form/article-form.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ArticleDetailComponent } from 'libs/feature/src/article-detail/article-detail.component';
+import { registerLocaleData } from '@angular/common';
+import th from '@angular/common/locales/th';
 
 const routes: Routes = [
   { path: 'landing', component: LandingComponent },
@@ -144,6 +146,7 @@ const routes: Routes = [
 
   { path: '**', component: LandingComponent },
 ];
+registerLocaleData(th);
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -175,6 +178,7 @@ const routes: Routes = [
       useClass: TokenHandleInterceptor,
       multi: true,
     },
+    { provide: LOCALE_ID, useValue: 'th-TH' },
     AuthGuard,
   ],
   bootstrap: [AppComponent],
