@@ -54,9 +54,9 @@
       border: 3px solid #270108;
     }
     .category-item {
-      padding: 24px;
+      padding: 20px;
       width: 150px;
-      // cursor: pointer;
+      cursor: pointer;
       box-shadow: rgba(0, 0, 0, 0.18) 0px 5px 15px;
       height: 150px;
       background-color: white;
@@ -219,7 +219,7 @@
   padding: 36px;
 }
 .statistic-item {
-  width: 375px;
+  width: 300;
 }
 .statistic-label {
   font-style: normal;
@@ -232,7 +232,7 @@
   text-align: center;
 }
 .statistic-chart {
-  width: 375px;
+  width: 300;
 }
 // .table-link {
 //   text-decoration: underline;
@@ -249,4 +249,10 @@
 }
 .no-wrap {
   white-space: nowrap;
+}
+.stripe-dash {
+  border-bottom: 2px solid black;
+}
+.statistic-section {
+  padding: 0px 10% 0 10%;
 }

@@ -24,11 +24,11 @@ export class AdminUserComponent implements OnInit {
   displayedColumns: string[] = [
     'order',
     'fullName',
-    'department',
     'email',
     'userName',
     'roleName',
     'statusAction',
+    'createDate',
     'action',
   ];
   roleList: Role[] = [];

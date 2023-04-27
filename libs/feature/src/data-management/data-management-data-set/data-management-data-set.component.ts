@@ -15,7 +15,6 @@ import {
   CategoryGroup,
   DataReturn,
   DataType,
-  Department,
   InsertApiRequest,
   Privacy,
   Province,

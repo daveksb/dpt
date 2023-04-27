@@ -9,6 +9,21 @@
   gap: 1rem;
 }
 .main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.request-header {
+  overflow: auto;
+  width: 100%;
+  margin-bottom: 56px;
+  margin-top: 16px;
+}
+.request-footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
 }
 .default-icon {
   margin: auto 0px;

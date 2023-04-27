@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
@@ -16,6 +22,8 @@ import { Department, UserService, MainApiService } from '@dpt/shared';
   styleUrls: ['./data-request-admin.component.scss'],
 })
 export class DataRequestAdminComponent implements OnInit, AfterViewInit {
+  @ViewChild('admin') adminRef!: ElementRef<HTMLDivElement>;
+
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   readonly displayedColumnsDefault: string[] = [
@@ -243,5 +251,10 @@ export class DataRequestAdminComponent implements OnInit, AfterViewInit {
           });
         },
       });
+  }
+  pageChange(page: any) {
+    if (page.previousPageIndex !== page?.pageIndex) {
+      this.adminRef.nativeElement.scrollTop = 0;
+    }
   }
 }

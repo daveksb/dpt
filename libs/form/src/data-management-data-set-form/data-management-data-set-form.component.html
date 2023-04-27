@@ -180,21 +180,11 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-select placeholder="กลุ่มหมวดหมู่" formControlName="groupsId">
-          <mat-option
-            *ngFor="let item of categoryGroupList"
-            [value]="item.groupsId.toString()"
-          >
-            {{ item.groupsName }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
     </div>
-    <div class="label-10">การเผยแพร่</div>
+    <div class="label-10">การเปิดเผยข้อมูล</div>
     <div class="value-10 double-column">
       <mat-form-field appearance="outline">
-        <mat-select placeholder="การเผยแพร่" formControlName="privacyId">
+        <mat-select placeholder="การเปิดเผยข้อมูล" formControlName="privacyId">
           <mat-option
             *ngFor="let item of privacyList"
             [value]="item.privacyId.toString()"

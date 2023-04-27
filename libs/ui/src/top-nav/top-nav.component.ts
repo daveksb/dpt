@@ -82,7 +82,6 @@ export class TopNavComponent implements OnInit {
         this.userName = `${res?.name ?? ''} ${res?.lname ?? ''}`;
       }
     });
-    console.log(this.userService.getUser());
   }
   ngOnInit(): void {}
   isContainUrl(data: string) {

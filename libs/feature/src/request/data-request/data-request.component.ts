@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
@@ -15,6 +15,7 @@ import { FileListFormComponent } from 'libs/form/src/file-list-form/file-list-fo
   styleUrls: ['./data-request.component.scss'],
 })
 export class DataRequestComponent implements OnInit {
+  @ViewChild('admin') adminRef!: ElementRef<HTMLDivElement>;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   readonly displayedColumnsDefault: string[] = [
@@ -186,5 +187,10 @@ export class DataRequestComponent implements OnInit {
           });
         },
       });
+  }
+  pageChange(page: any) {
+    if (page.previousPageIndex !== page?.pageIndex) {
+      this.adminRef.nativeElement.scrollTop = 0;
+    }
   }
 }

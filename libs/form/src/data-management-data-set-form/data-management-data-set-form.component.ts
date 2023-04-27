@@ -52,7 +52,9 @@ export class DataManagementDataSetFormComponent implements OnInit {
     catId: new FormControl<any>(null, Validators.required),
     groupsId: new FormControl<any>(null, Validators.required),
     apiDetail: new FormControl<any>(null, Validators.required),
-    apiLink: new FormControl<any>(null, Validators.required),
+    apiLink: new FormControl<any>({ value: null, disabled: true }, [
+      Validators.required,
+    ]),
     formatType: new FormControl<any>('FILE', Validators.required),
     jsonField: new FormControl<any>(null, Validators.required),
     provinceCode: new FormControl<any>(null, Validators.required),
@@ -74,11 +76,11 @@ export class DataManagementDataSetFormComponent implements OnInit {
   displayedColumns = ['name', 'type', 'description', 'default', 'action'];
   statusList = [
     {
-      label: 'ถูกใช้งาน',
+      label: 'เปิดใช้งาน',
       value: 'Y',
     },
     {
-      label: 'ไม่ถูกใช้งาน',
+      label: 'ไม่เปิดใช้งาน',
       value: 'N',
     },
   ];
@@ -224,9 +226,11 @@ export class DataManagementDataSetFormComponent implements OnInit {
 
     this.formGroup.get('createInfoDate')?.setValue(date);
     this.formGroup.get('active')?.setValue(this.formGroup.get('status')?.value);
-
+    // set to fixed due to requirement
+    this.formGroup.get('groupsId')?.setValue('1');
     const { tempPicture, status, tempFile, tempDetail, ...res } =
       this.formGroup.getRawValue();
+
     this.data.onConfirm(res);
     this.onDismiss();
   }

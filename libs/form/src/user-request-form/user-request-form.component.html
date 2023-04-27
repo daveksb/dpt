@@ -36,6 +36,10 @@
     <div class="value">
       {{ userDetail?.username }}
     </div>
+    <div class="label">วันที่สมัคร</div>
+    <div class="value">
+      {{ userDetail?.createDate | date: 'dd/MMM/yyyy' }}
+    </div>
     <div class="label">หน้าที่</div>
     <div class="value">
       <mat-form-field class="form-field" appearance="outline">

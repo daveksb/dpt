@@ -18,8 +18,8 @@ import {
   ApiType,
   MainApiService,
   Article,
+  Category,
 } from '@dpt/shared';
-import { Category } from '../data-service-list/data-service-list.component';
 
 @Component({
   selector: 'dpt-article-all',

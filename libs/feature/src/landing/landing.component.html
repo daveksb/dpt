@@ -7,12 +7,15 @@
     </div>
     <div class="body-container">
       <div class="category-container">
-        <div class="category-header">หมวดหมู่ชุดข้อมูล</div>
+        <div class="stripe-dash">
+          <div class="category-header">หมวดหมู่ชุดข้อมูล</div>
+        </div>
         <div class="category-list">
           <ng-container *ngFor="let item of category">
             <div
               class="category-item"
               [class.category-item--active]="item.catName === currentCategory"
+              (click)="categoryClick(item.catName)"
             >
               <div class="category-icon">
                 <img
@@ -32,65 +35,71 @@
     <div class="news-container">
       <dpt-news></dpt-news>
     </div>
-    <div class="statistic-header">สถิติการใช้งาน</div>
+    <div class="statistic-section">
+      <div class="stripe-dash">
+        <div class="statistic-header">สถิติการใช้งาน</div>
+      </div>
 
-    <div class="statistic-container">
-      <div class="statistic-item">
-        <div class="statistic-label">สถิติการเข้าดูข้อมูลสูงสุด 10 อันดับ</div>
-        <div class="statistic-chart">
-          <div class="api-table">
-            <table class="table">
-              <tbody>
-                <tr *ngFor="let item of apiStatistics">
-                  <td class="table-link">{{ item.name }}</td>
-                  <td class="no-wrap">{{ item.value }} ครั้ง</td>
-                </tr>
-              </tbody>
-            </table>
+      <div class="statistic-container">
+        <div class="statistic-item">
+          <div class="statistic-label">
+            สถิติการเข้าดูข้อมูลสูงสุด 10 อันดับ
+          </div>
+          <div class="statistic-chart">
+            <div class="api-table">
+              <table class="table">
+                <tbody>
+                  <tr *ngFor="let item of apiStatistics">
+                    <td class="table-link">{{ item.name }}</td>
+                    <td class="no-wrap">{{ item.value }} ครั้ง</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="statistic-item">
-        <div class="statistic-label">สถิติข้อมูลแต่ละประเภท (ชุด)</div>
-        <div class="statistic-chart">
-          <ngx-charts-pie-chart
-            [results]="categoryStatistics"
-            [legend]="showLegend"
-            [legendPosition]="legendPosition"
-            [labels]="false"
-            [view]="[375, 375]"
-            [doughnut]="false"
-          >
+        <div class="statistic-item">
+          <div class="statistic-label">สถิติข้อมูลแต่ละประเภท (ชุด)</div>
+          <div class="statistic-chart">
+            <ngx-charts-pie-chart
+              [results]="categoryStatistics"
+              [legend]="showLegend"
+              [legendPosition]="legendPosition"
+              [labels]="false"
+              [view]="[300, 300]"
+              [doughnut]="false"
             >
-          </ngx-charts-pie-chart>
+              >
+            </ngx-charts-pie-chart>
+          </div>
         </div>
-      </div>
-      <div class="statistic-item">
-        <div class="statistic-label">สถิติข้อมูลแต่ละหน่วยงาน (ชุด)</div>
-        <div class="statistic-chart">
-          <ngx-charts-pie-chart
-            [results]="departmentStatistics"
-            [legend]="showLegend"
-            [legendPosition]="legendPosition"
-            [labels]="false"
-            [view]="[375, 375]"
-            [doughnut]="true"
-          >
-          </ngx-charts-pie-chart>
+        <div class="statistic-item">
+          <div class="statistic-label">สถิติข้อมูลแต่ละหน่วยงาน (ชุด)</div>
+          <div class="statistic-chart">
+            <ngx-charts-pie-chart
+              [results]="departmentStatistics"
+              [legend]="showLegend"
+              [legendPosition]="legendPosition"
+              [labels]="false"
+              [view]="[300, 300]"
+              [doughnut]="true"
+            >
+            </ngx-charts-pie-chart>
+          </div>
         </div>
-      </div>
-      <div class="statistic-item">
-        <div class="statistic-label">สถิติข้อมูลแต่ละจังหวัด (ชุด)</div>
-        <div class="statistic-chart">
-          <ngx-charts-pie-chart
-            [results]="provinceStatistics"
-            [legend]="showLegend"
-            [legendPosition]="legendPosition"
-            [labels]="false"
-            [doughnut]="true"
-            [view]="[375, 375]"
-          >
-          </ngx-charts-pie-chart>
+        <div class="statistic-item">
+          <div class="statistic-label">สถิติข้อมูลแต่ละจังหวัด (ชุด)</div>
+          <div class="statistic-chart">
+            <ngx-charts-pie-chart
+              [results]="provinceStatistics"
+              [legend]="showLegend"
+              [legendPosition]="legendPosition"
+              [labels]="false"
+              [doughnut]="true"
+              [view]="[300, 300]"
+            >
+            </ngx-charts-pie-chart>
+          </div>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@
   width: 100%;
   display: block;
   padding-top: 3rem;
+  height: unset;
 }
 
 .data-content {
@@ -10,7 +11,7 @@
 
 .article-footer {
   display: flex;
-  margin-top: 56px;
+  grid-area: button;
   .confirm-button {
     margin: auto;
     width: 400px;
@@ -29,7 +30,8 @@
   grid-template-areas:
     'topicLabel topic'
     'thumbnailLabel thumbnail'
-    'descriptionLabel description';
+    'descriptionLabel description'
+    'button button';
   .topic-container {
     grid-area: topic;
   }
@@ -38,6 +40,7 @@
   }
   .description-container {
     grid-area: description;
+    margin-bottom: 36px;
   }
   .topic-label {
     grid-area: topicLabel;
@@ -57,4 +60,10 @@
 .thumbnail-image {
   max-width: 150px;
   min-width: 150px;
+}
+:host {
+  ::ng-deep.ql-container {
+    height: unset;
+    min-height: 200px;
+  }
 }

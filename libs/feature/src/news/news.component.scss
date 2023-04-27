@@ -1,4 +1,5 @@
 .news-container {
+  padding: 0px 10% 0 10%;
   width: 100%;
   .news-label {
     margin-top: 20px;
@@ -39,16 +40,16 @@
     padding-left: 32px;
     padding-right: 32px;
     .news-item {
-      width: 400px;
+      width: 250px;
       cursor: pointer;
       background-color: white;
       padding: 16px;
       border-radius: 16px;
       .image-container {
-        width: 368px;
+        width: 218px;
       }
       .news-image {
-        width: 368px;
+        width: 218px;
       }
       .news-detail {
         display: flex;
@@ -81,4 +82,7 @@
 .spinner-container {
   display: flex;
   justify-content: center;
+  margin-top: 16px;
+}
+.stripe-dash {
 }

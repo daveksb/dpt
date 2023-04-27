@@ -1,14 +1,21 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataRequestFormComponent } from '@dpt/form';
 import { MainApiService, UserService } from '@dpt/shared';
-import { DataReturn, DataType, Department, Province, Zone } from '@dpt/shared';
-export interface Category {
+import {
+  DataReturn,
+  DataType,
+  Department,
+  Province,
+  Zone,
+  Category,
+} from '@dpt/shared';
+export interface FilterCategory {
   value: string;
   count: 10;
 }
@@ -25,38 +32,34 @@ export interface SortParam {
 export class DataServiceListComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild('page') pageRef!: ElementRef<HTMLDivElement>;
   totalSize = 0;
   form = new FormControl();
   selectForm = new FormControl();
   sortList: SortParam[] = [
     {
       value: 'name',
-      label: 'ชื่อ',
+      label: 'เรียงตามลำดับตัวอักษร (ฮ-ก)',
       direction: 'asc',
     },
     {
       value: 'name',
-      label: 'ชื่อ',
+      label: 'เรียงตามลำดับตัวอักษร (ก-ฮ)',
       direction: 'desc',
     },
     {
       value: 'date',
-      label: 'วันที่',
-      direction: 'asc',
-    },
-    {
-      value: 'date',
-      label: 'วันที่',
+      label: 'วันที่เพิ่มข้อมูลล่าสุด',
       direction: 'desc',
     },
     {
       value: 'view',
-      label: 'จำนวนเข้าชม',
+      label: 'จำนวนเข้าชม (น้อย-มาก)',
       direction: 'asc',
     },
     {
       value: 'view',
-      label: 'จำนวนเข้าชม',
+      label: 'จำนวนเข้าชม (มาก-น้อย)',
       direction: 'desc',
     },
   ];
@@ -67,7 +70,7 @@ export class DataServiceListComponent implements OnInit {
     zoneName: new FormControl<string[]>([]),
     dataType: new FormControl<string[]>([]),
   });
-  sideBarList: Category[] = [];
+  sideBarList: FilterCategory[] = [];
   displayedColumns: string[] = [
     'order',
     'fullName',
@@ -80,12 +83,13 @@ export class DataServiceListComponent implements OnInit {
   currentData: DataReturn[] = [];
   defaultData: DataReturn[] = [];
   departmentList: Department[] = [];
+  categoryList: Category[] = [];
   currentCategory = '';
   mapCategory: any = {
     ผังเมือง: 'target.svg',
     พัฒนาเมือง: 'expand.svg',
     การอาคาร: 'file.svg',
-    การช่าง: 'global.svg',
+    บริการด้านช่าง: 'global.svg',
   };
 
   provinceList: Province[] = [];
@@ -97,7 +101,8 @@ export class DataServiceListComponent implements OnInit {
     private route: Router,
     private mainApiService: MainApiService,
     private userService: UserService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private router: ActivatedRoute
   ) {}
 
   onClickFilterCategory(value: string) {
@@ -110,13 +115,22 @@ export class DataServiceListComponent implements OnInit {
     }
   }
 
-  onOpenFile(a: any) {}
   onPaginationChange(change: PageEvent) {
     this.onSearch();
+    this.pageRef.nativeElement.scrollIntoView();
+  }
+  applyQueryParam() {
+    const param = this.router.snapshot.queryParams?.['category'];
+    if (param) {
+      this.onClickFilterCategory(param ?? '');
+    }
   }
   ngOnInit(): void {
     this.mainApiService.getDataType().subscribe((res) => {
       this.dataTypeList = res.TypeData;
+    });
+    this.mainApiService.getCategory().subscribe((res) => {
+      this.categoryList = res.Category;
     });
     this.formGroup.get('dataType')?.valueChanges.subscribe((v) => {
       this.onSearch();
@@ -180,6 +194,9 @@ export class DataServiceListComponent implements OnInit {
             this.currentData = res.datareturn as DataReturn[];
             this.sideBarList = [];
             const tempList: any = {};
+            this.categoryList.forEach((res) => {
+              tempList[res.catName] = 0;
+            });
             (res.datareturn as DataReturn[]).forEach((a) => {
               if (tempList[a.catName]) {
                 tempList[a.catName]++;
@@ -196,7 +213,7 @@ export class DataServiceListComponent implements OnInit {
               }
             }
             this.onSearch();
-          } else {
+            this.applyQueryParam();
           }
         },
         error: (err) => {},
@@ -221,6 +238,9 @@ export class DataServiceListComponent implements OnInit {
             this.currentData = res.datareturn as DataReturn[];
             this.sideBarList = [];
             const tempList: any = {};
+            this.categoryList.forEach((res) => {
+              tempList[res.catName] = 0;
+            });
             (res.datareturn as DataReturn[]).forEach((a) => {
               if (tempList[a.catName]) {
                 tempList[a.catName]++;
@@ -237,7 +257,7 @@ export class DataServiceListComponent implements OnInit {
               }
             }
             this.onSearch();
-          } else {
+            this.applyQueryParam();
           }
         },
         error: (err) => {},
@@ -247,21 +267,29 @@ export class DataServiceListComponent implements OnInit {
 
   onSearch() {
     this.currentData = (this.defaultData as DataReturn[]).filter((a) => {
-      return (
-        ((this.form.value as string)?.trim()
-          ? a.apiName.includes(this.form.value)
-          : true) &&
-        (this.selectForm.value
-          ? a.departmentName === this.selectForm.value
-          : true) &&
-        ((this.formGroup.get('province')?.value?.length ?? 0) > 0
+      const form = (this.form.value as string)?.trim()
+        ? a.apiName.includes(this.form.value)
+        : true;
+      const select = this.selectForm.value
+        ? a.departmentName === this.selectForm.value
+        : true;
+      const province =
+        (this.formGroup.get('province')?.value?.length ?? 0) > 0
+          ? this.formGroup.get('province')?.value?.some((r) => {
+              return r.toString() === a.provinceCode.toString();
+            })
+          : true;
+      const dataType =
+        (this.formGroup.get('dataType')?.value?.length ?? 0) > 0
           ? this.formGroup
-              .get('province')
-              ?.value?.some((r) => r === a.provinceCode)
-          : true) &&
-        ((this.formGroup.get('dataType')?.value?.length ?? 0) > 0
-          ? this.formGroup.get('dataType')?.value?.some((r) => r === a.tType)
-          : true) &&
+              .get('dataType')
+              ?.value?.some((r) => r.toString() === a.tType)
+          : true;
+      return (
+        form &&
+        select &&
+        province &&
+        dataType &&
         (this.currentCategory ? a.catName === this.currentCategory : true)
       );
     });

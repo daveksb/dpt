@@ -8,7 +8,7 @@
           mat-list-item
           [routerLink]="'request-list'"
           [routerLinkActive]="'request-active'"
-          >{{ 'ข้อมูลที่ร้องขอ' }}
+          >{{ 'รายการข้อมูลที่ขอใช้บริการ' }}
         </a>
         <a
           class="request-item"
@@ -16,14 +16,14 @@
           [routerLink]="'data-set'"
           [routerLinkActive]="'request-active'"
           *ngIf="canRequest"
-          >{{ 'ชุดข้อมูล' }}
+          >{{ 'รายการข้อมูลที่รออนุมัติ' }}
         </a>
         <a
           class="request-item"
           mat-list-item
           [routerLink]="'data-request'"
           [routerLinkActive]="'request-active'"
-          >{{ 'ชุดข้อมูลที่เคยร้องขอ' }}
+          >{{ 'ประวัติการขอใช้ข้อมูล' }}
         </a>
       </mat-nav-list>
     </mat-sidenav>

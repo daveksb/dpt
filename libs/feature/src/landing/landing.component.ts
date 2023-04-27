@@ -121,27 +121,10 @@ export class LandingComponent implements OnInit {
       });
     });
   }
-  search() {
-    this.currentData = (this.defaultData as DataReturn[]).filter((a) => {
-      return (
-        ((this.form.value as string)?.trim()
-          ? a.apiName.includes(this.form.value)
-          : true) &&
-        (this.currentCategory ? a.catName === this.currentCategory : true)
-      );
-    });
-  }
 
-  onClickFilterCategory(value: string) {
-    if (value === this.currentCategory) {
-      this.currentCategory = '';
-      this.search();
-    } else {
-      this.currentCategory = value;
-      this.search();
-    }
-  }
-  onClick(data: DataReturn) {
-    this.route.navigate(['/data-service-detail/' + data.apiId]);
+  categoryClick(category: string) {
+    this.route.navigate(['/data-service-list'], {
+      queryParams: { category },
+    });
   }
 }

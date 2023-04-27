@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -12,6 +18,7 @@ import { MainApiService } from '@dpt/shared';
 })
 export class DataSetComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild('admin') adminRef!: ElementRef<HTMLDivElement>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   displayedColumns: string[] = [
@@ -37,5 +44,10 @@ export class DataSetComponent implements OnInit {
         this.dataSource.data = res.datareturn;
       }
     });
+  }
+  pageChange(page: any) {
+    if (page.previousPageIndex !== page?.pageIndex) {
+      this.adminRef.nativeElement.scrollTop = 0;
+    }
   }
 }

@@ -50,8 +50,6 @@ export class DataServiceDetailComponent implements OnInit {
   dataSource = new MatTableDataSource();
   displayedZipColumns: string[] = ['name', 'size'];
   dataSourceZip = new MatTableDataSource<any>();
-  mapLink =
-    'https://dptgis.dpt.go.th/arcgis/rest/services/dds2/PLLU16/MapServer?f=jsapi';
   mainUrl =
     'https://cockpit.dpt.go.th/dptservice/dptapiaccess.php?filetokenkey=';
   tempDetail = '';
@@ -117,13 +115,16 @@ export class DataServiceDetailComponent implements OnInit {
             }
           }
         } else {
-          this.dialog.open(DefaultDialogComponent, {
+          const ref = this.dialog.open(DefaultDialogComponent, {
             maxHeight: '800px',
             width: '500px',
             data: {
               isError: true,
               status: 'ดำเนินการไม่สำเร็จ',
             },
+          });
+          ref.afterClosed().subscribe(() => {
+            this.router.navigate(['/data-service-list']);
           });
         }
       },
@@ -139,10 +140,22 @@ export class DataServiceDetailComponent implements OnInit {
       },
     });
   }
+  toApiList() {
+    this.router.navigate(['/data-service-list']);
+  }
+  toApiListWithCategory() {
+    this.router.navigate(['/data-service-list'], {
+      queryParams: {
+        category: this.apiDetail?.catName ?? '',
+      },
+    });
+  }
   get getLink() {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(
-      this.mapLink + '&filetokenkey=' + (this.apiDetail?.tokenKey ?? '')
-    );
+    return this.apiDetail?.apiLink
+      ? this.sanitizer.bypassSecurityTrustResourceUrl(
+          this.apiDetail.apiLink ?? ''
+        )
+      : '';
   }
   onShowExampleData() {
     const body = {

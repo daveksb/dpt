@@ -5,12 +5,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { DefaultDialogComponent } from '@dpt/form';
 import {
-  DefaultDialogComponent,
-  DataManagementDataSetFormComponent,
-} from '@dpt/form';
-import {
-  DataReturn,
   Privacy,
   DataType,
   CategoryGroup,
@@ -18,11 +14,9 @@ import {
   ApiType,
   MainApiService,
   UserService,
-  InsertApiRequest,
-  UpdateApiRequest,
   Article,
+  Category,
 } from '@dpt/shared';
-import { Category } from '../data-service-list/data-service-list.component';
 
 @Component({
   selector: 'dpt-article',
