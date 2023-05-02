@@ -68,6 +68,7 @@ export class FileHistoryComponent implements AfterViewInit {
       this.mainApiService.getSelectHistoryfile(apiId).subscribe((data) => {
         this.dataSource.data = data.datareturn;
         this.defaultData = data.datareturn;
+        this.currentData = data.datareturn;
       });
     } else {
       this.router.navigate(['data-management']);
@@ -104,5 +105,36 @@ export class FileHistoryComponent implements AfterViewInit {
           });
         },
       });
+  }
+  onDownload(apiId: string, fileName: string) {
+    window.open(
+      'https://cockpit.dpt.go.th/dptservice/dptgethistoryfile.php?filename=' +
+        fileName,
+      '_blank'
+    );
+  }
+  sortChange(sort: Sort | any) {
+    const data = this.currentData.slice();
+    if (!sort.active || sort.direction === '') {
+      this.currentData = data;
+      this.dataSource.data = this.currentData;
+      return;
+    }
+    this.currentData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'timestamp':
+          return this.compare(a.timestamp, b.timestamp, isAsc);
+        case 'originalFileName':
+          return this.compare(a.originalFileName, b.originalFileName, isAsc);
+
+        default:
+          return 0;
+      }
+    });
+    this.dataSource.data = this.currentData;
+  }
+  compare(a: number | string, b: number | string, isAsc: boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 }

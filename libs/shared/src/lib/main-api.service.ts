@@ -177,8 +177,10 @@ export class MainApiService {
     );
   }
 
-  getPublishList() {
-    const url = `dptrequest/servicedatabroadcast?`;
+  getPublishList(depId?: string) {
+    const url = `dptrequest/servicedatabroadcast?${
+      depId ? 'depId=' + depId : ''
+    }`;
     return this.http.get<PublishDataResponse>(
       `${environment.apiPrefix}/${url}`
     );

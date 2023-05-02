@@ -3,9 +3,14 @@
     <div class="data-management-label header-1">ประวัติไฟล์</div>
   </div>
   <div class="data-management-table default-table">
-    <table mat-table [dataSource]="dataSource" matSort>
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      (matSortChange)="sortChange($event)"
+      matSort
+    >
       <ng-container matColumnDef="order">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>ลำดับที่</th>
+        <th mat-header-cell *matHeaderCellDef>ลำดับที่</th>
         <td mat-cell *matCellDef="let row; let i = index">
           {{
             i +
@@ -32,7 +37,12 @@
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let row">
           <div class="data-management-data-container">
-            <img
+            <mat-icon
+              class="default-icon"
+              (click)="onDownload(row.hid, row.fileName)"
+            >
+              get_app</mat-icon
+            ><img
               src="assets/icon/delete.svg"
               class="default-icon"
               (click)="onDelete(row.hid, row.fileName)"

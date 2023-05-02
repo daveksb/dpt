@@ -91,9 +91,41 @@ export class DataManagementMainComponent implements AfterViewInit {
       .subscribe((data) => {
         this.dataSource.data = data.datareturn;
         this.defaultData = data.datareturn;
+        this.currentData = data.datareturn;
       });
   }
-  sortChange(sortState: Sort | any) {}
+  sortChange(sort: Sort | any) {
+    const data = this.currentData.slice();
+    if (!sort.active || sort.direction === '') {
+      this.currentData = data;
+      this.dataSource.data = this.currentData;
+      return;
+    }
+
+    this.currentData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'order':
+          return this.compare(a.createDate, b.createDate, isAsc);
+        case 'publishStatus':
+          return this.compare(a.privacyName, b.privacyName, isAsc);
+        case 'dataList':
+          return this.compare(a.tType, b.tType, isAsc);
+        case 'department':
+          return this.compare(a.departmentName, b.departmentName, isAsc);
+        case 'dataName':
+          return this.compare(a.apiName, b.apiName, isAsc);
+        default:
+          return 0;
+      }
+    });
+    this.dataSource.data = this.currentData;
+  }
+
+  compare(a: number | string, b: number | string, isAsc: boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  }
+
   onDownload(a: any) {}
   onEditHistory(row: DataReturn) {
     this.router.navigate(['data-management', row.apiId]);

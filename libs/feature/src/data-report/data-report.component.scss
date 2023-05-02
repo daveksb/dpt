@@ -31,7 +31,7 @@
 .report-detail-body {
   display: flex;
   width: 100%;
-
+  margin-top: 16px;
   .report-detail-content {
     display: flex;
     width: 100%;
@@ -88,4 +88,8 @@
 }
 .report-input {
   max-width: 500px;
+}
+
+:host ::ng-deep .mat-date-range-input .mat-date-range-input-container {
+  line-height: 22px !important;
 }

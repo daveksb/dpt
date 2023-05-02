@@ -40,3 +40,6 @@
     background: #fccc30;
   }
 }
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-label {
+  line-height: 21px !important;
+}

@@ -8,26 +8,22 @@
         (matSortChange)="sortChange($event)"
       >
         <ng-container matColumnDef="order">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>ลำดับที่</th>
+          <th mat-header-cell *matHeaderCellDef>ลำดับที่</th>
           <td mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}</td>
         </ng-container>
 
         <ng-container matColumnDef="fullName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>
-            ชื่อ-นามสกุล
-          </th>
+          <th mat-header-cell *matHeaderCellDef>ชื่อ-นามสกุล</th>
           <td mat-cell *matCellDef="let row">{{ row.name }} {{ row.lname }}</td>
         </ng-container>
 
         <ng-container matColumnDef="department">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>หน่วยงาน</th>
+          <th mat-header-cell *matHeaderCellDef>หน่วยงาน</th>
           <td mat-cell *matCellDef="let row">{{ row.departmentName }}</td>
         </ng-container>
 
         <ng-container matColumnDef="dataName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>
-            ชื่อชุดข้อมูล
-          </th>
+          <th mat-header-cell *matHeaderCellDef>ชื่อชุดข้อมูล</th>
           <td mat-cell *matCellDef="let row">
             <div class="data-request-data-container">
               <div class="dataName">
@@ -41,7 +37,7 @@
         </ng-container>
 
         <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>สถานะ</th>
+          <th mat-header-cell *matHeaderCellDef>สถานะ</th>
           <td mat-cell *matCellDef="let row">
             <img
               class="default-icon"
@@ -55,7 +51,7 @@
           </td>
         </ng-container>
         <ng-container matColumnDef="approval">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>การใช้งาน</th>
+          <th mat-header-cell *matHeaderCellDef>การใช้งาน</th>
           <td mat-cell *matCellDef="let row">
             <div class="data-request-data-container">
               <button
@@ -76,7 +72,7 @@
           </td>
         </ng-container>
         <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+          <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let row">
             <div class="data-request-data-container">
               <img

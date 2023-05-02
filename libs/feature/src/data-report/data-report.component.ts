@@ -6,7 +6,7 @@ import {
   MAT_DATE_LOCALE,
   NativeDateAdapter,
 } from '@angular/material/core';
-import { MainApiService } from '@dpt/shared';
+import { MainApiService, UserService } from '@dpt/shared';
 import {
   DataReturn,
   LineReport,
@@ -102,16 +102,37 @@ export class DataReportComponent implements OnInit {
   reportByDate: LineReport[] = [];
   reportByUser: LineReportSerie[] = [];
   apiName = '';
-  constructor(private apiService: MainApiService) {
-    this.apiService.getPublishList().subscribe((res) => {
-      if (res.returnCode === '00') {
-        this.apiList = res.datareturn;
-        this.apiList.unshift({
-          apiId: 'all',
-          apiName: 'ทั้งหมด',
-        });
-      }
-    });
+  constructor(
+    private apiService: MainApiService,
+    private userService: UserService
+  ) {
+    const depId = this.userService.getUser()?.department.departmentId;
+    //1 = admin
+    //5 = owner
+    //6 = owner admin
+    // fix code due to req
+    const role = this.userService.getUser()?.role.roleId;
+    if (role === '1') {
+      this.apiService.getPublishList().subscribe((res) => {
+        if (res.returnCode === '00') {
+          this.apiList = res.datareturn;
+          this.apiList.unshift({
+            apiId: 'all',
+            apiName: 'ทั้งหมด',
+          });
+        }
+      });
+    } else {
+      this.apiService.getPublishList(depId).subscribe((res) => {
+        if (res.returnCode === '00') {
+          this.apiList = res.datareturn;
+          this.apiList.unshift({
+            apiId: 'all',
+            apiName: 'ทั้งหมด',
+          });
+        }
+      });
+    }
   }
 
   ngOnInit(): void {
@@ -164,14 +185,6 @@ export class DataReportComponent implements OnInit {
   }
   mapFromReportByDate(list: ReportByDate[]) {
     let format = 'yyyy/LLL/dd hh:mm:ss';
-    console.log(this.form.value.startDate);
-    console.log(this.form.value.endDate);
-    console.log(
-      this.form.value.startDate?.hasSame(
-        this.form.value?.endDate ?? DateTime.now(),
-        'day'
-      )
-    );
     if (
       this.form.value.startDate &&
       this.form.value.endDate &&
@@ -181,7 +194,6 @@ export class DataReportComponent implements OnInit {
     } else {
       format = 'dd/MMM/yyyy';
     }
-    console.log(this.reportByDate);
     this.reportByDate = [
       {
         name: this.apiName,
