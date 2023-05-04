@@ -86,13 +86,22 @@ export class DataManagementMainComponent implements AfterViewInit {
   }
 
   refresh() {
-    this.mainApiService
-      .getDataByDepartmentNew(this.departmentId)
-      .subscribe((data) => {
+    const role = this.userService.getUser()?.role.roleId;
+    if (role === '1') {
+      this.mainApiService.getDataByDepartmentNew().subscribe((data) => {
         this.dataSource.data = data.datareturn;
         this.defaultData = data.datareturn;
         this.currentData = data.datareturn;
       });
+    } else {
+      this.mainApiService
+        .getDataByDepartmentNew(this.departmentId)
+        .subscribe((data) => {
+          this.dataSource.data = data.datareturn;
+          this.defaultData = data.datareturn;
+          this.currentData = data.datareturn;
+        });
+    }
   }
   sortChange(sort: Sort | any) {
     const data = this.currentData.slice();

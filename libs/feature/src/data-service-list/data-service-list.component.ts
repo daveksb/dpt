@@ -90,6 +90,7 @@ export class DataServiceListComponent implements OnInit {
     พัฒนาเมือง: 'expand.svg',
     การอาคาร: 'file.svg',
     บริการด้านช่าง: 'global.svg',
+    ข้อมูลอื่นๆ: 'info.png',
   };
 
   provinceList: Province[] = [];

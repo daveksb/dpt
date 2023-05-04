@@ -22,6 +22,7 @@ export class LandingComponent implements OnInit {
     2: 'expand.svg',
     3: 'file.svg',
     4: 'global.svg',
+    5: 'info.png',
   };
   mapCount: any = {
     '1': '0',

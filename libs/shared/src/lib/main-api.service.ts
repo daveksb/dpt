@@ -274,8 +274,10 @@ export class MainApiService {
       `${environment.apiPrefix}/${url}`
     );
   }
-  getDataByDepartmentNew(departmentId: string) {
-    const url = `dptrequest/selectdatadepartment?depId=${departmentId}`;
+  getDataByDepartmentNew(departmentId?: string) {
+    const url = `dptrequest/selectdatadepartment?${
+      departmentId ? 'depId=' + departmentId : ''
+    }`;
     return this.http.get<PublishDataResponse>(
       `${environment.apiPrefix}/${url}`
     );
