@@ -113,6 +113,7 @@ export interface DataReturn {
   updateDate: string;
   picture: any;
   tempPicture?: any;
+  hasHistory?: boolean;
 }
 export interface Category {
   catId: number;

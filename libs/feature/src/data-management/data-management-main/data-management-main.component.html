@@ -95,7 +95,10 @@
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let row">
           <div class="data-management-data-container">
-            <mat-icon class="default-icon" (click)="onEditHistory(row)"
+            <mat-icon
+              class="default-icon"
+              *ngIf="row.hasHistory"
+              (click)="onEditHistory(row)"
               >history
             </mat-icon>
             <img
