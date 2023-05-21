@@ -66,7 +66,14 @@ export class DataRequestComponent implements OnInit {
         .subscribe({
           next: (res) => {
             if (res.returnCode === '00') {
-              this.dataSource.data = res.datareturn;
+              const data = res.datareturn?.sort((a, b) => {
+                if (a?.reqCreate < b?.reqCreate) {
+                  return 1;
+                } else {
+                  return -1;
+                }
+              });
+              this.dataSource.data = data;
             } else {
               this.dataSource.data = [];
             }

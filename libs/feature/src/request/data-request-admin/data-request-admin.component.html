@@ -29,8 +29,15 @@
               <div class="dataName">
                 {{ row.reqName }}
               </div>
-              <div class="">
-                {{ row.reqCreate | date: 'dd/MM/YYYY' }}
+            </div>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="reqCreate">
+          <th mat-header-cell *matHeaderCellDef>วันที่สร้าง</th>
+          <td mat-cell *matCellDef="let row">
+            <div class="data-request-data-container">
+              <div class="dataName">
+                {{ row.reqCreate | date: 'dd/MMM/yyyy HH:mm' }}
               </div>
             </div>
           </td>

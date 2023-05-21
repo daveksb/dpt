@@ -487,6 +487,7 @@ export interface RequestApiData {
   departmentName: string;
   departmentNameExternal: string;
   tokenId: string;
+  reqCreate: string;
 }
 
 export interface RequestApiDataResponse extends DefaultResponse {

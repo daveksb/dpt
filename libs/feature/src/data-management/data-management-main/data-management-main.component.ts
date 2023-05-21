@@ -75,6 +75,25 @@ export class DataManagementMainComponent implements AfterViewInit {
       this.categoryGroupList = res.Groups;
     });
     this.mainApiService.getProvinces().subscribe((res) => {
+      res.Province = res.Province.sort((p, c) => {
+        if (
+          c.provinceCode.toString() === '0' &&
+          c.provinceName === 'ทั่วประเทศ'
+        ) {
+          return 1;
+        }
+        if (
+          p.provinceCode.toString() === '0' &&
+          p.provinceName === 'ทั่วประเทศ'
+        ) {
+          return -1;
+        }
+        if (c.provinceName < p.provinceName) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
       this.provinceList = res.Province;
     });
     this.mainApiService.getApiType().subscribe((res) => {

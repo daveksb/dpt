@@ -31,6 +31,7 @@ export class DataRequestAdminComponent implements OnInit, AfterViewInit {
     'fullName',
     'department',
     'dataName',
+    'reqCreate',
     'approval',
     'action',
   ];
@@ -38,6 +39,7 @@ export class DataRequestAdminComponent implements OnInit, AfterViewInit {
     'order',
     'department',
     'dataName',
+    'reqCreate',
     'status',
     'action',
   ];
@@ -78,7 +80,14 @@ export class DataRequestAdminComponent implements OnInit, AfterViewInit {
           this.mainApiService.getRequestApiUser().subscribe((res) => {
             if (res.returnCode === '00') {
               this.displayedColumns = this.displayedColumnsUser;
-              this.dataSource.data = res.datareturn;
+              const data = res.datareturn?.sort((a, b) => {
+                if (a.reqCreate < b.reqCreate) {
+                  return 1;
+                } else {
+                  return -1;
+                }
+              });
+              this.dataSource.data = data;
             }
           });
 
@@ -87,7 +96,14 @@ export class DataRequestAdminComponent implements OnInit, AfterViewInit {
           this.mainApiService.getRequestApiUser().subscribe((res) => {
             if (res.returnCode === '00') {
               this.displayedColumns = this.displayedColumnsUser;
-              this.dataSource.data = res.datareturn;
+              const data = res.datareturn?.sort((a, b) => {
+                if (a.reqCreate < b.reqCreate) {
+                  return 1;
+                } else {
+                  return -1;
+                }
+              });
+              this.dataSource.data = data;
             }
           });
           break;
@@ -95,7 +111,14 @@ export class DataRequestAdminComponent implements OnInit, AfterViewInit {
           this.mainApiService.getRequestApiUser().subscribe((res) => {
             if (res.returnCode === '00') {
               this.displayedColumns = this.displayedColumnsUser;
-              this.dataSource.data = res.datareturn;
+              const data = res.datareturn?.sort((a, b) => {
+                if (a.reqCreate < b.reqCreate) {
+                  return 1;
+                } else {
+                  return -1;
+                }
+              });
+              this.dataSource.data = data;
             }
           });
           break;
@@ -103,7 +126,14 @@ export class DataRequestAdminComponent implements OnInit, AfterViewInit {
           this.mainApiService.getRequestApiSecretary().subscribe((res) => {
             if (res.returnCode === '00') {
               this.displayedColumns = this.displayedColumnsUser;
-              this.dataSource.data = res.datareturn;
+              const data = res.datareturn?.sort((a, b) => {
+                if (a.reqCreate < b.reqCreate) {
+                  return 1;
+                } else {
+                  return -1;
+                }
+              });
+              this.dataSource.data = data;
             }
             this.displayedColumns = this.displayedColumnsDefault;
           });
@@ -116,7 +146,14 @@ export class DataRequestAdminComponent implements OnInit, AfterViewInit {
             .subscribe((res) => {
               if (res.returnCode === '00') {
                 this.displayedColumns = this.displayedColumnsDefault;
-                this.dataSource.data = res.datareturn;
+                const data = res.datareturn?.sort((a, b) => {
+                  if (a.reqCreate < b.reqCreate) {
+                    return 1;
+                  } else {
+                    return -1;
+                  }
+                });
+                this.dataSource.data = data;
               }
             });
           break;
@@ -128,7 +165,14 @@ export class DataRequestAdminComponent implements OnInit, AfterViewInit {
             .subscribe((res) => {
               if (res.returnCode === '00') {
                 this.displayedColumns = this.displayedColumnsDefault;
-                this.dataSource.data = res.datareturn;
+                const data = res.datareturn?.sort((a, b) => {
+                  if (a.reqCreate < b.reqCreate) {
+                    return 1;
+                  } else {
+                    return -1;
+                  }
+                });
+                this.dataSource.data = data;
               }
             });
           break;

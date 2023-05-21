@@ -158,6 +158,25 @@ export class DataServiceListComponent implements OnInit {
       this.departmentList = a.Department as Department[];
     });
     this.mainApiService.getProvinces().subscribe((a) => {
+      a.Province = a.Province.sort((p, c) => {
+        if (
+          c.provinceCode.toString() === '0' &&
+          c.provinceName === 'ทั่วประเทศ'
+        ) {
+          return 1;
+        }
+        if (
+          p.provinceCode.toString() === '0' &&
+          p.provinceName === 'ทั่วประเทศ'
+        ) {
+          return -1;
+        }
+        if (c.provinceName < p.provinceName) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
       this.provinceList = a.Province.map((a) => {
         return {
           provinceCode: a.provinceCode.toString(),

@@ -41,7 +41,14 @@ export class DataSetComponent implements OnInit {
   refresh() {
     this.apiService.getRequestedData().subscribe((res) => {
       if (res.datareturn) {
-        this.dataSource.data = res.datareturn;
+        const data = res.datareturn?.sort((a, b) => {
+          if (a.createDate < b.createDate) {
+            return 1;
+          } else {
+            return -1;
+          }
+        });
+        this.dataSource.data = data;
       }
     });
   }
