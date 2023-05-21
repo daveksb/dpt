@@ -5,24 +5,26 @@
 
 <div mat-dialog-content>
   <div class="department-form-container" [formGroup]="formGroup">
-    <div class="label">ข้อมูลหน่วยงาน</div>
-    <div class="value">
-      <div class="department-container">
-        <mat-form-field appearance="outline">
-          <mat-select
-            placeholder="เลือก 1 หมวดหมู่"
-            formControlName="department"
-          >
-            <mat-option
-              *ngFor="let item of departments"
-              [value]="item.departmentId"
+    <ng-container *ngIf="data.roleId !== '4'">
+      <div class="label">ข้อมูลหน่วยงาน</div>
+      <div class="value">
+        <div class="department-container">
+          <mat-form-field appearance="outline">
+            <mat-select
+              placeholder="เลือก 1 หมวดหมู่"
+              formControlName="department"
             >
-              {{ item.departmentName }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+              <mat-option
+                *ngFor="let item of departments"
+                [value]="item.departmentId"
+              >
+                {{ item.departmentName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
       </div>
-    </div>
+    </ng-container>
     <div class="label">รายละเอียด</div>
     <div class="value">
       <mat-form-field class="form-field" appearance="outline">

@@ -41,6 +41,9 @@ export class ApproveDepartmentFormComponent implements OnInit {
     this.mainApiService.getDataByDepartment(data.depId).subscribe((res) => {
       this.apiList = res.datareturn;
     });
+    if (this.data.roleId === '4') {
+      this.formGroup.get('department')?.setValidators(null);
+    }
   }
 
   ngOnInit(): void {}
@@ -76,7 +79,6 @@ export class ApproveDepartmentFormComponent implements OnInit {
       this.mainApiService
         .updateApprovalDepartment({
           apiId: this.formGroup.get('apiId')?.value,
-          depId: this.formGroup.get('department')?.value,
           reason: this.formGroup.get('reason')?.value,
           userId: this.data.reqUserId,
           depUserId: this.data.userId,
