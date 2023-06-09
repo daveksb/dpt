@@ -5,6 +5,7 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DefaultDialogComponent } from '@dpt/form';
 import { MainApiService, UserService } from '@dpt/shared';
+import { ConfirmDialogComponent } from 'libs/form/src/confirm-dialog/confirm-dialog.component';
 import { UserRequestFormComponent } from 'libs/form/src/user-request-form/user-request-form.component';
 import {
   AdminUserList,
@@ -96,6 +97,17 @@ export class AdminUserComponent implements OnInit {
     });
   }
   onDelete(id: string) {
+    const data = {
+      onConfirm: this.callDelete.bind(this, id),
+      message: 'ยืนยันการลบ',
+    };
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data,
+      maxHeight: '800px',
+      width: '500px',
+    });
+  }
+  callDelete(id: string) {
     this.apiService
       .deleteUser({
         userId: id,

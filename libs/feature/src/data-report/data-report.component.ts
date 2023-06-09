@@ -75,25 +75,7 @@ export class DataReportComponent implements OnInit {
   apiYAxisLabel = 'จำนวนครั้ง';
   timeline = true;
   count = 0;
-  multi: any = [
-    {
-      name: 'Germany',
-      series: [
-        {
-          name: '1990',
-          value: 62000000,
-        },
-        {
-          name: '2010',
-          value: 73000000,
-        },
-        {
-          name: '2011',
-          value: 89400000,
-        },
-      ],
-    },
-  ];
+
   apiList: Partial<DataReturn>[] = [];
   colorScheme: any = {
     domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5'],
@@ -190,7 +172,7 @@ export class DataReportComponent implements OnInit {
       this.form.value.endDate &&
       this.form.value.startDate?.hasSame(this.form.value?.endDate, 'day')
     ) {
-      format = 'hh:mm:ss';
+      format = 'HH:mm:ss';
     } else {
       format = 'dd/MMM/yyyy';
     }

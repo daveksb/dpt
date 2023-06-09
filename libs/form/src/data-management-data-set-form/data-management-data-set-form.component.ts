@@ -5,6 +5,8 @@ import {
   Validators,
   FormArray,
   AbstractControl,
+  ValidationErrors,
+  ValidatorFn,
 } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MainApiService, UserService } from '@dpt/shared';
@@ -12,7 +14,6 @@ import { Base64 } from 'js-base64';
 import {
   Category,
   CategoryGroup,
-  CheckFileResponse,
   DataType,
   Privacy,
   Province,
@@ -26,6 +27,28 @@ export interface TableParam {
   description?: string;
   default?: string;
 }
+
+export function fileSizeValidator(files: FileList): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const file = control.value;
+    if (file) {
+      const fileSize = files?.item(0)?.size;
+      if (fileSize) {
+        const fileInKB = Math.round(fileSize / 1024);
+        if (fileInKB >= 500) {
+          return {
+            fileSizeMax: true,
+          };
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    }
+    return null;
+  };
+}
 @Component({
   selector: 'dpt-data-management-data-set-form',
   templateUrl: './data-management-data-set-form.component.html',
@@ -34,9 +57,9 @@ export interface TableParam {
 export class DataManagementDataSetFormComponent implements OnInit {
   formGroup = new FormGroup<any>({
     privacyId: new FormControl<any>(null, Validators.required),
-    apiId: new FormControl<any>(null, Validators.required),
+    apiId: new FormControl<any>(null),
     apiName: new FormControl<any>(null, Validators.required),
-    attribute: new FormControl<any>(null, Validators.required),
+    attribute: new FormControl<any>(null),
     status: new FormControl<any>('N', Validators.required),
     active: new FormControl<any>('N', Validators.required),
     createBy: new FormControl<any>(
@@ -48,21 +71,19 @@ export class DataManagementDataSetFormComponent implements OnInit {
       Validators.required
     ),
     typeId: new FormControl<any>(1, Validators.required),
-    zone: new FormControl<any>(null, Validators.required),
+    zone: new FormControl<any>(null),
     catId: new FormControl<any>(null, Validators.required),
-    groupsId: new FormControl<any>(null, Validators.required),
+    groupsId: new FormControl<any>(null),
     apiDetail: new FormControl<any>(null, Validators.required),
-    apiLink: new FormControl<any>({ value: null, disabled: true }, [
-      Validators.required,
-    ]),
+    apiLink: new FormControl<any>(null, [Validators.required]),
     formatType: new FormControl<any>('FILE', Validators.required),
-    jsonField: new FormControl<any>(null, Validators.required),
+    jsonField: new FormControl<any>(null),
     provinceCode: new FormControl<any>(null, Validators.required),
     createInfoDate: new FormControl<Date>(new Date(), Validators.required),
-    picture: new FormControl<any>(null, Validators.required),
-    tempPicture: new FormControl<any>(null, Validators.required),
-    tempDetail: new FormControl<any>(null, Validators.required),
-    tempFile: new FormControl<any>(null, Validators.required),
+    picture: new FormControl<any>(null),
+    tempPicture: new FormControl<any>(null),
+    tempDetail: new FormControl<any>(null),
+    tempFile: new FormControl<any>(null),
   });
   dataTypeList: DataType[] = [];
   jsonForm = new FormGroup({
@@ -116,15 +137,25 @@ export class DataManagementDataSetFormComponent implements OnInit {
       if (this.data.tType !== 'zip') {
         const form = JSON.parse(Base64.decode(this.data.jsonField) ?? '[]')
           ?.data as TableParam[];
-        form.forEach((g) => {
-          const newGroup = new FormGroup({
-            name: new FormControl<any>(g.name),
-            type: new FormControl<any>(g.type),
-            description: new FormControl<any>(g.description),
-            default: new FormControl<any>(g.default),
+        if (typeof form === 'object') {
+          form?.forEach((g) => {
+            const newGroup = new FormGroup({
+              name: new FormControl<any>(g.name),
+              type: new FormControl<any>(g.type),
+              description: new FormControl<any>(g.description),
+              default: new FormControl<any>(g.default),
+            });
+            this.formArray.push(newGroup);
           });
-          this.formArray.push(newGroup);
-        });
+        }
+      }
+      if (this.data.tType === 'zip') {
+        const data = JSON.parse(atob(this.data?.jsonField))?.data;
+        if (data) {
+          this.formGroup.get('tempFile')?.setValue(data);
+        } else {
+          this.formGroup.get('tempFile')?.setValue(null);
+        }
       }
       if (this.apiList.some((a) => a === this.data.tId)) {
         const form = JSON.parse(
@@ -134,12 +165,12 @@ export class DataManagementDataSetFormComponent implements OnInit {
       }
 
       if (!this.isAPI) {
-        this.formGroup.get('link')?.disable();
+        this.formGroup.get('apiLink')?.disable();
       } else {
-        this.formGroup.get('link')?.enable();
+        this.formGroup.get('apiLink')?.enable();
       }
     }
-    const temp = this.data.apiLink ?? '';
+    const temp = this.data.apiLink;
     const hasPrefix = (temp as string).includes('TA');
     if (hasPrefix) {
       this.generateRefId = (this.data.apiLink as string).split('.')[0];
@@ -157,9 +188,9 @@ export class DataManagementDataSetFormComponent implements OnInit {
     }
     this.formGroup.get('typeId')?.valueChanges.subscribe((res) => {
       if (!this.isAPI) {
-        this.formGroup.get('link')?.disable();
+        this.formGroup.get('apiLink')?.disable();
       } else {
-        this.formGroup.get('link')?.enable();
+        this.formGroup.get('apiLink')?.enable();
       }
     });
     const role = this.userService.getUser()?.role.roleId;
@@ -240,7 +271,16 @@ export class DataManagementDataSetFormComponent implements OnInit {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        this.tempFile = btoa(reader.result as string);
+        this.formGroup
+          .get('tempPicture')
+          ?.setValidators([
+            Validators.required,
+            fileSizeValidator(a.target?.files),
+          ]);
+        this.formGroup.get('tempPicture')?.updateValueAndValidity();
+        if (this.formGroup.get('tempPicture')?.valid) {
+          this.tempFile = btoa(reader.result as string);
+        }
       };
       reader.onerror = (error) => {
         console.log('Error: ', error);
@@ -316,7 +356,7 @@ export class DataManagementDataSetFormComponent implements OnInit {
       });
 
     window.open(
-      'https://cockpit.dpt.go.th/9A5387D3066CAD4D72E2B730A7456639E97E5C6D/uploadfiledata.php?refId=' +
+      'https://dptdata.dpt.go.th/9A5387D3066CAD4D72E2B730A7456639E97E5C6D/uploadfiledata.php?refId=' +
         this.generateRefId,
       '_blank'
     );

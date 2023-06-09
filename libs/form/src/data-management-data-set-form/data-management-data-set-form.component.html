@@ -65,6 +65,9 @@
         placeholder="รูปภาพประกอบ"
         (change)="onFileChange($event)"
       />
+      <div style="color: red" *ngIf="formGroup.get('tempPicture')?.invalid">
+        File size over 500 KB.
+      </div>
     </div>
 
     <div class="label-5">รายละเอียด</div>
@@ -225,5 +228,7 @@
 </div>
 <mat-dialog-actions>
   <button mat-button (click)="onDismiss()">ยกเลิก</button>
-  <button mat-button (click)="onConfirm()">ตกลง</button>
+  <button mat-button [disabled]="formGroup.invalid" (click)="onConfirm()">
+    ตกลง
+  </button>
 </mat-dialog-actions>

@@ -3,13 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import {
-  AdminDataSetFormComponent,
-  AdminDepartmentFormComponent,
-  DefaultDialogComponent,
-} from '@dpt/form';
+import { AdminDataSetFormComponent, DefaultDialogComponent } from '@dpt/form';
 import { MainApiService } from '@dpt/shared';
-import { AdminData, AdminDepartment } from 'libs/shared/src/lib/share.model';
+import { ConfirmDialogComponent } from 'libs/form/src/confirm-dialog/confirm-dialog.component';
+import { AdminData } from 'libs/shared/src/lib/share.model';
 
 @Component({
   selector: 'dpt-admin-data-set',
@@ -54,6 +51,17 @@ export class AdminDataSetComponent implements OnInit {
     // console.log('onApprove', id);
   }
   onDelete(id: string) {
+    const data = {
+      onConfirm: this.callDelete.bind(this, id),
+      message: 'ยืนยันการลบ',
+    };
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data,
+      maxHeight: '800px',
+      width: '500px',
+    });
+  }
+  callDelete(id: string) {
     this.apiService
       .deleteAdminDataSet({
         tokenId: id,

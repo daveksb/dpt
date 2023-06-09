@@ -23,6 +23,7 @@ import {
   InsertApiRequest,
   UpdateApiRequest,
 } from '@dpt/shared';
+import { ConfirmDialogComponent } from 'libs/form/src/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'dpt-data-management-main',
@@ -159,6 +160,17 @@ export class DataManagementMainComponent implements AfterViewInit {
     this.router.navigate(['data-management', row.apiId]);
   }
   onDelete(apiId: number) {
+    const data = {
+      onConfirm: this.callDelete.bind(this, apiId),
+      message: 'ยืนยันการลบ',
+    };
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data,
+      maxHeight: '800px',
+      width: '500px',
+    });
+  }
+  callDelete(apiId: number) {
     this.mainApiService
       .deleteApiData({
         apiId,

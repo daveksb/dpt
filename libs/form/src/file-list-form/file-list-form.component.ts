@@ -1,12 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {
-  MainApiService,
-  RequestApiFile,
-  RequestApiFileResponse,
-} from '@dpt/shared';
-import { saveAs } from 'file-saver';
+import { MainApiService, RequestApiFile } from '@dpt/shared';
 
 @Component({
   selector: 'dpt-file-list-form',

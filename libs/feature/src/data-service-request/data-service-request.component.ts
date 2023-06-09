@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { DefaultDialogComponent } from '@dpt/form';
 import { MainApiService, UserService } from '@dpt/shared';
 import { Category } from '@dpt/shared';
+import { ConfirmDialogComponent } from 'libs/form/src/confirm-dialog/confirm-dialog.component';
 import { DateTime } from 'luxon';
 export interface TempFile {
   file: File;
@@ -87,6 +88,17 @@ export class DataServiceRequestComponent implements OnInit {
   }
   deleteFile(file: TempFile) {
     file.status = 'LOADING';
+    const data = {
+      onConfirm: this.callDelete.bind(this, file),
+      message: 'ยืนยันการลบ',
+    };
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data,
+      maxHeight: '800px',
+      width: '500px',
+    });
+  }
+  callDelete(file: TempFile) {
     this.apiService
       .deleteFile({
         rfname: file.file.name,

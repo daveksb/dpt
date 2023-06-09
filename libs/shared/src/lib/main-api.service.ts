@@ -66,7 +66,7 @@ export class MainApiService {
   }
   forgotPassword(body: any) {
     return this.http.post<any>(
-      `https://cockpit.dpt.go.th/mail/dptsendemail.php`,
+      `https://dptdata.dpt.go.th/mail/dptsendemail.php`,
       body
     );
   }
@@ -503,7 +503,7 @@ export class MainApiService {
     );
   }
   deleteSelectHistoryfile(body: any) {
-    const url = `https://cockpit.dpt.go.th/9A5387D3066CAD4D72E2B730A7456639E97E5C6D/dptdeletehistoryfile.php`;
+    const url = `https://dptdata.dpt.go.th/9A5387D3066CAD4D72E2B730A7456639E97E5C6D/dptdeletehistoryfile.php`;
     return this.http.post<DefaultResponse>(`${url}`, {
       ...body,
     });

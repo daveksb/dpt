@@ -5,7 +5,7 @@
 
 <div mat-dialog-content>
   <div class="department-form-container" [formGroup]="formGroup">
-    <ng-container *ngIf="data.roleId !== '4'">
+    <ng-container *ngIf="!(data.roleId === '4' && data.approve === 'D')">
       <div class="label">ข้อมูลหน่วยงาน</div>
       <div class="value">
         <div class="department-container">

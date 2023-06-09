@@ -14,7 +14,13 @@
 </div>
 <mat-dialog-actions>
   <div class="button-container">
-    <button mat-flat-button (click)="dialogRef.close()">ยกเลิก</button>
+    <button
+      mat-flat-button
+      class="cancel-dialog-button"
+      (click)="dialogRef.close()"
+    >
+      ยกเลิก
+    </button>
     <button mat-flat-button class="confirm-button" (click)="onConfirm()">
       ตกลง
     </button>

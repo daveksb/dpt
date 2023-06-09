@@ -48,21 +48,23 @@
             <div class="count-no">{{ count }}</div>
 
             <div class="report-detail-tab">
-              <ngx-charts-line-chart
-                [legendTitle]="''"
-                [scheme]="colorScheme"
-                [legend]="legend"
-                [showXAxisLabel]="showXAxisLabel"
-                [showYAxisLabel]="showYAxisLabel"
-                [xAxis]="xAxis"
-                [yAxis]="yAxis"
-                [xAxisLabel]="xAxisLabel"
-                [yAxisLabel]="yAxisLabel"
-                [timeline]="timeline"
-                [results]="reportByDate"
-                class="report-chart"
-              >
-              </ngx-charts-line-chart>
+              <div class="chart-box">
+                <ngx-charts-line-chart
+                  [legendTitle]="''"
+                  [scheme]="colorScheme"
+                  [showXAxisLabel]="showXAxisLabel"
+                  [showYAxisLabel]="showYAxisLabel"
+                  [xAxis]="xAxis"
+                  [yAxis]="yAxis"
+                  [xAxisLabel]="xAxisLabel"
+                  [yAxisLabel]="yAxisLabel"
+                  [autoScale]="true"
+                  [timeline]="timeline"
+                  [results]="reportByDate"
+                  class="report-chart"
+                >
+                </ngx-charts-line-chart>
+              </div>
             </div>
           </ng-template>
         </mat-tab>
@@ -73,19 +75,21 @@
           </ng-template>
           <ng-template matTabContent>
             <div class="report-detail-api">
-              <ngx-charts-bar-vertical
-                [legendTitle]="''"
-                [scheme]="colorScheme"
-                [legend]="legend"
-                [showXAxisLabel]="showXAxisLabel"
-                [showYAxisLabel]="showYAxisLabel"
-                [xAxis]="xAxis"
-                [yAxis]="yAxis"
-                [xAxisLabel]="apiXAxisLabel"
-                [yAxisLabel]="apiYAxisLabel"
-                [results]="reportByUser"
-              >
-              </ngx-charts-bar-vertical>
+              <div class="chart-box">
+                <ngx-charts-bar-vertical
+                  [legendTitle]="''"
+                  [scheme]="colorScheme"
+                  [legend]="legend"
+                  [showXAxisLabel]="showXAxisLabel"
+                  [showYAxisLabel]="showYAxisLabel"
+                  [xAxis]="xAxis"
+                  [yAxis]="yAxis"
+                  [xAxisLabel]="apiXAxisLabel"
+                  [yAxisLabel]="apiYAxisLabel"
+                  [results]="reportByUser"
+                >
+                </ngx-charts-bar-vertical>
+              </div>
             </div>
           </ng-template>
         </mat-tab>

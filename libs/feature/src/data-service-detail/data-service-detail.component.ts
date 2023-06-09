@@ -53,7 +53,7 @@ export class DataServiceDetailComponent implements OnInit {
   displayedZipColumns: string[] = ['name', 'size'];
   dataSourceZip = new MatTableDataSource<any>();
   mainUrl =
-    'https://cockpit.dpt.go.th/dptservice/dptapiaccess.php?filetokenkey=';
+    'https://dptdata.dpt.go.th/dptservice/dptapiaccess.php?filetokenkey=';
   tempDetail = '';
   fileSize = '';
   constructor(
@@ -147,7 +147,7 @@ export class DataServiceDetailComponent implements OnInit {
   }
   onDownload(apiId: string, fileName: string) {
     window.open(
-      'https://cockpit.dpt.go.th/dptservice/dptgethistoryfile.php?filename=' +
+      'https://dptdata.dpt.go.th/dptservice/dptgethistoryfile.php?filename=' +
         fileName,
       '_blank'
     );

@@ -8,6 +8,7 @@ import {
   DefaultDialogComponent,
 } from '@dpt/form';
 import { MainApiService } from '@dpt/shared';
+import { ConfirmDialogComponent } from 'libs/form/src/confirm-dialog/confirm-dialog.component';
 import { AdminDepartment } from 'libs/shared/src/lib/share.model';
 
 @Component({
@@ -50,6 +51,17 @@ export class AdminDepartmentComponent implements OnInit {
     // console.log('onApprove', id);
   }
   onDelete(id: string) {
+    const data = {
+      onConfirm: this.callDelete.bind(this, id),
+      message: 'ยืนยันการลบ',
+    };
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data,
+      maxHeight: '800px',
+      width: '500px',
+    });
+  }
+  callDelete(id: string) {
     this.apiService
       .deleteAdminDepartment({
         departmentId: id,

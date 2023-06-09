@@ -85,7 +85,7 @@
             mat-flat-button
             [disableRipple]="true"
             class="default-button activate-button privacy-button"
-            [ngClass]="{ 'warning-button': row.zone === 'PV' }"
+            [ngClass]="{ 'warning-button': row.privacyName === 'ภายใน' }"
           >
             {{ row.privacyName }}
           </button>

@@ -21,6 +21,7 @@ import {
 } from '@dpt/shared';
 import { DataManagementDataSetFormComponent } from '../data-management-data-set-form/data-management-data-set-form.component';
 import { DefaultDialogComponent } from '../default-dialog/default-dialog.component';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'dpt-file-history',
@@ -76,6 +77,17 @@ export class FileHistoryComponent implements AfterViewInit {
   }
 
   onDelete(hid: number, fileName: string) {
+    const data = {
+      onConfirm: this.callDelete.bind(this, hid, fileName),
+      message: 'ยืนยันการลบ',
+    };
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data,
+      maxHeight: '800px',
+      width: '500px',
+    });
+  }
+  callDelete(hid: number, fileName: string) {
     this.mainApiService
       .deleteSelectHistoryfile({
         hid,
@@ -108,7 +120,7 @@ export class FileHistoryComponent implements AfterViewInit {
   }
   onDownload(apiId: string, fileName: string) {
     window.open(
-      'https://cockpit.dpt.go.th/dptservice/dptgethistoryfile.php?filename=' +
+      'https://dptdata.dpt.go.th/dptservice/dptgethistoryfile.php?filename=' +
         fileName,
       '_blank'
     );

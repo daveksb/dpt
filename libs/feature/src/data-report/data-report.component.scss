@@ -42,9 +42,19 @@
   margin-top: 1rem;
   display: flex;
   padding: 40px;
+  height: 100%;
+}
+.chart-box {
+  display: flex;
+  height: 100%;
+  max-height: 50vh;
+  width: 100%;
 }
 
 .report-detail-api {
+  display: flex;
+  margin-top: 1rem;
+  height: 100%;
   padding: 40px;
 }
 
@@ -92,4 +102,7 @@
 
 :host ::ng-deep .mat-date-range-input .mat-date-range-input-container {
   line-height: 22px !important;
+}
+:host ::ng-deep .mat-select-value-text {
+  line-height: 20px;
 }

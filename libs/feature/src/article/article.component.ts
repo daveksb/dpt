@@ -17,6 +17,7 @@ import {
   Article,
   Category,
 } from '@dpt/shared';
+import { ConfirmDialogComponent } from 'libs/form/src/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'dpt-article',
@@ -66,10 +67,21 @@ export class ArticleComponent implements AfterViewInit {
       this.defaultData = data.datareturn;
     });
   }
-  onDelete(tid: number) {
+  onDelete(id: number) {
+    const data = {
+      onConfirm: this.callDelete.bind(this, id),
+      message: 'ยืนยันการลบ',
+    };
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data,
+      maxHeight: '800px',
+      width: '500px',
+    });
+  }
+  callDelete(tid: number) {
     this.mainApiService
       .deleteArticle({
-        tid,
+        tid: tid,
       })
       .subscribe({
         next: (res) => {
